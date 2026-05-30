@@ -1,0 +1,3232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Core Java — The Complete Guide | JVM, JRE, JDK & Beyond</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #1a1a24;
+    --border: #2a2a3a;
+    --accent: #4fffb0;
+    --accent2: #7b6cff;
+    --accent3: #ff6c6c;
+    --text: #e8e8f0;
+    --muted: #888899;
+    --code-bg: #0d0d16;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* GRAIN OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79,255,176,0.08) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-glow2 {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(123,108,255,0.07) 0%, transparent 70%);
+    top: 30%;
+    right: 10%;
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(79,255,176,0.08);
+    border: 1px solid rgba(79,255,176,0.25);
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(52px, 9vw, 110px);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -3px;
+    animation: fadeUp 0.7s ease both 0.1s;
+  }
+
+  h1 .line1 { color: var(--text); display: block; }
+  h1 .line2 {
+    display: block;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    max-width: 560px;
+    margin: 28px auto 0;
+    color: var(--muted);
+    font-size: 17px;
+    font-weight: 300;
+    animation: fadeUp 0.7s ease both 0.2s;
+  }
+
+  .scroll-cue {
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: fadeUp 0.7s ease both 0.4s;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollLine {
+    0%, 100% { opacity: 1; transform: scaleY(1); }
+    50% { opacity: 0.4; transform: scaleY(0.6); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* LAYOUT */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  section {
+    padding: 80px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+    line-height: 1.15;
+  }
+
+  h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+
+  p { color: #c0c0cc; margin-bottom: 16px; }
+
+  /* ANALOGY CARD */
+  .analogy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 40px 0;
+  }
+
+  .analogy-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .analogy-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent2);
+  }
+
+  .analogy-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .analogy-card:hover::before { opacity: 1; }
+
+  .analogy-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .analogy-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .analogy-car {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    background: rgba(79,255,176,0.07);
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+
+  .analogy-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* NESTING DIAGRAM */
+  .nest-diagram {
+    margin: 40px auto;
+    max-width: 480px;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+  }
+
+  .nest-jdk {
+    background: rgba(123,108,255,0.08);
+    border: 1px solid rgba(123,108,255,0.4);
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+  }
+
+  .nest-label {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    color: var(--accent2);
+  }
+
+  .nest-jre {
+    background: rgba(79,255,176,0.05);
+    border: 1px solid rgba(79,255,176,0.3);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 12px;
+  }
+
+  .nest-jre .nest-label { color: var(--accent); font-size: 16px; }
+
+  .nest-jvm {
+    background: rgba(255,108,108,0.06);
+    border: 1px solid rgba(255,108,108,0.3);
+    border-radius: 6px;
+    padding: 16px;
+    margin-top: 12px;
+  }
+
+  .nest-jvm .nest-label { color: var(--accent3); font-size: 14px; }
+
+  .nest-extras {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .nest-extras span {
+    display: inline-block;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin: 3px;
+    color: #aaa;
+    font-size: 11px;
+  }
+
+  /* FLOW DIAGRAM */
+  .flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin: 36px auto;
+    max-width: 320px;
+  }
+
+  .flow-step {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 20px;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+    position: relative;
+    transition: border-color 0.2s;
+  }
+
+  .flow-step.highlight { border-color: var(--accent); color: var(--accent); }
+  .flow-step.highlight2 { border-color: var(--accent2); color: var(--accent2); }
+  .flow-step.highlight3 { border-color: var(--accent3); color: var(--accent3); }
+
+  .flow-arrow {
+    width: 1px;
+    height: 28px;
+    background: var(--border);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .flow-arrow::after {
+    content: '▼';
+    font-size: 10px;
+    color: var(--muted);
+    position: absolute;
+    bottom: 0;
+  }
+
+  /* CODE BLOCK */
+  .code-block {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 24px 0;
+  }
+
+  .code-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+  }
+
+  .code-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+
+  .code-filename {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-left: auto;
+    letter-spacing: 0.5px;
+  }
+
+  pre {
+    padding: 20px;
+    overflow-x: auto;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #c8d3f5;
+  }
+
+  .kw { color: #7b6cff; }
+  .cls { color: #4fffb0; }
+  .fn { color: #82d7ff; }
+  .str { color: #ffca7a; }
+  .cmt { color: #555577; font-style: italic; }
+
+  /* COMPARISON TABLE */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 36px 0;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    min-width: 540px;
+  }
+
+  thead tr {
+    background: var(--surface2);
+  }
+
+  th {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1px;
+    padding: 16px 18px;
+    text-align: left;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+  }
+
+  th:nth-child(2) { color: var(--accent3); }
+  th:nth-child(3) { color: var(--accent); }
+  th:nth-child(4) { color: var(--accent2); }
+
+  td {
+    padding: 13px 18px;
+    border-bottom: 1px solid rgba(42,42,58,0.5);
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  td:first-child { color: var(--text); font-weight: 500; }
+
+  tr:last-child td { border-bottom: none; }
+
+  tbody tr:hover { background: rgba(255,255,255,0.02); }
+
+  .yes {
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .no {
+    color: #444455;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+  }
+
+  /* HIGHLIGHT BOX */
+  .highlight-box {
+    background: rgba(79,255,176,0.05);
+    border: 1px solid rgba(79,255,176,0.2);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 28px 0;
+  }
+
+  .highlight-box p {
+    margin: 0;
+    color: #b0f0d4;
+    font-size: 15px;
+  }
+
+  .highlight-box strong {
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+  }
+
+  .interview-box {
+    background: rgba(123,108,255,0.05);
+    border: 1px solid rgba(123,108,255,0.2);
+    border-left: 3px solid var(--accent2);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 28px 0;
+  }
+
+  .interview-box p {
+    margin: 0;
+    color: #c0b8ff;
+    font-size: 15px;
+  }
+
+  .interview-box .label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  /* CONCEPT SECTIONS */
+  .concept-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px;
+    margin: 40px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .concept-section::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    opacity: 0.04;
+  }
+
+  .concept-section.jvm::before { background: var(--accent3); }
+  .concept-section.jre::before { background: var(--accent); }
+  .concept-section.jdk::before { background: var(--accent2); }
+
+  .concept-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 72px;
+    font-weight: 800;
+    position: absolute;
+    top: 16px; right: 32px;
+    opacity: 0.04;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .concept-section.jvm .concept-num { color: var(--accent3); opacity: 0.06; }
+  .concept-section.jre .concept-num { color: var(--accent); opacity: 0.06; }
+  .concept-section.jdk .concept-num { color: var(--accent2); opacity: 0.06; }
+
+  .concept-tag {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .concept-section.jvm .concept-tag { background: rgba(255,108,108,0.1); color: var(--accent3); border: 1px solid rgba(255,108,108,0.2); }
+  .concept-section.jre .concept-tag { background: rgba(79,255,176,0.1); color: var(--accent); border: 1px solid rgba(79,255,176,0.2); }
+  .concept-section.jdk .concept-tag { background: rgba(123,108,255,0.1); color: var(--accent2); border: 1px solid rgba(123,108,255,0.2); }
+
+  /* MEMORY COMPONENTS */
+  .jvm-internals {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+  }
+
+  .jvm-part {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .jvm-part:hover { background: rgba(255,108,108,0.06); color: var(--accent3); }
+
+  /* JRE COMPONENTS */
+  .jre-list {
+    list-style: none;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .jre-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #c0c0cc;
+    transition: border-color 0.2s;
+  }
+
+  .jre-list li:hover { border-color: var(--accent); }
+
+  .jre-list li::before {
+    content: '→';
+    font-family: 'Space Mono', monospace;
+    color: var(--accent);
+    font-size: 14px;
+  }
+
+  /* JDK TOOLS */
+  .jdk-tools {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+  }
+
+  .jdk-tool {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    transition: border-color 0.2s;
+  }
+
+  .jdk-tool:hover { border-color: var(--accent2); }
+
+  .tool-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--accent2);
+    margin-bottom: 4px;
+  }
+
+  .tool-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 48px 24px;
+    text-align: center;
+  }
+
+  .footer-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .footer-sub {
+    color: var(--muted);
+    font-size: 13px;
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* Q&A CARDS */
+  .qa-list { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+
+  .qa-card {
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .qa-card.correct { border-left: 3px solid var(--accent); background: var(--surface); }
+  .qa-card.warn { border-left: 3px solid #ffb347; background: var(--surface); }
+
+  .qa-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 20px 12px;
+    flex-wrap: wrap;
+  }
+
+  .qa-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .correct-badge { background: rgba(79,255,176,0.1); color: var(--accent); border: 1px solid rgba(79,255,176,0.25); }
+  .warn-badge { background: rgba(255,179,71,0.1); color: #ffb347; border: 1px solid rgba(255,179,71,0.25); }
+
+  .qa-q { font-size: 15px; font-weight: 500; color: var(--text); line-height: 1.5; }
+
+  .qa-answer {
+    padding: 0 20px 14px;
+    font-size: 14px;
+    color: #b0b0c0;
+  }
+
+  .qa-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-right: 8px;
+  }
+
+  .qa-refine {
+    margin: 0 20px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: #aaa;
+    line-height: 1.7;
+  }
+
+  .refine-label {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 8px;
+  }
+
+  .qa-refine code, .qa-answer code {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    background: rgba(255,255,255,0.05);
+    padding: 1px 6px;
+    border-radius: 3px;
+    color: var(--accent);
+  }
+
+  /* JVM ARCH DIAGRAM */
+  .arch-diagram {
+    margin: 36px auto;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .arch-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .arch-component {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    padding: 16px 20px;
+    background: var(--surface);
+    transition: border-color 0.2s;
+  }
+
+  .arch-component:hover { border-color: var(--accent2); }
+
+  .comp-loader { border-color: rgba(123,108,255,0.3); }
+  .comp-verifier { border-color: rgba(255,108,108,0.3); }
+  .comp-rda { border-color: rgba(79,255,176,0.3); }
+  .comp-engine { border-color: rgba(255,179,71,0.3); }
+  .comp-gc { border-color: rgba(123,108,255,0.3); }
+
+  .arch-comp-label {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 4px;
+    color: var(--text);
+  }
+
+  .comp-loader .arch-comp-label { color: var(--accent2); }
+  .comp-verifier .arch-comp-label { color: var(--accent3); }
+  .comp-rda .arch-comp-label { color: var(--accent); }
+  .comp-engine .arch-comp-label { color: #ffb347; }
+  .comp-gc .arch-comp-label { color: var(--accent2); }
+
+  .arch-comp-desc { font-size: 13px; color: var(--muted); }
+
+  .arch-arrow {
+    font-size: 20px;
+    color: var(--border);
+    line-height: 1;
+    padding: 4px 0;
+  }
+
+  .arch-rda-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .rda-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .rda-box span { display: block; font-size: 10px; color: #555566; margin-top: 2px; }
+  .heap-box { border-color: rgba(79,255,176,0.2); color: var(--accent); }
+  .heap-box span { color: rgba(79,255,176,0.4); }
+  .stack-box { border-color: rgba(255,108,108,0.2); color: var(--accent3); }
+  .stack-box span { color: rgba(255,108,108,0.4); }
+
+  /* HEAP/STACK CARDS */
+  .hs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin: 36px 0;
+  }
+
+  .hs-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+  }
+
+  .heap-card { border-top: 2px solid var(--accent); }
+  .stack-card { border-top: 2px solid var(--accent3); }
+
+  .hs-icon { font-size: 32px; margin-bottom: 12px; }
+
+  .hs-facts {
+    list-style: none;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .hs-facts li {
+    font-size: 13px;
+    color: var(--muted);
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .heap-card .hs-facts li::before { content: '•'; color: var(--accent); position: absolute; left: 0; }
+  .stack-card .hs-facts li::before { content: '•'; color: var(--accent3); position: absolute; left: 0; }
+
+  /* GC VISUAL */
+  .gc-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin: 40px 0;
+    flex-wrap: wrap;
+  }
+
+  .gc-step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 16px;
+    text-align: center;
+    min-width: 130px;
+    flex: 1;
+    max-width: 160px;
+    transition: border-color 0.2s;
+  }
+
+  .gc-step:hover { border-color: var(--accent2); }
+  .gc-final { border-color: rgba(79,255,176,0.3); }
+
+  .gc-icon { font-size: 28px; margin-bottom: 8px; }
+
+  .gc-text {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .gc-sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .gc-arrow {
+    font-size: 20px;
+    color: var(--border);
+    padding: 0 8px;
+    flex-shrink: 0;
+  }
+
+  /* INTERNALS TWO-COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 32px;
+  }
+
+  .intern-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+  }
+
+  .tools-list { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+
+  .tool-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--muted);
+    transition: border-color 0.2s;
+  }
+
+  .tool-row:hover { border-color: var(--accent2); }
+
+  .tool-row.primary { border-color: rgba(123,108,255,0.2); }
+  .tool-row.primary .tool-mono { color: var(--accent2); }
+
+  .tool-mono {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    min-width: 64px;
+    flex-shrink: 0;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .analogy-grid { grid-template-columns: 1fr; }
+    .jvm-internals { grid-template-columns: repeat(2, 1fr); }
+    .jdk-tools { grid-template-columns: 1fr; }
+    .concept-section { padding: 28px 20px; }
+    h1 { letter-spacing: -1px; }
+    .hs-grid { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .gc-visual { flex-direction: column; gap: 8px; }
+    .gc-arrow { transform: rotate(90deg); }
+    .arch-rda-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* INLINE CODE */
+  .inline-code, code.ic {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    background: rgba(255,255,255,0.06);
+    padding: 2px 7px;
+    border-radius: 4px;
+    color: var(--accent);
+  }
+
+  /* STEPS LIST (Chapter 12) */
+  .steps-list { margin: 36px 0; display: flex; flex-direction: column; align-items: stretch; }
+
+  .step-item {
+    display: flex; gap: 20px; align-items: flex-start;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px 24px; transition: border-color 0.2s;
+  }
+  .step-item:hover { border-color: var(--accent2); }
+
+  .step-num {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px;
+    color: var(--accent2); opacity: 0.6; flex-shrink: 0; line-height: 1.3; min-width: 36px;
+  }
+  .step-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; color: var(--text); margin-bottom: 6px; }
+  .step-connector { width: 1px; height: 20px; background: var(--border); margin-left: 42px; }
+
+  .mem-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .mp { font-family: 'Space Mono', monospace; font-size: 11px; padding: 4px 12px; border-radius: 100px; border: 1px solid; }
+  .mp.heap   { background: rgba(79,255,176,0.07);  border-color: rgba(79,255,176,0.3);  color: var(--accent); }
+  .mp.stack  { background: rgba(255,108,108,0.07); border-color: rgba(255,108,108,0.3); color: var(--accent3); }
+  .mp.method { background: rgba(123,108,255,0.07); border-color: rgba(123,108,255,0.3); color: var(--accent2); }
+  .mp.pc     { background: rgba(255,179,71,0.07);  border-color: rgba(255,179,71,0.3);  color: #ffb347; }
+  .mp.native { background: rgba(180,180,255,0.07); border-color: rgba(180,180,255,0.2); color: #b0b0ee; }
+
+  /* MEMORY CARDS (Chapter 13) */
+  .mem-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 36px 0; }
+  .mem-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: transform 0.2s; }
+  .mem-card:hover { transform: translateY(-3px); }
+  .mem-card:last-child { grid-column: 1 / -1; }
+  .mem-card-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--border); }
+  .heap-h   { background: rgba(79,255,176,0.06); }
+  .stack-h  { background: rgba(255,108,108,0.06); }
+  .method-h { background: rgba(123,108,255,0.06); }
+  .pc-h     { background: rgba(255,179,71,0.06); }
+  .native-h { background: rgba(180,180,255,0.06); }
+  .mem-tag { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; }
+  .heap-h .mem-tag   { color: var(--accent); }
+  .stack-h .mem-tag  { color: var(--accent3); }
+  .method-h .mem-tag { color: var(--accent2); }
+  .pc-h .mem-tag     { color: #ffb347; }
+  .native-h .mem-tag { color: #b0b0ee; }
+  .mem-icon { font-size: 20px; }
+  .mem-card-body { padding: 16px 20px; }
+  .mem-card-body p { font-size: 14px; margin-bottom: 0; }
+
+  /* EXECUTION ENGINE (Chapter 14) */
+  .ee-grid { display: flex; align-items: flex-start; gap: 0; margin: 36px 0; }
+  .ee-card { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 28px 24px; transition: border-color 0.2s; }
+  .interp-card { border-top: 2px solid var(--accent3); }
+  .jit-card    { border-top: 2px solid var(--accent); }
+  .interp-card:hover { border-color: var(--accent3); }
+  .jit-card:hover    { border-color: var(--accent); }
+  .ee-icon { font-size: 32px; margin-bottom: 12px; }
+  .ee-vs { flex-shrink: 0; align-self: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 14px; color: var(--muted); padding: 0 20px; }
+  .ee-tag { display: inline-block; margin-top: 14px; font-family: 'Space Mono', monospace; font-size: 11px; padding: 5px 12px; border-radius: 6px; }
+  .bad-tag  { background: rgba(255,108,108,0.08); color: var(--accent3); border: 1px solid rgba(255,108,108,0.2); }
+  .good-tag { background: rgba(79,255,176,0.08);  color: var(--accent);  border: 1px solid rgba(79,255,176,0.2); }
+
+  /* MISCONCEPTION CARDS */
+  .misconception-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 32px 0;
+  }
+
+  .mc-card {
+    border-radius: 10px;
+    padding: 20px 24px;
+    border: 1px solid;
+  }
+
+  .wrong-card { background: rgba(255,108,108,0.04); border-color: rgba(255,108,108,0.2); }
+  .right-card  { background: rgba(79,255,176,0.04);  border-color: rgba(79,255,176,0.2); }
+
+  .mc-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .wrong-label { color: var(--accent3); }
+  .right-label  { color: var(--accent); }
+
+  /* PARENT DELEGATION */
+  .pdm-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 32px 0;
+  }
+
+  .pdm-analogy, .pdm-jvm {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .pdm-analogy-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  .cl-hierarchy {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .cl-node {
+    border-radius: 8px;
+    padding: 12px 16px;
+    border: 1px solid;
+  }
+
+  .bootstrap-node { background: rgba(79,255,176,0.05);  border-color: rgba(79,255,176,0.25); }
+  .platform-node  { background: rgba(123,108,255,0.05); border-color: rgba(123,108,255,0.25); }
+  .app-node       { background: rgba(255,108,108,0.05); border-color: rgba(255,108,108,0.25); }
+
+  .cl-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+
+  .bootstrap-node .cl-name { color: var(--accent); }
+  .platform-node  .cl-name { color: var(--accent2); }
+  .app-node       .cl-name { color: var(--accent3); }
+
+  .cl-desc  { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .cl-source { font-family: 'Space Mono', monospace; font-size: 10px; color: #555566; margin-top: 4px; }
+
+  .cl-arrow-down {
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    padding: 6px 0;
+    letter-spacing: 1px;
+  }
+
+  .pdm-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  .pdm-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #c0c0cc;
+    transition: border-color 0.2s;
+  }
+
+  .pdm-step:hover { border-color: var(--accent2); }
+
+  .pdm-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--accent2);
+    opacity: 0.7;
+    flex-shrink: 0;
+    min-width: 22px;
+  }
+
+  /* FINAL QUICK CHECK */
+  .fqc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .fqc-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+
+  .fqc-item:hover { border-color: var(--accent2); }
+
+  .fqc-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--accent2);
+    opacity: 0.6;
+    flex-shrink: 0;
+    min-width: 32px;
+    line-height: 1.4;
+  }
+
+  .fqc-body { flex: 1; }
+
+  .fqc-q {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+
+  .fqc-hint {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .fqc-answer {
+    background: var(--surface2);
+    border: 1px solid rgba(79,255,176,0.15);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #b0f0d4;
+    margin-bottom: 12px;
+    line-height: 1.7;
+  }
+
+  .reveal-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.04);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .reveal-btn:hover {
+    background: rgba(123,108,255,0.08);
+    color: var(--accent2);
+    border-color: rgba(123,108,255,0.3);
+  }
+
+  @media (max-width: 640px) {
+    .misconception-grid { grid-template-columns: 1fr; }
+    .pdm-layout { grid-template-columns: 1fr; }
+  }
+
+  /* NAVIGATION BAR STYLES */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, rgba(10,10,15,0.95) 0%, rgba(10,10,15,0.85) 100%);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+    padding: 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  .navbar-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 70px;
+    flex-wrap: wrap;
+  }
+
+  .navbar-brand {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-right: 24px;
+    white-space: nowrap;
+    letter-spacing: -0.5px;
+    cursor: pointer;
+    transition: filter 0.2s;
+  }
+
+  .navbar-brand:hover {
+    filter: brightness(1.2);
+  }
+
+  .nav-buttons-container {
+    display: flex;
+    gap: 8px;
+    flex: 1;
+    overflow-x: auto;
+    padding-right: 20px;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(79,255,176,0.1);
+    border-radius: 8px;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(79,255,176,0.15), transparent);
+    transition: left 0.5s;
+  }
+
+  .nav-btn:hover::before {
+    left: 100%;
+  }
+
+  .nav-btn:hover {
+    background: rgba(79,255,176,0.08);
+    border-color: rgba(79,255,176,0.3);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .nav-btn.active {
+    background: rgba(79,255,176,0.15);
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 15px rgba(79,255,176,0.2);
+  }
+
+  .nav-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    animation: slideIn 0.3s ease;
+  }
+
+  @keyframes slideIn {
+    from { width: 0; left: 0; }
+    to { width: 100%; left: 0; }
+  }
+
+  .nav-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    background: rgba(123,108,255,0.2);
+    color: var(--accent2);
+    padding: 3px 8px;
+    border-radius: 100px;
+    font-weight: 700;
+  }
+
+  .nav-btn.active .nav-badge {
+    background: rgba(79,255,176,0.25);
+    color: var(--accent);
+  }
+
+  .theme-toggle {
+    margin-left: auto;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.2s;
+  }
+
+  .theme-toggle:hover {
+    background: rgba(79,255,176,0.08);
+    color: var(--accent);
+  }
+
+  /* SECTION TOGGLE */
+  .chapter-section {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .chapter-section.active {
+    display: block;
+    opacity: 1;
+  }
+
+  body {
+    padding-top: 70px;
+  }
+
+  .progress-bar {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+    width: 0%;
+    transition: width 0.2s ease;
+    z-index: 999;
+  }
+
+  /* BACK TO TOP BUTTON */
+  .scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: rgba(79,255,176,0.1);
+    border: 1px solid rgba(79,255,176,0.3);
+    border-radius: 12px;
+    color: var(--accent);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 500;
+  }
+
+  .scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .scroll-to-top:hover {
+    background: rgba(79,255,176,0.2);
+    transform: translateY(-3px);
+  }
+
+  @media (max-width: 900px) {
+    .nav-buttons-container {
+      gap: 6px;
+    }
+    
+    .nav-btn {
+      padding: 8px 12px;
+      font-size: 12px;
+    }
+
+    .navbar-brand {
+      margin-right: 12px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .navbar-content {
+      height: auto;
+      padding: 12px 16px;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .navbar-brand {
+      margin-right: 0;
+      margin-bottom: 8px;
+    }
+
+    .nav-buttons-container {
+      padding-right: 0;
+      gap: 6px;
+    }
+
+    .nav-btn {
+      flex: 1;
+      justify-content: center;
+      padding: 8px 10px;
+      font-size: 11px;
+    }
+
+    .theme-toggle {
+      margin-left: 0;
+      margin-top: 8px;
+    }
+
+    body {
+      padding-top: auto;
+    }
+  }
+
+  /* SECTION INTRO ANIMATION */
+  .section-intro {
+    animation: fadeInDown 0.6s ease both;
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION BAR -->
+<div class="navbar">
+  <div class="navbar-content">
+    <div class="navbar-brand" onclick="scrollToTop()">☕ CORE JAVA</div>
+    <div class="nav-buttons-container">
+      <button class="nav-btn active" onclick="switchSection('all')">
+        <span>JDK, JRE and JVM</span>
+        <span class="nav-badge">19</span>
+      </button>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light theme">🌙</button>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar"></div>
+
+<!-- SCROLL TO TOP BUTTON -->
+<div class="scroll-to-top" id="scrollToTopBtn" onclick="scrollToTop()">↑</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="badge">Java Foundation Mastery</div>
+  <h1>
+    <span class="line1">CORE JAVA</span>
+    <span class="line2">Complete Guide</span>
+  </h1>
+  <p class="hero-sub">Master JVM architecture, memory management, class loaders, and execution engines. Everything you need for senior-level Java interviews and deep system knowledge.</p>
+  <div class="scroll-cue">
+    <div class="scroll-line"></div>
+    scroll to explore · use navbar to navigate
+  </div>
+</div>
+
+<!-- WHY DO THEY EXIST -->
+<div class="chapter-section active" id="jvm-section">
+  <div class="container">
+    <div class="section-label">Chapter 01 — The Problem They Solve</div>
+    <h2>Why Do JVM, JRE, and JDK Even Exist?</h2>
+    <p>Before diving into definitions, we need to understand the real-world problem these three components solve. The best way to understand it? A car factory analogy.</p>
+
+    <div class="analogy-grid">
+      <div class="analogy-card">
+        <div class="analogy-icon">🚗</div>
+        <div class="analogy-title">Car Driver</div>
+        <div class="analogy-car">→ End User</div>
+        <p class="analogy-desc">Can only <em>drive</em> the car. Cannot manufacture or modify it. Just needs the runtime environment to operate.</p>
+      </div>
+      <div class="analogy-card">
+        <div class="analogy-icon">⚙️</div>
+        <div class="analogy-title">Car Engine</div>
+        <div class="analogy-car">→ JVM</div>
+        <p class="analogy-desc">The actual mechanism that makes the car move. Without the engine, nothing runs.</p>
+      </div>
+      <div class="analogy-card">
+        <div class="analogy-icon">🏭</div>
+        <div class="analogy-title">Factory Worker</div>
+        <div class="analogy-car">→ Developer</div>
+        <p class="analogy-desc">Builds, tests, and drives cars. Needs the complete toolset — not just the ability to run the final product.</p>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <p><strong>One-liner to remember:</strong> JDK contains JRE, and JRE contains JVM. The entire relationship in one sentence.</p>
+    </div>
+
+    <!-- NESTING DIAGRAM -->
+    <div class="nest-diagram">
+      <div class="nest-jdk">
+        <div class="nest-label">JDK</div>
+        <div class="nest-extras">
+          <span>javac</span><span>javadoc</span><span>debugger</span><span>jdb</span>
+        </div>
+        <div class="nest-jre">
+          <div class="nest-label">JRE</div>
+          <div class="nest-extras">
+            <span>Core Libraries</span><span>Runtime Files</span>
+          </div>
+          <div class="nest-jvm">
+            <div class="nest-label">JVM</div>
+            <div class="nest-extras">
+              <span>Memory</span><span>Stack</span><span>Heap</span><span>Threads</span><span>GC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-box">
+      <span class="label">🎤 Interview Tip</span>
+      <p>Interviewers love asking: "Explain the relationship between JVM, JRE, and JDK." The nesting diagram above answers it perfectly.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">Chapter 11</div>
+
+    <div class="concept-section jdk">
+      <div class="concept-num">11</div>
+      <span class="concept-tag">Java Compilation Flow</span>
+      <h2>What Happens When You Run a Java Program?</h2>
+      <p>
+        Before Java prints output, your source code goes through a full journey:
+        compilation, loading, verification, memory setup, interpretation, and
+        JIT execution.
+      </p>
+
+      <div class="highlight-box">
+        <p>
+          <strong>Big idea:</strong> Java source code is not executed directly by
+          the CPU. It is first converted into bytecode, and then the JVM turns
+          that bytecode into machine code.
+        </p>
+      </div>
+
+      <h3>Big Picture Flow</h3>
+      <div class="flow">
+        <div class="flow-step highlight2">Main.java</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight3">javac Compiler</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight">Main.class</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight2">Class Loader</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight3">Bytecode Verifier</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight">JVM Memory Areas</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight2">Interpreter</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight3">JIT Compiler</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight">Machine Code</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight2">CPU</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight3">Output</div>
+      </div>
+
+      <h3>Why Compilation Is Needed</h3>
+      <div class="analogy-grid">
+        <div class="analogy-card">
+          <div class="analogy-icon">🗣️</div>
+          <div class="analogy-title">Translator Example</div>
+          <div class="analogy-car">Human Language → Translator → CPU Language</div>
+          <p class="analogy-desc">
+            Java source code is readable by humans, but the CPU only understands
+            machine code.
+          </p>
+        </div>
+
+        <div class="analogy-card">
+          <div class="analogy-icon">🌍</div>
+          <div class="analogy-title">Universal Language</div>
+          <div class="analogy-car">Java Code → Bytecode → JVM</div>
+          <p class="analogy-desc">
+            Bytecode acts like a common intermediate language that can run on any
+            platform with a JVM.
+          </p>
+        </div>
+
+        <div class="analogy-card">
+          <div class="analogy-icon">📦</div>
+          <div class="analogy-title">Shipping Label</div>
+          <div class="analogy-car">Write Once → Ship Anywhere</div>
+          <p class="analogy-desc">
+            The same compiled .class file can run on Windows, Linux, or Mac as
+            long as a JVM is available.
+          </p>
+        </div>
+      </div>
+
+      <h3>Source Code and Compiler</h3>
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dot" style="background:#ff5f57"></div>
+          <div class="code-dot" style="background:#ffbd2e"></div>
+          <div class="code-dot" style="background:#28ca41"></div>
+          <span class="code-filename">Main.java</span>
+        </div>
+        <pre><code><span class="kw">public class</span> <span class="cls">Main</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="cls">String</span>[] args) {
+        <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"Hello"</span>);
+    }
+}</code></pre>
+      </div>
+
+      <div class="highlight-box">
+        <p>
+          <strong>javac</strong> checks syntax, type safety, and symbols before
+          producing bytecode.
+        </p>
+      </div>
+
+      <h3>What javac Produces</h3>
+      <p>
+        The compiler converts <code>Main.java</code> into <code>Main.class</code>.
+        That .class file contains <strong>bytecode</strong>, not machine code.
+      </p>
+
+      <div class="interview-box">
+        <span class="label">Interview Definition</span>
+        <p>
+          Bytecode is platform-independent intermediate code generated by the Java
+          compiler and executed by the JVM.
+        </p>
+      </div>
+
+      <h3>Why Bytecode Matters</h3>
+      <div class="two-col">
+        <div class="intern-card">
+          <h3>Platform Independence</h3>
+          <p>
+            The same compiled .class file can run on different operating systems
+            because JVM implementations exist for each platform.
+          </p>
+        </div>
+
+        <div class="intern-card">
+          <h3>Internal Execution</h3>
+          <p>
+            The JVM does not leave bytecode as-is. It interprets it and also uses
+            JIT compilation to turn hot code into machine code.
+          </p>
+        </div>
+      </div>
+
+      <h3>Execution Flow Inside JVM</h3>
+      <div class="arch-diagram">
+        <div class="arch-title">Java Program Execution Pipeline</div>
+        <div class="arch-component comp-loader">
+          <div class="arch-comp-label">Class Loader</div>
+          <div class="arch-comp-desc">Loads .class files into JVM memory</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-component comp-verifier">
+          <div class="arch-comp-label">Bytecode Verifier</div>
+          <div class="arch-comp-desc">Checks safety and structure of bytecode</div>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-component comp-rda">
+          <div class="arch-comp-label">Runtime Data Areas</div>
+          <div class="arch-rda-grid">
+            <div class="rda-box heap-box">Heap<span>Objects and arrays</span></div>
+            <div class="rda-box stack-box">Stack<span>Method frames</span></div>
+            <div class="rda-box">Method Area<span>Class metadata</span></div>
+            <div class="rda-box">PC Register<span>Current instruction</span></div>
+          </div>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-component comp-engine">
+          <div class="arch-comp-label">Execution Engine</div>
+          <div class="arch-comp-desc">Interpreter + JIT Compiler → Machine Code</div>
+        </div>
+      </div>
+
+      <h3>Interview Flow</h3>
+      <div class="qa-list">
+        <div class="qa-card correct">
+          <div class="qa-header">
+            <span class="qa-badge correct-badge">Correct</span>
+            <span class="qa-q">What happens when you compile a Java file?</span>
+          </div>
+          <div class="qa-answer">
+            <span class="qa-label">Answer</span>
+            <p>
+              The javac compiler checks the source file and converts it into
+              bytecode inside a .class file.
+            </p>
+          </div>
+        </div>
+
+        <div class="qa-card correct">
+          <div class="qa-header">
+            <span class="qa-badge correct-badge">Correct</span>
+            <span class="qa-q">Who executes the bytecode?</span>
+          </div>
+          <div class="qa-answer">
+            <span class="qa-label">Answer</span>
+            <p>The JVM executes bytecode by interpreting it and using JIT compilation.</p>
+          </div>
+        </div>
+
+        <div class="qa-card warn">
+          <div class="qa-header">
+            <span class="qa-badge warn-badge">Trap</span>
+            <span class="qa-q">Does the CPU understand Java code directly?</span>
+          </div>
+          <div class="qa-answer">
+            <span class="qa-label">Answer</span>
+            <p>
+              No. The CPU understands machine code. Java code must go through
+              javac and JVM first.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <p>
+          <strong>Interview one-liner:</strong> Java source code is compiled by
+          javac into platform-independent bytecode, and the JVM translates that
+          bytecode into machine code for the CPU.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JVM -->
+<section>
+  <div class="container">
+    <div class="section-label">Chapter 02 — Concept 1</div>
+    <div class="concept-section jvm">
+      <div class="concept-num">01</div>
+      <span class="concept-tag">JVM</span>
+      <h2>Java Virtual Machine</h2>
+      <p>Think of a movie DVD. The DVD doesn't play itself — you need a <strong style="color: var(--accent3);">DVD player</strong>. Similarly, Java bytecode doesn't run on its own. It needs the JVM to execute it.</p>
+
+      <div class="flow">
+        <div class="flow-step">Java Source Code <span style="color:var(--muted); font-size:11px;">(.java)</span></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step">Compiler</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight3">Bytecode <span style="color:var(--muted); font-size:11px;">(.class)</span></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight3">JVM</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step">Operating System</div>
+      </div>
+
+      <p>The OS never directly executes Java code. The JVM is the intermediary that bridges Java and the underlying platform.</p>
+
+      <h3 style="margin-top: 28px;">Why Is It Called a <em>Virtual</em> Machine?</h3>
+      <p>Because it behaves like a computer inside your computer. It has its own internal components:</p>
+
+      <div class="jvm-internals">
+        <div class="jvm-part">Memory</div>
+        <div class="jvm-part">Stack</div>
+        <div class="jvm-part">Heap</div>
+        <div class="jvm-part">Threads</div>
+        <div class="jvm-part">Garbage Collector</div>
+        <div class="jvm-part">Class Loader</div>
+      </div>
+
+      <div class="interview-box">
+        <span class="label">🎤 Interview Definition</span>
+        <p>JVM is a virtual machine that executes Java bytecode and provides platform independence by hiding operating system-specific details from Java applications.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JRE -->
+<section>
+  <div class="container">
+    <div class="section-label">Chapter 03 — Concept 2</div>
+    <div class="concept-section jre">
+      <div class="concept-num">02</div>
+      <span class="concept-tag">JRE</span>
+      <h2>Java Runtime Environment</h2>
+      <p>Want to watch a movie? You don't need movie-making software or video editing tools. You just need a <strong style="color: var(--accent);">DVD player and the right codecs</strong>. That's exactly what JRE is — the runtime environment, not the development environment.</p>
+
+      <h3>What JRE Contains</h3>
+      <ul class="jre-list">
+        <li>JVM (Java Virtual Machine)</li>
+        <li>Core Java Libraries</li>
+        <li>Runtime Components &amp; Configuration Files</li>
+        <li>Java Plug-in for browser support</li>
+      </ul>
+
+      <div class="flow">
+        <div class="flow-step">Java Program</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight">JRE <span style="color:var(--muted); font-size:11px;">(prepares environment)</span></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight">JVM <span style="color:var(--muted); font-size:11px;">(performs execution)</span></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step">Execution</div>
+      </div>
+
+      <div class="highlight-box">
+        <p><strong>Key Rule:</strong> JRE = Run Only. It can run Java programs but cannot create them. You need the JDK to write and compile Java code.</p>
+      </div>
+
+      <div class="interview-box">
+        <span class="label">🎤 Interview Definition</span>
+        <p>JRE is the runtime environment that contains the JVM and supporting libraries required to run Java applications.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JDK -->
+<section>
+  <div class="container">
+    <div class="section-label">Chapter 04 — Concept 3</div>
+    <div class="concept-section jdk">
+      <div class="concept-num">03</div>
+      <span class="concept-tag">JDK</span>
+      <h2>Java Development Kit</h2>
+      <p>As a software developer, just running programs isn't enough. You need a compiler, debugger, documentation tools, and a runtime environment — the complete package. That's the JDK.</p>
+
+      <h3>Tools Inside JDK</h3>
+      <div class="jdk-tools">
+        <div class="jdk-tool">
+          <div>
+            <div class="tool-name">javac</div>
+            <div class="tool-desc">The Java compiler. Converts .java source files into .class bytecode.</div>
+          </div>
+        </div>
+        <div class="jdk-tool">
+          <div>
+            <div class="tool-name">javadoc</div>
+            <div class="tool-desc">Generates API documentation from source code comments.</div>
+          </div>
+        </div>
+        <div class="jdk-tool">
+          <div>
+            <div class="tool-name">jdb</div>
+            <div class="tool-desc">Java Debugger. Helps track and fix bugs in your programs.</div>
+          </div>
+        </div>
+        <div class="jdk-tool">
+          <div>
+            <div class="tool-name">JRE + JVM</div>
+            <div class="tool-desc">Full runtime included — everything needed to compile AND run.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="interview-box">
+        <span class="label">🎤 Interview Definition</span>
+        <p>JDK is the complete Java development toolkit that contains JRE, JVM, compiler, debugger, and other development tools required to create and run Java applications.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXAMPLE FLOW WITH CODE -->
+<section>
+  <div class="container">
+    <div class="section-label">Chapter 05 — End-to-End Example</div>
+    <h2>The Full Execution Flow</h2>
+    <p>Let's trace a simple Java program from source code to execution and see where each component plays its role.</p>
+
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dot" style="background:#ff5f57"></div>
+        <div class="code-dot" style="background:#ffbd2e"></div>
+        <div class="code-dot" style="background:#28ca41"></div>
+        <span class="code-filename">Hello.java</span>
+      </div>
+      <pre><span class="kw">public class</span> <span class="cls">Hello</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="cls">String</span>[] args) {
+        <span class="cls">System</span>.out.<span class="fn">println</span>(<span class="str">"Hello"</span>);
+    }
+}</pre>
+    </div>
+
+    <div class="flow">
+      <div class="flow-step highlight3">Step 1 — Source Code<br><span style="font-size:10px; color:var(--muted)">Hello.java</span></div>
+      <div class="flow-arrow"></div>
+      <div class="flow-step highlight2">Step 2 — Compiler (JDK)<br><span style="font-size:10px; color:var(--muted)">javac Hello.java</span></div>
+      <div class="flow-arrow"></div>
+      <div class="flow-step highlight">Step 3 — Bytecode<br><span style="font-size:10px; color:var(--muted)">Hello.class</span></div>
+      <div class="flow-arrow"></div>
+      <div class="flow-step highlight">Step 4 — JRE Loads<br><span style="font-size:10px; color:var(--muted)">Prepares environment</span></div>
+      <div class="flow-arrow"></div>
+      <div class="flow-step highlight3">Step 5 — JVM Executes<br><span style="font-size:10px; color:var(--muted)">Output: Hello</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section>
+  <div class="container">
+    <div class="section-label">Chapter 06 — Quick Reference</div>
+    <h2>Feature Comparison</h2>
+    <p>A quick reference table covering the key differences interviewers often ask about.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>JVM</th>
+            <th>JRE</th>
+            <th>JDK</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Runs Java Code</td>
+            <td><span class="yes">YES</span></td>
+            <td><span class="yes">YES</span></td>
+            <td><span class="yes">YES</span></td>
+          </tr>
+          <tr>
+            <td>Contains JVM</td>
+            <td><span class="no">NO</span></td>
+            <td><span class="yes">YES</span></td>
+            <td><span class="yes">YES</span></td>
+          </tr>
+          <tr>
+            <td>Contains Compiler</td>
+            <td><span class="no">NO</span></td>
+            <td><span class="no">NO</span></td>
+            <td><span class="yes">YES</span></td>
+          </tr>
+          <tr>
+            <td>Used by Developers</td>
+            <td><span class="no">NO</span></td>
+            <td><span class="no">NO</span></td>
+            <td><span class="yes">YES</span></td>
+          </tr>
+          <tr>
+            <td>Used by End Users</td>
+            <td><span class="no">NO</span></td>
+            <td><span class="yes">YES</span></td>
+            <td><span class="yes">YES</span></td>
+          </tr>
+          <tr>
+            <td>Can Compile Code</td>
+            <td><span class="no">NO</span></td>
+            <td><span class="no">NO</span></td>
+            <td><span class="yes">YES</span></td>
+          </tr>
+          <tr>
+            <td>Can Execute Code</td>
+            <td><span class="yes">YES</span></td>
+            <td><span class="yes">YES</span></td>
+            <td><span class="yes">YES</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Q&A EVALUATION -->
+<section>
+  <div class="container">
+    <div class="section-label">Chapter 07 — Q&amp;A Evaluation</div>
+    <h2>Review &amp; Refinements</h2>
+    <p>Below are common beginner questions with evaluated answers and interview-ready refinements.</p>
+
+    <div class="qa-list">
+
+      <div class="qa-card correct">
+        <div class="qa-header">
+          <span class="qa-badge correct-badge">✅ Correct</span>
+          <span class="qa-q">Which component actually executes Java bytecode?</span>
+        </div>
+        <div class="qa-answer"><span class="qa-label">Answer:</span> JVM — the actual execution engine.</div>
+      </div>
+
+      <div class="qa-card correct">
+        <div class="qa-header">
+          <span class="qa-badge correct-badge">✅ Correct</span>
+          <span class="qa-q">Can a machine with only JRE compile a .java file?</span>
+        </div>
+        <div class="qa-answer"><span class="qa-label">Answer:</span> No. JRE only runs compiled code. Compilation requires the JDK.</div>
+        <div class="qa-refine">
+          <span class="refine-label">Refinement</span>
+          The JRE provides the environment and libraries. The actual class loading into JVM memory is done by the <strong>JVM's Class Loaders</strong>, not JRE as a standalone step.
+        </div>
+      </div>
+
+      <div class="qa-card correct">
+        <div class="qa-header">
+          <span class="qa-badge correct-badge">✅ Perfect</span>
+          <span class="qa-q">What is the containment hierarchy?</span>
+        </div>
+        <div class="qa-answer"><span class="qa-label">Answer:</span> <span style="font-family:'Space Mono',monospace; color:var(--accent2);">JDK → JRE → JVM</span></div>
+      </div>
+
+      <div class="qa-card correct">
+        <div class="qa-header">
+          <span class="qa-badge correct-badge">✅ Correct</span>
+          <span class="qa-q">What is bytecode?</span>
+        </div>
+        <div class="qa-answer"><span class="qa-label">Answer:</span> Intermediate code understood by JVM.</div>
+        <div class="qa-refine">
+          <span class="refine-label">Full Flow</span>
+          The JVM doesn't execute bytecode directly as machine code. The full pipeline is:<br><br>
+          <span style="font-family:'Space Mono',monospace; font-size:12px; color:#aaa;">Java Source → Bytecode → JVM → Machine Code → CPU</span><br><br>
+          The <strong>JIT Compiler</strong> inside JVM performs this final translation. We'll cover that next.
+        </div>
+      </div>
+
+      <div class="qa-card warn">
+        <div class="qa-header">
+          <span class="qa-badge warn-badge">⚠️ Partial</span>
+          <span class="qa-q">What happens when you run <code>java Hello</code>?</span>
+        </div>
+        <div class="qa-answer"><span class="qa-label">Answer given:</span> JDK compiles → JRE loads → JVM executes</div>
+        <div class="qa-refine">
+          <span class="refine-label">Important Interview Distinction</span>
+          When you run <code>java Hello</code>, compilation has <em>already happened</em>. The JDK compiler is NOT involved at this point.<br><br>
+          <strong>Actual flow after <code>java Hello</code>:</strong>
+          <div class="flow" style="margin: 16px auto; max-width: 260px;">
+            <div class="flow-step" style="font-size:12px;">JVM Starts</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-step highlight2" style="font-size:12px;">Class Loader loads Hello.class</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-step highlight3" style="font-size:12px;">Bytecode Verifier checks safety</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-step" style="font-size:12px;">Memory allocated</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-step highlight" style="font-size:12px;">main() found &amp; executed</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="interview-box" style="margin-top:32px;">
+      <span class="label">🎤 Interview Trap</span>
+      <p>Many candidates say "JVM contains JRE." That's <strong style="color:var(--accent3);">WRONG.</strong> The correct hierarchy is <strong style="color:var(--accent);">JDK ⊃ JRE ⊃ JVM</strong>. Always remember containment goes outward.</p>
+    </div>
+  </div>
+</section>
+
+<!-- JVM INTERNALS -->
+<section>
+  <div class="container">
+    <div class="section-label">Chapter 08 — JVM Internals</div>
+    <h2>Inside the JVM — Full Architecture</h2>
+    <p>Most developers know the definition. Very few understand the internals. This is where interview differentiation happens.</p>
+
+    <div class="arch-diagram">
+      <div class="arch-title">JVM Internal Architecture</div>
+
+      <div class="arch-component comp-loader">
+        <div class="arch-comp-label">Class Loader</div>
+        <div class="arch-comp-desc">Loads .class files into JVM memory</div>
+      </div>
+      <div class="arch-arrow">↓</div>
+
+      <div class="arch-component comp-verifier">
+        <div class="arch-comp-label">Bytecode Verifier</div>
+        <div class="arch-comp-desc">Security checkpoint — validates bytecode safety</div>
+      </div>
+      <div class="arch-arrow">↓</div>
+
+      <div class="arch-component comp-rda">
+        <div class="arch-comp-label">Runtime Data Areas</div>
+        <div class="arch-rda-grid">
+          <div class="rda-box heap-box">Heap<br><span>Objects &amp; Arrays</span></div>
+          <div class="rda-box stack-box">Stack<br><span>Method Frames</span></div>
+          <div class="rda-box">Method Area<br><span>Class Metadata</span></div>
+          <div class="rda-box">PC Register<br><span>Current Instruction</span></div>
+        </div>
+      </div>
+      <div class="arch-arrow">↓</div>
+
+      <div class="arch-component comp-engine">
+        <div class="arch-comp-label">Execution Engine</div>
+        <div class="arch-comp-desc">Interpreter + JIT Compiler → Machine Code</div>
+      </div>
+      <div class="arch-arrow">↓</div>
+
+      <div class="arch-component comp-gc">
+        <div class="arch-comp-label">Garbage Collector</div>
+        <div class="arch-comp-desc">Automatically frees unreachable objects from Heap</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HEAP & STACK -->
+<section>
+  <div class="container">
+    <div class="section-label">Chapter 09 — Memory Areas</div>
+    <h2>Heap vs Stack</h2>
+    <p>This is one of the most frequently asked interview questions. Understanding it deeply separates good candidates from great ones.</p>
+
+    <div class="hs-grid">
+      <div class="hs-card heap-card">
+        <div class="hs-icon">🏭</div>
+        <h3>Heap</h3>
+        <p style="font-size:14px; color:var(--muted);">Think of a warehouse — every manufactured object is stored here.</p>
+        <div class="code-block" style="margin:16px 0;">
+          <pre style="font-size:12px; padding:14px;"><span class="cls">Student</span> s = <span class="kw">new</span> <span class="cls">Student</span>();
+<span class="cmt">// ↑ Student object → Heap</span>
+
+<span class="cls">String</span> name = <span class="kw">new</span> <span class="cls">String</span>(<span class="str">"Bhavesh"</span>);
+<span class="cmt">// ↑ String object → Heap</span></pre>
+        </div>
+        <ul class="hs-facts">
+          <li>Stores <strong>objects</strong> and <strong>arrays</strong></li>
+          <li>Shared across all threads</li>
+          <li>Slower access</li>
+          <li>Cleaned by Garbage Collector</li>
+        </ul>
+      </div>
+
+      <div class="hs-card stack-card">
+        <div class="hs-icon">🍽️</div>
+        <h3>Stack</h3>
+        <p style="font-size:14px; color:var(--muted);">Think of a stack of plates — Last In, First Out (LIFO).</p>
+        <div class="code-block" style="margin:16px 0;">
+          <pre style="font-size:12px; padding:14px;"><span class="fn">main</span>() {
+  <span class="fn">test</span>();   <span class="cmt">// test() pushed on top</span>
+}           <span class="cmt">// test() removed first</span>
+
+<span class="cmt">// Stack state during test():</span>
+<span class="cmt">// ┌────────┐</span>
+<span class="cmt">// │ test() │  ← top</span>
+<span class="cmt">// │ main() │</span>
+<span class="cmt">// └────────┘</span></pre>
+        </div>
+        <ul class="hs-facts">
+          <li>Stores <strong>method call frames</strong></li>
+          <li>Thread-specific (each thread has its own)</li>
+          <li>Faster access</li>
+          <li>Auto-removed when method returns</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:32px;">
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th style="color:var(--accent3);">Stack</th>
+            <th style="color:var(--accent);">Heap</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Stores</td><td>Method calls &amp; frames</td><td>Objects &amp; arrays</td></tr>
+          <tr><td>Scope</td><td>Thread-specific</td><td>Shared across threads</td></tr>
+          <tr><td>Speed</td><td>Faster</td><td>Slower</td></tr>
+          <tr><td>Cleanup</td><td>Auto (on return)</td><td>Garbage Collector</td></tr>
+          <tr><td>Order</td><td>LIFO</td><td>No ordering</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight-box" style="margin-top:28px;">
+      <p><strong>Quick Quiz:</strong> <code>Employee emp = new Employee();</code><br>Where does the <strong>object</strong> go? → <span style="color:var(--accent);">Heap</span><br>Where does the <strong>variable <code>emp</code></strong> go? → <span style="color:var(--accent3);">Stack</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- GARBAGE COLLECTOR -->
+<section>
+  <div class="container">
+    <div class="section-label">Chapter 10 — Memory Management</div>
+    <h2>Garbage Collection</h2>
+    <p>If objects keep getting created but never removed, memory would eventually run out. The GC solves this automatically.</p>
+
+    <div class="gc-visual">
+      <div class="gc-step">
+        <div class="gc-icon">🧱</div>
+        <div class="gc-text">Object Created</div>
+        <div class="gc-sub"><code>Student s = new Student();</code></div>
+      </div>
+      <div class="gc-arrow">→</div>
+      <div class="gc-step">
+        <div class="gc-icon">🔌</div>
+        <div class="gc-text">Reference Dropped</div>
+        <div class="gc-sub"><code>s = null;</code></div>
+      </div>
+      <div class="gc-arrow">→</div>
+      <div class="gc-step">
+        <div class="gc-icon">🤖</div>
+        <div class="gc-text">GC Detects</div>
+        <div class="gc-sub">Object unreachable</div>
+      </div>
+      <div class="gc-arrow">→</div>
+      <div class="gc-step gc-final">
+        <div class="gc-icon">✨</div>
+        <div class="gc-text">Memory Freed</div>
+        <div class="gc-sub">Heap space reclaimed</div>
+      </div>
+    </div>
+
+    <div class="interview-box" style="margin-top:32px;">
+      <span class="label">🎤 Interview-Ready Answer</span>
+      <p>Garbage Collection automatically identifies objects that are no longer reachable by the application and reclaims their memory. This helps prevent memory leaks caused by forgotten deallocation and reduces the risk of running out of heap memory.</p>
+    </div>
+  </div>
+</section>
+
+<!-- JRE & JDK INTERNALS -->
+<section>
+  <div class="container">
+    <div class="section-label">Chapter 11 — Internals Deep Dive</div>
+    <h2>JRE &amp; JDK Internals</h2>
+
+    <div class="two-col">
+      <div class="intern-card">
+        <span class="concept-tag" style="background:rgba(79,255,176,0.1); color:var(--accent); border:1px solid rgba(79,255,176,0.2); display:inline-block; font-family:'Space Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; padding:4px 12px; border-radius:100px; margin-bottom:16px;">JRE Internals</span>
+        <p style="font-size:14px;">JRE is not a separate running program. Think of it as a container:</p>
+        <div class="nest-diagram" style="margin:20px 0; max-width:100%;">
+          <div class="nest-jre" style="margin:0;">
+            <div class="nest-label" style="font-size:14px;">JRE</div>
+            <div class="nest-extras">
+              <span>JVM</span><span>String</span><span>ArrayList</span><span>HashMap</span><span>File</span><span>Scanner</span><span>System</span><span>Math</span>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:13px; color:var(--muted);">The Java Standard Libraries inside JRE are what make <code>String name;</code> actually work. Without them, nothing compiles or runs.</p>
+      </div>
+
+      <div class="intern-card">
+        <span class="concept-tag" style="background:rgba(123,108,255,0.1); color:var(--accent2); border:1px solid rgba(123,108,255,0.2); display:inline-block; font-family:'Space Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; padding:4px 12px; border-radius:100px; margin-bottom:16px;">JDK Internals</span>
+        <p style="font-size:14px;">JDK = JRE + Development Tools. Most developers use 3 daily, but interviewers ask about the rest.</p>
+        <div class="tools-list">
+          <div class="tool-row primary">
+            <span class="tool-mono">javac</span><span>Compiler (.java → .class)</span>
+          </div>
+          <div class="tool-row primary">
+            <span class="tool-mono">java</span><span>Launcher (runs .class via JVM)</span>
+          </div>
+          <div class="tool-row primary">
+            <span class="tool-mono">jar</span><span>Archives multiple .class files</span>
+          </div>
+          <div class="tool-row">
+            <span class="tool-mono">javadoc</span><span>Generates HTML documentation</span>
+          </div>
+          <div class="tool-row">
+            <span class="tool-mono">jdb</span><span>Java Debugger</span>
+          </div>
+          <div class="tool-row">
+            <span class="tool-mono">jps</span><span>Lists running JVM processes</span>
+          </div>
+          <div class="tool-row">
+            <span class="tool-mono">jstack</span><span>Thread dump analysis</span>
+          </div>
+          <div class="tool-row">
+            <span class="tool-mono">jmap</span><span>Heap memory analysis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JVM PROCESS START -->
+<section>
+  <div class="container">
+    <div class="section-label">Chapter 12 — JVM Internals Deep Dive</div>
+    <h2>What Happens When You Run <code class="inline-code">java Hello</code>?</h2>
+    <p>Most developers stop at knowing the three components. But understanding what happens <em>inside</em> JVM step-by-step is what separates average candidates from strong ones.</p>
+
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <div class="step-title">OS Creates a New Process</div>
+          <p style="margin:0; font-size:14px; color:var(--muted);">When you run <code class="ic">java Hello</code>, the OS creates a process — just like <code class="ic">chrome.exe</code> or <code class="ic">notepad.exe</code>. Inside this process, the JVM starts up.</p>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <div class="step-title">JVM Allocates Runtime Memory Areas</div>
+          <p style="margin:0 0 12px; font-size:14px; color:var(--muted);">Before loading any code, JVM sets up its internal memory regions:</p>
+          <div class="mem-pills">
+            <span class="mp heap">Heap</span>
+            <span class="mp stack">Stack</span>
+            <span class="mp method">Method Area</span>
+            <span class="mp pc">PC Register</span>
+            <span class="mp native">Native Method Stack</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <div class="step-title">Class Loader loads Hello.class</div>
+          <p style="margin:0; font-size:14px; color:var(--muted);">The Class Loader locates the <code class="ic">.class</code> file and loads it into the Method Area of JVM memory.</p>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <div class="step-title">Bytecode Verifier checks safety</div>
+          <p style="margin:0; font-size:14px; color:var(--muted);">Before execution, the verifier validates the bytecode: is it well-formed? Are memory accesses safe? Is the stack usage legal?</p>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <div class="step-title">Execution Engine runs the bytecode</div>
+          <p style="margin:0; font-size:14px; color:var(--muted);">The Execution Engine (via Interpreter + JIT Compiler) translates bytecode to machine code and the CPU executes it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMORY AREAS DETAIL -->
+<section>
+  <div class="container">
+    <div class="section-label">Chapter 13 — All 5 Memory Areas</div>
+    <h2>JVM Memory Layout</h2>
+    <p>Every JVM memory area has a specific role. Interviewers often ask about all five.</p>
+
+    <div class="mem-cards">
+
+      <div class="mem-card">
+        <div class="mem-card-header heap-h">
+          <span class="mem-tag">Heap</span>
+          <span class="mem-icon">🏭</span>
+        </div>
+        <div class="mem-card-body">
+          <p>Stores all <strong>objects</strong> and <strong>arrays</strong> created at runtime.</p>
+          <div class="code-block" style="margin:12px 0 0;">
+            <pre style="font-size:12px; padding:12px;"><span class="cls">Employee</span> e1 = <span class="kw">new</span> <span class="cls">Employee</span>();
+<span class="cls">Employee</span> e2 = <span class="kw">new</span> <span class="cls">Employee</span>();
+<span class="cmt">// Both objects → Heap</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="mem-card">
+        <div class="mem-card-header stack-h">
+          <span class="mem-tag">Stack</span>
+          <span class="mem-icon">🍽️</span>
+        </div>
+        <div class="mem-card-body">
+          <p>Each thread has its own stack. Stores <strong>method call frames</strong> and local variables like <code class="ic">emp</code>.</p>
+          <div class="code-block" style="margin:12px 0 0;">
+            <pre style="font-size:12px; padding:12px;"><span class="cls">Employee</span> emp = <span class="kw">new</span> <span class="cls">Employee</span>();
+<span class="cmt">// emp reference → Stack</span>
+<span class="cmt">// object itself  → Heap</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="mem-card">
+        <div class="mem-card-header method-h">
+          <span class="mem-tag">Method Area</span>
+          <span class="mem-icon">📐</span>
+        </div>
+        <div class="mem-card-body">
+          <p>Stores <strong>class metadata</strong>, field/method info, static variables, runtime constant pool. Shared across threads.</p>
+          <div class="highlight-box" style="margin:12px 0 0; padding:12px 14px;">
+            <p style="margin:0; font-size:13px;">One <code class="ic">Employee</code> class definition → Method Area<br>Many <code class="ic">Employee</code> object instances → Heap</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mem-card">
+        <div class="mem-card-header pc-h">
+          <span class="mem-tag">PC Register</span>
+          <span class="mem-icon">📖</span>
+        </div>
+        <div class="mem-card-body">
+          <p>Like a bookmark in a book — tracks <strong>which bytecode instruction</strong> a thread is currently executing. Each thread has its own PC Register.</p>
+          <div class="interview-box" style="margin:12px 0 0; padding:12px 14px;">
+            <p style="margin:0; font-size:13px;">Stores the address of the current JVM instruction being executed by a thread.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mem-card">
+        <div class="mem-card-header native-h">
+          <span class="mem-tag">Native Method Stack</span>
+          <span class="mem-icon">⚙️</span>
+        </div>
+        <div class="mem-card-body">
+          <p>Used when JVM calls methods written in <strong>C or C++</strong> (native methods). Examples: <code class="ic">Thread.start()</code>, <code class="ic">System.arraycopy()</code>.</p>
+          <div class="code-block" style="margin:12px 0 0;">
+            <pre style="font-size:12px; padding:12px;"><span class="kw">public native void</span> <span class="fn">start</span>();
+<span class="cmt">// "native" = outside Java</span></pre>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="interview-box" style="margin-top:28px;">
+      <span class="label">🎤 Interview Question</span>
+      <p>How many <code class="ic">Employee</code> class definitions exist in memory if you create 2 objects? → <strong style="color:var(--accent);">One</strong> (in Method Area). How many objects? → <strong style="color:var(--accent);">Two</strong> (in Heap).</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXECUTION ENGINE -->
+<section>
+  <div class="container">
+    <div class="section-label">Chapter 14 — Execution Engine</div>
+    <h2>Interpreter vs JIT Compiler</h2>
+    <p>This is the heart of the JVM — and the source of most advanced interview questions. The CPU understands machine code, not bytecode. The Execution Engine bridges that gap.</p>
+
+    <div class="ee-grid">
+
+      <div class="ee-card interp-card">
+        <div class="ee-icon">🔄</div>
+        <h3>Interpreter</h3>
+        <p>Reads and executes bytecode <strong>instruction by instruction</strong>. Simple, but slow for repeated code.</p>
+        <div class="code-block" style="margin:16px 0 0;">
+          <pre style="font-size:12px; padding:14px;"><span class="cmt">// Each loop iteration:</span>
+<span class="kw">for</span>(<span class="kw">int</span> i=0; i&lt;1000000; i++) {
+    sum += i;
+}
+<span class="cmt">// Interpreter re-translates</span>
+<span class="cmt">// EVERY iteration → slow</span></pre>
+        </div>
+        <div class="ee-tag bad-tag">⚠️ Problem: Repeated translation</div>
+      </div>
+
+      <div class="ee-vs">VS</div>
+
+      <div class="ee-card jit-card">
+        <div class="ee-icon">⚡</div>
+        <h3>JIT Compiler</h3>
+        <p>Detects <strong>hot methods</strong> (frequently called), compiles them to machine code <strong>once</strong>, caches and reuses directly.</p>
+        <div class="flow" style="margin:16px auto; max-width:220px;">
+          <div class="flow-step highlight2" style="font-size:12px;">Bytecode</div>
+          <div class="flow-arrow"></div>
+          <div class="flow-step highlight2" style="font-size:12px;">JIT detects "hot"</div>
+          <div class="flow-arrow"></div>
+          <div class="flow-step highlight" style="font-size:12px;">Compiled → Cache</div>
+          <div class="flow-arrow"></div>
+          <div class="flow-step highlight" style="font-size:12px;">Reused directly ⚡</div>
+        </div>
+        <div class="ee-tag good-tag">✅ Solution: Compile once, reuse forever</div>
+      </div>
+
+    </div>
+
+    <div class="highlight-box" style="margin-top:28px;">
+      <p><strong>Why Java is fast:</strong> Many beginners say "Java is interpreted." The modern, accurate answer is: <em>Java uses both interpretation and Just-In-Time compilation.</em> This is an excellent senior-level interview answer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Q&A ROUND 2 -->
+<section>
+  <div class="container">
+    <div class="section-label">Chapter 15 — Q&amp;A Round 2</div>
+    <h2>Evaluated Answers — Internals Edition</h2>
+
+    <div class="qa-list">
+
+      <div class="qa-card correct">
+        <div class="qa-header">
+          <span class="qa-badge correct-badge">✅ Correct</span>
+          <span class="qa-q">What is stored in Method Area?</span>
+        </div>
+        <div class="qa-answer"><span class="qa-label">Answer:</span> All class metadata, static variables, static blocks.</div>
+        <div class="qa-refine">
+          <span class="refine-label">Interview-Grade Answer</span>
+          Method Area stores class metadata such as class name, method information, field information, static variables, runtime constant pool, and other class-level information.
+        </div>
+      </div>
+
+      <div class="qa-card correct">
+        <div class="qa-header">
+          <span class="qa-badge correct-badge">✅ Correct</span>
+          <span class="qa-q">What is the purpose of the PC Register?</span>
+        </div>
+        <div class="qa-answer"><span class="qa-label">Answer:</span> PC register keeps track of the current execution by using counters.</div>
+        <div class="qa-refine">
+          <span class="refine-label">Interview-Grade Answer</span>
+          The PC Register stores the address of the current JVM instruction being executed so that the JVM knows which instruction to execute next.
+        </div>
+      </div>
+
+      <div class="qa-card correct">
+        <div class="qa-header">
+          <span class="qa-badge correct-badge">✅ Excellent</span>
+          <span class="qa-q">Why was JIT Compiler introduced if JVM already has an Interpreter?</span>
+        </div>
+        <div class="qa-answer"><span class="qa-label">Answer:</span> JIT identifies hotspots so they can be compiled to machine code, cached, and reused without re-interpreting.</div>
+        <div class="qa-refine">
+          <span class="refine-label">Note</span>
+          This is already close to a senior-level answer. The key term is <strong>"hot method"</strong> — JIT monitors call frequency and only compiles methods that cross a threshold, balancing startup time vs. peak performance.
+        </div>
+      </div>
+
+      <div class="qa-card correct">
+        <div class="qa-header">
+          <span class="qa-badge correct-badge">✅ All Correct</span>
+          <span class="qa-q">Where is each part of <code style="font-family:'Space Mono',monospace; font-size:12px;">Employee e = new Employee()</code> stored?</span>
+        </div>
+        <div class="qa-answer">
+          <span class="qa-label">Answers:</span>
+          <span style="display:block; margin-top:8px; font-size:14px;">
+            a) <code class="ic">Employee</code> class definition → <span style="color:var(--accent2); font-weight:600;">Method Area</span><br>
+            b) <code class="ic">Employee</code> object → <span style="color:var(--accent); font-weight:600;">Heap</span><br>
+            c) Variable <code class="ic">e</code> (reference) → <span style="color:var(--accent3); font-weight:600;">Stack</span>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Q&A ROUND 3 -->
+<section>
+  <div class="container">
+    <div class="section-label">Chapter 16 — Q&amp;A Round 3</div>
+    <h2>Evaluated Answers — System Thinking</h2>
+    <p>At this stage, you're thinking about the JVM as a system — not just memorising definitions. Here's a careful evaluation.</p>
+
+    <div class="qa-list">
+
+      <div class="qa-card correct">
+        <div class="qa-header">
+          <span class="qa-badge correct-badge">✅ Correct</span>
+          <span class="qa-q">Why does Java generate bytecode instead of machine code directly?</span>
+        </div>
+        <div class="qa-answer"><span class="qa-label">Answer:</span> To make Java platform independent.</div>
+        <div class="qa-refine">
+          <span class="refine-label">Interview-Grade Answer</span>
+          Java generates platform-independent bytecode so that the same compiled code can run on any operating system that has a compatible JVM. If Java generated machine code directly, a separate compilation would be required for each platform.
+        </div>
+      </div>
+
+      <div class="qa-card correct">
+        <div class="qa-header">
+          <span class="qa-badge correct-badge">✅ Correct</span>
+          <span class="qa-q">Which class loader usually loads <code class="ic">Employee.class</code>, <code class="ic">Student.class</code>, <code class="ic">Hello.class</code>?</span>
+        </div>
+        <div class="qa-answer"><span class="qa-label">Answer:</span> Application Class Loader.</div>
+        <div class="qa-refine">
+          <span class="refine-label">Context</span>
+          The Application Class Loader (also called System Class Loader) loads classes from the application's classpath — i.e., your own <code class="ic">.class</code> files. The three-tier hierarchy is Bootstrap → Platform (Extension) → Application.
+        </div>
+      </div>
+
+      <div class="qa-card correct">
+        <div class="qa-header">
+          <span class="qa-badge correct-badge">✅ Correct</span>
+          <span class="qa-q">When does Bytecode Verification happen?</span>
+        </div>
+        <div class="qa-answer"><span class="qa-label">Answer:</span> After class loading.</div>
+        <div class="qa-refine">
+          <span class="refine-label">More Precisely — The Linking Phases</span>
+          Bytecode verification is part of the <strong>Linking</strong> stage, which has three sub-steps:
+          <div class="flow" style="margin:16px auto; max-width:240px;">
+            <div class="flow-step" style="font-size:12px;">Class Loading</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-step highlight2" style="font-size:12px;">Linking</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-step highlight3" style="font-size:12px;">Verification ✓</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-step" style="font-size:12px;">Preparation</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-step" style="font-size:12px;">Resolution</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-step highlight" style="font-size:12px;">Initialization</div>
+          </div>
+          We'll study these phases in depth later.
+        </div>
+      </div>
+
+      <div class="qa-card warn">
+        <div class="qa-header">
+          <span class="qa-badge warn-badge">❌ Incorrect</span>
+          <span class="qa-q">When JVM calls <code class="ic">main()</code>, what memory structure is created immediately?</span>
+        </div>
+        <div class="qa-answer"><span class="qa-label">Answer given:</span> "after class loading and bytecode is verified" — this describes the <em>sequence</em>, not the memory structure.</div>
+        <div class="qa-refine">
+          <span class="refine-label">Correct Answer</span>
+          When JVM invokes <code class="ic">public static void main(String[] args)</code>, a <strong style="color:var(--accent3);">Stack Frame</strong> for <code class="ic">main()</code> is pushed onto the Java Stack.<br><br>
+          <div style="font-family:'Space Mono',monospace; font-size:12px; background:var(--code-bg); border:1px solid var(--border); border-radius:8px; padding:14px; margin-top:8px; color:#c8d3f5; line-height:1.8;">
+            Stack<br>
+            <span style="color:var(--accent3);">┌─────────────┐</span><br>
+            <span style="color:var(--accent3);">│&nbsp;&nbsp;main()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</span> ← pushed immediately<br>
+            <span style="color:var(--accent3);">└─────────────┘</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-card correct">
+        <div class="qa-header">
+          <span class="qa-badge correct-badge">✅ Correct</span>
+          <span class="qa-q">Does JIT compile every method immediately?</span>
+        </div>
+        <div class="qa-answer"><span class="qa-label">Answer:</span> False — JIT focuses on hot methods only.</div>
+        <div class="qa-refine">
+          <span class="refine-label">Why This Matters</span>
+          JIT compilation has a cost — compiling takes time. Doing it for every method upfront would slow down startup. So JVM starts with the Interpreter, monitors call frequency, and only JIT-compiles methods that cross a <strong>hotness threshold</strong>. This balances fast startup time with peak runtime performance.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="interview-box" style="margin-top:32px;">
+      <span class="label">🎤 Coming Up Next</span>
+      <p>Next deep dive covers the <strong>Class Loader Subsystem</strong> in full — Bootstrap, Platform, and Application class loaders — plus the complete Loading → Linking → Initialization lifecycle every senior interviewer asks about.</p>
+    </div>
+  </div>
+</section>
+
+<!-- JRE MISCONCEPTION -->
+<section>
+  <div class="container">
+    <div class="section-label">Chapter 17 — Common Misconceptions</div>
+    <h2>Is JRE a Running Component?</h2>
+    <p>Many people imagine JDK, JRE, and JVM as three separate programs running simultaneously. That's not how it works.</p>
+
+    <div class="misconception-grid">
+      <div class="mc-card wrong-card">
+        <div class="mc-label wrong-label">❌ Wrong Mental Model</div>
+        <div style="font-family:'Space Mono',monospace; font-size:13px; color:#aaa; line-height:2; padding:16px 0;">
+          JDK <span style="color:var(--accent3);">↓ runs</span><br>
+          JRE <span style="color:var(--accent3);">↓ runs</span><br>
+          JVM <span style="color:var(--accent3);">↓ runs</span>
+        </div>
+        <p style="font-size:13px; color:var(--muted); margin:0;">Three programs running simultaneously — this is incorrect.</p>
+      </div>
+
+      <div class="mc-card right-card">
+        <div class="mc-label right-label">✅ Correct Mental Model</div>
+        <div style="font-family:'Space Mono',monospace; font-size:12px; color:#aaa; line-height:1.9; padding:16px 0;">
+          <span style="color:var(--accent2);">JDK</span> (package)<br>
+          &nbsp;├─ Development Tools<br>
+          &nbsp;├─ <span style="color:var(--accent);">JRE</span> (package)<br>
+          &nbsp;│&nbsp;&nbsp;&nbsp;├─ <span style="color:var(--accent3);">JVM</span> (runtime engine ✓)<br>
+          &nbsp;│&nbsp;&nbsp;&nbsp;├─ Runtime Libraries<br>
+          &nbsp;│&nbsp;&nbsp;&nbsp;└─ Runtime Files<br>
+          &nbsp;└─ Libraries
+        </div>
+        <p style="font-size:13px; color:var(--muted); margin:0;">JDK and JRE are <strong>packages/distributions</strong>. Only JVM is the actual running engine.</p>
+      </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top: 28px;">
+      <p><strong>Modern Java (Java 9+):</strong> The standalone JRE distribution was removed. You install only the <code class="ic">JDK</code> today. The JDK still bundles all runtime components needed to run Java programs. Interviewers occasionally ask this.</p>
+    </div>
+
+    <h3 style="margin-top:40px;">Who Actually Loads Classes?</h3>
+    <p>A very common statement is "JRE loads classes into JVM memory." Let's refine that.</p>
+
+    <div class="misconception-grid">
+      <div class="mc-card wrong-card">
+        <div class="mc-label wrong-label">❌ Imprecise</div>
+        <p style="margin:12px 0 0; font-size:14px; color:var(--muted);">"JRE loads classes into JVM memory."</p>
+      </div>
+      <div class="mc-card right-card">
+        <div class="mc-label right-label">✅ Precise</div>
+        <p style="margin:12px 0 4px; font-size:14px; color:#b0f0d4;">The <strong style="color:var(--accent);">Class Loader Subsystem</strong> (inside JVM) loads classes.</p>
+        <div class="flow" style="margin:16px auto; max-width:220px;">
+          <div class="flow-step highlight2" style="font-size:12px;">JDK compiles</div>
+          <div class="flow-arrow"></div>
+          <div class="flow-step highlight3" style="font-size:12px;">JVM starts</div>
+          <div class="flow-arrow"></div>
+          <div class="flow-step highlight" style="font-size:12px;">Class Loader loads</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="interview-box" style="margin-top:24px;">
+      <span class="label">🎤 If Asked: "Which component loads classes?"</span>
+      <p>Answer: <strong style="color:var(--accent);">Class Loader Subsystem</strong> — not JRE.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PARENT DELEGATION MODEL -->
+<section>
+  <div class="container">
+    <div class="section-label">Chapter 18 — One of the Most Asked JVM Topics</div>
+    <h2>Parent Delegation Model</h2>
+    <p>This comes up surprisingly often in interviews. Understanding it shows you think about JVM security and architecture, not just definitions.</p>
+
+    <h3>The Problem It Solves</h3>
+    <p>Your app has <code class="ic">String str = "Hello"</code> — loaded by Bootstrap. It also has <code class="ic">Employee emp = new Employee()</code> — loaded by Application Loader. The question is: how do they cooperate without loading the same class multiple times, and how does Java prevent someone replacing core classes like <code class="ic">String</code>?</p>
+
+    <div class="pdm-layout">
+      <div class="pdm-analogy">
+        <div class="pdm-analogy-title">🏢 Real World Analogy</div>
+        <p style="font-size:14px; margin-bottom:16px;">In a company, when an employee gets a task, they ask the manager first. Manager asks the director. Only if everyone above fails does the employee handle it themselves.</p>
+        <div style="font-family:'Space Mono',monospace; font-size:12px; color:#aaa; text-align:center; line-height:2;">
+          <span style="color:var(--muted);">Director</span><br>
+          <span style="color:var(--border);">↑ asks first</span><br>
+          <span style="color:var(--muted);">Manager</span><br>
+          <span style="color:var(--border);">↑ asks first</span><br>
+          <span style="color:var(--accent2);">Employee</span> ← receives task
+        </div>
+      </div>
+
+      <div class="pdm-jvm">
+        <div class="pdm-analogy-title">☕ JVM Class Loader Hierarchy</div>
+        <div class="cl-hierarchy">
+          <div class="cl-node bootstrap-node">
+            <div class="cl-name">Bootstrap Class Loader</div>
+            <div class="cl-desc">Loads core Java classes: <code class="ic">String</code>, <code class="ic">Object</code>, <code class="ic">System</code>, <code class="ic">Thread</code></div>
+            <div class="cl-source">from <code class="ic">rt.jar</code> / core modules</div>
+          </div>
+          <div class="cl-arrow-down">↑ delegates to parent</div>
+          <div class="cl-node platform-node">
+            <div class="cl-name">Platform Class Loader</div>
+            <div class="cl-desc">Loads Java extension / platform classes</div>
+            <div class="cl-source">from <code class="ic">$JAVA_HOME/lib/ext</code></div>
+          </div>
+          <div class="cl-arrow-down">↑ delegates to parent</div>
+          <div class="cl-node app-node">
+            <div class="cl-name">Application Class Loader</div>
+            <div class="cl-desc">Loads <em>your</em> classes: <code class="ic">Employee</code>, <code class="ic">Student</code>, <code class="ic">Hello</code></div>
+            <div class="cl-source">from application classpath</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 40px;">How It Works — Step by Step</h3>
+    <div class="pdm-steps">
+      <div class="pdm-step">
+        <span class="pdm-num">1</span>
+        <span>Application Loader receives request: <em>"Load String.class"</em></span>
+      </div>
+      <div class="pdm-step">
+        <span class="pdm-num">2</span>
+        <span>Does NOT load immediately. Asks parent: Platform Loader</span>
+      </div>
+      <div class="pdm-step">
+        <span class="pdm-num">3</span>
+        <span>Platform Loader asks its parent: Bootstrap Loader</span>
+      </div>
+      <div class="pdm-step">
+        <span class="pdm-num">4</span>
+        <span>Bootstrap says <em>"I know String.class"</em> and loads it ✓</span>
+      </div>
+      <div class="pdm-step">
+        <span class="pdm-num">5</span>
+        <span>If Bootstrap couldn't, Platform tries. If Platform can't, Application loads it itself.</span>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px;">Why Is This Critical for Security?</h3>
+    <div class="mc-card wrong-card" style="margin: 20px 0;">
+      <div class="mc-label wrong-label">⚠️ Without Parent Delegation</div>
+      <div class="code-block" style="margin:12px 0 0;">
+        <div class="code-header">
+          <div class="code-dot" style="background:#ff5f57"></div>
+          <div class="code-dot" style="background:#ffbd2e"></div>
+          <div class="code-dot" style="background:#28ca41"></div>
+          <span class="code-filename">java/lang/String.java (malicious)</span>
+        </div>
+        <pre style="font-size:12px; padding:14px;"><span class="kw">package</span> java.lang;
+<span class="kw">public class</span> <span class="cls">String</span> {
+    <span class="cmt">// Malicious override of Java's String!</span>
+    <span class="cmt">// Could steal data, crash JVM, etc.</span>
+}</pre>
+      </div>
+      <p style="font-size:13px; color:var(--accent3); margin:12px 0 0;">Without delegation, a rogue class could replace <code class="ic">java.lang.String</code>. Parent Delegation prevents this — Bootstrap always loads core classes first.</p>
+    </div>
+
+    <div class="interview-box">
+      <span class="label">🎤 Interview Definition</span>
+      <p>Parent Delegation Model is the class loading mechanism where a class loader delegates class loading requests to its parent before attempting to load the class itself. This prevents core Java classes from being overridden by application code.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL QUICK CHECK -->
+<section>
+  <div class="container">
+    <div class="section-label">Chapter 19 — Final Quick Check</div>
+    <h2>5 Questions to Lock It In</h2>
+    <p>Before moving on, these questions confirm you've internalized the full picture.</p>
+
+    <div class="fqc-list">
+
+      <div class="fqc-item">
+        <div class="fqc-num">Q1</div>
+        <div class="fqc-body">
+          <div class="fqc-q">Which JVM component is actually responsible for loading classes?</div>
+          <div class="fqc-hint">Hint: It's not JRE.</div>
+          <div class="fqc-answer" id="a1" style="display:none;">
+            <span style="color:var(--accent); font-family:'Space Mono',monospace;">Class Loader Subsystem</span> — a component inside the JVM itself.
+          </div>
+          <button class="reveal-btn" onclick="toggleAnswer('a1', this)">Reveal Answer</button>
+        </div>
+      </div>
+
+      <div class="fqc-item">
+        <div class="fqc-num">Q2</div>
+        <div class="fqc-body">
+          <div class="fqc-q">Who usually loads: <code class="ic">String</code>, <code class="ic">Object</code>, <code class="ic">System</code>, <code class="ic">Thread</code>?</div>
+          <div class="fqc-answer" id="a2" style="display:none;">
+            <span style="color:var(--accent); font-family:'Space Mono',monospace;">Bootstrap Class Loader</span> — loads all core Java classes bundled with the JDK.
+          </div>
+          <button class="reveal-btn" onclick="toggleAnswer('a2', this)">Reveal Answer</button>
+        </div>
+      </div>
+
+      <div class="fqc-item">
+        <div class="fqc-num">Q3</div>
+        <div class="fqc-body">
+          <div class="fqc-q">Why does the Application Class Loader delegate to parent loaders first instead of loading classes directly?</div>
+          <div class="fqc-answer" id="a3" style="display:none;">
+            <strong>Security &amp; consistency.</strong> Delegation ensures core Java classes like <code class="ic">String</code> are always loaded by Bootstrap, preventing application code from replacing them. It also avoids loading the same class multiple times.
+          </div>
+          <button class="reveal-btn" onclick="toggleAnswer('a3', this)">Reveal Answer</button>
+        </div>
+      </div>
+
+      <div class="fqc-item">
+        <div class="fqc-num">Q4</div>
+        <div class="fqc-body">
+          <div class="fqc-q">When <code class="ic">main()</code> starts execution, where is the <code class="ic">main()</code> stack frame stored?</div>
+          <div class="fqc-answer" id="a4" style="display:none;">
+            On the <span style="color:var(--accent3); font-family:'Space Mono',monospace;">Java Stack</span>. A stack frame for <code class="ic">main()</code> is pushed immediately when JVM invokes it.
+          </div>
+          <button class="reveal-btn" onclick="toggleAnswer('a4', this)">Reveal Answer</button>
+        </div>
+      </div>
+
+      <div class="fqc-item">
+        <div class="fqc-num">Q5</div>
+        <div class="fqc-body">
+          <div class="fqc-q">Complete the Class Loader hierarchy (top to bottom):</div>
+          <div style="font-family:'Space Mono',monospace; font-size:13px; color:var(--muted); margin:12px 0; background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; line-height:2.2;">
+            ___________<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↑<br>
+            ___________<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↑<br>
+            ___________
+          </div>
+          <div class="fqc-answer" id="a5" style="display:none;">
+            <div style="font-family:'Space Mono',monospace; font-size:13px; line-height:2.2;">
+              <span style="color:var(--accent);">Bootstrap Class Loader</span><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↑<br>
+              <span style="color:var(--accent2);">Platform Class Loader</span><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↑<br>
+              <span style="color:var(--accent3);">Application Class Loader</span>
+            </div>
+          </div>
+          <button class="reveal-btn" onclick="toggleAnswer('a5', this)">Reveal Answer</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="highlight-box" style="margin-top:40px;">
+      <p><strong>You've now covered:</strong> JVM architecture · All 5 memory areas · Class Loader Subsystem · Parent Delegation Model · Interpreter vs JIT · Bytecode Verification · Garbage Collection · Heap vs Stack · JRE &amp; JDK internals — everything a strong Java interview demands.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleAnswer(id, btn) {
+  const el = document.getElementById(id);
+  const isHidden = el.style.display === 'none';
+  el.style.display = isHidden ? 'block' : 'none';
+  btn.textContent = isHidden ? 'Hide Answer' : 'Reveal Answer';
+  if (isHidden) {
+    btn.style.background = 'rgba(79,255,176,0.08)';
+    btn.style.color = 'var(--accent)';
+    btn.style.borderColor = 'rgba(79,255,176,0.25)';
+  } else {
+    btn.style.background = 'rgba(255,255,255,0.04)';
+    btn.style.color = 'var(--muted)';
+    btn.style.borderColor = 'var(--border)';
+  }
+}
+
+// ===== SECTION SWITCHING =====
+function switchSection(sectionName) {
+  const allButtons = document.querySelectorAll('.nav-btn');
+  allButtons.forEach(btn => btn.classList.remove('active'));
+  
+  const clickedBtn = event.target.closest('.nav-btn');
+  if (clickedBtn) clickedBtn.classList.add('active');
+
+  const jvmSection = document.getElementById('jvm-section');
+  
+  if (sectionName === 'all') {
+    jvmSection.style.display = 'block';
+    jvmSection.style.opacity = '1';
+    filterChapters(null);
+    scrollToChapter01();
+  } else {
+    jvmSection.style.display = 'block';
+    jvmSection.style.opacity = '1';
+    filterChapters(sectionName);
+    scrollToSection();
+  }
+}
+
+// Filter chapters based on section
+function filterChapters(section) {
+  const allSections = document.querySelectorAll('section');
+  const sectionMap = {
+    'jvm': [1, 2, 8, 11, 12, 13, 14, 15, 16, 19],
+    'jre': [1, 3, 5, 6, 7, 11],
+    'jdk': [1, 4, 5, 6, 7, 11],
+    'memory': [9, 10, 13],
+    'execution': [14, 15],
+    'classloaders': [17, 18, 19]
+  };
+
+  allSections.forEach((sec) => {
+    const label = sec.querySelector('.section-label');
+    if (!label) return;
+    
+    const labelText = label.textContent;
+    let chapterNum = null;
+    
+    const match = labelText.match(/Chapter\s+(\d+)/i);
+    if (match) {
+      chapterNum = parseInt(match[1]);
+    }
+
+    if (!chapterNum) {
+      sec.style.display = 'block';
+      sec.style.opacity = '1';
+      return;
+    }
+
+    const chapters = sectionMap[section] || [];
+    const shouldShow = !section || chapters.length === 0 || chapters.includes(chapterNum);
+    sec.style.display = shouldShow ? 'block' : 'none';
+    sec.style.opacity = shouldShow ? '1' : '0';
+    sec.style.pointerEvents = shouldShow ? 'auto' : 'none';
+    sec.style.height = shouldShow ? 'auto' : '0';
+    if (!shouldShow) sec.style.marginBottom = '0';
+  });
+}
+
+function scrollToSection() {
+  setTimeout(() => {
+    const firstVisibleSection = Array.from(document.querySelectorAll('section')).find(
+      s => window.getComputedStyle(s).display !== 'none'
+    );
+    if (firstVisibleSection) {
+      firstVisibleSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 100);
+}
+
+// ===== SCROLL TO TOP =====
+const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+window.addEventListener('scroll', () => {
+  if (window.pageYOffset > 300) {
+    scrollToTopBtn.classList.add('show');
+  } else {
+    scrollToTopBtn.classList.remove('show');
+  }
+  
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.querySelector('.progress-bar').style.width = scrolled + '%';
+});
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+// ===== THEME TOGGLE =====
+function toggleTheme() {
+  const root = document.documentElement;
+  const themeBtn = document.querySelector('.theme-toggle');
+  
+  if (document.body.classList.contains('light-theme')) {
+    document.body.classList.remove('light-theme');
+    themeBtn.textContent = '🌙';
+    localStorage.setItem('theme', 'dark');
+  } else {
+    document.body.classList.add('light-theme');
+    themeBtn.textContent = '☀️';
+    localStorage.setItem('theme', 'light');
+  }
+}
+
+// ===== INITIALIZATION =====
+document.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+    document.body.classList.add('light-theme');
+    document.querySelector('.theme-toggle').textContent = '☀️';
+  }
+  
+  const answers = document.querySelectorAll('[id^="a"]');
+  answers.forEach(answer => {
+    if (answer.id.match(/^a\d+$/)) {
+      answer.style.display = 'none';
+    }
+  });
+});
+
+// ===== KEYBOARD SHORTCUTS =====
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.key === 'k') {
+    e.preventDefault();
+    scrollToTop();
+  }
+});
+
+console.log('%c☕ Welcome to Core Java Mastery!', 'color: #4fffb0; font-size: 16px; font-weight: bold;');
+console.log('%cUse the navigation bar to explore topics. Keyboard: Ctrl+K to scroll to top.', 'color: #88ddcc; font-size: 12px;');
+</script>
+
+<!-- LIGHT THEME STYLES -->
+<style>
+  body.light-theme {
+    --bg: #ffffff;
+    --surface: #f8f9fa;
+    --surface2: #f0f2f5;
+    --border: #e8eaed;
+    --accent: #1a7659;
+    --accent2: #5b4db6;
+    --accent3: #d32f2f;
+    --text: #202124;
+    --muted: #5f6368;
+    --code-bg: #f8f9fa;
+  }
+
+  body.light-theme .code-block {
+    background: #f8f9fa;
+  }
+
+  body.light-theme pre {
+    color: #202124;
+  }
+
+  body.light-theme .analogy-card,
+  body.light-theme .concept-section {
+    background: #f8f9fa;
+    border-color: #e8eaed;
+  }
+
+  body.light-theme h1, 
+  body.light-theme h2, 
+  body.light-theme h3 {
+    color: #202124;
+  }
+
+  body.light-theme p {
+    color: #3c4043;
+  }
+
+  body.light-theme .navbar {
+    background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(248,249,250,0.95) 100%);
+  }
+</style>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-title">Core Java — Complete Guide</div>
+    <p class="footer-sub">Master JVM Architecture · Memory Management · Class Loading · Interview Ready · Built with ☕</p>
+  </div>
+</footer>
+
+</div> <!-- End jvm-section -->
+
+</body>
+</html>
