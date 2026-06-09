@@ -2689,6 +2689,14 @@
         <span>Java Fundamentals</span>
         <span class="nav-badge">23</span>
       </button>
+      <button class="nav-btn" onclick="switchSection('oops')">
+        <span>OOPS</span>
+        <span class="nav-badge">5</span>
+      </button>
+        <button class="nav-btn" onclick="switchSection('streams')">
+          <span>Streams</span>
+          <span class="nav-badge">3</span>
+        </button>
     </div>
     <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light theme">🌙</button>
   </div>
@@ -2760,11 +2768,54 @@
   </div>
 </div>
 
+<!-- OOPS SELECTOR -->
+<div class="fundamentals-selector" id="oopsSelector" style="display: none;">
+  <div class="container">
+    <div class="selector-header">
+      <h2>OOPS</h2>
+      <p>Choose a topic to explore</p>
+    </div>
+    <div class="subsection-grid">
+      <button class="subsection-card" onclick="switchSection('oops-basics')">
+        <div class="subsection-icon">🧩</div>
+        <h3>Basics of OOPS</h3>
+        <p>Understand why OOP exists before learning encapsulation, inheritance, polymorphism, and abstraction.</p>
+        <span class="subsection-badge">7 chapters</span>
+      </button>
+    </div>
+  </div>
+</div>
+
 <!-- WHY DO THEY EXIST -->
+  <!-- STREAMS SELECTOR -->
+  <div class="fundamentals-selector" id="streamsSelector" style="display: none;">
+    <div class="container">
+      <div class="selector-header">
+        <h2>Streams</h2>
+        <p>Choose a topic to explore</p>
+      </div>
+      <div class="subsection-grid">
+        <button class="subsection-card" onclick="switchSection('intro-streams')">
+          <div class="subsection-icon">🌊</div>
+          <h3>Introduction to Streams</h3>
+          <p>Why Java introduced Streams, declarative vs imperative, internal vs external iteration, and stream characteristics.</p>
+          <span class="subsection-badge">3 chapters</span>
+        </button>
+        <button class="subsection-card" onclick="switchSection('intermediate-terminal-operations')">
+          <div class="subsection-icon">⚙️</div>
+          <h3>Intermediate and terminal operations</h3>
+          <p>filter(), distinct(), limit(), skip(), takeWhile(), and dropWhile() with chaining and lazy execution behavior.</p>
+          <span class="subsection-badge">4 chapters</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
 <div class="chapter-section active with-sidebar" id="jvm-section">
   <!-- Chapter Sidebar -->
   <div class="chapter-sidebar active" id="chapterSidebar">
     <div class="chapter-sidebar-title">Chapters</div>
+    
     <ul class="chapter-list">
       <!-- Stack vs Heap Chapters -->
       <li class="chapter-item" data-section="stack-heap"><a href="#chapter-sh01" class="chapter-link" onclick="filterChapterContent(event, 'sh01')"><span class="chapter-num">01</span>Intro to Stack and Heap</a></li>
@@ -2806,7 +2857,30 @@
       <li class="chapter-item" data-section="type-casting"><a href="#chapter-tc03" class="chapter-link" onclick="filterChapterContent(event, 'tc03')"><span class="chapter-num">03</span>ClassCastException</a></li>
       <li class="chapter-item" data-section="type-casting"><a href="#chapter-tc04" class="chapter-link" onclick="filterChapterContent(event, 'tc04')"><span class="chapter-num">04</span>Multi-Level Inheritance Casting</a></li>
 
+      <!-- OOPS Basics Chapter -->
+      <li class="chapter-item" data-section="oops-basics"><a href="#chapter-ob01" class="chapter-link" onclick="filterChapterContent(event, 'ob01')"><span class="chapter-num">01</span>Why OOP Exists</a></li>
+      <li class="chapter-item" data-section="oops-basics"><a href="#chapter-ob02" class="chapter-link" onclick="filterChapterContent(event, 'ob02')"><span class="chapter-num">02</span>Class vs Object</a></li>
+      <li class="chapter-item" data-section="oops-basics"><a href="#chapter-ob03" class="chapter-link" onclick="filterChapterContent(event, 'ob03')"><span class="chapter-num">03</span>Identity and References</a></li>
+      <li class="chapter-item" data-section="oops-basics"><a href="#chapter-ob04" class="chapter-link" onclick="filterChapterContent(event, 'ob04')"><span class="chapter-num">04</span>Java Pass-by-Value</a></li>
+      <li class="chapter-item" data-section="oops-basics"><a href="#chapter-ob05" class="chapter-link" onclick="filterChapterContent(event, 'ob05')"><span class="chapter-num">05</span>Encapsulation</a></li>
+      <li class="chapter-item" data-section="oops-basics"><a href="#chapter-ob06" class="chapter-link" onclick="filterChapterContent(event, 'ob06')"><span class="chapter-num">06</span>Inheritance (Actual Purpose)</a></li>
+      <li class="chapter-item" data-section="oops-basics"><a href="#chapter-ob07" class="chapter-link" onclick="filterChapterContent(event, 'ob07')"><span class="chapter-num">07</span>Polymorphism (Actual Meaning)</a></li>
+      <li class="chapter-item" data-section="oops-basics"><a href="#chapter-ob08" class="chapter-link" onclick="filterChapterContent(event, 'ob08')"><span class="chapter-num">08</span>Abstraction (Actual Meaning)</a></li>
+      <li class="chapter-item" data-section="oops-basics"><a href="#chapter-ob09" class="chapter-link" onclick="filterChapterContent(event, 'ob09')"><span class="chapter-num">09</span>Abstract Class vs Interface</a></li>
+      <li class="chapter-item" data-section="oops-basics"><a href="#chapter-ob10" class="chapter-link" onclick="filterChapterContent(event, 'ob10')"><span class="chapter-num">10</span>Interface Internals</a></li>
+
       <!-- JVM Chapters -->
+  <!-- Streams: Introduction to Streams Chapters -->
+  <li class="chapter-item" data-section="intro-streams"><a href="#chapter-st01" class="chapter-link" onclick="filterChapterContent(event, 'st01')"><span class="chapter-num">01</span>Introduction to Streams</a></li>
+  <li class="chapter-item" data-section="intro-streams"><a href="#chapter-st02" class="chapter-link" onclick="filterChapterContent(event, 'st02')"><span class="chapter-num">02</span>Stream Creation</a></li>
+  <li class="chapter-item" data-section="intro-streams"><a href="#chapter-st03" class="chapter-link" onclick="filterChapterContent(event, 'st03')"><span class="chapter-num">03</span>Stream Architecture</a></li>
+
+  <!-- Streams: Intermediate and Terminal Operations Chapters -->
+  <li class="chapter-item" data-section="intermediate-terminal-operations"><a href="#chapter-ito01" class="chapter-link" onclick="filterChapterContent(event, 'ito01')"><span class="chapter-num">01</span>Intermediate Operations — Filtering</a></li>
+  <li class="chapter-item" data-section="intermediate-terminal-operations"><a href="#chapter-ito02" class="chapter-link" onclick="filterChapterContent(event, 'ito02')"><span class="chapter-num">02</span>Intermediate Operations — Transformation</a></li>
+  <li class="chapter-item" data-section="intermediate-terminal-operations"><a href="#chapter-ito03" class="chapter-link" onclick="filterChapterContent(event, 'ito03')"><span class="chapter-num">03</span>Intermediate Operations — Sorting + Peek</a></li>
+  <li class="chapter-item" data-section="intermediate-terminal-operations"><a href="#chapter-ito04" class="chapter-link" onclick="filterChapterContent(event, 'ito04')"><span class="chapter-num">04</span>Phase 4 Completed — Big Picture</a></li>
+
       <li class="chapter-item" data-section="all"><a href="#chapter-01" class="chapter-link" onclick="filterChapterContent(event, '01')"><span class="chapter-num">01</span>The Problem They Solve</a></li>
       <li class="chapter-item active" data-section="all"><a href="#chapter-02" class="chapter-link" onclick="filterChapterContent(event, '02')"><span class="chapter-num">02</span>Understanding JVM</a></li>
       <li class="chapter-item" data-section="all"><a href="#chapter-03" class="chapter-link" onclick="filterChapterContent(event, '03')"><span class="chapter-num">03</span>Understanding JRE</a></li>
@@ -10385,6 +10459,2641 @@ public class Test {
   </div>
 </section>
 
+<section data-chapter="ob01">
+  <div class="container">
+    <div class="section-label" id="chapter-ob01">Chapter 1 — Why OOP Exists (Before Learning OOP)</div>
+    <h2>Why OOP Exists</h2>
+
+    <p>Many people memorize: <strong>Encapsulation, Inheritance, Polymorphism, Abstraction</strong>… but interviews usually start one level deeper: <strong>Why did OOP even become necessary?</strong></p>
+    <p>If you understand this, the rest of OOP becomes easier.</p>
+
+    <h3>Step 1 — Analogy</h3>
+    <p>Imagine building a city.</p>
+    <p>Without planning:</p>
+    <ul>
+      <li>Roads</li>
+      <li>Buildings</li>
+      <li>Electricity</li>
+      <li>Water</li>
+      <li>Shops</li>
+      <li>Signals</li>
+    </ul>
+    <p>Everything is randomly placed.</p>
+    <p>Result:</p>
+    <ul>
+      <li>difficult to maintain</li>
+      <li>difficult to extend</li>
+      <li>difficult to debug</li>
+    </ul>
+    <p>Now imagine dividing into:</p>
+    <ul>
+      <li>Residential Area</li>
+      <li>Commercial Area</li>
+      <li>Transport Department</li>
+      <li>Power Department</li>
+    </ul>
+    <p>Each unit handles its own responsibility.</p>
+    <p>That is the idea behind OOP.</p>
+
+    <h3>Step 2 — Technical Explanation</h3>
+    <p>Programming originally started with procedural programming.</p>
+
+    <pre><code>main()
+ ├── calculateSalary()
+ ├── printSalary()
+ ├── updateSalary()
+ └── deleteSalary()</code></pre>
+
+    <p>Data and behavior were separated.</p>
+    <p>Problem:</p>
+    <pre><code>salary
+employeeName
+employeeId</code></pre>
+    <p>These variables were accessible everywhere.</p>
+    <p>Large systems became difficult to maintain.</p>
+    <p>OOP introduced: <strong>Keep data + behavior together.</strong></p>
+
+    <pre><code>Employee
+ ├── employeeId
+ ├── employeeName
+ ├── salary
+ ├── calculateSalary()
+ └── updateSalary()</code></pre>
+
+    <p>Everything related to Employee stays inside Employee.</p>
+
+    <h3>Step 3 — Visual Representation</h3>
+    <h3>Procedural Approach</h3>
+    <p>Data ↓ Functions operate on data</p>
+    <pre><code>salary ---------&gt; calculate()
+name ----------&gt; update()
+id ------------&gt; print()</code></pre>
+
+    <h3>OOP Approach</h3>
+    <p>Employee Object</p>
+    <pre><code>+-------------------+
+| id                |
+| name              |
+| salary            |
+|-------------------|
+| calculateSalary() |
+| updateSalary()    |
+| print()           |
++-------------------+</code></pre>
+
+    <p>Data + behavior become one unit.</p>
+
+    <h3>Step 4 — Real World Example</h3>
+    <p>Think about: <strong>Bank Account</strong></p>
+
+    <p>Without OOP:</p>
+    <pre><code>balance
+deposit()
+withdraw()</code></pre>
+    <p>Anyone can modify balance. Bad.</p>
+
+    <p>With OOP:</p>
+    <pre><code>class BankAccount {
+
+    private double balance;
+
+    public void deposit(){}
+
+    public void withdraw(){}
+}</code></pre>
+
+    <p>Only allowed operations can change data. That becomes controlled behavior.</p>
+
+    <h3>Bigger Picture</h3>
+    <p>Everything in Java OOP ultimately tries to solve one or more of these:</p>
+    <ul>
+      <li>Organize code</li>
+      <li>Protect data</li>
+      <li>Reuse code</li>
+      <li>Allow flexible behavior</li>
+      <li>Reduce maintenance cost</li>
+    </ul>
+
+    <p>And each OOP concept maps to one:</p>
+    <table style="width: 100%; margin: 20px 0;">
+      <thead>
+        <tr>
+          <th>Problem</th>
+          <th>OOP Concept</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Data protection</td><td>Encapsulation</td></tr>
+        <tr><td>Reuse</td><td>Inheritance</td></tr>
+        <tr><td>Flexible behavior</td><td>Polymorphism</td></tr>
+        <tr><td>Hide complexity</td><td>Abstraction</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Interview Insight</h3>
+    <p><strong>Very common question:</strong> Why does Java support OOP?</p>
+    <p><strong>Expected answer:</strong> Java uses OOP to organize code by combining state and behavior into objects, improving modularity, reusability, maintainability, extensibility, and real-world modeling.</p>
+    <p><strong>Avoid saying:</strong> ❌ "Because Java is object oriented."</p>
+
+    <div class="highlight-box">
+      <p><strong>Sticky Note:</strong> OOP = Organizing software around objects (state + behavior)</p>
+    </div>
+
+    <h3>🧠 Quick Check (answer in your own words)</h3>
+    <p><strong>Question 1:</strong> What problem does OOP solve that procedural programming struggles with?</p>
+    <p><strong>Question 2:</strong> What does an object combine together?</p>
+    <p><strong>Question 3:</strong> Why is a Bank Account a good example of OOP?</p>
+
+    <p><strong>Given Answer 1:</strong> OOP's solve the pattern where the data was being declared and will be used by procedures for it's implementation, in this case the data is scattered in the application code and can be accessed by any one from anywhere due to which there was a security issue, due to this scattered data the code was also not maintainable in POP, this is the reason OOP's came into picture by coupling data and behaviour into single unit called as object.</p>
+    <p><strong>Given Answer 2:</strong> An object combines both data and it's behavior into single unit.</p>
+    <p><strong>Given Answer 3:</strong> Bank account is the good example for OOP's as the main component of a bank account is bank balance which is the greatest data element which needs to secured, maintained so that there can not be any discrepency in the bank balance.</p>
+
+    <h3>Evaluation</h3>
+    <p><strong>Question 1 — What problem does OOP solve?</strong></p>
+    <p>✅ Correct. Small refinement: Security is a consequence, not the main original reason.</p>
+    <p><strong>Better interview answer:</strong> Procedural programming organizes software around functions, causing data and operations to become loosely controlled as applications grow. OOP organizes software around objects by combining state and behavior, improving maintainability, modularity, reusability, and controlled access to data.</p>
+    <p><strong>Score:</strong> 9/10</p>
+
+    <p><strong>Question 2 — What does an object combine?</strong></p>
+    <p>✅ Correct.</p>
+    <p><strong>Interview refinement:</strong> Object = State + Behavior + Identity</p>
+    <p>Where: State → fields/variables, Behavior → methods, Identity → unique existence in memory.</p>
+    <pre><code>Student s1 = new Student();
+Student s2 = new Student();
+
+Same class.
+Different identities.</code></pre>
+
+    <p><strong>Question 3 — Why Bank Account?</strong></p>
+    <p>✅ Correct.</p>
+    <p>Small improvement: Balance is protected because state changes must happen only through valid business rules.</p>
+    <pre><code>// Bad:
+account.balance = -100000;
+
+// Good:
+account.withdraw(1000);</code></pre>
+    <p>Method decides whether change is legal. That distinction becomes important later for Encapsulation.</p>
+    <p><strong>Score:</strong> 9.5/10</p>
+
+    <div class="highlight-box">
+      <p><strong>You understood the first concept.</strong></p>
+    </div>
+  </div>
+</section>
+
+<section data-chapter="ob02">
+  <div class="container">
+    <div class="section-label" id="chapter-ob02">Chapter 2 — Class vs Object (Deep Understanding)</div>
+    <h2>Class vs Object</h2>
+
+    <p>Most people memorize: <strong>Class → Blueprint</strong>, <strong>Object → Instance</strong>. Interviewers go deeper.</p>
+
+    <h3>Step 1 — Analogy</h3>
+    <p>Imagine a company manufactures cars.</p>
+    <p>Factory Design Document, Car Specification:</p>
+    <ul>
+      <li>Engine</li>
+      <li>Color</li>
+      <li>Speed</li>
+      <li>Brakes</li>
+    </ul>
+    <p>This document is not a real car. This is a <strong>Class</strong>.</p>
+    <p>Now actual cars are produced: <strong>Car1, Car2, Car3</strong>. These are <strong>Objects</strong>.</p>
+
+    <h3>Step 2 — Technical Explanation</h3>
+    <h3>Class</h3>
+    <p>A class defines:</p>
+    <ul>
+      <li>State (variables)</li>
+      <li>Behavior (methods)</li>
+      <li>Rules for object creation</li>
+    </ul>
+
+    <p>Example:</p>
+    <pre><code>class Student {
+
+    String name;
+    int age;
+
+    void study() {
+        System.out.println("Studying");
+    }
+
+}</code></pre>
+
+    <p>This creates no object. Only definition.</p>
+
+    <h3>Object</h3>
+    <p>Object = Actual runtime entity.</p>
+    <pre><code>Student s = new Student();</code></pre>
+    <p>Now memory gets allocated. Object exists.</p>
+
+    <h3>Internal Working (Interview Depth)</h3>
+    <p>Look carefully:</p>
+    <pre><code>Student s = new Student();</code></pre>
+    <p>This single line performs multiple operations.</p>
+
+    <p><strong>Step 1</strong> — Compiler sees <code>Student</code> and verifies class exists.</p>
+    <p><strong>Step 2</strong> — JVM executes <code>new</code>, object creation begins.</p>
+    <p><strong>Step 3</strong> — Memory allocated in Heap.</p>
+    <pre><code>Heap
+
++----------------+
+| Student Object |
+| name = null    |
+| age = 0        |
++----------------+</code></pre>
+    <p><strong>Step 4</strong> — Constructor runs.</p>
+    <p><strong>Step 5</strong> — Reference returned.</p>
+    <pre><code>Stack
+
+s -----> Heap Object</code></pre>
+
+    <p>Visual:</p>
+    <pre><code>Stack                    Heap
+
+s --------------------&gt; Student
+                         name=null
+                         age=0</code></pre>
+
+    <h3>Code Example</h3>
+    <pre><code>class Student {
+
+    String name;
+
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student s1 = new Student();
+
+        Student s2 = new Student();
+
+    }
+
+}</code></pre>
+
+    <p>Memory:</p>
+    <pre><code>Stack
+
+s1 ------→ Object1
+s2 ------→ Object2
+
+
+Heap
+
+Object1
+name=null
+
+Object2
+name=null</code></pre>
+
+    <p><strong>Question:</strong> Are <code>s1</code> and <code>s2</code> same object?</p>
+    <p><strong>No.</strong> Same class. Different objects.</p>
+
+    <h3>Real World Example</h3>
+    <p>Class: <strong>Employee Template</strong></p>
+    <p>Objects:</p>
+    <ul>
+      <li>Employee(Bhavesh)</li>
+      <li>Employee(Rahul)</li>
+      <li>Employee(John)</li>
+    </ul>
+    <p>One definition. Many instances.</p>
+
+    <h3>Interview Trap</h3>
+    <p><strong>Question:</strong> <code>Student s;</code> Did object get created?</p>
+    <p><strong>Answer:</strong> ❌ No. Only reference variable created.</p>
+    <p>Object appears only after: <code>new Student()</code></p>
+
+    <div class="highlight-box">
+      <p><strong>Sticky Note:</strong> Class = Blueprint (compile-time concept), Object = Runtime entity (occupies memory)</p>
+    </div>
+
+    <h3>🧠 Quick Check</h3>
+    <p>Answer in your own words.</p>
+    <p><strong>Question 1:</strong> Why does defining a class not create an object?</p>
+    <p><strong>Question 2:</strong> What exactly happens internally in <code>Student s = new Student();</code> (explain step by step)?</p>
+    <p><strong>Question 3:</strong> Where are these stored?</p>
+    <pre><code>Student s = new Student();
+s
+actual Student object</code></pre>
+
+    <p>After your answers, we continue to Identity, Reference Variables, and Why Java says everything is pass-by-value.</p>
+
+    <p><strong>Given Answer 1:</strong> Class is just a blue print, which defines, state, behavior and identity, the Class is created at compile time but the object holds the data of that class, which is created at run time by JVM after the class is loaded into memory by class Loader, once the JVM identifies the new keyword, it creates the object in heap and reference of that object from stack is pointed to the object created in the heap.</p>
+    <p><strong>Given Answer 2:</strong> the Class is created at compile time but the object holds the data of that class, which is created at run time by JVM after the class is loaded into memory by class Loader, once the JVM identifies the new keyword, it creates the object in heap and reference of that object from stack is pointed to the object created in the heap.</p>
+    <p><strong>Given Answer 3:</strong> the reference "s" is stored in the stack memory area inside JVM and the actual object is stored in the heap memory inside JVM.</p>
+
+    <h3>Evaluation</h3>
+    <p>Very good. Your answers show you already have some understanding of memory + object creation, but there are a few important corrections. These corrections matter a lot in interviews.</p>
+
+    <p><strong>Question 1 — Why does defining a class not create an object?</strong></p>
+    <p>✅ Mostly correct.</p>
+    <p>Correction: Class defines <strong>state</strong> and <strong>behavior</strong>. Object provides <strong>state values</strong>, <strong>behavior execution</strong>, and <strong>identity</strong>.</p>
+    <pre><code>class Student {
+    String name;
+}
+
+Student s1 = new Student();
+Student s2 = new Student();
+
+Same class.
+Different identities.</code></pre>
+    <p>So: Class → Structure, Object → Actual existence.</p>
+    <p><strong>Score:</strong> 8.5/10</p>
+
+    <p><strong>Question 2 — Internal steps of object creation</strong></p>
+    <p>✅ Very good.</p>
+    <p>Interview-grade flow for <code>Student s = new Student();</code>:</p>
+    <ol>
+      <li>Compiler verifies <code>Student</code> exists</li>
+      <li>JVM loads <code>Student</code> class if not loaded</li>
+      <li>Heap memory allocated</li>
+      <li>Instance variables initialized (<code>name = null</code>, <code>age = 0</code>)</li>
+      <li>Constructor executes</li>
+      <li>Reference returned</li>
+      <li>Reference stored in stack</li>
+    </ol>
+    <p>Correction: object does not hold "data of class"; it stores values for instance variables defined by class.</p>
+    <p><strong>Score:</strong> 9/10</p>
+
+    <p><strong>Question 3 — Stack vs Heap</strong></p>
+    <p>✅ Correct.</p>
+    <p>Interview note: Stack → reference variable, Heap → actual object, Method Area → class metadata.</p>
+    <p><strong>Excellent. Score:</strong> 10/10</p>
+  </div>
+</section>
+
+<section data-chapter="ob03">
+  <div class="container">
+  <div class="section-label" id="chapter-ob03">Chapter 3 — Identity, Reference Variables, and the Biggest Java Confusion</div>
+  <h2>Identity and Reference Variables</h2>
+
+  <p>This chapter explains:</p>
+  <ul>
+    <li>What a reference actually is</li>
+    <li>Why == behaves strangely</li>
+    <li>Why assignment behaves unexpectedly</li>
+    <li>Why Java is pass-by-value</li>
+  </ul>
+
+  <h3>Step 1 — Analogy</h3>
+  <p>Imagine apartments.</p>
+  <p>Apartment: Apartment #501</p>
+  <p>Inside:</p>
+  <ul>
+    <li>TV</li>
+    <li>Chair</li>
+    <li>Bed</li>
+  </ul>
+  <p>Now your phone stores: Apartment Address → 501</p>
+  <p>Your phone does NOT contain apartment. It stores location.</p>
+  <p>Reference variable works the same way.</p>
+
+  <h3>Step 2 — Technical Explanation</h3>
+  <p>Look carefully:</p>
+  <pre><code>Student s = new Student();</code></pre>
+
+  <p>People think: <code>s = Student Object</code></p>
+  <p>Wrong.</p>
+  <p>Actual: <code>s = reference to object</code></p>
+
+  <p>Visual:</p>
+  <pre><code>Stack                    Heap
+
+s --------------------&gt; Student Object</code></pre>
+  <p><code>s</code> contains location. Not object.</p>
+
+  <p>Example:</p>
+  <pre><code>Student s1 = new Student();
+
+Student s2 = s1;</code></pre>
+
+  <p><strong>Question:</strong> How many objects?</p>
+  <p>Visual:</p>
+  <pre><code>Stack
+
+s1 --------\
+      \
+       ---&gt; Object
+      /
+s2 --------/
+
+
+Heap
+
+Student Object</code></pre>
+
+  <p><strong>Answer:</strong> Only ONE object. Two references.</p>
+
+  <h3>Code</h3>
+  <pre><code>class Student {
+
+  String name;
+
+}
+
+public class Main {
+
+  public static void main(String[] args) {
+
+    Student s1 = new Student();
+
+    s1.name = "John";
+
+    Student s2 = s1;
+
+    s2.name = "Mike";
+
+    System.out.println(s1.name);
+
+  }
+
+}</code></pre>
+
+  <p><strong>Output:</strong> Mike</p>
+  <p><strong>Why?</strong> Both point to same object.</p>
+
+  <h3>Identity</h3>
+  <p>Identity means: This exact object.</p>
+  <p>Example:</p>
+  <pre><code>Student a = new Student();
+
+Student b = new Student();</code></pre>
+  <p>Even if values same: <code>a ≠ b</code></p>
+  <p>Different identity.</p>
+
+  <p>Visual:</p>
+  <pre><code>a -----------> Object A
+
+b -----------> Object B</code></pre>
+
+  <h3>Real World Example</h3>
+  <p>Imagine: Document stored in Google Drive.</p>
+  <p>You send link to friends. Everyone edits same file.</p>
+  <p>Reference behaves similarly.</p>
+
+  <h3>Interview Trap</h3>
+  <p><strong>Question:</strong></p>
+  <pre><code>String a = new String("ABC");
+
+String b = a;
+
+a = null;</code></pre>
+  <p>Did object disappear?</p>
+  <p><strong>Answer:</strong> ❌ No</p>
+  <p>Because <code>b</code> still points to object. Object removed only when unreachable. (We'll cover GC later.)</p>
+
+  <div class="highlight-box">
+    <p><strong>Sticky Note:</strong> Object variable ≠ Object, Object variable = Reference</p>
+  </div>
+
+  <h3>🧠 Quick Check</h3>
+  <p><strong>Question 1:</strong> Explain in your own words: <code>Student s2 = s1;</code> What gets copied?</p>
+
+  <p><strong>Question 2:</strong> Predict output and explain why.</p>
+  <pre><code>class A {
+
+  int x = 10;
+
+}
+
+public class Main {
+
+  public static void main(String[] args) {
+
+    A a = new A();
+
+    A b = a;
+
+    b.x = 20;
+
+    System.out.println(a.x);
+
+  }
+
+}</code></pre>
+
+  <p><strong>Question 3:</strong> If two references point to same object and one changes data, why does the other observe the change?</p>
+
+  <p><strong>Given Answer 1:</strong> the location of the object from heap gets copied and will be assigned to s2, that means, both s1 and s2 reference to the same object in heap.</p>
+  <p><strong>Given Answer 2:</strong> output will be 20 because the reference a is copied to b that means the location of object with reference a is copied to b but the object in heap memory is same.</p>
+  <p><strong>Given Answer 3:</strong> because they point to same object in heap memory.</p>
+
+  <h3>Evaluation</h3>
+  <p>Excellent. Your answers are strong and your mental model is mostly correct. But now we refine your language to interview precision.</p>
+
+  <p><strong>Question 1</strong></p>
+  <p>✅ Conceptually correct.</p>
+  <p>Interview refinement: avoid saying "location gets copied" because Java does not formally expose memory addresses.</p>
+  <p>Better wording: The reference value stored in <code>s1</code> is copied into <code>s2</code>, so both references point to the same object.</p>
+  <pre><code>Before
+
+s1 ----------&gt; Object
+
+
+After
+
+s1 ----------\
+        \
+         ---&gt; Object
+        /
+s2 ----------/</code></pre>
+  <p><strong>Score:</strong> 9.5/10</p>
+
+  <p><strong>Question 2</strong></p>
+  <p>✅ Perfect.</p>
+  <p>Execution:</p>
+  <pre><code>A a = new A();
+a -----> Object(x=10)
+
+A b = a;
+a ----\
+     \
+    -> Object(x=10)
+     /
+b ----/
+
+b.x = 20;
+
+Object becomes: Object(x=20)
+
+System.out.println(a.x);
+
+Output: 20</code></pre>
+  <p><strong>Score:</strong> 10/10</p>
+
+  <p><strong>Question 3</strong></p>
+  <p>✅ Correct.</p>
+  <p>Interview refinement: references are separate variables, but they refer to the same object instance. Since object state is shared, modifications through one reference become visible through the other.</p>
+  <p><strong>Score:</strong> 10/10</p>
+  </div>
+</section>
+
+<section data-chapter="ob04">
+  <div class="container">
+  <div class="section-label" id="chapter-ob04">Chapter 4 — Java Pass-by-Value (The Interview Killer)</div>
+  <h2>Java Pass-by-Value</h2>
+
+  <p>Many candidates fail this.</p>
+  <p><strong>Question:</strong> Is Java pass-by-reference?</p>
+  <p>Most people answer: Yes (WRONG)</p>
+  <p><strong>Java is: Always pass-by-value</strong></p>
+  <p>You already know references, so now this becomes easy.</p>
+
+  <h3>Step 1 — Analogy</h3>
+  <p>Imagine:</p>
+  <p>You have house key.</p>
+  <p>Key → House</p>
+  <p>You give friend a photocopy of key.</p>
+  <p>Friend can enter house.</p>
+  <p>But friend did NOT receive original key.</p>
+  <p>Only copied key.</p>
+  <p>That is Java.</p>
+
+  <h3>Step 2 — Technical Explanation</h3>
+  <p>Method call: <code>modify(s);</code></p>
+  <p>Java copies variables.</p>
+  <p>If variable contains <code>10</code>, copy 10.</p>
+  <p>If variable contains <code>reference</code>, copy reference.</p>
+
+  <p>Example:</p>
+  <pre><code>class Student {
+
+  String name;
+
+}
+
+public class Main {
+
+  static void change(Student s) {
+
+    s.name = "Mike";
+
+  }
+
+  public static void main(String[] args) {
+
+    Student st = new Student();
+
+    st.name = "John";
+
+    change(st);
+
+    System.out.println(st.name);
+
+  }
+
+}</code></pre>
+
+  <p><strong>Output:</strong> Mike</p>
+
+  <p>People say: Java passed object. Wrong.</p>
+  <p>Actual:</p>
+  <pre><code>st(reference)
+     ↓
+copy
+     ↓
+s(reference)</code></pre>
+  <p>Both references point same object.</p>
+
+  <p>Visual:</p>
+  <pre><code>main()
+
+st -----------\
+         \
+        ---&gt; Student(name=John)
+         /
+change()
+
+s ------------/</code></pre>
+
+  <p>Now dangerous case:</p>
+  <pre><code>static void change(Student s) {
+
+  s = new Student();
+
+  s.name = "Mike";
+
+}</code></pre>
+
+  <p>Main:</p>
+  <pre><code>Student st = new Student();
+
+st.name="John";
+
+change(st);
+
+System.out.println(st.name);</code></pre>
+
+  <p><strong>Output?</strong> John</p>
+
+  <p><strong>Why?</strong></p>
+  <p>Before:</p>
+  <pre><code>st --------&gt; Object1</code></pre>
+  <p>Inside method:</p>
+  <pre><code>s ---------&gt; Object2</code></pre>
+  <p>Only local copy changed. Original untouched.</p>
+
+  <h3>Real World Example</h3>
+  <p>You send friend: Google Drive link.</p>
+  <p>Friend edits file. Changes visible.</p>
+  <p>But if friend opens another file: original unaffected.</p>
+
+  <h3>Interview Answer</h3>
+  <p><strong>Q:</strong> Is Java pass-by-reference?</p>
+  <p><strong>Correct answer:</strong> Java is always pass-by-value. For objects, the copied value is the reference, allowing methods to modify object state but not replace the caller’s reference.</p>
+  <p>Never say: ❌ Java passes objects by reference.</p>
+
+  <div class="highlight-box">
+    <p><strong>Sticky Note:</strong> Primitive → value copied, Object → reference value copied, Java → ALWAYS pass-by-value</p>
+  </div>
+
+  <h3>🧠 Quick Check</h3>
+
+  <p><strong>Question 1</strong> Predict output + explain.</p>
+  <pre><code>class Test {
+
+  int x = 10;
+
+}
+
+static void modify(Test t){
+
+  t.x = 50;
+
+}
+
+public static void main(String[] args){
+
+  Test a = new Test();
+
+  modify(a);
+
+  System.out.println(a.x);
+
+}</code></pre>
+
+  <p><strong>Question 2</strong> Predict output and explain.</p>
+  <pre><code>static void modify(Test t){
+
+  t = new Test();
+
+  t.x = 50;
+
+}
+
+Same main.</code></pre>
+
+  <p><strong>Question 3</strong> If Java is pass-by-value, why can methods still modify object data?</p>
+
+  <p><strong>Given Answer 1:</strong> 50 because the value is copied in modify method and inside the method since there is no new object creation, the copied value references to the same object hence the same object is modified.</p>
+  <p><strong>Given Answer 2:</strong> null in this case because the value is copied, but there is new object creation happend inside the method which assigned the x value to the object created by the methos without changing the caller value object.</p>
+  <p><strong>Given Answer 3:</strong> Java is pass by value because for objects we pass the reference of the object and when it is passed technically it is the same object reference we are passing, untill a new object is created inside the method.</p>
+
+  <h3>Evaluation</h3>
+  <p>Excellent effort. You are reasoning instead of memorizing — that’s exactly the right direction.</p>
+  <p>You got the core idea, but there are two important corrections. These are classic interview traps.</p>
+
+  <p><strong>Question 1</strong></p>
+  <p>✅ Correct.</p>
+  <p>Refinement: the copied reference and original reference both point to the same object, so modifying object state becomes visible.</p>
+  <pre><code>main()
+
+a --------\
+       \
+      ---&gt; Object(x=10)
+       /
+modify()
+
+t --------/
+
+Then:
+t.x=50;
+
+Object becomes:
+Object(x=50)
+
+Output:
+50</code></pre>
+  <p><strong>Score:</strong> 10/10</p>
+
+  <p><strong>Question 2</strong></p>
+  <p>❌ Not correct.</p>
+  <p>Execution:</p>
+  <pre><code>Initial:
+main
+
+a --------&gt; Object1(x=10)
+
+Method call:
+modify(a)
+
+Java copies reference:
+a --------\
+       \
+      ---&gt; Object1(x=10)
+       /
+t --------/
+
+Now:
+t = new Test();
+
+This breaks the connection.
+
+Now:
+a --------&gt; Object1(x=10)
+
+t --------&gt; Object2(x=10)
+
+Then:
+t.x=50;
+
+Result:
+Object1(x=10)
+Object2(x=50)
+
+Method ends.
+Object2 becomes unreachable.
+
+Output:
+10
+
+Because:
+Caller still points to Object1.</code></pre>
+  <p><strong>Score:</strong> 6/10 (Reasoning was good, final prediction wrong.)</p>
+
+  <p><strong>Question 3</strong></p>
+  <p>Very close.</p>
+  <p>Important correction: avoid saying “we pass the reference.”</p>
+  <p>Say: <strong>Java passes a copy of the reference value.</strong></p>
+  <p>Better answer: Java remains pass-by-value because the method receives a copy of the reference variable, not the original reference itself. Both references initially point to the same object, so object state changes are visible.</p>
+  <p><strong>Score:</strong> 9/10</p>
+  </div>
+</section>
+
+<section data-chapter="ob05">
+  <div class="container">
+  <div class="section-label" id="chapter-ob05">Chapter 5 — Encapsulation (Actual Meaning)</div>
+  <h2>Encapsulation</h2>
+
+  <p>Most people say: <strong>Encapsulation = Data Hiding</strong>. That answer is incomplete.</p>
+  <p>We go deeper.</p>
+
+  <h3>Step 1 — Analogy</h3>
+  <p>Imagine ATM.</p>
+  <p>User sees:</p>
+  <ul>
+    <li>Withdraw</li>
+    <li>Deposit</li>
+    <li>Check Balance</li>
+  </ul>
+  <p>User cannot directly do:</p>
+  <pre><code>balance = 100000000</code></pre>
+  <p>System controls updates. Encapsulation works similarly.</p>
+
+  <h3>Step 2 — Technical Explanation</h3>
+  <p>Encapsulation means: <strong>Binding data and operations together while controlling access to internal state.</strong></p>
+  <p>Two parts:</p>
+  <ol>
+    <li>Bundle state + behavior</li>
+    <li>Restrict direct access</li>
+  </ol>
+
+  <p>Example:</p>
+  <p><strong>Bad:</strong></p>
+  <pre><code>class Account {
+
+  public int balance;
+
+}</code></pre>
+  <p>Anyone can:</p>
+  <pre><code>acc.balance=-5000;</code></pre>
+  <p>Bad state.</p>
+
+  <p><strong>Better:</strong></p>
+  <pre><code>class Account {
+
+  private int balance;
+
+  public void deposit(int amount){
+
+    balance+=amount;
+
+  }
+
+  public void withdraw(int amount){
+
+    if(balance>=amount)
+
+      balance-=amount;
+
+  }
+
+}</code></pre>
+  <p>Now object protects itself.</p>
+
+  <h3>Visual</h3>
+  <p><strong>Without encapsulation:</strong></p>
+  <pre><code>User
+
+ ↓
+
+balance = anything</code></pre>
+
+  <p><strong>With encapsulation:</strong></p>
+  <pre><code>User
+ ↓
+Methods
+ ↓
+Validation
+ ↓
+Data</code></pre>
+
+  <h3>Real World Example</h3>
+  <p>Online shopping:</p>
+  <p><strong>Bad:</strong> price = -100</p>
+  <p><strong>Good:</strong> applyDiscount(), calculateTotal()</p>
+  <p>Rules enforced.</p>
+
+  <h3>Important Interview Question</h3>
+  <p><strong>Question:</strong> Why private if getters/setters expose data?</p>
+  <p><strong>Answer:</strong> Because encapsulation is not about hiding. It is about controlling access. Setter can validate.</p>
+  <pre><code>void setAge(int age){
+
+  if(age&gt;0)
+
+    this.age=age;
+
+}</code></pre>
+
+  <div class="highlight-box">
+    <p><strong>Sticky Note:</strong> Encapsulation ≠ Data Hiding. Encapsulation = Controlled Access</p>
+  </div>
+
+  <h3>🧠 Quick Check</h3>
+  <p><strong>Question 1</strong> Why is this bad?</p>
+  <pre><code>class Employee{
+
+public int salary;
+
+}</code></pre>
+
+  <p><strong>Question 2</strong> If getter returns private data, is encapsulation broken? Why?</p>
+  <p><strong>Question 3</strong> Why do we use methods instead of exposing variables directly?</p>
+
+  <p><strong>Given Answer 1:</strong> the variable salary declared here is public which can be access from all the packages and classes, where the use can access it and can modify it which can cause data integrity issue.</p>
+  <p><strong>Given Answer 2:</strong> No if getter returns private data encapsulation is not broken, actually it says encapsulation is is enhanced by restricting the direct variable access and adding validations in setter to control the data access.</p>
+  <p><strong>Given Answer 3:</strong> with methods we have a privilege to add validations on the variable which cannot be possible with variables directly.</p>
+
+  <h3>Evaluation</h3>
+  <p>Very good. I can see your answers are becoming more precise and less memorized. You're starting to think in terms of control of state, which is exactly the OOP mindset.</p>
+  <p>One correction in Question 2 though.</p>
+
+  <p><strong>Question 1</strong></p>
+  <p>✅ Correct.</p>
+  <p>Strong interview refinement: the issue is not simply accessibility. The issue is: the object loses control over its own state.</p>
+  <pre><code>emp.salary = -50000;</code></pre>
+  <p>Now object contains invalid state. That is the real problem.</p>
+  <p><strong>Score:</strong> 10/10</p>
+
+  <p><strong>Question 2</strong></p>
+  <p>Mostly correct.</p>
+  <p>Encapsulation is preserved if access is controlled. Getters do not necessarily break encapsulation, but exposing mutable internal objects may.</p>
+  <pre><code>private int age;
+
+public int getAge() {
+  return age;
+}</code></pre>
+  <p><strong>Safe.</strong></p>
+  <pre><code>private List&lt;String&gt; subjects;
+
+public List&lt;String&gt; getSubjects() {
+  return subjects;
+}</code></pre>
+  <p>Now caller can do: <code>student.getSubjects().clear();</code></p>
+  <p><strong>Score:</strong> 8.5/10</p>
+
+  <p><strong>Question 3</strong></p>
+  <p>✅ Correct.</p>
+  <p>Methods give validation, authorization, logging, transformation, lazy loading, caching, and business rules.</p>
+  <p><strong>Score:</strong> 10/10</p>
+  </div>
+</section>
+
+<section data-chapter="ob06">
+  <div class="container">
+  <div class="section-label" id="chapter-ob06">Chapter 6 — Inheritance (Actual Purpose)</div>
+  <h2>Inheritance (Actual Purpose)</h2>
+
+  <p>Most people think:</p>
+  <p><strong>Inheritance = Code Reuse</strong></p>
+  <p>That answer alone is incomplete.</p>
+
+  <h3>Step 1 — Analogy</h3>
+  <p>Imagine company employees.</p>
+
+  <p>All employees have:</p>
+  <ul>
+    <li>id</li>
+    <li>name</li>
+    <li>salary</li>
+    <li>login()</li>
+    <li>logout()</li>
+  </ul>
+
+  <p>But specific roles have more.</p>
+  <p><strong>Developer:</strong></p>
+  <p><code>writeCode()</code></p>
+  <p><strong>Manager:</strong></p>
+  <p><code>approveLeave()</code></p>
+
+  <p>Instead of duplicating:</p>
+  <ul>
+    <li>Developer</li>
+    <li>Manager</li>
+    <li>Tester</li>
+  </ul>
+  <p>we extract common parts.</p>
+
+  <h3>Step 2 — Technical Explanation</h3>
+  <p>Inheritance allows:</p>
+  <p>One class to acquire accessible members of another class.</p>
+
+  <p><strong>Syntax:</strong></p>
+  <pre><code>class Parent {
+
+}
+
+class Child extends Parent {
+
+}</code></pre>
+
+  <p><strong>Example:</strong></p>
+  <pre><code>class Employee {
+
+    String name;
+
+    void login(){
+
+        System.out.println("Login");
+
+    }
+
+}
+
+class Developer extends Employee {
+
+    void code(){
+
+        System.out.println("Coding");
+
+    }
+
+}</code></pre>
+
+  <p><strong>Usage:</strong></p>
+  <pre><code>Developer d = new Developer();
+
+d.login();
+
+d.code();</code></pre>
+
+  <h3>Visual</h3>
+  <pre><code>Employee
+│
+├── name
+├── login()
+│
+▼
+
+Developer
+│
+├── code()</code></pre>
+
+  <h3>Internal Working</h3>
+  <p><strong>Interview question:</strong></p>
+  <pre><code>Developer d = new Developer();
+
+Does JVM create two objects?</code></pre>
+
+  <p><strong>Answer:</strong></p>
+  <p>❌ No</p>
+  <p>One object.</p>
+
+  <p><strong>Visual:</strong></p>
+  <pre><code>Heap
+
+Developer Object
+
++----------------+
+Employee fields
+name
++----------------+
+Developer fields
+code()
++----------------+</code></pre>
+
+  <p>Parent portion exists inside child object.</p>
+
+  <h3>Real Purpose of Inheritance</h3>
+  <p><strong>Not:</strong></p>
+  <p>❌ Reuse only</p>
+
+  <p><strong>Actual:</strong></p>
+  <ul>
+    <li>Model relationships</li>
+    <li>Reuse</li>
+    <li>Polymorphism</li>
+    <li>Extension</li>
+    <li>Substitutability</li>
+  </ul>
+
+  <p><strong>Key idea:</strong></p>
+  <p>IS-A relationship</p>
+
+  <p><strong>Example:</strong></p>
+  <p>Dog IS-A Animal</p>
+
+  <p><strong>Bad:</strong></p>
+  <p>Engine IS-A Car</p>
+  <p>Wrong.</p>
+
+  <h3>Interview Trap</h3>
+  <p><strong>Question:</strong></p>
+  <p>Should inheritance always be used?</p>
+
+  <p><strong>Answer:</strong></p>
+  <p>No.</p>
+
+  <p><strong>Prefer:</strong></p>
+  <p>Composition over inheritance</p>
+
+  <p><strong>Example:</strong></p>
+  <p>Bad:</p>
+  <pre><code>Car extends Engine</code></pre>
+  <p>Good:</p>
+  <pre><code>Car HAS-A Engine</code></pre>
+
+  <p>We'll revisit later.</p>
+
+  <div class="highlight-box">
+    <p><strong>Sticky Note</strong></p>
+    <p>Remember:</p>
+    <p>Inheritance → IS-A</p>
+    <p>Composition → HAS-A</p>
+  </div>
+
+  <h3>🧠 Quick Check</h3>
+  <p><strong>Question 1</strong></p>
+  <p>Why is inheritance more than code reuse?</p>
+
+  <p><strong>Question 2</strong></p>
+  <p>Predict:</p>
+  <pre><code>class A{
+
+int x=10;
+
+}
+
+class B extends A{
+
+int y=20;
+
+}</code></pre>
+
+  <p>When:</p>
+  <pre><code>B obj=new B();</code></pre>
+  <p>How many objects are created?</p>
+  <p>Explain.</p>
+
+  <p><strong>Question 3</strong></p>
+  <p>Which relationship is correct?</p>
+  <p>Car ___ Engine</p>
+
+  <p>IS-A or HAS-A?</p>
+  <p>Why?</p>
+
+  <p>1. because along with code use we can achieve method overriding using inheritance and establish a relationship between multiple classes</p>
+  <p>2. only 1 object B, the properties of object A are added to the heap inside object B</p>
+  <p>3. HAS-A</p>
+
+  <p><strong>Excellent.</strong> These answers show your understanding is becoming structural rather than memorized.</p>
+
+  <p>You’re also naturally connecting concepts together (Inheritance → Overriding → Relationship), which is exactly how senior interviewers think.</p>
+
+  <p>Let's evaluate.</p>
+
+  <h3>Evaluation</h3>
+  <p><strong>Question 1 — Why is inheritance more than code reuse?</strong></p>
+
+  <p><strong>Your answer:</strong></p>
+  <p>because along with code reuse we can achieve method overriding and establish relationships</p>
+
+  <p>✅ Correct.</p>
+
+  <p>But I want to deepen one thing.</p>
+
+  <p>Method overriding itself is not the purpose.</p>
+  <p>Overriding is a consequence.</p>
+
+  <p><strong>Stronger interview answer:</strong></p>
+  <p>Inheritance is more than code reuse because it models an IS-A relationship, enables polymorphism, allows extensibility, and allows child objects to be treated as parent types.</p>
+
+  <p><strong>Example:</strong></p>
+  <p>Dog IS-A Animal</p>
+
+  <p>Then:</p>
+  <pre><code>Animal a = new Dog();</code></pre>
+
+  <p>That becomes possible because of inheritance.</p>
+
+  <p><strong>Score:</strong> 9.5/10</p>
+
+  <p><strong>Question 2 — How many objects?</strong></p>
+
+  <p><strong>Your answer:</strong></p>
+  <p>only 1 object B, properties of object A are added inside B</p>
+
+  <p>✅ Correct.</p>
+
+  <p>One refinement.</p>
+
+  <p>You said:</p>
+  <p>properties of object A</p>
+
+  <p>Not object A.</p>
+
+  <p><strong>More precise:</strong></p>
+  <p>The members defined in class A become part of the memory layout of object B.</p>
+
+  <p><strong>Visual:</strong></p>
+  <pre><code>Heap
+
+B Object
+
++----------------+
+A Portion
+x=10
++----------------+
+B Portion
+y=20
++----------------+</code></pre>
+
+  <p>There is no separate A object.</p>
+
+  <p><strong>Score:</strong> 10/10</p>
+
+  <p><strong>Question 3 — Car ___ Engine</strong></p>
+
+  <p><strong>Your answer:</strong></p>
+  <p>HAS-A</p>
+
+  <p>✅ Perfect.</p>
+
+  <p><strong>Reason:</strong></p>
+  <p>Car contains Engine</p>
+
+  <p>Not:</p>
+  <p>Car is Engine</p>
+
+  <p><strong>Score:</strong> 10/10</p>
+  </div>
+</section>
+
+<section data-chapter="ob07">
+  <div class="container">
+  <div class="section-label" id="chapter-ob07">Chapter 7 — Polymorphism (Actual Meaning)</div>
+  <h2>Polymorphism (Actual Meaning)</h2>
+
+  <p>Most people memorize:</p>
+  <p><strong>One object many forms</strong></p>
+  <p>That sentence causes confusion.</p>
+  <p>We’ll fix it.</p>
+
+  <h3>Step 1 — Analogy</h3>
+  <p>Imagine remote control.</p>
+  <p>Same button:</p>
+  <p><code>Power()</code></p>
+
+  <p>Different devices react differently.</p>
+
+  <p><strong>TV:</strong></p>
+  <p>Turns ON TV</p>
+
+  <p><strong>AC:</strong></p>
+  <p>Turns ON AC</p>
+
+  <p><strong>Speaker:</strong></p>
+  <p>Turns ON Speaker</p>
+
+  <p>Same action.</p>
+  <p>Different implementation.</p>
+
+  <p>That is polymorphism.</p>
+
+  <h3>Step 2 — Technical Meaning</h3>
+  <p>Polymorphism means:</p>
+  <p><strong>Same interface → Different behavior</strong></p>
+
+  <p>Two major types:</p>
+  <p><strong>Compile Time</strong><br>(Runtime decided by compiler)</p>
+  <p><strong>Runtime</strong><br>(Runtime decided by JVM)</p>
+
+  <h3>Type 1 — Compile-Time Polymorphism</h3>
+  <p>Method Overloading.</p>
+
+  <p><strong>Example:</strong></p>
+  <pre><code>class Calculator {
+
+    int add(int a,int b){
+        return a+b;
+    }
+
+    double add(double a,double b){
+        return a+b;
+    }
+
+}</code></pre>
+
+  <p><strong>Decision:</strong></p>
+  <p>Compiler decides</p>
+
+  <p><strong>Visual:</strong></p>
+  <pre><code>add()
+ │
+ ├── int,int
+ └── double,double</code></pre>
+
+  <h3>Type 2 — Runtime Polymorphism</h3>
+  <p>Method Overriding.</p>
+
+  <p><strong>Example:</strong></p>
+  <pre><code>class Animal{
+
+    void sound(){
+        System.out.println("Animal");
+    }
+
+}
+
+class Dog extends Animal{
+
+    @Override
+    void sound(){
+        System.out.println("Bark");
+    }
+
+}</code></pre>
+
+  <p><strong>Usage:</strong></p>
+  <pre><code>Animal a = new Dog();
+
+a.sound();</code></pre>
+
+  <p><strong>Output:</strong></p>
+  <pre><code>Bark</code></pre>
+
+  <p><strong>Question:</strong></p>
+  <p>Why not Animal?</p>
+
+  <p>Because JVM decides at runtime.</p>
+
+  <h3>Internal Working (Very Important)</h3>
+  <p>Look:</p>
+  <pre><code>Animal a = new Dog();
+
+a.sound();</code></pre>
+
+  <p><strong>Visual:</strong></p>
+  <p>Reference Type → Animal</p>
+  <p>Actual Object → Dog</p>
+
+  <p><strong>Rule:</strong></p>
+  <p>Variables → Compile Time</p>
+  <p>Methods → Runtime</p>
+
+  <p><strong>Example:</strong></p>
+  <pre><code>class Animal{
+
+    int age=10;
+
+    void sound(){
+        System.out.println("Animal");
+    }
+
+}
+
+class Dog extends Animal{
+
+    int age=20;
+
+    void sound(){
+        System.out.println("Dog");
+    }
+
+}</code></pre>
+
+  <p><strong>Code:</strong></p>
+  <pre><code>Animal a = new Dog();
+
+System.out.println(a.age);
+
+a.sound();</code></pre>
+
+  <p><strong>Output?</strong></p>
+  <pre><code>10
+Dog</code></pre>
+
+  <p><strong>Why?</strong></p>
+  <p><strong>Field:</strong> Reference type decides</p>
+  <p><strong>Method:</strong> Object type decides</p>
+
+  <h3>Visual Representation</h3>
+  <pre><code>Animal a = new Dog()
+
+             Reference
+                 ↓
+
+a ----------------------→ Dog Object
+
+
+Field Access:
+Animal
+
+Method Call:
+Dog</code></pre>
+
+  <h3>Real World Example</h3>
+  <p>Payment system:</p>
+  <p><code>Payment p</code></p>
+  <p>Could become:</p>
+  <ul>
+    <li>UPI</li>
+    <li>Card</li>
+    <li>NetBanking</li>
+  </ul>
+
+  <p>Same:</p>
+  <p><code>pay()</code></p>
+  <p>Different execution.</p>
+
+  <h3>Interview Trap</h3>
+  <p><strong>Question:</strong></p>
+  <p>Can variables be overridden?</p>
+
+  <p><strong>Answer:</strong></p>
+  <p>❌ No</p>
+  <p>Variables are hidden.</p>
+  <p>Only methods are overridden.</p>
+
+  <div class="highlight-box">
+    <p><strong>Sticky Note</strong></p>
+    <p>Remember:</p>
+    <p>Overloading → Compiler decides</p>
+    <p>Overriding → JVM decides</p>
+    <p>Fields → Reference Type</p>
+    <p>Methods → Actual Object</p>
+  </div>
+
+  <h3>🧠 Quick Check</h3>
+  <p><strong>Question 1</strong></p>
+  <p>Explain:</p>
+  <pre><code>Animal a = new Dog();</code></pre>
+  <p>What exactly is happening?</p>
+
+  <p><strong>Question 2</strong></p>
+  <p>Predict:</p>
+  <pre><code>class A{
+
+    void print(){
+        System.out.println("A");
+    }
+
+}
+
+class B extends A{
+
+    void print(){
+        System.out.println("B");
+    }
+
+}
+
+public static void main(String[] args){
+
+    A obj = new B();
+
+    obj.print();
+
+}</code></pre>
+
+  <p>Output and why?</p>
+
+  <p><strong>Question 3</strong></p>
+  <p>Predict:</p>
+  <pre><code>class A{
+
+    int x=10;
+
+}
+
+class B extends A{
+
+    int x=20;
+
+}
+
+A obj = new B();
+
+System.out.println(obj.x);</code></pre>
+
+  <p>Output and why?</p>
+
+  <p>1. At compile time compiler checks the type of object and at run time JVM checks the actual object and creates object for Dog</p>
+  <p>2. B, because this is method overriding, when jdk compiles the code, it checks the type of object and tells JVM to decide object creation based on the actual object requested, here it is B, hence the object for B is created in heap therefore the method of B is getting executed at runtime</p>
+  <p>3. 10, in this case the compiler decides the object time and at run time the object gets created for but for variables, the compiler decides the variable to be assigned for object type and thr JVM doesn't override the variable in this case</p>
+
+  <p><strong>Very good attempt.</strong></p>
+
+  <p>You’re showing something important:</p>
+  <p>you understand compile time vs runtime decision making, but you are mixing object creation and method resolution in a few places.</p>
+
+  <p>This distinction becomes extremely important for interviews.</p>
+
+  <p>Let’s refine.</p>
+
+  <h3>Evaluation</h3>
+  <p><strong>Question 1</strong></p>
+
+  <p><strong>Code:</strong></p>
+  <pre><code>Animal a = new Dog();</code></pre>
+
+  <p><strong>Your answer:</strong></p>
+  <p>compiler checks type and runtime JVM creates Dog object</p>
+
+  <p>Partially correct.</p>
+
+  <p>There are two separate things happening here.</p>
+
+  <p>You mixed:</p>
+  <ul>
+    <li>object creation</li>
+    <li>method dispatch</li>
+  </ul>
+
+  <p><strong>Actual explanation:</strong></p>
+  <pre><code>Animal a = new Dog();</code></pre>
+
+  <p>Break it:</p>
+
+  <p><strong>Step 1 — Compile Time</strong></p>
+  <p>Compiler validates:</p>
+  <p>Dog IS-A Animal</p>
+
+  <p>So assignment is legal.</p>
+
+  <p>Compiler stores:</p>
+  <p>Reference Type = Animal</p>
+
+  <p><strong>Step 2 — Runtime</strong></p>
+  <p>JVM executes:</p>
+  <pre><code>new Dog()</code></pre>
+
+  <p>Creates:</p>
+  <p>Dog Object</p>
+
+  <p>Assigns reference to:</p>
+  <p><code>a</code></p>
+
+  <p><strong>Visual:</strong></p>
+  <pre><code>Stack
+
+a ------------→ Dog Object
+
+
+Heap
+
+Dog
+↑
+Animal Portion</code></pre>
+
+  <p><strong>Important:</strong></p>
+  <p>Compiler does NOT decide object creation.</p>
+  <p>JVM creates object.</p>
+  <p>Compiler validates code.</p>
+
+  <p><strong>Score:</strong> 8/10</p>
+
+  <p><strong>Question 2</strong></p>
+
+  <p><strong>Code:</strong></p>
+  <pre><code>A obj = new B();
+
+obj.print();</code></pre>
+
+  <p><strong>Your answer:</strong></p>
+  <p>B because overriding and B object created</p>
+
+  <p><strong>Output:</strong></p>
+  <p>B</p>
+
+  <p>✅ Correct.</p>
+
+  <p>But reasoning needs refinement.</p>
+
+  <p>You said:</p>
+  <p>JVM decides object creation</p>
+
+  <p>No.</p>
+
+  <p>Object creation already happened.</p>
+
+  <p>Now JVM decides:</p>
+  <p>Which overridden method executes</p>
+
+  <p><strong>Actual flow:</strong></p>
+  <p>Compile:</p>
+  <p><code>obj.print()</code> exists?</p>
+
+  <p>Runtime:</p>
+  <p>actual object → B</p>
+
+  <p>execute <code>B.print()</code></p>
+
+  <p><strong>Score:</strong> 8.5/10</p>
+
+  <p><strong>Question 3</strong></p>
+
+  <p><strong>Code:</strong></p>
+  <pre><code>A obj = new B();
+
+System.out.println(obj.x);</code></pre>
+
+  <p><strong>Your answer:</strong></p>
+  <p>10</p>
+
+  <p>✅ Correct.</p>
+
+  <p>But one correction.</p>
+
+  <p>You said:</p>
+  <p>JVM doesn't override variable</p>
+
+  <p>Correct.</p>
+
+  <p>But better explanation:</p>
+  <p>Fields are not polymorphic.</p>
+
+  <p>Compiler resolves:</p>
+  <pre><code>obj.x</code></pre>
+  <p>using:</p>
+  <p>Reference Type → A</p>
+
+  <p><strong>Visual:</strong></p>
+  <pre><code>Reference Type = A
+Actual Object = B
+
+Fields → A
+Methods → B</code></pre>
+
+  <p><strong>Score:</strong> 9/10</p>
+
+  <h3>Mini Consolidation Exercise (No New Concept Yet)</h3>
+  <p>Predict ALL outputs.</p>
+
+  <p><strong>Case 1</strong></p>
+  <pre><code>class Animal{
+
+    void sound(){
+        System.out.println("Animal");
+    }
+
+}
+
+class Dog extends Animal{
+
+    void sound(){
+        System.out.println("Dog");
+    }
+
+}
+
+Animal a = new Dog();
+
+a.sound();
+
+Output?
+
+Why?</code></pre>
+
+  <p><strong>Case 2</strong></p>
+  <pre><code>class Animal{
+
+    int age=10;
+
+}
+
+class Dog extends Animal{
+
+    int age=20;
+
+}
+
+Animal a = new Dog();
+
+System.out.println(a.age);
+
+Output?
+
+Why?</code></pre>
+
+  <p><strong>Case 3</strong></p>
+  <pre><code>class Animal{
+
+    static void show(){
+        System.out.println("Animal");
+    }
+
+}
+
+class Dog extends Animal{
+
+    static void show(){
+        System.out.println("Dog");
+    }
+
+}
+
+Animal a = new Dog();
+
+a.show();
+
+Output?
+
+Why?
+
+(Hint: static behaves differently.)</code></pre>
+
+  <p>Answer these. After this we’ll move into Abstraction (the concept most people misunderstand).</p>
+
+  <p>1. Dog, because the object created at run time is of Dog</p>
+  <p>2. 10 because variables does not follow overriding/overloading hence the variable of object type will be assigned</p>
+  <p>3. For static methods, it is not method overriding it is method hiding, so when the class gets compiles the object type gets assigned by the compiler and JVM does not override it</p>
+
+  <p><strong>Excellent.</strong></p>
+
+  <p>You are starting to separate:</p>
+  <ul>
+    <li>compile-time decisions</li>
+    <li>runtime decisions</li>
+    <li>overriding vs hiding</li>
+  </ul>
+
+  <p>That is a major milestone.</p>
+
+  <p>Only a few refinements.</p>
+
+  <h3>Evaluation</h3>
+  <p><strong>Question 1</strong></p>
+
+  <p><strong>Code:</strong></p>
+  <pre><code>Animal a = new Dog();
+
+a.sound();</code></pre>
+
+  <p><strong>Your answer:</strong></p>
+  <p>Dog because object created at runtime is Dog</p>
+
+  <p>✅ Output is correct.</p>
+
+  <p>But improve the reasoning.</p>
+
+  <p>Object creation is not the reason.</p>
+  <p>Method dispatch is.</p>
+
+  <p><strong>Correct explanation:</strong></p>
+  <p><strong>Compile Time:</strong></p>
+  <p>Compiler checks:</p>
+  <p>Does Animal contain sound()?</p>
+  <p>YES</p>
+
+  <p><strong>Runtime:</strong></p>
+  <p>JVM checks actual object:</p>
+  <p>Dog</p>
+
+  <p><strong>Execute:</strong></p>
+  <p>Dog.sound()</p>
+
+  <p><strong>Output:</strong></p>
+  <p>Dog</p>
+
+  <p><strong>Better sentence:</strong></p>
+  <p>Runtime polymorphism occurs because overridden methods are resolved using actual object type.</p>
+
+  <p><strong>Score:</strong> 9/10</p>
+
+  <p><strong>Question 2</strong></p>
+
+  <p><strong>Code:</strong></p>
+  <pre><code>Animal a = new Dog();
+
+System.out.println(a.age);</code></pre>
+
+  <p><strong>Your answer:</strong></p>
+  <p>10 because variables do not follow overriding</p>
+
+  <p>✅ Correct.</p>
+
+  <p>One refinement.</p>
+
+  <p>Variables do not participate in polymorphism.</p>
+
+  <p>Compiler resolves:</p>
+  <pre><code>a.age</code></pre>
+
+  <p>using:</p>
+  <p>Reference Type → Animal</p>
+
+  <p><strong>Output:</strong></p>
+  <p>10</p>
+
+  <p><strong>Score:</strong> 10/10</p>
+
+  <p><strong>Question 3</strong></p>
+
+  <p><strong>Code:</strong></p>
+  <pre><code>Animal a = new Dog();
+
+a.show();
+
+(static method)</code></pre>
+
+  <p><strong>Your answer:</strong></p>
+  <p>static methods use hiding</p>
+
+  <p>Excellent.</p>
+
+  <p>You recognized one of Java’s biggest interview traps.</p>
+
+  <p>But complete answer:</p>
+
+  <p><strong>Output:</strong></p>
+  <p>Animal</p>
+
+  <p><strong>Why?</strong></p>
+  <p>Static methods belong to class.</p>
+
+  <p>Compiler binds:</p>
+  <pre><code>Animal.show()</code></pre>
+
+  <p><strong>Visual:</strong></p>
+  <pre><code>Reference Type → Animal
+Actual Object → Dog
+
+Static → Animal
+Field → Animal
+Instance Method → Dog</code></pre>
+
+  <p><strong>Score:</strong> 10/10</p>
+
+  <p>You now know something most people don't.</p>
+
+  <p>Let's lock this permanently.</p>
+
+  <h3>Golden Rule of Java Dispatch</h3>
+  <pre><code>Variables
+↓
+Compile Time
+↓
+Reference Type
+
+
+Static Methods
+↓
+Compile Time
+↓
+Reference Type
+
+
+Instance Methods
+↓
+Runtime
+↓
+Actual Object</code></pre>
+
+  <div class="highlight-box">
+    <p><strong>Sticky Note:</strong></p>
+    <p>Remember:</p>
+    <p>State belongs to type</p>
+    <p>Behavior belongs to object</p>
+  </div>
+  </div>
+</section>
+
+<section data-chapter="ob08">
+  <div class="container">
+  <div class="section-label" id="chapter-ob08">Chapter 8 — Abstraction (Actual Meaning)</div>
+  <h2>Abstraction (Actual Meaning)</h2>
+
+  <p>Most people answer:</p>
+  <p><strong>Abstraction means hiding implementation.</strong></p>
+  <p>This is incomplete.</p>
+
+  <h3>Step 1 — Analogy</h3>
+  <p>You drive a car.</p>
+  <p>You use:</p>
+  <ul>
+    <li>Steering</li>
+    <li>Brake</li>
+    <li>Accelerator</li>
+  </ul>
+
+  <p>You do NOT interact with:</p>
+  <ul>
+    <li>Fuel Injection</li>
+    <li>Gear Synchronization</li>
+    <li>Combustion Timing</li>
+    <li>ECU</li>
+  </ul>
+
+  <p>You interact with:</p>
+  <p><strong>WHAT</strong></p>
+  <p>not</p>
+  <p><strong>HOW</strong></p>
+
+  <p>That is abstraction.</p>
+
+  <h3>Step 2 — Technical Meaning</h3>
+  <p>Abstraction means:</p>
+  <p><strong>Expose essential behavior and hide unnecessary implementation details.</strong></p>
+
+  <p>Two ideas:</p>
+  <p><strong>What to do</strong></p>
+  <p><strong>How to do</strong></p>
+
+  <p><strong>Example:</strong></p>
+  <p><strong>Without abstraction:</strong></p>
+  <pre><code>payment.connect();
+payment.validate();
+payment.encrypt();
+payment.transfer();
+payment.audit();</code></pre>
+
+  <p>Too much detail.</p>
+
+  <p><strong>With abstraction:</strong></p>
+  <pre><code>payment.pay();</code></pre>
+
+  <p>Internally everything happens.</p>
+
+  <h3>Step 3 — Java Implementation</h3>
+  <p>Java supports abstraction using:</p>
+  <ul>
+    <li>Abstract Class</li>
+    <li>Interface</li>
+  </ul>
+
+  <p>But abstraction itself is a design concept.</p>
+  <p>Not a keyword.</p>
+
+  <h3>Abstract Class</h3>
+  <p><strong>Example:</strong></p>
+  <pre><code>abstract class Animal {
+
+    abstract void sound();
+
+}</code></pre>
+
+  <p>Cannot create:</p>
+  <pre><code>new Animal();</code></pre>
+
+  <p>Because implementation is incomplete.</p>
+
+  <p><strong>Child:</strong></p>
+  <pre><code>class Dog extends Animal {
+
+    @Override
+    void sound(){
+
+        System.out.println("Bark");
+
+    }
+
+}</code></pre>
+
+  <p><strong>Usage:</strong></p>
+  <pre><code>Animal a = new Dog();
+
+a.sound();</code></pre>
+
+  <p><strong>Visual:</strong></p>
+  <pre><code>Animal
+│
+├── sound()
+│
+▼
+
+Dog
+│
+└── Implementation</code></pre>
+
+  <h3>Interface (Preview)</h3>
+  <p>Interface says:</p>
+  <p><strong>I define capability</strong></p>
+  <p><strong>You implement it</strong></p>
+
+  <p><strong>Example:</strong></p>
+  <pre><code>interface Payment{
+
+    void pay();
+
+}</code></pre>
+
+  <p>Classes like <strong>UPI</strong>, <strong>Card</strong>, and <strong>NetBanking</strong> can implement it.</p>
+
+  <h3>Real World Example</h3>
+  <p>In a mobile app, you press:</p>
+  <p><strong>Order Food</strong></p>
+
+  <p>You do not see:</p>
+  <ul>
+    <li>Database</li>
+    <li>API</li>
+    <li>Queue</li>
+    <li>Payment</li>
+    <li>Logs</li>
+  </ul>
+
+  <p>You use abstraction daily.</p>
+
+  <h3>Interview Trap</h3>
+  <p><strong>Question:</strong></p>
+  <p>Is abstraction same as encapsulation?</p>
+
+  <p><strong>Answer:</strong></p>
+  <p>❌ No</p>
+
+  <p><strong>Encapsulation:</strong> Control Access</p>
+  <p><strong>Abstraction:</strong> Hide Complexity</p>
+
+  <p><strong>ATM Example:</strong></p>
+  <p>Hide internals → Abstraction</p>
+  <p>Protect balance → Encapsulation</p>
+
+  <div class="highlight-box">
+    <p><strong>Sticky Note</strong></p>
+    <p>Encapsulation → Hide Data</p>
+    <p>Abstraction → Hide Complexity</p>
+  </div>
+
+  <h3>🧠 Quick Check</h3>
+  <p><strong>Question 1</strong></p>
+  <p>Why can't we create:</p>
+  <pre><code>new Animal();</code></pre>
+  <p>if Animal is abstract?</p>
+
+  <p><strong>Question 2</strong></p>
+  <p>Difference:</p>
+  <p>Encapsulation</p>
+  <p>vs</p>
+  <p>Abstraction</p>
+
+  <p><strong>Question 3</strong></p>
+  <p>Why does:</p>
+  <pre><code>Animal a = new Dog();</code></pre>
+  <p>represent abstraction?</p>
+
+  <p>1. Because Animal is an abstract class hence it has methods which does not have implementation, to add implementation we need to extend Animal class and override the method</p>
+  <p>2. Encapsulation will add controlled access to the class fields but abstraction will hide the implementation of the methods in the class</p>
+  <p>3. because the Animal class does not have implementation, it only has the definition of the method which the Dog is implementing</p>
+
+  <p><strong>Very good.</strong></p>
+
+  <p>Your answers show something important:</p>
+  <p>You are no longer memorizing definitions.</p>
+  <p>You’re connecting abstract classes, implementation, inheritance, and polymorphism.</p>
+
+  <p>That’s exactly the transition from beginner → interview-ready thinking.</p>
+
+  <h3>Evaluation</h3>
+  <p><strong>Question 1</strong></p>
+  <p>Your answer is mostly correct, with one important refinement:</p>
+
+  <p>Abstract classes can contain:</p>
+  <ul>
+    <li>abstract methods</li>
+    <li>concrete methods</li>
+    <li>variables</li>
+    <li>constructors</li>
+  </ul>
+
+  <p><strong>Example:</strong></p>
+  <pre><code>abstract class Animal{
+
+    void eat(){
+        System.out.println("Eating");
+    }
+
+    abstract void sound();
+
+}</code></pre>
+
+  <p>Still abstract.</p>
+
+  <p><strong>Interview answer:</strong></p>
+  <p>Abstract classes cannot be instantiated because they may contain incomplete behavior that must first be completed by subclasses.</p>
+
+  <p><strong>Score:</strong> 8.5/10</p>
+
+  <p><strong>Question 2</strong></p>
+  <p>Your answer is correct.</p>
+  <p><strong>Interview refinement:</strong></p>
+  <p>Encapsulation protects object state.</p>
+  <p>Abstraction reduces visible complexity.</p>
+
+  <p><strong>Score:</strong> 10/10</p>
+
+  <p><strong>Question 3</strong></p>
+  <p>Correct direction.</p>
+  <p>The key abstraction point here is:</p>
+  <p>Caller works with <strong>Animal</strong>, not directly with <strong>Dog</strong>.</p>
+
+  <p><strong>Example:</strong></p>
+  <pre><code>makeSound(Animal a)</code></pre>
+
+  <p>Caller doesn’t care whether it is Dog, Cat, or Tiger.</p>
+  <p>Only the contract matters.</p>
+
+  <p><strong>Interview answer:</strong></p>
+  <p>Abstraction is achieved because the caller interacts with the abstract type (Animal) instead of depending on concrete implementation (Dog).</p>
+
+  <p><strong>Score:</strong> 8.5/10</p>
+  </div>
+</section>
+
+<section data-chapter="ob09">
+  <div class="container">
+  <div class="section-label" id="chapter-ob09">Chapter 9 — Abstract Class vs Interface</div>
+  <h2>Abstract Class vs Interface</h2>
+
+  <p>Most people memorize comparison tables.</p>
+  <p>Interviewers ask:</p>
+  <p><strong>Why do both exist?</strong></p>
+  <p>That is the real question.</p>
+
+  <h3>Step 1 — Analogy</h3>
+  <p>Imagine company rules.</p>
+
+  <p><strong>Abstract Class</strong></p>
+  <p>Company provides:</p>
+  <ul>
+    <li>Office</li>
+    <li>Laptop</li>
+    <li>Login System</li>
+    <li>Policies</li>
+  </ul>
+
+  <p>Employees inherit common behavior.</p>
+
+  <p><strong>Interface</strong></p>
+  <p>Company says:</p>
+  <p>Anyone who joins MUST:</p>
+  <pre><code>work();
+attendMeeting();</code></pre>
+
+  <p>No shared state.</p>
+  <p>Only capability.</p>
+
+  <p><strong>Meaning:</strong></p>
+  <p>Abstract Class = Common implementation</p>
+  <p>Interface = Contract</p>
+
+  <h3>Step 2 — Technical Meaning</h3>
+  <h3>Abstract Class</h3>
+  <p>Represents:</p>
+  <p><strong>Partial implementation + common state</strong></p>
+
+  <p><strong>Example:</strong></p>
+  <pre><code>abstract class Animal {
+
+    String name;
+
+    Animal() {
+        System.out.println("Animal Created");
+    }
+
+    void eat() {
+        System.out.println("Eating");
+    }
+
+    abstract void sound();
+
+}</code></pre>
+
+  <p><strong>Child:</strong></p>
+  <pre><code>class Dog extends Animal {
+
+    @Override
+    void sound() {
+        System.out.println("Bark");
+    }
+
+}</code></pre>
+
+  <p><strong>Usage:</strong></p>
+  <pre><code>Animal a = new Dog();</code></pre>
+
+  <p><strong>Visual:</strong></p>
+  <pre><code>Animal
+
+eat()   ← already implemented
+
+sound() ← incomplete</code></pre>
+
+  <h3>Interface</h3>
+  <p>Represents:</p>
+  <p><strong>Capability / contract</strong></p>
+
+  <p><strong>Example:</strong></p>
+  <pre><code>interface Flyable {
+
+    void fly();
+
+}</code></pre>
+
+  <p>Classes:</p>
+  <pre><code>class Bird implements Flyable
+class Plane implements Flyable</code></pre>
+
+  <p><strong>Visual:</strong></p>
+  <pre><code>Flyable
+↑
+Bird
+↑
+Plane</code></pre>
+
+  <p>No inheritance relationship required between Bird and Plane.</p>
+  <p>Only same capability.</p>
+
+  <h3>Biggest Concept</h3>
+  <p><strong>Question:</strong> When should I use each?</p>
+
+  <p><strong>Use Abstract Class when:</strong></p>
+  <ul>
+    <li>Objects are closely related</li>
+    <li>Need shared state</li>
+    <li>Need common implementation</li>
+    <li>Need constructors</li>
+    <li>Need inheritance hierarchy</li>
+  </ul>
+
+  <p><strong>Example:</strong></p>
+  <p>Animal → Dog, Cat, Tiger</p>
+
+  <p><strong>Use Interface when:</strong></p>
+  <ul>
+    <li>Objects share capability</li>
+    <li>Need loose coupling</li>
+    <li>Need multiple inheritance of type</li>
+    <li>Need extensibility</li>
+  </ul>
+
+  <p><strong>Example:</strong></p>
+  <p>Payable, Printable, Runnable, Comparable</p>
+
+  <h3>Real World Example</h3>
+  <p><strong>Bad:</strong></p>
+  <pre><code>Car extends GPS</code></pre>
+
+  <p><strong>Good:</strong></p>
+  <pre><code>Car implements Navigable</code></pre>
+
+  <p>Because Car is not GPS.</p>
+  <p>Car supports navigation.</p>
+
+  <h3>Internal JVM View</h3>
+  <p><strong>Abstract:</strong></p>
+  <p>Inheritance → Single parent chain</p>
+
+  <p><strong>Interface:</strong></p>
+  <p>Capability map → Multiple contracts</p>
+
+  <p><strong>Example:</strong></p>
+  <pre><code>class Employee
+implements
+Payable,
+Trainable,
+Reportable</code></pre>
+
+  <h3>Interview Trap</h3>
+  <p><strong>Question:</strong> Can abstract class achieve abstraction?</p>
+  <p><strong>Answer:</strong> ✅ Yes</p>
+
+  <p><strong>Question:</strong> Can interface achieve abstraction?</p>
+  <p><strong>Answer:</strong> ✅ Yes</p>
+
+  <p><strong>Question:</strong> Then why both?</p>
+  <p><strong>Answer:</strong> Because abstraction is a concept. Abstract class and interface are tools.</p>
+
+  <h3>Modern Java Reality</h3>
+  <p>Interface supports:</p>
+  <p><code>default</code>, <code>static</code>, <code>private</code> methods.</p>
+
+  <p>Abstract class still supports:</p>
+  <p>state, constructors, inheritance hierarchy.</p>
+
+  <div class="highlight-box">
+    <p><strong>Sticky Note</strong></p>
+    <p>Abstract Class → IS-A + shared implementation</p>
+    <p>Interface → CAN-DO + contract</p>
+  </div>
+
+  <h3>🧠 Quick Check</h3>
+  <p><strong>Question 1</strong></p>
+  <p>Which is better?</p>
+  <p>Vehicle → Car, Bike, Truck</p>
+  <p>Abstract Class or Interface? Why?</p>
+
+  <p><strong>Question 2</strong></p>
+  <p>Which is better?</p>
+  <p>Payable implemented by Employee, Vendor, Customer</p>
+  <p>Abstract Class or Interface? Why?</p>
+
+  <p><strong>Question 3</strong></p>
+  <p>Can interface have implementation?</p>
+  <p>If yes, which methods?</p>
+
+  <p>1. Abstract class is better as car, bike and truck can have shared properties and they have IS-A relationship</p>
+  <p>2. Interface is better as it is Employee CAN-DO Payable. Employee, Vendor and Customer all are in contract with Payable and no shared state is required among all three.</p>
+  <p>3. yes interface can have implementation and the implementation must be existing in static method as an object is not required to call a static method</p>
+
+  <p><strong>Excellent.</strong></p>
+  <p>You are no longer giving textbook answers — you're reasoning from relationships, shared state, contracts, and implementation.</p>
+  <p>One correction in Question 3.</p>
+
+  <h3>Evaluation</h3>
+  <p><strong>Question 1 — Vehicle → Car, Bike, Truck</strong></p>
+  <p>Your answer: Abstract class because shared properties and IS-A</p>
+  <p>✅ Very good. Shared state + IS-A relationship is exactly right.</p>
+
+  <p><strong>Example:</strong></p>
+  <pre><code>abstract class Vehicle {
+
+    int wheels;
+
+    void start(){}
+
+}</code></pre>
+
+  <p>Then:</p>
+  <p>Car IS-A Vehicle</p>
+  <p>Bike IS-A Vehicle</p>
+  <p>Truck IS-A Vehicle</p>
+
+  <p><strong>Score:</strong> 10/10</p>
+
+  <p><strong>Question 2 — Payable</strong></p>
+  <p>Your answer direction is excellent: interface because capability and no shared state.</p>
+
+  <p>One refinement:</p>
+  <p>Better phrasing is:</p>
+  <p>Employee CAN-DO Payable</p>
+  <p>or</p>
+  <p>Employee implements Payable</p>
+
+  <p><strong>Example:</strong></p>
+  <pre><code>interface Payable {
+
+    void pay();
+
+}
+
+class Employee implements Payable
+class Vendor implements Payable</code></pre>
+
+  <p><strong>Score:</strong> 9.5/10</p>
+
+  <p><strong>Question 3 — Interface implementation</strong></p>
+  <p>Your answer: only static methods</p>
+  <p>❌ Not correct.</p>
+
+  <p>Interface can contain implementation in:</p>
+  <p><strong>1. Default methods</strong> (instance-level with implementation)</p>
+  <pre><code>interface Payment {
+
+    default void validate(){
+        System.out.println("Validated");
+    }
+
+}</code></pre>
+  <p>Call with object:</p>
+  <pre><code>obj.validate();</code></pre>
+
+  <p><strong>2. Static methods</strong> (class-level implementation)</p>
+  <pre><code>interface Payment {
+
+    static void log(){
+
+    }
+
+}</code></pre>
+  <p>Call using interface name:</p>
+  <pre><code>Payment.log();</code></pre>
+
+  <p><strong>3. Private methods</strong> (Java 9+ internal helper methods)</p>
+  <pre><code>interface Payment {
+
+    private void helper(){
+
+    }
+
+}</code></pre>
+
+  <p><strong>Visual:</strong></p>
+  <pre><code>Interface
+
+abstract
+default
+static
+private</code></pre>
+
+  <p><strong>Score:</strong> 6.5/10</p>
+  </div>
+</section>
+
+<section data-chapter="ob10">
+  <div class="container">
+  <div class="section-label" id="chapter-ob10">Chapter 10 — Interface Internals (Why Multiple Inheritance Works)</div>
+  <h2>Interface Internals (Why Multiple Inheritance Works)</h2>
+
+  <p>This is a famous interview topic.</p>
+
+  <p><strong>Question:</strong></p>
+  <p>Why does Java allow:</p>
+  <pre><code>implements A, B</code></pre>
+  <p>but not:</p>
+  <pre><code>extends A, B</code></pre>
+
+  <h3>Step 1 — Analogy</h3>
+  <p>Imagine employee instructions.</p>
+
+  <p>Manager A:</p>
+  <p>Submit report</p>
+
+  <p>Manager B:</p>
+  <p>Attend meeting</p>
+
+  <p>No conflict.</p>
+
+  <p>Now imagine inheritance.</p>
+
+  <p>Parent A:</p>
+  <p>salary = 100</p>
+
+  <p>Parent B:</p>
+  <p>salary = 200</p>
+
+  <p>Child?</p>
+
+  <p>Problem.</p>
+  <p>This is the <strong>Diamond Problem</strong>.</p>
+
+  <h3>Step 2 — Technical Explanation</h3>
+  <p>Java prohibits:</p>
+  <pre><code>class C extends A, B</code></pre>
+
+  <p>because of:</p>
+  <ul>
+    <li>State conflict</li>
+    <li>Constructor conflict</li>
+    <li>Method ambiguity</li>
+  </ul>
+
+  <p><strong>Example:</strong></p>
+  <pre><code>class A {
+
+    void show(){}
+
+}
+
+class B {
+
+    void show(){}
+
+}</code></pre>
+
+  <p>If:</p>
+  <pre><code>class C extends A, B</code></pre>
+  <p>Which <code>show()</code> should run? Ambiguous.</p>
+
+  <p>But interfaces originally had no object state, so this was safe:</p>
+  <pre><code>interface A {
+
+    void show();
+
+}
+
+interface B {
+
+    void show();
+
+}
+
+class C implements A, B {
+
+    public void show(){
+
+    }
+
+}</code></pre>
+
+  <p>Child class resolves conflict by providing one implementation.</p>
+
+  <p><strong>Visual:</strong></p>
+  <pre><code>      Interface A
+
+          ↑
+
+          |
+
+        Class C
+
+          |
+
+          ↓
+
+      Interface B</code></pre>
+
+  <p>One implementation in class <code>C</code>.</p>
+
+  <h3>Modern Java Twist</h3>
+  <p>Now interfaces can have <code>default</code> methods, so conflict can happen.</p>
+
+  <pre><code>interface A {
+
+    default void show(){}
+
+}
+
+interface B {
+
+    default void show(){}
+
+}</code></pre>
+
+  <p>Then:</p>
+  <pre><code>class C implements A, B</code></pre>
+  <p>Compile error.</p>
+
+  <p>Must resolve explicitly:</p>
+  <pre><code>@Override
+public void show(){
+
+}</code></pre>
+
+  <p><strong>Interview Question:</strong></p>
+  <p>Why does Java support multiple interface inheritance?</p>
+
+  <p><strong>Answer:</strong></p>
+  <p>Interfaces avoid state inheritance conflicts and force implementation resolution when overlap occurs.</p>
+
+  <div class="highlight-box">
+    <p><strong>Sticky Note</strong></p>
+    <p>Class → State inheritance</p>
+    <p>Interface → Contract inheritance</p>
+  </div>
+
+  <h3>🧠 Quick Check</h3>
+  <p><strong>Question 1</strong></p>
+  <p>Why does Java prohibit:</p>
+  <pre><code>extends A, B</code></pre>
+  <p>but allow:</p>
+  <pre><code>implements A, B</code></pre>
+
+  <p><strong>Question 2</strong></p>
+  <p>Predict:</p>
+  <pre><code>interface A {
+
+    default void show(){
+        System.out.println("A");
+    }
+
+}
+
+interface B {
+
+    default void show(){
+        System.out.println("B");
+    }
+
+}
+
+class C implements A, B {
+
+}</code></pre>
+
+  <p>Compile or fail? Why?</p>
+
+  <p><strong>Question 3</strong></p>
+  <p>If interfaces now support default methods, why didn't Java remove abstract classes?</p>
+
+  <p>1. because the abstract class inheritance will inherit state so there might be constructor and method ambiguity whereas interface will inherit contracts and class provides implementation, so ambiguity is mostly avoided unless defaults conflict</p>
+  <p>2. It will not compile because compiler expects override of <code>show()</code> when both interfaces provide the same default method</p>
+  <p>3. Abstract classes are still existing because they still support constructors and private methods (not sure about this answer)</p>
+
+  <p><strong>Very good.</strong></p>
+  <p>And it is excellent that you called out uncertainty in your own answer.</p>
+
+  <h3>Evaluation</h3>
+  <p><strong>Question 1</strong></p>
+  <p>Your answer captured the core idea: class inheritance brings state conflicts, interface inheritance is primarily contract-oriented.</p>
+
+  <p>Small refinement: ambiguity can now happen in interfaces too because of <code>default</code> methods.</p>
+
+  <p><strong>Better interview answer:</strong></p>
+  <p>Java avoids multiple class inheritance because state, constructor chains, and implementation ambiguity become hard to resolve. Multiple interface inheritance is allowed because interfaces primarily represent contracts, and conflicts must be resolved explicitly by the implementing class.</p>
+
+  <p><strong>Score:</strong> 9/10</p>
+
+  <p><strong>Question 2</strong></p>
+  <p>Your answer is correct.</p>
+  <p>It fails to compile because <code>A.show()</code> and <code>B.show()</code> are duplicate inherited defaults.</p>
+
+  <p>Conflict must be resolved:</p>
+  <pre><code>class C implements A, B {
+
+    @Override
+    public void show() {
+        A.super.show();
+    }
+
+}</code></pre>
+
+  <p><strong>Score:</strong> 10/10</p>
+
+  <p><strong>Question 3</strong></p>
+  <p>Your observation is valid, but not the full reason.</p>
+
+  <p><strong>Why abstract classes still exist:</strong></p>
+  <ul>
+    <li>Shared state (instance variables)</li>
+    <li>Constructors and lifecycle control</li>
+    <li>Inheritance hierarchy for related types</li>
+    <li>Partial implementation</li>
+    <li>Protected members and template-method style design</li>
+  </ul>
+
+  <p><strong>Interview answer:</strong></p>
+  <p>Interfaces model capability/contracts. Abstract classes model related objects with shared state and partial implementation. They solve different design needs.</p>
+
+  <p><strong>Score:</strong> 7.5/10</p>
+  </div>
+</section>
+
 <script>
 function toggleAnswer(id, btn) {
   const el = document.getElementById(id);
@@ -10451,7 +13160,9 @@ function switchSection(sectionName) {
   const jvmSection = document.getElementById('jvm-section');
   const heroSection = document.getElementById('heroSection');
   const fundamentalsSelector = document.getElementById('fundamentalsSelector');
+  const oopsSelector = document.getElementById('oopsSelector');
   const sidebar = document.querySelector('.chapter-sidebar');
+  const streamsSelector = document.getElementById('streamsSelector');
   const footer = document.querySelector('footer');
   
   // Handle Fundamentals parent section
@@ -10476,13 +13187,90 @@ function switchSection(sectionName) {
     if (fundamentalsSelector) {
       fundamentalsSelector.style.display = 'block';
     }
+    if (oopsSelector) {
+      oopsSelector.style.display = 'none';
+    }
+      if (streamsSelector) {
+        streamsSelector.style.display = 'none';
+      }
+
+    return;
+  }
+
+  // Handle OOPS parent section
+  if (sectionName === 'oops') {
+    // Hide hero and jvm-section
+    if (heroSection) {
+      heroSection.style.display = 'none';
+      heroSection.style.opacity = '0';
+    }
+    if (jvmSection) {
+      jvmSection.style.display = 'none';
+      jvmSection.style.opacity = '0';
+    }
+    if (sidebar) {
+      sidebar.classList.remove('active');
+    }
+    if (footer) {
+      footer.style.display = 'none';
+    }
+
+    // Show OOPS selector
+    if (oopsSelector) {
+      oopsSelector.style.display = 'block';
+    }
+    if (fundamentalsSelector) {
+      fundamentalsSelector.style.display = 'none';
+    }
+      if (streamsSelector) {
+        streamsSelector.style.display = 'none';
+      }
     
     return;
   }
   
-  // Hide fundamentals selector for other sections
+  // Handle Streams parent section
+  if (sectionName === 'streams') {
+    // Hide hero and jvm-section
+    if (heroSection) {
+      heroSection.style.display = 'none';
+      heroSection.style.opacity = '0';
+    }
+    if (jvmSection) {
+      jvmSection.style.display = 'none';
+      jvmSection.style.opacity = '0';
+    }
+    if (sidebar) {
+      sidebar.classList.remove('active');
+    }
+    if (footer) {
+      footer.style.display = 'none';
+    }
+
+    // Show Streams selector
+    if (streamsSelector) {
+      streamsSelector.style.display = 'block';
+    }
+    if (fundamentalsSelector) {
+      fundamentalsSelector.style.display = 'none';
+    }
+    if (oopsSelector) {
+      oopsSelector.style.display = 'none';
+    }
+
+    return;
+  }
+
+  // Hide selectors for other sections
+
   if (fundamentalsSelector) {
     fundamentalsSelector.style.display = 'none';
+  }
+  if (oopsSelector) {
+    oopsSelector.style.display = 'none';
+  }
+  if (streamsSelector) {
+    streamsSelector.style.display = 'none';
   }
   
   // Hide hero section
@@ -10524,6 +13312,7 @@ function switchSection(sectionName) {
     if (sectionName === 'all') {
       // Show JVM chapters (01-20)
       shouldShow = chapterNum && !chapterNum.startsWith('sh') && !chapterNum.startsWith('dt');
+      shouldShow = shouldShow && !chapterNum.startsWith('pv') && !chapterNum.startsWith('sf') && !chapterNum.startsWith('tc') && !chapterNum.startsWith('ob') && !chapterNum.startsWith('st') && !chapterNum.startsWith('ito');
     } else if (sectionName === 'stack-heap') {
       // Show Stack vs Heap chapters (sh01-sh10)
       shouldShow = chapterNum && chapterNum.startsWith('sh');
@@ -10539,6 +13328,15 @@ function switchSection(sectionName) {
     } else if (sectionName === 'type-casting') {
       // For type-casting, show all tc chapters (tc01, tc02, etc)
       shouldShow = chapterNum && chapterNum.startsWith('tc');
+    } else if (sectionName === 'oops-basics') {
+      // For oops-basics, show all ob chapters (ob01, ob02, etc)
+      shouldShow = chapterNum && chapterNum.startsWith('ob');
+    } else if (sectionName === 'intro-streams') {
+      // For intro-streams, show all st chapters (st01, st02, etc)
+      shouldShow = chapterNum && chapterNum.startsWith('st');
+    } else if (sectionName === 'intermediate-terminal-operations') {
+      // For intermediate-terminal-operations, show all ito chapters (ito01, ito02, etc)
+      shouldShow = chapterNum && chapterNum.startsWith('ito');
     }
     
     if (shouldShow) {
@@ -10583,7 +13381,29 @@ function switchSection(sectionName) {
       console.log('Marked dt01 as active');
     }
   }
-  
+
+  // For intro-streams section, mark first st item as active in sidebar
+  if (sectionName === 'intro-streams') {
+    const allItems = document.querySelectorAll('.chapter-item');
+    allItems.forEach(item => item.classList.remove('active'));
+    const st01Item = document.querySelector('.chapter-item[data-section="intro-streams"]');
+    if (st01Item) {
+      st01Item.classList.add('active');
+      console.log('Marked st01 as active');
+    }
+  }
+
+  // For intermediate-terminal-operations section, mark first ito item as active in sidebar
+  if (sectionName === 'intermediate-terminal-operations') {
+    const allItems = document.querySelectorAll('.chapter-item');
+    allItems.forEach(item => item.classList.remove('active'));
+    const ito01Item = document.querySelector('.chapter-item[data-section="intermediate-terminal-operations"]');
+    if (ito01Item) {
+      ito01Item.classList.add('active');
+      console.log('Marked ito01 as active');
+    }
+  }
+
   // Scroll to top
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
@@ -10875,6 +13695,1552 @@ console.log('%cUse the navigation bar to explore topics. Keyboard: Ctrl+K to scr
 </style>
 
 </div> <!-- End jvm-section -->
+<section data-chapter="st01">
+  <div class="container">
+    <div class="section-label" id="chapter-st01">Chapter 01 — Introduction to Streams</div>
+    <h2>Java Streams — Phase 1: Why Streams Exist</h2>
+
+    <div class="highlight-box">
+      <strong>Chapter Objective</strong>
+      <p>Understand: Why Java introduced Streams · What problem Streams solve · Imperative vs Declarative programming · Internal vs External iteration · Stream vs Collection · Stream characteristics · Stream lifecycle</p>
+    </div>
+
+    <!-- 1. WHAT ARE STREAMS? -->
+    <div class="concept-section jvm">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">DEFINITION</div>
+      <h3>What Are Streams?</h3>
+      <p>A <strong>Stream</strong> in Java is a sequence of elements that supports processing operations on data in a <strong>declarative and functional style</strong>.</p>
+      <p>Streams were introduced in <strong>Java 8</strong>.</p>
+      <div class="highlight-box">
+        <p><strong>Important:</strong> Stream does not store data. Stream only performs operations on data obtained from sources such as List, Set, Array, File, or Database.</p>
+      </div>
+      <pre><code>List&lt;Integer&gt; nums = List.of(1, 2, 3);
+
+nums.stream()
+
+// nums     → stores data
+// stream() → processes data</code></pre>
+    </div>
+
+    <!-- 2. WHY WERE STREAMS INTRODUCED? -->
+    <div class="concept-section jre">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">MOTIVATION</div>
+      <h3>Why Were Streams Introduced?</h3>
+      <p>Before Java 8, collection processing required:</p>
+      <ul class="jre-list">
+        <li>Manual iteration</li>
+        <li>Manual filtering</li>
+        <li>Manual transformation</li>
+        <li>Manual aggregation</li>
+      </ul>
+      <pre><code>// Before Java 8 — imperative style
+for loop
+  → if condition
+    → add to another list</code></pre>
+      <div class="comparison-grid" style="margin-top:24px;">
+        <div class="comparison-card">
+          <h3>Problems</h3>
+          <ul>
+            <li><strong>Problem 1:</strong> Too much boilerplate code</li>
+            <li><strong>Problem 2:</strong> Business logic mixed with iteration logic</li>
+            <li><strong>Problem 3:</strong> Reduced readability</li>
+            <li><strong>Problem 4:</strong> Hard to maintain</li>
+          </ul>
+        </div>
+        <div class="comparison-card">
+          <h3>Solution</h3>
+          <ul>
+            <li>Streams allow developers to <strong>describe operations</strong> instead of controlling execution</li>
+            <li>Separates business logic from iteration logic</li>
+            <li>Significantly reduces boilerplate</li>
+            <li>Improves code readability and maintainability</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. IMPERATIVE VS DECLARATIVE -->
+    <div class="concept-section jdk">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">PROGRAMMING STYLE</div>
+      <h3>Imperative vs Declarative Programming</h3>
+      <div class="comparison-grid">
+        <div class="comparison-card">
+          <h3>Imperative Programming</h3>
+          <ul>
+            <li>Developer explicitly <strong>controls execution</strong></li>
+            <li>Developer decides: Loop, Conditions, Variables, Processing order</li>
+          </ul>
+          <pre><code>int sum = 0;
+
+for(int n : nums){
+  sum += n;
+}</code></pre>
+          <ul>
+            <li>More control</li>
+            <li>More code</li>
+            <li>More responsibility</li>
+          </ul>
+        </div>
+        <div class="comparison-card">
+          <h3>Declarative Programming</h3>
+          <ul>
+            <li>Developer specifies <strong>desired result</strong></li>
+            <li>Java decides: Traversal, Execution, Optimization</li>
+          </ul>
+          <pre><code>nums.stream()
+  .mapToInt(n -&gt; n)
+  .sum();</code></pre>
+          <ul>
+            <li>Less code</li>
+            <li>More readability</li>
+            <li>Higher abstraction</li>
+          </ul>
+        </div>
+      </div>
+      <div class="interview-box">
+        <span class="label">INTERVIEW SHORTCUT</span>
+        <p><strong>Imperative → HOW &nbsp;&nbsp;|&nbsp;&nbsp; Declarative → WHAT</strong></p>
+      </div>
+    </div>
+
+    <!-- 4. INTERNAL vs EXTERNAL ITERATION -->
+    <div class="concept-section jvm">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">ITERATION</div>
+      <h3>Internal Iteration vs External Iteration</h3>
+      <div class="comparison-grid">
+        <div class="comparison-card">
+          <h3>External Iteration</h3>
+          <ul>
+            <li>Developer <strong>controls traversal</strong></li>
+            <li>Examples: <code>for loop</code>, <code>iterator()</code></li>
+            <li>Developer controls: Next element, Stop condition, Order</li>
+          </ul>
+        </div>
+        <div class="comparison-card">
+          <h3>Internal Iteration</h3>
+          <ul>
+            <li>Iteration performed <strong>internally by Stream API</strong></li>
+            <li>Example: <code>stream()</code></li>
+            <li>Java handles: Traversal, Optimization, Processing</li>
+            <li>Cleaner code</li>
+            <li>Supports lazy processing</li>
+            <li>Supports parallel execution</li>
+          </ul>
+        </div>
+      </div>
+      <div class="interview-box">
+        <span class="label">INTERVIEW STATEMENT</span>
+        <p>Streams use <strong>Internal Iteration</strong>.</p>
+      </div>
+    </div>
+
+    <!-- 5. STREAM VS COLLECTION -->
+    <div class="concept-section jre">
+      <span class="concept-num">5</span>
+      <div class="concept-tag">COMPARISON</div>
+      <h3>Stream vs Collection</h3>
+      <div class="comparison-grid">
+        <div class="comparison-card">
+          <h3>Collection</h3>
+          <ul>
+            <li><strong>Purpose:</strong> Store data</li>
+            <li>Examples: List, Set, Queue</li>
+            <li>Holds elements</li>
+            <li>Exists in memory</li>
+          </ul>
+        </div>
+        <div class="comparison-card">
+          <h3>Stream</h3>
+          <ul>
+            <li><strong>Purpose:</strong> Process data</li>
+            <li>Does not store data</li>
+            <li>Temporary</li>
+            <li>Consumable</li>
+          </ul>
+        </div>
+      </div>
+      <div class="analogy-grid" style="grid-template-columns: repeat(2,1fr); margin-top:24px;">
+        <div class="analogy-card">
+          <div class="analogy-icon">🏭</div>
+          <div class="analogy-title">Collection → Warehouse</div>
+          <p class="analogy-desc">Data remains in the warehouse. The collection <em>stores</em> the goods permanently.</p>
+        </div>
+        <div class="analogy-card">
+          <div class="analogy-icon">🏗️</div>
+          <div class="analogy-title">Stream → Conveyor Belt</div>
+          <p class="analogy-desc">Stream only processes. Data remains in the warehouse; the conveyor belt moves and transforms it.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. STREAM CHARACTERISTICS -->
+    <div class="concept-section jdk">
+      <span class="concept-num">6</span>
+      <div class="concept-tag">CHARACTERISTICS</div>
+      <h3>Stream Characteristics</h3>
+      <div class="highlight-box">
+        <strong>Characteristic 1:</strong>
+        <p>Streams do not store data. Data remains in source.</p>
+      </div>
+      <div class="highlight-box">
+        <strong>Characteristic 2:</strong>
+        <p>Streams do not modify source. After stream processing, the original list remains unchanged.</p>
+        <pre><code>List.of(1, 2, 3)
+// After stream processing → original list unchanged</code></pre>
+      </div>
+      <div class="highlight-box">
+        <strong>Characteristic 3: Streams are consumable once.</strong>
+        <pre><code>Stream&lt;Integer&gt; s = nums.stream();
+
+s.count();   // ✓ OK
+s.count();   // ✗ IllegalStateException</code></pre>
+        <p>Terminal operation closes the stream. Reason: Terminal operation closes stream.</p>
+      </div>
+    </div>
+
+    <!-- 7. STREAM PIPELINE -->
+    <div class="concept-section jvm">
+      <span class="concept-num">7</span>
+      <div class="concept-tag">PIPELINE</div>
+      <h3>Stream Pipeline (Introduction)</h3>
+      <p>Streams operate in three stages. Pipeline executes only when terminal operation is called.</p>
+      <div class="flow">
+        <div class="flow-step highlight">Stage 1: Source<br><small style="font-size:11px;">list.stream()</small></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight2">Stage 2: Intermediate Operations<br><small style="font-size:11px;">filter() &nbsp;·&nbsp; map() &nbsp;·&nbsp; sorted()</small></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight3">Stage 3: Terminal Operation<br><small style="font-size:11px;">collect() &nbsp;·&nbsp; count() &nbsp;·&nbsp; reduce()</small></div>
+      </div>
+      <div class="interview-box">
+        <span class="label">KEY POINT</span>
+        <p>Pipeline executes <strong>only when terminal operation is called</strong>. Intermediate operations are lazy.</p>
+      </div>
+    </div>
+
+    <!-- 8. COMMON MISCONCEPTIONS -->
+    <div class="concept-section jre">
+      <span class="concept-num">8</span>
+      <div class="concept-tag">MISCONCEPTIONS</div>
+      <h3>Common Misconceptions</h3>
+      <div class="comparison-grid">
+        <div class="comparison-card">
+          <h3>❌ Misconception</h3>
+          <ul>
+            <li>Stream stores values.</li>
+            <li>Stream modifies source.</li>
+            <li>Stream can be reused.</li>
+          </ul>
+        </div>
+        <div class="comparison-card">
+          <h3>✅ Correction</h3>
+          <ul>
+            <li>Collection stores values.</li>
+            <li>Stream returns processed output; source is unchanged.</li>
+            <li>Consumed stream cannot be reused.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. INTERVIEW QUESTIONS -->
+    <div class="section-label" style="margin-top:48px;">Interview Questions</div>
+    <h3 style="margin-bottom:24px;">Interview Questions with Answers</h3>
+    <div class="qa-list">
+      <div class="qa-card correct">
+        <div class="qa-header">
+          <span class="qa-badge correct-badge">Q1</span>
+          <div class="qa-q">Why were Streams introduced?</div>
+        </div>
+        <div class="qa-answer">
+          Streams were introduced to process collections in a <strong>declarative and functional style</strong> by reducing boilerplate code and separating business logic from iteration logic.
+        </div>
+      </div>
+      <div class="qa-card correct">
+        <div class="qa-header">
+          <span class="qa-badge correct-badge">Q2</span>
+          <div class="qa-q">Difference between Stream and Collection?</div>
+        </div>
+        <div class="qa-answer">
+          <strong>Collection</strong> stores data and exists permanently in memory.<br>
+          <strong>Stream</strong> processes data and exists only during execution.
+        </div>
+      </div>
+      <div class="qa-card correct">
+        <div class="qa-header">
+          <span class="qa-badge correct-badge">Q3</span>
+          <div class="qa-q">What is Internal Iteration?</div>
+        </div>
+        <div class="qa-answer">
+          Internal iteration means the Stream API internally controls traversal and processing instead of developer-controlled loops.
+        </div>
+      </div>
+      <div class="qa-card correct">
+        <div class="qa-header">
+          <span class="qa-badge correct-badge">Q4</span>
+          <div class="qa-q">Can Streams modify source?</div>
+        </div>
+        <div class="qa-answer">
+          No. Streams process data <strong>without changing the original source</strong>.
+        </div>
+      </div>
+      <div class="qa-card correct">
+        <div class="qa-header">
+          <span class="qa-badge correct-badge">Q5</span>
+          <div class="qa-q">Why are Streams consumable?</div>
+        </div>
+        <div class="qa-answer">
+          Terminal operations consume the stream pipeline and <strong>close the stream</strong>. Once closed, the stream cannot be reused.
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. QUICK REVISION -->
+    <div class="section-label" style="margin-top:48px;">Quick Revision</div>
+    <h3 style="margin-bottom:16px;">Quick Revision</h3>
+    <div class="highlight-box">
+      <strong>Streams:</strong>
+      <ul style="margin-top:12px; padding-left:20px; color:#b0f0d4; line-height:2.2;">
+        <li>Introduced in Java 8</li>
+        <li>Declarative &amp; Functional</li>
+        <li>Use internal iteration</li>
+        <li>Do not store data</li>
+        <li>Do not modify source</li>
+        <li>Consumable once</li>
+      </ul>
+    </div>
+    <div class="flow" style="margin-top:32px;">
+      <div class="flow-step highlight">Source</div>
+      <div class="flow-arrow"></div>
+      <div class="flow-step highlight2">Intermediate</div>
+      <div class="flow-arrow"></div>
+      <div class="flow-step highlight3">Terminal</div>
+    </div>
+  </div>
+</section>
+
+<section data-chapter="st02">
+  <div class="container">
+    <div class="section-label" id="chapter-st02">Chapter 02 — Stream Creation</div>
+    <h2>Java Streams — Phase 2: Stream Creation</h2>
+
+    <div class="highlight-box">
+      <strong>Chapter Objective</strong>
+      <p>Learn: How Streams are created · Different Stream creation mechanisms · Primitive Streams · Infinite Streams · Lazy Stream creation</p>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">FOUNDATION</div>
+      <h3>What Does Stream Creation Mean?</h3>
+      <p>Stream creation means creating a <strong>processing pipeline</strong> over data. It does <strong>not</strong> mean execution.</p>
+      <div class="flow">
+        <div class="flow-step highlight">Data Source</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight2">Create Stream</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step">Apply Operations</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight3">Execute</div>
+      </div>
+      <pre><code>List&lt;Integer&gt; nums = List.of(1, 2, 3);
+
+Stream&lt;Integer&gt; s = nums.stream();
+
+// Processing = NOT STARTED
+// Reason: Streams are lazy.</code></pre>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">COLLECTION</div>
+      <h3>Create Stream from Collection</h3>
+      <p><strong>Method:</strong> <code>stream()</code></p>
+      <p><strong>Syntax:</strong> <code>collection.stream()</code></p>
+      <pre><code>List&lt;String&gt; names = List.of("A", "B");
+
+Stream&lt;String&gt; s = names.stream();</code></pre>
+      <p>Usage: Existing Collection → Create Stream. Most commonly used.</p>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">DIRECT VALUES</div>
+      <h3>Create Stream using Stream.of()</h3>
+      <p><strong>Purpose:</strong> Create stream directly from values.</p>
+      <p><strong>Syntax:</strong> <code>Stream.of()</code></p>
+      <pre><code>Stream.of(
+  1,
+  2,
+  3
+);</code></pre>
+      <div class="interview-box">
+        <span class="label">INTERVIEW POINT</span>
+        <p><code>stream()</code> needs Collection. <code>Stream.of()</code> does not.</p>
+      </div>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">ARRAYS</div>
+      <h3>Create Stream from Array</h3>
+      <p><strong>Method:</strong> <code>Arrays.stream()</code></p>
+      <p><strong>Syntax:</strong> <code>Arrays.stream(array)</code></p>
+      <pre><code>String[] names = {"A", "B"};
+Stream&lt;String&gt; s = Arrays.stream(names);
+
+int[] nums = {1, 2, 3};
+IntStream si = Arrays.stream(nums);</code></pre>
+      <div class="highlight-box">
+        <p><strong>Why IntStream?</strong> Avoids boxing (<code>int → Integer</code>), improving memory, performance, and CPU usage.</p>
+      </div>
+      <ul class="jre-list">
+        <li>IntStream</li>
+        <li>LongStream</li>
+        <li>DoubleStream</li>
+      </ul>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">5</span>
+      <div class="concept-tag">INFINITE</div>
+      <h3>Create Infinite Stream using generate()</h3>
+      <p><strong>Purpose:</strong> Generate values endlessly.</p>
+      <p><strong>Syntax:</strong> <code>Stream.generate(supplier)</code></p>
+      <pre><code>Stream.generate(() -&gt; 1)
+  .limit(5);</code></pre>
+      <div class="highlight-box">
+        <p><strong>Danger:</strong> Infinite processing. Always use <code>limit()</code> unless truly unbounded processing is intended.</p>
+      </div>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">6</span>
+      <div class="concept-tag">SEQUENCE</div>
+      <h3>Create Sequential Stream using iterate()</h3>
+      <p><strong>Purpose:</strong> Generate sequence.</p>
+      <p><strong>Syntax:</strong> <code>Stream.iterate(seed, next)</code></p>
+      <pre><code>Stream.iterate(1, n -&gt; n + 1)
+  .limit(5);
+
+// Output: 1 2 3 4 5</code></pre>
+      <p><strong>Seed</strong> is the starting point.</p>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">7</span>
+      <div class="concept-tag">PARALLEL</div>
+      <h3>parallelStream()</h3>
+      <p><strong>Purpose:</strong> Parallel processing.</p>
+      <p><strong>Syntax:</strong> <code>collection.parallelStream()</code></p>
+      <p>Uses multiple threads.</p>
+      <div class="interview-box">
+        <span class="label">WARNING</span>
+        <p>Do not assume parallel is always faster. It requires proper understanding of workload and overhead.</p>
+      </div>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">8</span>
+      <div class="concept-tag">LAZINESS</div>
+      <h3>Lazy Execution</h3>
+      <p>Creating stream does <strong>not</strong> execute processing.</p>
+      <p>Execution starts only after a terminal operation.</p>
+      <div class="flow">
+        <div class="flow-step">stream()</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step">filter()</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step">map()</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight3">collect()</div>
+      </div>
+      <p><strong>Execution begins at collect().</strong></p>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">9</span>
+      <div class="concept-tag">MISTAKES</div>
+      <h3>Common Mistakes</h3>
+      <div class="comparison-grid">
+        <div class="comparison-card">
+          <h3>❌ Mistake</h3>
+          <ul>
+            <li><code>Stream.generate("A")</code></li>
+            <li>Assuming stream creation starts execution</li>
+            <li>Using <code>Stream&lt;Integer&gt;</code> for primitive arrays</li>
+          </ul>
+        </div>
+        <div class="comparison-card">
+          <h3>✅ Correction</h3>
+          <ul>
+            <li><code>Stream.generate(() -&gt; "A")</code></li>
+            <li>Execution is lazy</li>
+            <li>Prefer <code>IntStream</code> for primitives</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:48px;">Interview Questions</div>
+    <h3 style="margin-bottom:24px;">Interview Questions with Answers</h3>
+    <div class="qa-list">
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q1</span><div class="qa-q">stream() vs Stream.of()</div></div><div class="qa-answer"><code>stream()</code> creates stream from collection. <code>Stream.of()</code> creates stream directly from values.</div></div>
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q2</span><div class="qa-q">Why IntStream?</div></div><div class="qa-answer">Avoid boxing and improve performance.</div></div>
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q3</span><div class="qa-q">Why generate() is dangerous?</div></div><div class="qa-answer">Because it can create infinite generation.</div></div>
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q4</span><div class="qa-q">iterate() vs generate()</div></div><div class="qa-answer"><code>iterate()</code> generates sequence. <code>generate()</code> repeatedly produces values.</div></div>
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q5</span><div class="qa-q">When does execution start?</div></div><div class="qa-answer">At terminal operation.</div></div>
+    </div>
+
+    <div class="section-label" style="margin-top:48px;">Quick Revision</div>
+    <h3 style="margin-bottom:16px;">Quick Revision</h3>
+    <pre><code>stream()          → Collection
+Stream.of()       → Values
+Arrays.stream()   → Arrays
+generate()        → Infinite
+iterate()         → Sequence
+parallelStream()  → Parallel</code></pre>
+  </div>
+</section>
+
+<section data-chapter="st03">
+  <div class="container">
+    <div class="section-label" id="chapter-st03">Chapter 03 — Stream Architecture</div>
+    <h2>Java Streams — Phase 3: Stream Architecture</h2>
+
+    <div class="highlight-box">
+      <strong>Chapter Objective</strong>
+      <p>Understand: Stream pipeline architecture · Source · Intermediate Operations · Terminal Operations · Lazy Evaluation · Pipeline Processing · Execution model</p>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">ARCHITECTURE</div>
+      <h3>What Is Stream Architecture?</h3>
+      <p>Stream Architecture is the internal processing model used by Java Streams.</p>
+      <p>Every stream follows:</p>
+      <div class="flow">
+        <div class="flow-step highlight">Source</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight2">Intermediate Operations</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight3">Terminal Operation</div>
+      </div>
+      <p>This complete chain is called <strong>Pipeline</strong>.</p>
+      <pre><code>list.stream()
+  .filter(...)
+  .map(...)
+  .collect(...);</code></pre>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">SOURCE</div>
+      <h3>Source</h3>
+      <p><strong>Definition:</strong> Source is where Stream receives data.</p>
+      <p>Source does not process. Source only supplies elements.</p>
+      <ul class="jre-list">
+        <li>Collection → <code>list.stream()</code></li>
+        <li>Array → <code>Arrays.stream(arr)</code></li>
+        <li>Values → <code>Stream.of()</code></li>
+        <li>Generated → <code>Stream.generate()</code></li>
+      </ul>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">INTERMEDIATE</div>
+      <h3>Intermediate Operations</h3>
+      <p><strong>Definition:</strong> Operations that transform stream.</p>
+      <ul class="jre-list">
+        <li>Return Stream</li>
+        <li>Lazy</li>
+        <li>Chainable</li>
+        <li>Not executed immediately</li>
+      </ul>
+      <p><strong>Examples:</strong> <code>filter()</code>, <code>map()</code>, <code>sorted()</code>, <code>distinct()</code>, <code>limit()</code></p>
+      <p><strong>Purpose:</strong> Create processing pipeline.</p>
+      <pre><code>stream()
+  .filter(...)
+  .map(...);
+
+// No execution yet</code></pre>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">TERMINAL</div>
+      <h3>Terminal Operations</h3>
+      <p><strong>Definition:</strong> Operations that finish pipeline and trigger execution.</p>
+      <ul class="jre-list">
+        <li>Execute pipeline</li>
+        <li>Produce final result</li>
+        <li>Close stream</li>
+      </ul>
+      <p><strong>Examples:</strong> <code>collect()</code>, <code>count()</code>, <code>reduce()</code>, <code>findFirst()</code>, <code>forEach()</code></p>
+      <div class="highlight-box">
+        <p>Output may be: Collection, Value, Optional, Boolean, or Void.</p>
+      </div>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">5</span>
+      <div class="concept-tag">CHAINING</div>
+      <h3>Why Intermediate Operations Return Stream</h3>
+      <p>Reason: to support chaining.</p>
+      <pre><code>stream()
+  .filter(...)
+  .map(...)
+  .sorted(...)
+  .limit(...);</code></pre>
+      <p>Without returning Stream, pipeline composition would be impossible.</p>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">6</span>
+      <div class="concept-tag">LAZY EVALUATION</div>
+      <h3>Lazy Evaluation</h3>
+      <p>Intermediate operations are not executed immediately.</p>
+      <p>Execution begins only after terminal operation.</p>
+      <pre><code>Stream.of(1,2,3)
+  .filter(n -&gt; n % 2 == 0);
+
+// Output: Nothing</code></pre>
+      <pre><code>Stream.of(1,2,3)
+  .filter(n -&gt; n % 2 == 0)
+  .count();
+
+// Output: Execution occurs</code></pre>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">7</span>
+      <div class="concept-tag">EXECUTION MODEL</div>
+      <h3>Stream Execution Model</h3>
+      <div class="comparison-grid">
+        <div class="comparison-card">
+          <h3>Wrong Understanding</h3>
+          <ul>
+            <li>Filter entire collection</li>
+            <li>Then map entire collection</li>
+          </ul>
+        </div>
+        <div class="comparison-card">
+          <h3>Actual Processing</h3>
+          <ul>
+            <li>Element1 → Filter → Map → Collect</li>
+            <li>Element2 → Filter → Map → Collect</li>
+          </ul>
+        </div>
+      </div>
+      <div class="interview-box">
+        <span class="label">TERM</span>
+        <p>This is called <strong>Pipeline Processing</strong> (element-by-element flow).</p>
+      </div>
+      <ul class="jre-list">
+        <li>Better memory usage</li>
+        <li>Better performance</li>
+        <li>Supports short-circuiting</li>
+      </ul>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">8</span>
+      <div class="concept-tag">SHORT-CIRCUITING</div>
+      <h3>Short Circuiting</h3>
+      <p><strong>Definition:</strong> Execution stops when result is achieved.</p>
+      <p><strong>Examples:</strong> <code>findFirst()</code>, <code>anyMatch()</code></p>
+      <p><strong>Benefit:</strong> Less processing.</p>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">9</span>
+      <div class="concept-tag">MISTAKES</div>
+      <h3>Common Mistakes</h3>
+      <div class="comparison-grid">
+        <div class="comparison-card">
+          <h3>❌ Mistake</h3>
+          <ul>
+            <li>Assuming stream creation executes</li>
+            <li>Assuming terminal always returns collection</li>
+            <li>Thinking entire collection is filtered first</li>
+          </ul>
+        </div>
+        <div class="comparison-card">
+          <h3>✅ Correction</h3>
+          <ul>
+            <li>Execution begins at terminal operation</li>
+            <li>Terminal can return multiple types</li>
+            <li>Streams process element-by-element</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:48px;">Interview Questions</div>
+    <h3 style="margin-bottom:24px;">Interview Questions with Answers</h3>
+    <div class="qa-list">
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q1</span><div class="qa-q">Intermediate vs Terminal?</div></div><div class="qa-answer">Intermediate returns Stream. Terminal produces final result.</div></div>
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q2</span><div class="qa-q">What triggers execution?</div></div><div class="qa-answer">Terminal operation.</div></div>
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q3</span><div class="qa-q">What is lazy evaluation?</div></div><div class="qa-answer">Execution is delayed until terminal operation.</div></div>
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q4</span><div class="qa-q">Why return Stream?</div></div><div class="qa-answer">To support chaining.</div></div>
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q5</span><div class="qa-q">What is pipeline processing?</div></div><div class="qa-answer">Element-by-element execution through pipeline.</div></div>
+    </div>
+
+    <div class="section-label" style="margin-top:48px;">Quick Revision</div>
+    <h3 style="margin-bottom:16px;">Quick Revision</h3>
+    <div class="flow" style="margin-top:16px;">
+      <div class="flow-step highlight">Source</div>
+      <div class="flow-arrow"></div>
+      <div class="flow-step highlight2">Intermediate (Lazy)</div>
+      <div class="flow-arrow"></div>
+      <div class="flow-step highlight3">Terminal (Execute)</div>
+      <div class="flow-arrow"></div>
+      <div class="flow-step">No Terminal → No Execution</div>
+    </div>
+  </div>
+</section>
+
+<section data-chapter="ito01">
+  <div class="container">
+    <div class="section-label" id="chapter-ito01">Chapter 01 — Intermediate Operations (Filtering)</div>
+    <h2>JAVA STREAMS – PHASE 4 – INTERMEDIATE OPERATIONS (FILTERING)</h2>
+
+    <div class="highlight-box">
+      <strong>CHAPTER OBJECTIVE</strong>
+      <p>Learn:</p>
+      <ul class="jre-list">
+        <li><code>filter()</code></li>
+        <li><code>distinct()</code></li>
+        <li><code>limit()</code></li>
+        <li><code>skip()</code></li>
+        <li><code>takeWhile()</code></li>
+        <li><code>dropWhile()</code></li>
+      </ul>
+      <p>Understand:</p>
+      <ul class="jre-list">
+        <li>Intermediate operations</li>
+        <li>Stream chaining</li>
+        <li>Lazy execution</li>
+      </ul>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">INTERMEDIATE OPERATIONS</div>
+      <h3>1. INTERMEDIATE OPERATIONS</h3>
+      <p><strong>Definition:</strong> Operations that transform stream.</p>
+      <p><strong>Properties:</strong></p>
+      <ul class="jre-list">
+        <li>Return Stream</li>
+        <li>Lazy</li>
+        <li>Chainable</li>
+        <li>Not executed immediately</li>
+      </ul>
+      <p>Execution begins only after terminal operation.</p>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">FILTER</div>
+      <h3>2. <code>filter()</code></h3>
+      <p><strong>Purpose:</strong> Keep elements matching condition.</p>
+      <p><strong>Syntax:</strong> <code>filter(Predicate)</code></p>
+      <p><strong>Predicate:</strong> Function returning boolean.</p>
+      <pre><code>Stream.of(
+1,2,3,4
+)
+.filter(
+n -&gt; n%2==0
+)
+
+Output:
+2
+4</code></pre>
+      <div class="highlight-box">
+        <p><strong>Important:</strong> <code>filter()</code> returns Stream. Does not modify source.</p>
+      </div>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">DISTINCT</div>
+      <h3>3. <code>distinct()</code></h3>
+      <p><strong>Purpose:</strong> Remove duplicates.</p>
+      <p><strong>Syntax:</strong> <code>distinct()</code></p>
+      <pre><code>1 2 2 3 3
+
+↓
+
+1 2 3</code></pre>
+      <p><strong>Internal Working:</strong></p>
+      <ul class="jre-list">
+        <li><code>equals()</code></li>
+        <li><code>hashCode()</code></li>
+      </ul>
+      <p>Custom objects require overriding.</p>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">LIMIT</div>
+      <h3>4. <code>limit()</code></h3>
+      <p><strong>Purpose:</strong> Take first N elements.</p>
+      <p><strong>Syntax:</strong> <code>limit(n)</code></p>
+      <pre><code>1 2 3 4 5
+
+limit(3)
+
+↓
+
+1 2 3</code></pre>
+      <p>Useful for infinite streams.</p>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">5</span>
+      <div class="concept-tag">SKIP</div>
+      <h3>5. <code>skip()</code></h3>
+      <p><strong>Purpose:</strong> Ignore first N.</p>
+      <p><strong>Syntax:</strong> <code>skip(n)</code></p>
+      <pre><code>1 2 3 4 5
+
+skip(2)
+
+↓
+
+3 4 5</code></pre>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">6</span>
+      <div class="concept-tag">TAKEWHILE</div>
+      <h3>6. <code>takeWhile()</code></h3>
+      <p><strong>Purpose:</strong> Keep values until condition fails.</p>
+      <pre><code>1 2 3 10 4
+
+takeWhile(n&lt;5)
+
+↓
+
+1 2 3</code></pre>
+      <p>Stops immediately.</p>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">7</span>
+      <div class="concept-tag">DROPWHILE</div>
+      <h3>7. <code>dropWhile()</code></h3>
+      <p><strong>Purpose:</strong> Remove values until condition fails.</p>
+      <pre><code>1 2 3 10 4
+
+dropWhile(n&lt;5)
+
+↓
+
+10 4</code></pre>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">8</span>
+      <div class="concept-tag">DIFFERENCES</div>
+      <h3>8. DIFFERENCES</h3>
+      <div class="comparison-grid">
+        <div class="comparison-card">
+          <h3><code>filter()</code></h3>
+          <p>Condition-based filtering.</p>
+        </div>
+        <div class="comparison-card">
+          <h3><code>distinct()</code></h3>
+          <p>Duplicate removal.</p>
+        </div>
+      </div>
+      <div class="comparison-grid" style="margin-top: 16px;">
+        <div class="comparison-card">
+          <h3><code>limit()</code></h3>
+          <p>Count-based.</p>
+        </div>
+        <div class="comparison-card">
+          <h3><code>takeWhile()</code></h3>
+          <p>Condition-based stop.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">9</span>
+      <div class="concept-tag">COMMON MISTAKES</div>
+      <h3>9. COMMON MISTAKES</h3>
+      <div class="comparison-grid">
+        <div class="comparison-card">
+          <h3>❌ Mistake</h3>
+          <ul>
+            <li><code>filter</code> creates List.</li>
+            <li><code>takeWhile</code> behaves like <code>filter</code>.</li>
+            <li>Streams modify source.</li>
+          </ul>
+        </div>
+        <div class="comparison-card">
+          <h3>✅ Correction</h3>
+          <ul>
+            <li><code>filter</code> returns Stream.</li>
+            <li><code>takeWhile</code> stops after first failure.</li>
+            <li>Source unchanged.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:48px;">Interview Questions</div>
+    <h3 style="margin-bottom:24px;">10. INTERVIEW QUESTIONS WITH ANSWERS</h3>
+    <div class="qa-list">
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q1</span><div class="qa-q">Why <code>filter</code> uses Predicate?</div></div><div class="qa-answer">Because filtering requires boolean decision.</div></div>
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q2</span><div class="qa-q">Does <code>distinct</code> use <code>hashCode</code>?</div></div><div class="qa-answer">Yes. Along with <code>equals()</code>.</div></div>
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q3</span><div class="qa-q"><code>limit</code> vs <code>skip</code>?</div></div><div class="qa-answer"><code>limit</code> takes. <code>skip</code> ignores.</div></div>
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q4</span><div class="qa-q"><code>takeWhile</code> vs <code>filter</code>?</div></div><div class="qa-answer"><code>filter</code> checks all. <code>takeWhile</code> stops early.</div></div>
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q5</span><div class="qa-q">Does <code>filter</code> modify source?</div></div><div class="qa-answer">No. Creates transformed Stream.</div></div>
+    </div>
+
+    <div class="section-label" style="margin-top:48px;">Quick Revision</div>
+    <h3 style="margin-bottom:16px;">11. QUICK REVISION</h3>
+    <pre><code>filter
+→ Keep
+
+distinct
+→ Unique
+
+limit
+→ Take
+
+skip
+→ Ignore
+
+takeWhile
+→ Keep until fail
+
+dropWhile
+→ Drop until fail</code></pre>
+  </div>
+</section>
+
+<section data-chapter="ito02">
+  <div class="container">
+    <div class="section-label" id="chapter-ito02">Chapter 02 — Intermediate Operations (Transformation)</div>
+    <h2>JAVA STREAMS – PHASE 4 – INTERMEDIATE OPERATIONS (TRANSFORMATION)</h2>
+
+    <div class="highlight-box">
+      <strong>CHAPTER OBJECTIVE</strong>
+      <p>Learn:</p>
+      <ul class="jre-list">
+        <li><code>map()</code></li>
+        <li><code>mapToInt()</code></li>
+        <li><code>mapToDouble()</code></li>
+        <li><code>boxed()</code></li>
+        <li><code>flatMap()</code></li>
+      </ul>
+      <p>Understand:</p>
+      <ul class="jre-list">
+        <li>Transformation</li>
+        <li>Primitive Streams</li>
+        <li>Flattening</li>
+      </ul>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">TRANSFORMATION OPERATIONS</div>
+      <h3>1. TRANSFORMATION OPERATIONS</h3>
+      <p><strong>Definition:</strong> Operations that convert stream elements.</p>
+      <p>Transformation changes representation.</p>
+      <p><strong>Examples:</strong></p>
+      <ul class="jre-list">
+        <li>String → Uppercase</li>
+        <li>Employee → Name</li>
+        <li>Integer → Double</li>
+      </ul>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">MAP</div>
+      <h3>2. <code>map()</code></h3>
+      <p><strong>Purpose:</strong></p>
+      <pre><code>One Input
+↓
+
+One Output</code></pre>
+      <p><strong>Syntax:</strong> <code>map(Function)</code></p>
+      <pre><code>Stream.of(
+1,2,3
+)
+.map(
+n -&gt; n*10
+)
+
+Output:
+10
+20
+30</code></pre>
+      <p><strong>Examples:</strong></p>
+      <pre><code>String
+
+↓
+
+Uppercase
+
+Employee
+
+↓
+
+Name</code></pre>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">MAPTOINT</div>
+      <h3>3. <code>mapToInt()</code></h3>
+      <p><strong>Purpose:</strong> Convert Stream into IntStream.</p>
+      <p><strong>Syntax:</strong> <code>mapToInt()</code></p>
+      <pre><code>Stream.of(
+1,2,3
+)
+.mapToInt(
+n -&gt; n
+)
+.sum()</code></pre>
+      <p><strong>Primitive Stream Benefits:</strong></p>
+      <ul class="jre-list">
+        <li><code>sum()</code></li>
+        <li><code>average()</code></li>
+        <li><code>max()</code></li>
+        <li><code>min()</code></li>
+      </ul>
+      <p><strong>Reason:</strong> Avoid boxing.</p>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">BOXED</div>
+      <h3>4. <code>boxed()</code></h3>
+      <p><strong>Purpose:</strong></p>
+      <pre><code>Primitive
+↓
+Wrapper</code></pre>
+      <pre><code>IntStream.of(
+1,2,3
+)
+.boxed()
+
+↓
+
+Stream&lt;Integer&gt;</code></pre>
+      <p><strong>Useful when:</strong> Need Collection output.</p>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">5</span>
+      <div class="concept-tag">FLATMAP</div>
+      <h3>5. <code>flatMap()</code></h3>
+      <p><strong>Purpose:</strong> Flatten nested streams.</p>
+      <p><strong>Rule:</strong></p>
+      <pre><code>One Input
+
+↓
+
+Multiple Outputs
+
+↓
+
+Single Stream</code></pre>
+      <pre><code>[[1,2],[3,4]]
+
+↓
+
+flatMap()
+
+↓
+
+1 2 3 4</code></pre>
+      <p><strong>Without flatMap:</strong></p>
+      <pre><code>Stream&lt;Stream&lt;Integer&gt;&gt;</code></pre>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">6</span>
+      <div class="concept-tag">MAP VS FLATMAP</div>
+      <h3>6. map vs flatMap</h3>
+      <div class="comparison-grid">
+        <div class="comparison-card">
+          <h3><code>map()</code></h3>
+          <p>Transforms.</p>
+          <p>One → One</p>
+        </div>
+        <div class="comparison-card">
+          <h3><code>flatMap()</code></h3>
+          <p>Flattens.</p>
+          <p>One → Many</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">7</span>
+      <div class="concept-tag">COMMON MISTAKES</div>
+      <h3>7. COMMON MISTAKES</h3>
+      <div class="comparison-grid">
+        <div class="comparison-card">
+          <h3>❌ Mistake</h3>
+          <ul>
+            <li><code>map</code> creates List.</li>
+            <li><code>flatMap</code> transforms.</li>
+            <li><code>mapToInt</code> required.</li>
+          </ul>
+        </div>
+        <div class="comparison-card">
+          <h3>✅ Correction</h3>
+          <ul>
+            <li><code>map</code> returns Stream.</li>
+            <li><code>flatMap</code> flattens.</li>
+            <li>Used for optimization.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:48px;">Interview Questions</div>
+    <h3 style="margin-bottom:24px;">8. INTERVIEW QUESTIONS WITH ANSWERS</h3>
+    <div class="qa-list">
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q1</span><div class="qa-q"><code>map</code> vs <code>flatMap</code>?</div></div><div class="qa-answer"><code>map</code> transforms. <code>flatMap</code> flattens.</div></div>
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q2</span><div class="qa-q">Why <code>mapToInt</code>?</div></div><div class="qa-answer">Avoid boxing and support primitive operations.</div></div>
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q3</span><div class="qa-q">Why <code>boxed</code>?</div></div><div class="qa-answer">Primitive → Wrapper.</div></div>
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q4</span><div class="qa-q">Can <code>map</code> change type?</div></div><div class="qa-answer">Yes. Employee → String.</div></div>
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q5</span><div class="qa-q">What does <code>flatMap</code> solve?</div></div><div class="qa-answer">Nested Stream flattening.</div></div>
+    </div>
+
+    <div class="section-label" style="margin-top:48px;">Quick Revision</div>
+    <h3 style="margin-bottom:16px;">9. QUICK REVISION</h3>
+    <pre><code>map
+→ Transform
+
+mapToInt
+→ Primitive
+
+boxed
+→ Wrapper
+
+flatMap
+→ Flatten</code></pre>
+  </div>
+</section>
+
+<section data-chapter="ito03">
+  <div class="container">
+    <div class="section-label" id="chapter-ito03">Chapter 03 — Intermediate Operations (Sorting + Peek)</div>
+    <h2>JAVA STREAMS – PHASE 4 – INTERMEDIATE OPERATIONS (SORTING + PEEK)</h2>
+
+    <div class="highlight-box">
+      <strong>CHAPTER OBJECTIVE</strong>
+      <p>Learn:</p>
+      <ul class="jre-list">
+        <li><code>sorted()</code></li>
+        <li><code>Comparator</code></li>
+        <li><code>thenComparing()</code></li>
+        <li><code>reversed()</code></li>
+        <li><code>peek()</code></li>
+      </ul>
+      <p>Understand:</p>
+      <ul class="jre-list">
+        <li>Stateful operations</li>
+        <li>Observation vs Transformation</li>
+      </ul>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">SORTED</div>
+      <h3>1. <code>sorted()</code></h3>
+      <p><strong>Purpose:</strong> Reorder stream elements.</p>
+      <p><strong>Syntax:</strong> <code>sorted()</code></p>
+      <p><strong>Default:</strong> Natural Ordering</p>
+      <ul class="jre-list">
+        <li>Numbers: Ascending</li>
+        <li>Strings: Alphabetical</li>
+      </ul>
+      <pre><code>4 2 5 1
+
+↓
+
+1 2 4 5</code></pre>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">CUSTOM SORTING</div>
+      <h3>2. CUSTOM SORTING</h3>
+      <p><strong>Syntax:</strong></p>
+      <pre><code>sorted(
+Comparator
+)</code></pre>
+      <p><strong>Example (Descending):</strong> <code>Comparator.reverseOrder()</code></p>
+      <pre><code>employees.stream()
+.sorted(
+Comparator
+.comparing(
+Employee::getSalary
+)
+)</code></pre>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">MULTIPLE SORTING</div>
+      <h3>3. MULTIPLE SORTING</h3>
+      <p><strong>Syntax:</strong> <code>thenComparing()</code></p>
+      <pre><code>Department
+
+↓
+
+Salary</code></pre>
+      <pre><code>Comparator
+.comparing(
+Employee::getDept
+)
+.thenComparing(
+Employee::getSalary
+)</code></pre>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">STATEFUL OPERATIONS</div>
+      <h3>4. STATEFUL OPERATIONS</h3>
+      <p><strong>Definition:</strong> Operation requiring visibility of multiple elements.</p>
+      <p><strong>Examples:</strong> <code>sorted()</code></p>
+      <p><strong>Not stateful:</strong></p>
+      <ul class="jre-list">
+        <li><code>filter()</code></li>
+        <li><code>map()</code></li>
+      </ul>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">5</span>
+      <div class="concept-tag">PEEK</div>
+      <h3>5. <code>peek()</code></h3>
+      <p><strong>Purpose:</strong> Observe elements.</p>
+      <p><strong>Syntax:</strong></p>
+      <pre><code>peek(
+Consumer
+)</code></pre>
+      <p><strong>Consumer:</strong></p>
+      <pre><code>Input
+
+↓
+
+No output</code></pre>
+      <pre><code>stream()
+.peek(
+System.out::println
+)
+.count()</code></pre>
+      <p><strong>Use:</strong> Debugging.</p>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">6</span>
+      <div class="concept-tag">MAP VS PEEK</div>
+      <h3>6. map vs peek</h3>
+      <div class="comparison-grid">
+        <div class="comparison-card">
+          <h3><code>map()</code></h3>
+          <p>Transforms.</p>
+          <p>Returns changed stream.</p>
+        </div>
+        <div class="comparison-card">
+          <h3><code>peek()</code></h3>
+          <p>Observes.</p>
+          <p>Returns same stream.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">7</span>
+      <div class="concept-tag">MUTATION WARNING</div>
+      <h3>7. MUTATION WARNING</h3>
+      <p><strong>Avoid:</strong></p>
+      <pre><code>peek(
+obj -&gt;
+obj.change()
+)</code></pre>
+      <p><strong>Reason:</strong> Hidden side effects.</p>
+      <p><strong>Prefer:</strong> <code>map()</code></p>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">8</span>
+      <div class="concept-tag">COMMON MISTAKES</div>
+      <h3>8. COMMON MISTAKES</h3>
+      <div class="comparison-grid">
+        <div class="comparison-card">
+          <h3>❌ Mistake</h3>
+          <ul>
+            <li><code>peek</code> transforms.</li>
+            <li><code>sorted</code> executes immediately.</li>
+            <li><code>peek</code> executes alone.</li>
+          </ul>
+        </div>
+        <div class="comparison-card">
+          <h3>✅ Correction</h3>
+          <ul>
+            <li><code>peek</code> observes.</li>
+            <li>Terminal triggers execution.</li>
+            <li>Needs terminal operation.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:48px;">Interview Questions</div>
+    <h3 style="margin-bottom:24px;">9. INTERVIEW QUESTIONS WITH ANSWERS</h3>
+    <div class="qa-list">
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q1</span><div class="qa-q">Why <code>sorted</code> stateful?</div></div><div class="qa-answer">Needs visibility of multiple elements.</div></div>
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q2</span><div class="qa-q"><code>peek</code> vs <code>map</code>?</div></div><div class="qa-answer"><code>peek</code> observes. <code>map</code> transforms.</div></div>
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q3</span><div class="qa-q">Can <code>peek</code> modify?</div></div><div class="qa-answer">Possible but discouraged.</div></div>
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q4</span><div class="qa-q"><code>Comparator</code> vs <code>Comparable</code>?</div></div><div class="qa-answer"><code>Comparable</code>: Inside class. <code>Comparator</code>: External.</div></div>
+      <div class="qa-card correct"><div class="qa-header"><span class="qa-badge correct-badge">Q5</span><div class="qa-q">Can <code>peek</code> execute alone?</div></div><div class="qa-answer">No. Needs terminal.</div></div>
+    </div>
+
+    <div class="section-label" style="margin-top:48px;">Quick Revision</div>
+    <h3 style="margin-bottom:16px;">10. QUICK REVISION</h3>
+    <pre><code>sorted
+→ Reorder
+
+Comparator
+→ Custom
+
+thenComparing
+→ Multi
+
+peek
+→ Observe</code></pre>
+  </div>
+</section>
+
+<section data-chapter="ito04">
+  <div class="container">
+    <div class="section-label" id="chapter-ito04">Chapter 04 — Phase 4 Completed — Big Picture</div>
+    <h2>Phase 4 Completed — Big Picture</h2>
+
+    <div class="highlight-box">
+      <strong>You learned all major Intermediate Operations.</strong>
+      <div class="comparison-grid" style="margin-top:16px;">
+        <div class="comparison-card">
+          <h3>Filtering</h3>
+          <ul>
+            <li><code>filter()</code></li>
+            <li><code>distinct()</code></li>
+            <li><code>limit()</code></li>
+            <li><code>skip()</code></li>
+            <li><code>takeWhile()</code></li>
+            <li><code>dropWhile()</code></li>
+          </ul>
+        </div>
+        <div class="comparison-card">
+          <h3>Transformation</h3>
+          <ul>
+            <li><code>map()</code></li>
+            <li><code>mapToInt()</code></li>
+            <li><code>boxed()</code></li>
+            <li><code>flatMap()</code></li>
+          </ul>
+        </div>
+      </div>
+      <div class="comparison-grid" style="margin-top:16px;">
+        <div class="comparison-card">
+          <h3>Sorting + Observation</h3>
+          <ul>
+            <li><code>sorted()</code></li>
+            <li><code>Comparator</code></li>
+            <li><code>thenComparing()</code></li>
+            <li><code>peek()</code></li>
+          </ul>
+        </div>
+        <div class="comparison-card">
+          <h3>90-Second Revision</h3>
+          <ul>
+            <li>Lazy</li>
+            <li>Return Stream</li>
+            <li>Chainable</li>
+            <li>No execution without terminal op</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">BIG PICTURE</div>
+      <h3>1. Categories and Core Properties</h3>
+      <p><strong>Intermediate Operations:</strong> Lazy, return Stream, chainable, no execution until terminal operation.</p>
+      <div class="flow">
+        <div class="flow-step highlight">Source</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight2">Intermediate Operations</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-step highlight3">Terminal Operation</div>
+      </div>
+      <p><strong>Categories:</strong></p>
+      <ul class="jre-list">
+        <li>Filtering → Keep / Remove</li>
+        <li>Transformation → Convert</li>
+        <li>Sorting → Reorder</li>
+        <li><code>peek</code> → Observe</li>
+      </ul>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">FILTERING</div>
+      <h3>2. Filtering — Detailed Recap with Code</h3>
+      <p>Filtering operations decide which elements remain in the stream.</p>
+      <pre><code>List&lt;Integer&gt; nums = List.of(1, 2, 2, 3, 4, 5, 6, 7);
+
+List&lt;Integer&gt; result = nums.stream()
+  .filter(n -&gt; n % 2 == 0)      // keep evens
+  .distinct()                    // remove duplicates
+  .skip(1)                       // skip first matched value
+  .limit(2)                      // keep only first 2 after skip
+  .toList();
+
+// result: [4, 6]</code></pre>
+      <pre><code>List&lt;Integer&gt; ordered = List.of(1, 2, 3, 10, 4, 5);
+
+List&lt;Integer&gt; take = ordered.stream()
+  .takeWhile(n -&gt; n &lt; 5)
+  .toList();
+// take: [1, 2, 3]
+
+List&lt;Integer&gt; drop = ordered.stream()
+  .dropWhile(n -&gt; n &lt; 5)
+  .toList();
+// drop: [10, 4, 5]</code></pre>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">TRANSFORMATION</div>
+      <h3>3. Transformation — Detailed Recap with Code</h3>
+      <p><code>map</code> transforms one element to one element. <code>flatMap</code> transforms one element to many and flattens.</p>
+      <pre><code>List&lt;String&gt; names = List.of("alice", "bob");
+
+List&lt;String&gt; upper = names.stream()
+  .map(String::toUpperCase)
+  .toList();
+// upper: [ALICE, BOB]</code></pre>
+      <pre><code>List&lt;Integer&gt; nums = List.of(1, 2, 3, 4);
+
+int sum = nums.stream()
+  .mapToInt(n -&gt; n)
+  .sum();
+// sum: 10</code></pre>
+      <pre><code>List&lt;Integer&gt; boxed = nums.stream()
+  .mapToInt(n -&gt; n * 2)
+  .boxed()
+  .toList();
+// boxed: [2, 4, 6, 8]</code></pre>
+      <pre><code>List&lt;List&lt;Integer&gt;&gt; nested = List.of(
+  List.of(1, 2),
+  List.of(3, 4)
+);
+
+List&lt;Integer&gt; flat = nested.stream()
+  .flatMap(List::stream)
+  .toList();
+// flat: [1, 2, 3, 4]</code></pre>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">SORTING + OBSERVATION</div>
+      <h3>4. Sorting + Observation — Detailed Recap with Code</h3>
+      <p><code>sorted()</code> is stateful because it needs visibility of multiple elements before producing ordered output.</p>
+      <pre><code>List&lt;Integer&gt; nums = List.of(4, 2, 5, 1);
+
+List&lt;Integer&gt; asc = nums.stream()
+  .sorted()
+  .toList();
+// asc: [1, 2, 4, 5]
+
+List&lt;Integer&gt; desc = nums.stream()
+  .sorted(Comparator.reverseOrder())
+  .toList();
+// desc: [5, 4, 2, 1]</code></pre>
+      <pre><code>Comparator&lt;Employee&gt; byDeptThenSalary = Comparator
+  .comparing(Employee::getDept)
+  .thenComparing(Employee::getSalary);
+
+List&lt;Employee&gt; sortedEmployees = employees.stream()
+  .sorted(byDeptThenSalary)
+  .toList();</code></pre>
+      <pre><code>long count = nums.stream()
+  .peek(System.out::println)   // observe for debugging
+  .count();
+
+// peek runs only because terminal op count() is present</code></pre>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">5</span>
+      <div class="concept-tag">RULES</div>
+      <h3>5. Rules You Must Remember</h3>
+      <ul class="jre-list">
+        <li><code>map</code> → Transform</li>
+        <li><code>flatMap</code> → Flatten</li>
+        <li><code>peek</code> → Debug / Observe</li>
+        <li><code>sorted</code> → Stateful</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>Observation vs Transformation:</strong></p>
+        <p><code>map()</code> changes element values. <code>peek()</code> inspects the same values without transforming stream elements.</p>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:48px;">Quick Revision</div>
+    <h3 style="margin-bottom:16px;">90-Second Revision</h3>
+    <pre><code>Intermediate Operations:
+
+Properties:
+Lazy
+Return Stream
+Chainable
+No execution
+
+Categories:
+Filtering
+→ Keep / Remove
+Transformation
+→ Convert
+Sorting
+→ Reorder
+peek
+→ Observe
+
+Rules:
+map
+→ Transform
+flatMap
+→ Flatten
+peek
+→ Debug
+sorted
+→ Stateful</code></pre>
+  </div>
+</section>
+
 
 <!-- FOOTER -->
 <footer>
