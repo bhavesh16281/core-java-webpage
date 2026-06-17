@@ -2782,6 +2782,24 @@
         <p>Understand why OOP exists before learning encapsulation, inheritance, polymorphism, and abstraction.</p>
         <span class="subsection-badge">7 chapters</span>
       </button>
+      <button class="subsection-card" onclick="switchSection('oops-aac')">
+        <div class="subsection-icon">🔗</div>
+        <h3>Association, Aggregation and COmposition</h3>
+        <p>Understand object relationships, ownership, and lifecycle dependency with practical examples.</p>
+        <span class="subsection-badge">5 chapters</span>
+      </button>
+      <button class="subsection-card" onclick="switchSection('oops-iac')">
+        <div class="subsection-icon">⚖️</div>
+        <h3>Interface vs Abstract class</h3>
+        <p>Understand identity vs capability and when to choose abstract classes or interfaces in interviews and projects.</p>
+        <span class="subsection-badge">1 chapter</span>
+      </button>
+      <button class="subsection-card" onclick="switchSection('oops-ivc')">
+        <div class="subsection-icon">🔄</div>
+        <h3>Inheritance vs Composition</h3>
+        <p>Master the IS-A vs HAS-A relationships and learn when to use inheritance and composition in real-world scenarios.</p>
+        <span class="subsection-badge">4 chapters</span>
+      </button>
     </div>
   </div>
 </div>
@@ -2868,6 +2886,25 @@
       <li class="chapter-item" data-section="oops-basics"><a href="#chapter-ob08" class="chapter-link" onclick="filterChapterContent(event, 'ob08')"><span class="chapter-num">08</span>Abstraction (Actual Meaning)</a></li>
       <li class="chapter-item" data-section="oops-basics"><a href="#chapter-ob09" class="chapter-link" onclick="filterChapterContent(event, 'ob09')"><span class="chapter-num">09</span>Abstract Class vs Interface</a></li>
       <li class="chapter-item" data-section="oops-basics"><a href="#chapter-ob10" class="chapter-link" onclick="filterChapterContent(event, 'ob10')"><span class="chapter-num">10</span>Interface Internals</a></li>
+
+        <!-- OOPS AAC Chapter -->
+        <li class="chapter-item" data-section="oops-aac"><a href="#chapter-oac01" class="chapter-link" onclick="filterChapterContent(event, 'oac01')"><span class="chapter-num">01</span>Why These Relationships Exist</a></li>
+        <li class="chapter-item" data-section="oops-aac"><a href="#chapter-oac02" class="chapter-link" onclick="filterChapterContent(event, 'oac02')"><span class="chapter-num">02</span>Aggregation</a></li>
+        <li class="chapter-item" data-section="oops-aac"><a href="#chapter-oac03" class="chapter-link" onclick="filterChapterContent(event, 'oac03')"><span class="chapter-num">03</span>Composition</a></li>
+        <li class="chapter-item" data-section="oops-aac"><a href="#chapter-oac04" class="chapter-link" onclick="filterChapterContent(event, 'oac04')"><span class="chapter-num">04</span>How to Identify Relationships</a></li>
+        <li class="chapter-item" data-section="oops-aac"><a href="#chapter-oac05" class="chapter-link" onclick="filterChapterContent(event, 'oac05')"><span class="chapter-num">05</span>The Biggest Misconception</a></li>
+
+        <!-- OOPS Interface vs Abstract Class Chapter -->
+        <li class="chapter-item" data-section="oops-iac"><a href="#chapter-oia01" class="chapter-link" onclick="filterChapterContent(event, 'oia01')"><span class="chapter-num">01</span>First Understand the REAL Problem They Solve</a></li>
+        <li class="chapter-item" data-section="oops-iac"><a href="#chapter-oia02" class="chapter-link" onclick="filterChapterContent(event, 'oia02')"><span class="chapter-num">02</span>Constructors & Multiple Inheritance</a></li>
+        <li class="chapter-item" data-section="oops-iac"><a href="#chapter-oia03" class="chapter-link" onclick="filterChapterContent(event, 'oia03')"><span class="chapter-num">03</span>Java 8 Changed Everything</a></li>
+        <li class="chapter-item" data-section="oops-iac"><a href="#chapter-oia04" class="chapter-link" onclick="filterChapterContent(event, 'oia04')"><span class="chapter-num">04</span>Complete Feature Comparison Table</a></li>
+
+        <!-- OOPS Inheritance vs Composition Chapter -->
+        <li class="chapter-item" data-section="oops-ivc"><a href="#chapter-oivc01" class="chapter-link" onclick="filterChapterContent(event, 'oivc01')"><span class="chapter-num">01</span>Inheritance vs Composition</a></li>
+        <li class="chapter-item" data-section="oops-ivc"><a href="#chapter-oivc02" class="chapter-link" onclick="filterChapterContent(event, 'oivc02')"><span class="chapter-num">02</span>The REAL Difference (Coupling)</a></li>
+        <li class="chapter-item" data-section="oops-ivc"><a href="#chapter-oivc03" class="chapter-link" onclick="filterChapterContent(event, 'oivc03')"><span class="chapter-num">03</span>Constructor Injection & Ownership</a></li>
+        <li class="chapter-item" data-section="oops-ivc"><a href="#chapter-oivc04" class="chapter-link" onclick="filterChapterContent(event, 'oivc04')"><span class="chapter-num">04</span>Decision Framework</a></li>
 
       <!-- JVM Chapters -->
   <!-- Streams: Introduction to Streams Chapters -->
@@ -10459,6 +10496,1671 @@ public class Test {
   </div>
 </section>
 
+<section data-chapter="oia01">
+  <div class="container">
+  <div class="section-label" id="chapter-oia01">Chapter 1 — Interface vs Abstract Class — Concept 1</div>
+  <h2>Interface vs Abstract Class — Concept 1</h2>
+  <h3>First Understand the REAL Problem They Solve</h3>
+
+  <p>Before comparing them, understand why both exist.</p>
+  <p>If you don’t understand this, the differences become memorization.</p>
+
+  <h3>Step 1 — Analogy</h3>
+  <p>Imagine building people for a company.</p>
+  <p>You need to create:</p>
+  <p>Developer</p>
+  <p>Tester</p>
+  <p>Manager</p>
+
+  <p>Question:</p>
+  <p>What things should ALL employees have?</p>
+
+  <p>Answer:</p>
+  <p>name</p>
+  <p>id</p>
+  <p>salary</p>
+
+  <p>But work differs:</p>
+  <p>Developer → writeCode()</p>
+  <p>Tester → testSoftware()</p>
+  <p>Manager → manageTeam()</p>
+
+  <p>Now there are TWO ways to design this.</p>
+
+  <h3>Option 1 — Abstract Class → Shared Base + Some Common Implementation</h3>
+  <p>You create:</p>
+  <p>Employee</p>
+  <p>which already contains:</p>
+  <p>name</p>
+  <p>id</p>
+  <p>salary</p>
+  <p>login()</p>
+  <p>logout()</p>
+  <p>and force subclasses to define:</p>
+  <p>work()</p>
+
+  <p>Visual:</p>
+  <pre><code>           Employee
+      (Abstract)
+
+  name
+  id
+  salary
+
+ login()
+ logout()
+
+ abstract work()
+
+    /    |    \
+   /     |     \
+Developer Tester Manager</code></pre>
+
+  <p>Meaning:</p>
+  <p>"You ARE an Employee."</p>
+  <p>Inheritance relationship.</p>
+
+  <h3>Option 2 — Interface → Contract / Capability</h3>
+  <p>Instead of giving implementation:</p>
+  <p>You define:</p>
+  <p>Workable</p>
+  <p>Rules:</p>
+  <p>work()</p>
+  <p>Any class can implement.</p>
+
+  <p>Visual:</p>
+  <pre><code>Workable
+---------
+work()
+
+Developer
+Tester
+Robot</code></pre>
+
+  <p>Meaning:</p>
+  <p>"If you implement me, you MUST provide work()."</p>
+  <p>No ownership.</p>
+  <p>Only capability.</p>
+
+  <h3>Step 2 — Technical Explanation</h3>
+
+  <h3>Abstract Class</h3>
+  <p>Used when classes are:</p>
+  <p>Closely related</p>
+  <p>Share state</p>
+  <p>Share code</p>
+  <p>Need partial implementation</p>
+
+  <p>Example:</p>
+  <pre><code>abstract class Employee {
+
+  String name;
+
+  void login() {
+    System.out.println("Login");
+  }
+
+  abstract void work();
+}</code></pre>
+
+  <p>Subclass:</p>
+  <pre><code>class Developer extends Employee {
+
+  @Override
+  void work() {
+    System.out.println("Coding");
+  }
+}</code></pre>
+
+  <p>Usage:</p>
+  <pre><code>Developer d = new Developer();
+
+d.login();
+d.work();</code></pre>
+
+  <p>Output:</p>
+  <pre><code>Login
+Coding</code></pre>
+
+  <h3>Interface</h3>
+  <p>Used when classes only share behavior.</p>
+
+  <p>Example:</p>
+  <pre><code>interface Workable {
+
+  void work();
+}</code></pre>
+
+  <p>Implementation:</p>
+  <pre><code>class Developer implements Workable {
+
+  @Override
+  public void work() {
+    System.out.println("Coding");
+  }
+}</code></pre>
+
+  <p>Usage:</p>
+  <pre><code>Developer d = new Developer();
+
+d.work();</code></pre>
+
+  <p>Output:</p>
+  <pre><code>Coding</code></pre>
+
+  <h3>Step 3 — Visual Comparison</h3>
+  <pre><code>ABSTRACT CLASS
+--------------------------------
+Parent-child
+Shares state
+Shares code
+Inheritance
+
+Employee
+   ↑
+Developer
+
+
+INTERFACE
+--------------------------------
+Capability
+Defines contract
+Loose coupling
+
+Workable
+   ↑
+Developer</code></pre>
+
+  <h3>Step 4 — The First BIG Difference</h3>
+  <p>Question:</p>
+  <p>Can abstract class store data?</p>
+  <pre><code>abstract class Employee {
+
+  int salary;
+}</code></pre>
+  <p>✔ YES</p>
+
+  <p>Can interface store instance state?</p>
+  <pre><code>interface Employee {
+
+  int salary = 100;
+}</code></pre>
+
+  <p>That becomes:</p>
+  <pre><code>public static final int salary = 100;</code></pre>
+  <p>NOT object state.</p>
+
+  <h3>Memory Trigger</h3>
+  <p>Abstract Class → "IS-A + Shared implementation"</p>
+  <p>Interface → "CAN-DO + Contract"</p>
+
+  <p>Examples:</p>
+  <p>Dog IS Animal</p>
+  <p>→ Abstract Class</p>
+  <p>Dog CAN Run</p>
+  <p>→ Interface</p>
+
+  <h3>🧠 Quick Check</h3>
+  <p>If multiple classes need shared fields and common methods → Interface or Abstract Class?</p>
+  <p>Which represents capability:</p>
+  <p>Flyable</p>
+  <p>Vehicle</p>
+  <p>Which statement sounds correct:</p>
+  <p>Dog IS Animal</p>
+  <p>Dog CAN Bark</p>
+
+  <p>Answer in your own words.</p>
+
+  <p>After that we'll continue to:</p>
+  <p>Constructors</p>
+  <p>Multiple inheritance</p>
+  <p>Default methods</p>
+  <p>Internal JVM behavior</p>
+  <p>Interview decision framework</p>
+  <p>Real project examples</p>
+  <p>Why interfaces became stronger after Java 8</p>
+
+  <p>1. Abstract class</p>
+  <p>2. Flyable</p>
+  <p>3. Dog IS Animal because if we use interface in this contexrt, we cannot add a contract method Bark as every animal cannot bark</p>
+
+  <p>Very good attempt. I can already see where your confusion is.</p>
+
+  <h3>Evaluation:</h3>
+
+  <p><strong>1. If multiple classes need shared fields and common methods → Interface or Abstract Class?</strong></p>
+  <p>Your answer:</p>
+  <p>Abstract class</p>
+  <p>✅ Correct.</p>
+  <p>Reason:</p>
+  <p>Shared state + shared implementation → Abstract Class.</p>
+  <p>Example:</p>
+  <pre><code>abstract class Employee {
+  String name;
+  void login(){}
+}</code></pre>
+  <p>Interface is not designed to hold object state.</p>
+
+  <p><strong>2. Which represents capability:</strong></p>
+  <p>Flyable</p>
+  <p>Vehicle</p>
+  <p>Your answer:</p>
+  <p>Flyable</p>
+  <p>✅ Correct.</p>
+  <p>Reason:</p>
+  <p>Flying is something an object can do.</p>
+  <p>Examples:</p>
+  <p>Bird CAN fly</p>
+  <p>Airplane CAN fly</p>
+  <p>Superman CAN fly</p>
+  <p>That is interface thinking.</p>
+
+  <p><strong>3. Which statement sounds correct:</strong></p>
+  <p>Dog IS Animal</p>
+  <p>Dog CAN Bark</p>
+  <p>Your answer:</p>
+  <p>Dog IS Animal because interface cannot add Bark as every animal cannot bark</p>
+  <p>Your final selection is correct:</p>
+  <p>✅ Dog IS Animal</p>
+  <p>But the reasoning needs correction.</p>
+  <p>You mixed inheritance hierarchy with behavior.</p>
+  <p>Let's fix that.</p>
+
+  <p>Correct thinking:</p>
+  <p>Dog IS Animal</p>
+  <p>→ Abstract Class (or normal parent class)</p>
+  <p>because Dog belongs to Animal hierarchy.</p>
+
+  <p>But:</p>
+  <p>Dog CAN Bark</p>
+  <p>could ALSO be Interface.</p>
+  <p>Example:</p>
+  <pre><code>interface Barkable {
+  void bark();
+}
+
+class Dog extends Animal implements Barkable {
+}</code></pre>
+
+  <p>Now:</p>
+  <p>Dog → IS Animal</p>
+  <p>Dog → CAN Bark</p>
+
+  <p>Notice:</p>
+  <p>Not every animal must bark.</p>
+  <p>That is exactly WHY interface exists.</p>
+
+  <p>Visual:</p>
+  <pre><code>             Animal
+       (Abstract)
+
+         ↑
+        Dog
+
+Dog implements Barkable
+Dog implements Runnable
+Dog implements Pet
+
+Inheritance → identity
+
+Interface → capability</code></pre>
+  </div>
+</section>
+
+<section data-chapter="oia02">
+  <div class="container">
+  <div class="section-label" id="chapter-oia02">Chapter 2 — Interface vs Abstract Class — Concept 2</div>
+  <h2>Interface vs Abstract Class — Concept 2</h2>
+  <h3>Constructors (One of the biggest confusion areas)</h3>
+
+  <p>This question eliminates many interview candidates.</p>
+
+  <h3>Analogy</h3>
+  <p>Imagine constructing a building.</p>
+  <p><strong>Abstract Class:</strong> Blueprint + some already built rooms.</p>
+  <p>So construction logic exists.</p>
+  <p><strong>Interface:</strong> Rule book only.</p>
+  <p>No construction.</p>
+
+  <h3>Abstract Class CAN have constructor</h3>
+  <p>Example:</p>
+  <pre><code>abstract class Employee {
+
+  Employee() {
+    System.out.println("Employee Constructor");
+  }
+}
+
+class Developer extends Employee {
+
+  Developer() {
+    System.out.println("Developer Constructor");
+  }
+}</code></pre>
+
+  <p>Execution:</p>
+  <pre><code>new Developer();</code></pre>
+
+  <p>Output:</p>
+  <pre><code>Employee Constructor
+Developer Constructor</code></pre>
+
+  <p><strong>Question:</strong> Why did Employee constructor execute?</p>
+  <p><strong>Answer:</strong> Because <strong>Developer IS Employee</strong>. Parent part must initialize first.</p>
+
+  <h3>Interface CANNOT have constructor</h3>
+  <p>Example:</p>
+  <pre><code>interface Flyable {
+
+  Flyable() {
+  }
+}</code></pre>
+
+  <p>Compile error.</p>
+  <p>Why? Interface does not create object state. It only defines a contract.</p>
+  <p>There is nothing to initialize.</p>
+
+  <h3>Internal JVM Thinking</h3>
+  <p>Object creation for <strong>new Developer()</strong>:</p>
+  <pre><code>Allocate memory
+  ↓
+Call Employee constructor
+  ↓
+Call Developer constructor
+  ↓
+Object ready</code></pre>
+  <p>Interface never participates in constructor chaining.</p>
+
+  <h3>Second BIG Difference — Multiple Inheritance</h3>
+
+  <h3>Abstract Class</h3>
+  <pre><code>class A {}
+class B {}
+
+class C extends A, B</code></pre>
+  <p>❌ Compile error. A class can extend only one class.</p>
+  <p>Reason: avoid ambiguity with inherited state/implementation.</p>
+
+  <h3>Interface</h3>
+  <pre><code>interface A {}
+interface B {}
+
+class C implements A, B</code></pre>
+  <p>✔ Allowed.</p>
+  <p>Why? Interfaces mainly model contracts/capabilities.</p>
+
+  <h3>Visual</h3>
+  <pre><code>Abstract Class chain:
+A
+↑
+B
+↑
+C
+
+Interface capabilities:
+Flyable   Runnable
+   ↖     ↗
+   Bird</code></pre>
+
+  <h3>🧠 Quick Check</h3>
+  <p>Why does abstract class allow constructor?</p>
+  <p>Why interface cannot have constructor?</p>
+  <p>Why can class implement multiple interfaces but not extend multiple classes?</p>
+
+  <p>Given answer:</p>
+  <p>1. because abstract classes contain blueprint and few methods</p>
+  <p>2. because interface can only define a contract</p>
+  <p>Since interfaces only define contracts, we can implement many interfaces because they mainly contain declarations. Abstract classes can also contain shared behavior/state and implementation.</p>
+
+  <h3>Evaluation</h3>
+  <p><strong>1. Why does abstract class allow constructor?</strong></p>
+  <p>🟡 Partially correct.</p>
+  <p>Better reasoning: constructor initializes inherited object state.</p>
+  <p>Even though we cannot create an abstract class object directly, a subclass object still contains the abstract parent part.</p>
+
+  <pre><code>class Developer extends Employee</code></pre>
+  <p>Runtime object internally has:</p>
+  <pre><code>Developer object
+
+Employee part:
+name
+salary
+
+Developer part:
+skills</code></pre>
+  <p>So JVM initializes Employee portion first.</p>
+  <p><strong>Memory trigger:</strong> Constructor initializes inherited state, not abstractness.</p>
+
+  <p><strong>2. Why interface cannot have constructor?</strong></p>
+  <p>✅ Correct.</p>
+  <p>Constructor is for instance state initialization. Interface has no instance state.</p>
+
+  <p><strong>3. Multiple interfaces vs multiple abstract classes</strong></p>
+  <p>✅ Strong interview-level reasoning.</p>
+  <p>Refinement: before Java 8, interfaces had only method declarations. Since Java 8+, they can also include <strong>default</strong>, <strong>static</strong>, and <strong>private</strong> methods.</p>
+  <p>Still, multiple interfaces work due to conflict-resolution rules and because interfaces primarily represent contracts.</p>
+
+  <div class="highlight-box">
+    <p><strong>Next:</strong> State vs Contract, Default Methods (Java 8), Interface fields, real project decisions, interview traps, and why interfaces became more powerful after Java 8.</p>
+  </div>
+  </div>
+</section>
+
+<section data-chapter="oia03">
+  <div class="container">
+  <div class="section-label" id="chapter-oia03">Chapter 3 — Interface vs Abstract Class — Concept 3</div>
+  <h2>Interface vs Abstract Class — Concept 3</h2>
+  <h3>Java 8 Changed Everything</h3>
+
+  <p>Before Java 8:</p>
+  <p>Interface = 100% abstraction.</p>
+  <p>After Java 8:</p>
+  <p>❌ Not fully true anymore.</p>
+  <p>Interfaces became stronger.</p>
+
+  <h3>New Interface Features</h3>
+  <p>Interface can now have:</p>
+  <p><strong>default</strong>, <strong>static</strong>, and <strong>private</strong> methods.</p>
+
+  <p>Example:</p>
+  <pre><code>interface Payment {
+
+  void pay();
+
+  default void validate() {
+    System.out.println("Validate");
+  }
+
+  static void utility() {
+    System.out.println("Utility");
+  }
+}</code></pre>
+
+  <p>Usage:</p>
+  <pre><code>class CreditCard implements Payment {
+
+  public void pay() {
+    System.out.println("Paid");
+  }
+}</code></pre>
+
+  <p>Execution:</p>
+  <pre><code>CreditCard c = new CreditCard();
+
+c.validate();</code></pre>
+
+  <p>Output:</p>
+  <pre><code>Validate</code></pre>
+
+  <h3>Question</h3>
+  <p>Now confusion starts:</p>
+  <p>If interfaces can have implementation now, why abstract class still exists?</p>
+  <p>This is a classic interview question.</p>
+
+  <h3>Answer</h3>
+  <p>Because they solve different problems.</p>
+
+  <h3>Interface → Share Behavior Contract</h3>
+  <p>Example:</p>
+  <pre><code>interface Notification {
+
+  void send();
+
+  default void log() {
+    System.out.println("Logged");
+  }
+}</code></pre>
+  <p>All implementers get optional reusable behavior.</p>
+
+  <h3>Abstract Class → Share Object Identity + State</h3>
+  <p>Example:</p>
+  <pre><code>abstract class Employee {
+
+  String name;
+
+  void login() {}
+}</code></pre>
+  <p>Subclasses inherit actual object structure and shared lifecycle/state.</p>
+
+  <h3>Visual</h3>
+  <pre><code>INTERFACE
+
+Rules
++
+small reusable behavior
+
+
+ABSTRACT CLASS
+
+State
++
+implementation
++
+identity</code></pre>
+
+  <h3>Real Project Example (Spring Boot)</h3>
+  <p>Suppose you have:</p>
+  <p>Email Notification</p>
+  <p>SMS Notification</p>
+  <p>Push Notification</p>
+
+  <p>Choose:</p>
+  <pre><code>interface NotificationService {
+  void send();
+}</code></pre>
+  <p>Reason: all send notifications differently, and there is no shared instance state.</p>
+
+  <p>Now suppose all employees have:</p>
+  <p>id</p>
+  <p>name</p>
+  <p>department</p>
+
+  <p>Choose:</p>
+  <pre><code>abstract class Employee</code></pre>
+  <p>Reason: shared object state + common base behavior.</p>
+
+  <h3>🧠 Quick Check</h3>
+  <p>After Java 8, can interface contain implementation?</p>
+  <p>If yes, does that mean interface and abstract class became identical? Why?</p>
+  <p>For this design, choose Interface or Abstract Class and explain:</p>
+  <pre><code>Payment
+   ↑
+CreditCard
+UPI
+NetBanking</code></pre>
+  <p>All have different payment logic.</p>
+
+  <p>For this design:</p>
+  <pre><code>Vehicle
+   ↑
+Car
+Bike
+Truck</code></pre>
+  <p>All vehicles have:</p>
+  <p>speed</p>
+  <p>engineNumber</p>
+  <p>start()</p>
+
+  <p>Choose and justify.</p>
+
+  <p>Given answer:</p>
+  <p>1. Yes after Java 8, interface can contain implementation and can have default, static and private methods.</p>
+  <p>2. No, interface and abstract class are still different because they serve different purposes.</p>
+  <p>3. Payment design → Interface (different payment logic).</p>
+  <p>4. Vehicle design → Abstract class (shared state + common implementation).</p>
+
+  <h3>Evaluation</h3>
+  <p><strong>1. Can interface contain implementation after Java 8?</strong></p>
+  <p>✅ Correct.</p>
+  <p>Precision:</p>
+  <p><strong>default</strong> → inherited implementation</p>
+  <p><strong>static</strong> → belongs to interface type</p>
+  <p><strong>private</strong> → internal helper methods used inside interface methods</p>
+
+  <p><strong>2. Did interface become same as abstract class?</strong></p>
+  <p>✅ Excellent answer.</p>
+  <p>Refinement:</p>
+  <p>Interface still primarily defines behavior contracts (with optional shared behavior), while abstract class defines identity + state + shared implementation.</p>
+  <p>Interfaces still do not model per-object instance state the way abstract classes can.</p>
+
+  <p><strong>3. Payment example</strong></p>
+  <p>✅ Correct choice: Interface.</p>
+  <pre><code>interface Payment {
+  void pay();
+}</code></pre>
+
+  <p><strong>4. Vehicle example</strong></p>
+  <p>✅ Correct choice: Abstract class because shared state exists.</p>
+
+  <h3>🧠 Quick Check (Interview Style)</h3>
+  <p>No rushing. Answer naturally.</p>
+
+  <h3>Question 1</h3>
+  <p>Design:</p>
+  <pre><code>Bird
+↑
+Sparrow
+Penguin
+Eagle</code></pre>
+
+  <p>Requirement:</p>
+  <p>All birds have:</p>
+  <p>name</p>
+  <p>age</p>
+  <p>eat()</p>
+
+  <p>Some birds can:</p>
+  <p>fly()</p>
+
+  <p>Choose:</p>
+  <p>Interface?</p>
+  <p>Abstract Class?</p>
+  <p>Combination?</p>
+  <p>Explain.</p>
+
+  <h3>Question 2</h3>
+  <p>Predict output:</p>
+  <pre><code>abstract class A {
+
+    A() {
+        System.out.println("A");
+    }
+}
+
+class B extends A {
+
+    B() {
+        System.out.println("B");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+        new B();
+    }
+}</code></pre>
+  <p>Output?</p>
+  <p>Explain JVM flow.</p>
+
+  <h3>Question 3 (Interview Favorite)</h3>
+  <p>True or False:</p>
+  <p><strong>"Whenever code reuse is needed, always use abstract class."</strong></p>
+  <p>Explain.</p>
+
+  <p>Given answer:</p>
+  <p>1. Abstract class because the requirement has state, common behaviour and contract all three.</p>
+  <p>2. A and B, because class A will be contained in B when object for B is created.</p>
+  <p>3. True.</p>
+
+  <h3>Review</h3>
+  <p><strong>1. Bird design</strong></p>
+  <p>🟡 Partially correct.</p>
+  <p>You identified state correctly, but there is a hidden requirement: only <strong>some</strong> birds can fly.</p>
+  <p>Best design is a combination:</p>
+  <pre><code>abstract class Bird {
+
+    String name;
+    int age;
+
+    void eat() {
+        System.out.println("Eating");
+    }
+}
+
+interface Flyable {
+    void fly();
+}
+
+class Sparrow extends Bird implements Flyable {
+
+    public void fly() {
+        System.out.println("Flying");
+    }
+}
+
+class Penguin extends Bird {
+}</code></pre>
+
+  <p>Visual:</p>
+  <pre><code>             Bird
+          (Abstract)
+
+      name
+      age
+      eat()
+
+        ↑
+  ----------------
+  |              |
+Sparrow       Penguin
+
+Sparrow → Flyable
+Eagle   → Flyable</code></pre>
+  <p>Why?</p>
+  <p>All birds <strong>ARE</strong> Bird.</p>
+  <p>Only some birds <strong>CAN</strong> fly.</p>
+  <p>This is the most common real-world pattern: <strong>Abstract class + Interface together</strong>.</p>
+
+  <p><strong>2. Constructor output</strong></p>
+  <p>✅ Correct output: <strong>A</strong> then <strong>B</strong>.</p>
+  <p>Refinement:</p>
+  <p>Not because A is a separate object in heap. It is the parent part of the same B object.</p>
+  <p>Flow:</p>
+  <pre><code>new B()
+↓
+Memory allocated
+↓
+A constructor runs
+↓
+B constructor runs
+↓
+Object returned</code></pre>
+
+  <p>Visual:</p>
+  <pre><code>Heap
+
+B Object
+----------------
+A Part
+B Part
+----------------</code></pre>
+
+  <p><strong>3. "Whenever code reuse is needed, always use abstract class"</strong></p>
+  <p>❌ False (this is a common interview trap).</p>
+  <p>Code reuse alone is not enough reason for inheritance.</p>
+
+  <p>Bad design:</p>
+  <pre><code>abstract class Payment {
+    void pay() {}
+}
+
+class UPI extends Payment {}
+class Card extends Payment {}</code></pre>
+
+  <p>Better when behavior varies:</p>
+  <pre><code>interface Payment {
+    void pay();
+}</code></pre>
+
+  <p>Key point:</p>
+  <p><strong>Reuse != Inheritance</strong></p>
+  <p>Modern Java often prefers:</p>
+  <p><strong>Composition &gt; Inheritance</strong></p>
+
+  <p>Example:</p>
+  <pre><code>class Engine {}
+
+class Car {
+    Engine engine;
+}</code></pre>
+
+  <h3>The Rule That Removes 90% of Confusion</h3>
+  <p>Ask two questions:</p>
+
+  <p><strong>Question 1: Does this represent identity? (IS-A)</strong></p>
+  <p>Examples:</p>
+  <p>Dog IS Animal</p>
+  <p>Car IS Vehicle</p>
+  <p>Developer IS Employee</p>
+  <p>→ Prefer Abstract Class.</p>
+
+  <p><strong>Question 2: Does this represent capability? (CAN-DO)</strong></p>
+  <p>Examples:</p>
+  <p>Dog CAN Bark</p>
+  <p>Bird CAN Fly</p>
+  <p>User CAN Login</p>
+  <p>→ Prefer Interface.</p>
+
+  <p>Visual:</p>
+  <pre><code>ABSTRACT
+
+Employee
+   ↑
+Developer
+
+
+INTERFACE
+
+Runnable
+Serializable
+Comparable</code></pre>
+
+  <h3>🧠 Mini Challenge (final before comparison table)</h3>
+  <p>Choose and explain:</p>
+  <p>Animal</p>
+  <p>Dog</p>
+  <p>Cat</p>
+  <p>Payable</p>
+  <p>Employee</p>
+  <p>Freelancer</p>
+  <p>Document</p>
+  <p>PDF</p>
+  <p>Word</p>
+  <p>Runnable</p>
+  <p>Downloadable</p>
+  <p>Uploadable</p>
+
+  <p>For each:</p>
+  <p>Interface?</p>
+  <p>Abstract Class?</p>
+  <p>Combination?</p>
+  <p>Why?</p>
+
+  <p>After this we’ll do the full comparison table + interview decision tree.</p>
+
+  <p>Given answer:</p>
+  <p>1. Abstraction, because Dog is an animal and Cat is an animal; both can have state and common behaviour.</p>
+  <p>2. Interface because both Employee and Freelancer can be payable, so Payable can define a contract.</p>
+  <p>3. Combination because PDF and Word can share common properties/state and also share contract-based behavior.</p>
+  <p>4. Interface (guess).</p>
+
+  <h3>Review</h3>
+  <p><strong>1. Animal → Dog / Cat</strong></p>
+  <p>✅ Correct: Abstract class.</p>
+  <p>Reason: Dog <strong>IS</strong> Animal, Cat <strong>IS</strong> Animal, with shared state/behavior.</p>
+  <pre><code>abstract class Animal {
+
+    String name;
+
+    void eat() {
+        System.out.println("Eating");
+    }
+
+    abstract void sound();
+}
+
+class Dog extends Animal {
+    void sound() {
+        System.out.println("Bark");
+    }
+}
+
+class Cat extends Animal {
+    void sound() {
+        System.out.println("Meow");
+    }
+}</code></pre>
+
+  <p><strong>2. Payable → Employee / Freelancer</strong></p>
+  <p>✅ Correct: Interface.</p>
+  <p>Reason: Employee <strong>CAN</strong> be paid, Freelancer <strong>CAN</strong> be paid (capability).</p>
+  <pre><code>interface Payable {
+    void pay();
+}
+
+class Employee implements Payable {}
+class Freelancer implements Payable {}</code></pre>
+
+  <p><strong>3. Document → PDF / Word</strong></p>
+  <p>🟡 Good conclusion: Combination is best.</p>
+  <p>Refinement: shared state/lifecycle in abstract class, optional capabilities in interface.</p>
+  <pre><code>abstract class Document {
+
+    String title;
+
+    void open() {
+        System.out.println("Opening");
+    }
+
+    abstract void render();
+}
+
+interface Printable {
+    void print();
+}
+
+class PDF extends Document implements Printable {}
+class Word extends Document implements Printable {}</code></pre>
+
+  <p><strong>4. Runnable / Downloadable / Uploadable</strong></p>
+  <p>✅ Correct: Interface.</p>
+  <p>Reason: these represent behaviors/capabilities, not object identity.</p>
+  <pre><code>interface Downloadable {
+    void download();
+}
+
+interface Uploadable {
+    void upload();
+}
+
+class CloudStorage implements Downloadable, Uploadable {
+}</code></pre>
+
+  <div class="highlight-box">
+    <p><strong>Next:</strong> complete decision framework, real Spring examples, common mistakes, and the IS-A vs CAN-DO checklist applied to interview scenarios.</p>
+  </div>
+  </div>
+</section>
+
+<section data-chapter="oia04">
+  <div class="container">
+    <div class="section-label" id="chapter-oia04">Chapter 4 — Interface vs Abstract Class</div>
+    <h2>Complete Feature Comparison Table</h2>
+
+    <table style="width: 100%; margin: 20px 0;">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Interface</th>
+          <th>Abstract Class</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Relationship</td><td>CAN-DO</td><td>IS-A</td></tr>
+        <tr><td>Constructor</td><td>❌ No</td><td>✅ Yes</td></tr>
+        <tr><td>Object State</td><td>❌ No</td><td>✅ Yes</td></tr>
+        <tr><td>Instance Variables</td><td>❌ No</td><td>✅ Yes</td></tr>
+        <tr><td>Multiple Inheritance</td><td>✅ Yes</td><td>❌ No</td></tr>
+        <tr><td>Methods</td><td>abstract/default/static/private</td><td>abstract + concrete</td></tr>
+        <tr><td>Access Modifiers</td><td>public</td><td>all</td></tr>
+        <tr><td>Extends</td><td>multiple interfaces</td><td>one class</td></tr>
+        <tr><td>Implements</td><td>class implements</td><td>class extends</td></tr>
+        <tr><td>Best For</td><td>Contracts</td><td>Shared logic</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Inheritance vs Composition Section -->
+<section data-chapter="oivc01">
+  <div class="container">
+    <div class="section-label" id="chapter-oivc01">Chapter 1 — Inheritance vs Composition</div>
+    <h2>Inheritance vs Composition</h2>
+
+    <h3>Concept 1 — Why do Composition and Inheritance even exist?</h3>
+    <p>Before definitions, understand the problem.</p>
+    <p>Imagine building software.</p>
+    <p>You create:</p>
+    <ul>
+      <li>Car</li>
+      <li>Engine</li>
+      <li>Dog</li>
+      <li>Animal</li>
+      <li>Employee</li>
+      <li>Address</li>
+    </ul>
+    <p><strong>Question:</strong></p>
+    <p>How do objects relate to each other?</p>
+    <p><strong>Examples:</strong></p>
+    <ul>
+      <li>A Car contains an Engine</li>
+      <li>A Dog is an Animal</li>
+      <li>An Employee has an Address</li>
+    </ul>
+    <p>Java gives multiple ways to model relationships.</p>
+    <p>Two important ones:</p>
+    <ul>
+      <li><strong>Inheritance → IS-A</strong></li>
+      <li><strong>Composition → HAS-A</strong></li>
+    </ul>
+
+    <h3>Concept 2 — Inheritance</h3>
+
+    <h4>Step 1: Analogy</h4>
+    <p>Imagine a family.</p>
+    <p>A son inherits:</p>
+    <ul>
+      <li>surname</li>
+      <li>properties</li>
+      <li>characteristics</li>
+    </ul>
+    <p><strong>Example:</strong></p>
+    <pre><code>Animal
+  ↓
+Dog</code></pre>
+    <p>Dog automatically gets:</p>
+    <ul>
+      <li>eat()</li>
+      <li>sleep()</li>
+    </ul>
+    <p>and adds:</p>
+    <ul>
+      <li>bark()</li>
+    </ul>
+    <p>Dog is still an Animal.</p>
+    <p>That is inheritance.</p>
+
+    <h4>Step 2: Technical Definition</h4>
+    <p><strong>Inheritance means:</strong></p>
+    <p>One class acquires properties and behavior of another class.</p>
+    <p><strong>Java keyword:</strong> extends</p>
+    <p><strong>Example:</strong></p>
+    <pre><code>class Animal {
+    void eat() {
+        System.out.println("Eating");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Barking");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        dog.eat();
+        dog.bark();
+    }
+}
+</code></pre>
+    <p><strong>Output:</strong></p>
+    <pre><code>Eating
+Barking</code></pre>
+
+    <h4>Visual Representation</h4>
+    <pre><code>Animal
+  ↑
+extends
+  ↑
+Dog</code></pre>
+    <p><strong>Meaning:</strong> Dog IS-A Animal</p>
+
+    <h4>Real World Examples</h4>
+    <ul>
+      <li>Car IS-A Vehicle</li>
+      <li>Cat IS-A Animal</li>
+      <li>SavingsAccount IS-A Account</li>
+      <li>Manager IS-A Employee</li>
+    </ul>
+
+    <h4>Interview Definition</h4>
+    <p><strong>If interviewer asks: What is inheritance?</strong></p>
+    <p><strong>Answer:</strong></p>
+    <p>Inheritance is an OOP mechanism where a child class acquires properties and behavior of a parent class to achieve code reuse and model an IS-A relationship.</p>
+
+    <h3>Concept 3 — Composition</h3>
+
+    <h4>Now the important one.</h4>
+
+    <h4>Step 1: Analogy</h4>
+    <p>Think about a Car.</p>
+    <p><strong>Question:</strong> Is Engine a Car?</p>
+    <p>NO.</p>
+    <p><strong>Question:</strong> Does Car have an Engine?</p>
+    <p>YES.</p>
+    <p>Engine exists inside Car.</p>
+    <p>That is composition.</p>
+
+    <h4>Step 2: Technical Definition</h4>
+    <p><strong>Composition means:</strong></p>
+    <p>One object contains another object and owns its lifecycle.</p>
+    <p><strong>Relationship:</strong> HAS-A</p>
+    <p><strong>Example:</strong></p>
+    <pre><code>class Engine {
+    void start() {
+        System.out.println("Engine Started");
+    }
+}
+
+class Car {
+    private Engine engine;
+
+    Car() {
+        engine = new Engine();
+    }
+
+    void drive() {
+        engine.start();
+        System.out.println("Driving");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Car car = new Car();
+        car.drive();
+    }
+}
+</code></pre>
+    <p><strong>Output:</strong></p>
+    <pre><code>Engine Started
+Driving</code></pre>
+
+    <h4>Visual Representation</h4>
+    <pre><code>Car
+ │
+ ▼
+Engine</code></pre>
+    <p><strong>Meaning:</strong> Car HAS-A Engine</p>
+
+    <h4>Real World Examples</h4>
+    <ul>
+      <li>House HAS-A Room</li>
+      <li>Employee HAS-A Address</li>
+      <li>Computer HAS-A CPU</li>
+      <li>Order HAS-A Items</li>
+    </ul>
+
+    <h4>Interview Definition</h4>
+    <p>Composition is an object relationship where one class contains another class to reuse functionality and represent a HAS-A relationship.</p>
+
+    <h3>First Big Difference</h3>
+    <p><strong>Inheritance → IS-A</strong></p>
+    <p><strong>Composition → HAS-A</strong></p>
+    <p><strong>Examples:</strong></p>
+    <ul>
+      <li>Dog IS-A Animal</li>
+      <li>Employee HAS-A Address</li>
+    </ul>
+
+    <h3>Mental Trick (Very Important)</h3>
+    <p><strong>Ask:</strong></p>
+    <p><strong>Question 1:</strong> Can I say: X IS A Y ?</p>
+    <p>If YES → Inheritance</p>
+    <p><strong>Example:</strong> Dog IS-A Animal</p>
+    <p><strong>Question 2:</strong> Can I say: X HAS A Y ?</p>
+    <p>If YES → Composition</p>
+    <p><strong>Example:</strong> Car HAS-A Engine</p>
+
+    <h3>Interview Trap</h3>
+    <p><strong>Bad Design:</strong></p>
+    <pre><code>class Car extends Engine</code></pre>
+    <p><strong>Ask:</strong> Is Car an Engine?</p>
+    <p>NO ❌</p>
+    <p><strong>Correct:</strong></p>
+    <pre><code>class Car {
+    Engine engine;
+}</code></pre>
+
+    <h3>🧠 Quick Check (Answer without looking above)</h3>
+    <ol>
+      <li>Dog → Animal → Composition or Inheritance? Why?</li>
+      <li>Employee → Address → Composition or Inheritance? Why?</li>
+      <li>Why is this wrong?
+        <pre><code>class House extends Room</code></pre>
+      </li>
+    </ol>
+
+    <h3>Evaluation of Common Answers</h3>
+
+    <h4>Q1: Dog → Animal → Composition or Inheritance?</h4>
+    <p><strong>Correct Answer:</strong> Inheritance</p>
+    <p><strong>Reasoning:</strong></p>
+    <p>Dog inherits common behavior and state from Animal because Dog is a specialized type of Animal (IS-A relationship).</p>
+    <p>Better interview wording: Avoid saying only "obtain all properties". Inheritance is not only for reuse — it models hierarchy.</p>
+
+    <h4>Q2: Employee → Address → Composition or Inheritance?</h4>
+    <p><strong>Correct Answer:</strong> Composition (HAS-A relationship)</p>
+    <p><strong>Important Note:</strong> Ownership determines Composition vs Aggregation, not Composition vs Inheritance.</p>
+    <p><strong>Example:</strong></p>
+    <pre><code>class Employee {
+    Address address;
+}</code></pre>
+    <p>This tells us:</p>
+    <ul>
+      <li>✅ Employee HAS-A Address</li>
+      <li>❌ But ownership is NOT automatically guaranteed</li>
+    </ul>
+    <p><strong>Safer Answer:</strong> Employee HAS-A Address → Composition (broad OOP relationship), ownership depends on implementation.</p>
+
+    <h4>Q3: Why is this wrong? class House extends Room</h4>
+    <p><strong>Answer:</strong> Because we need to ask the IS-A question.</p>
+    <p>House IS-A Room? <strong>NO ❌</strong></p>
+    <p>But: House HAS-A Room? <strong>YES ✅</strong></p>
+    <p><strong>Therefore:</strong></p>
+    <pre><code>class House {
+    Room room;
+}</code></pre>
+
+    <h3>Important Interview Insight</h3>
+    <p><strong>This sentence alone solves many questions:</strong></p>
+    <p><strong>Inheritance → models identity</strong></p>
+    <p><strong>Composition → models collaboration</strong></p>
+    <p><strong>Example:</strong></p>
+    <p><strong>Inheritance:</strong> Dog → Animal → Dog becomes Animal.</p>
+    <p><strong>Composition:</strong> Car → Engine → Car uses Engine.</p>
+
+  </div>
+</section>
+
+<!-- Inheritance vs Composition Chapter 2 -->
+<section data-chapter="oivc02">
+  <div class="container">
+    <div class="section-label" id="chapter-oivc02">Chapter 2 — The REAL Difference (Coupling)</div>
+    <h2>The REAL Difference (Where interviews become tricky)</h2>
+
+    <p>Many people think:</p>
+    <ul>
+      <li>Inheritance = reuse</li>
+      <li>Composition = reuse</li>
+    </ul>
+    <p><strong>Wrong.</strong></p>
+    <p>Both reuse code.</p>
+    <p><strong>Difference is coupling.</strong></p>
+
+    <h3>Analogy</h3>
+    <p>Imagine two employees.</p>
+    <p><strong>Employee A (Inheritance)</strong></p>
+    <p>Employee permanently attached to manager</p>
+    <p>If manager changes → employee affected.</p>
+    <p><strong>Employee B (Composition)</strong></p>
+    <p>Employee works with manager</p>
+    <p>Manager changes → employee survives.</p>
+    <p><strong>Composition creates flexibility.</strong></p>
+
+    <h3>Technical View</h3>
+    <p><strong>Inheritance:</strong></p>
+    <pre><code>class Animal {
+    void eat(){}
+}
+
+class Dog extends Animal {}
+</code></pre>
+    <p>Dog is tightly connected.</p>
+    <p><strong>Composition:</strong></p>
+    <pre><code>class Engine {}
+
+class Car {
+    Engine engine;
+}
+</code></pre>
+    <p>Engine can change.</p>
+
+    <h3>Visual</h3>
+    <p><strong>Inheritance</strong></p>
+    <pre><code>Dog
+ ↑
+Animal
+
+Strong hierarchy.</code></pre>
+    <p><strong>Composition</strong></p>
+    <pre><code>Car
+ │ uses
+ ▼
+Engine
+
+Loose collaboration.</code></pre>
+
+    <h3>Example: Why Composition is Usually Preferred</h3>
+    <p><strong>Suppose:</strong></p>
+    <pre><code>class PetrolEngine {}
+
+class Car extends PetrolEngine
+</code></pre>
+    <p><strong>Problem:</strong></p>
+    <p>Can Car become Electric?</p>
+    <p>Hard.</p>
+    <p><strong>Composition:</strong></p>
+    <pre><code>class Car {
+    Engine engine;
+}
+</code></pre>
+    <p>Now:</p>
+    <pre><code>car.setEngine(new ElectricEngine());
+</code></pre>
+    <p><strong>Flexible.</strong></p>
+
+    <h3>Interview Gold Question</h3>
+    <p><strong>Why is Composition preferred over Inheritance?</strong></p>
+    <p><strong>Expected answer:</strong></p>
+    <p>Composition creates loose coupling, better flexibility, easier testing, and avoids rigid class hierarchies.</p>
+
+    <h3>🧠 Quick Check 2</h3>
+    <p>Answer these:</p>
+    <ol>
+      <li>Which is better?
+        <pre><code>class Bird extends Wings
+
+OR
+
+class Bird {
+    Wings wings;
+}</code></pre>
+        Why?
+      </li>
+      <li>Which relationship? Laptop → Keyboard: Inheritance or Composition?</li>
+      <li>Why is Composition considered more flexible than Inheritance?</li>
+    </ol>
+    <p>Answer in your own words.</p>
+    <p>After this we'll go deeper into:</p>
+    <ul>
+      <li>Constructor Injection vs Composition (this connects to your previous question)</li>
+      <li>Ownership</li>
+      <li>Strong vs weak relationship</li>
+      <li>Real interview decision framework</li>
+      <li>"Favor Composition over Inheritance" principle</li>
+    </ul>
+
+    <h3>Sample Student Answers and Evaluation</h3>
+
+    <h4>Q1: Which is better? class Bird extends Wings OR class Bird { Wings wings; }?</h4>
+    <p><strong>Student Answer:</strong></p>
+    <p>class Bird { Wings wings; } is better because of loose coupling, in future we can change the wings object and the bird doesn't have any dependency</p>
+    <p><strong>✅ Correct direction.</strong></p>
+    <p><strong>Important correction:</strong></p>
+    <p>Your statement: "bird doesn't have any dependency"</p>
+    <p>Not exactly.</p>
+    <p>Bird still depends on Wings.</p>
+    <p><strong>Difference is:</strong></p>
+    <ul>
+      <li>Inheritance → Strong dependency (identity)</li>
+      <li>Composition → Controlled dependency (collaboration)</li>
+    </ul>
+    <p><strong>Better interview answer:</strong></p>
+    <p>Bird should use Composition because Bird HAS-A Wings, not IS-A Wings. Composition allows changing the implementation of Wings without changing Bird.</p>
+
+    <h4>Q2: Laptop → Keyboard: Inheritance or Composition?</h4>
+    <p><strong>Student Answer:</strong> Composition</p>
+    <p><strong>✅ Correct</strong></p>
+    <p><strong>Reason:</strong></p>
+    <p>Laptop HAS-A Keyboard</p>
+    <p>Not: Laptop IS-A Keyboard</p>
+
+    <h4>Q3: Why is Composition considered more flexible than Inheritance?</h4>
+    <p><strong>Student Answer:</strong></p>
+    <p>Composition is preferred because of loose coupling and flexibility in object creation</p>
+    <p><strong>✅ Correct.</strong></p>
+    <p><strong>Improve it to:</strong></p>
+    <p>Composition is preferred because objects collaborate instead of becoming part of rigid hierarchies, making systems easier to modify, test, extend, and maintain.</p>
+
+  </div>
+</section>
+
+<!-- Inheritance vs Composition Chapter 3 -->
+<section data-chapter="oivc03">
+  <div class="container">
+    <div class="section-label" id="chapter-oivc03">Chapter 3 — Constructor Injection & Ownership</div>
+    <h2>Composition ≠ Constructor Injection</h2>
+
+    <p>You mentioned this idea before in earlier learning sessions, so let's make it crystal clear.</p>
+    <p>Many people think:</p>
+    <p><strong>Constructor Injection = Composition</strong></p>
+    <p><strong>Wrong ❌</strong></p>
+    <p>Constructor injection is one way to create composition.</p>
+
+    <h3>Analogy</h3>
+    <p>Imagine:</p>
+    <p>Car uses Engine.</p>
+    <p><strong>Question:</strong></p>
+    <p>How does Car get Engine?</p>
+    <p><strong>Option 1:</strong></p>
+    <p>Car creates it.</p>
+    <pre><code>Car → creates Engine</code></pre>
+    <p><strong>Option 2:</strong></p>
+    <p>Someone gives Engine.</p>
+    <pre><code>Mechanic → gives Engine → Car</code></pre>
+    <p>Both are Composition.</p>
+
+    <h3>Example 1 — Composition without Constructor Injection</h3>
+    <pre><code>class Engine {
+
+}
+
+class Car {
+
+    private Engine engine;
+
+    Car() {
+        engine = new Engine();
+    }
+}
+</code></pre>
+    <p><strong>Visual:</strong></p>
+    <pre><code>Car
+ │ creates
+ ▼
+Engine</code></pre>
+    <p>This is:</p>
+    <ul>
+      <li>✅ Composition</li>
+      <li>❌ Not constructor injection</li>
+    </ul>
+
+    <h3>Example 2 — Composition using Constructor Injection</h3>
+    <pre><code>class Engine {
+
+}
+
+class Car {
+
+    private Engine engine;
+
+    Car(Engine engine) {
+        this.engine = engine;
+    }
+
+}
+
+Usage:
+
+Engine engine = new Engine();
+
+Car car = new Car(engine);
+</code></pre>
+    <p><strong>Visual:</strong></p>
+    <pre><code>Main
+ │
+ ▼
+Engine
+ │
+ ▼
+Car</code></pre>
+    <p>This is:</p>
+    <ul>
+      <li>✅ Composition</li>
+      <li>✅ Constructor Injection</li>
+    </ul>
+
+    <h3>Important Interview Rule</h3>
+    <p><strong>Composition answers:</strong> Who uses whom?</p>
+    <p><strong>DI answers:</strong> Who provides whom?</p>
+    <p>Different questions.</p>
+
+    <h2>Concept 6 — Ownership (This is where Composition becomes strict)</h2>
+
+    <p>This is advanced OOP thinking.</p>
+    <p>Not every HAS-A becomes true Composition.</p>
+
+    <h3>Example 1: Strong Ownership → Composition</h3>
+    <pre><code>class House {
+
+    private Room room = new Room();
+
+}
+</code></pre>
+    <p>If House dies:</p>
+    <p>Room dies</p>
+    <p><strong>Visual:</strong></p>
+    <pre><code>House
+ │ owns
+ ▼
+Room</code></pre>
+
+    <h3>Example 2: Weak Ownership → Aggregation</h3>
+    <pre><code>class Employee {
+
+    Address address;
+
+    Employee(Address address){
+        this.address = address;
+    }
+
+}
+</code></pre>
+    <p>Address survives.</p>
+    <p><strong>Visual:</strong></p>
+    <pre><code>Employee
+ │ uses
+ ▼
+Address</code></pre>
+
+    <h3>Interview Shortcut</h3>
+    <p><strong>Ask:</strong></p>
+    <p>Can child exist independently?</p>
+    <p><strong>NO → Composition</strong></p>
+    <p><strong>YES → Aggregation</strong></p>
+    <p><strong>Example:</strong></p>
+    <p>House → Room</p>
+    <p>Room independent? NO</p>
+    <p>→ Composition.</p>
+    <p>Employee → Address</p>
+    <p>Address independent? YES</p>
+    <p>→ Aggregation.</p>
+
+    <h3>Architecture View (Very Important)</h3>
+    <p>Good designs often look like:</p>
+    <pre><code>Controller
+   ↓
+Service
+   ↓
+Repository</code></pre>
+    <p>These layers mostly collaborate.</p>
+    <p>Composition dominates modern applications.</p>
+    <p>Inheritance exists but is used carefully.</p>
+    <p>Spring itself heavily prefers:</p>
+    <p><strong>Favor Composition over Inheritance</strong></p>
+
+    <h3>🧠 Quick Check 3</h3>
+    <p>Answer these:</p>
+    <ol>
+      <li>True or False: Constructor Injection automatically means Composition. Why?</li>
+      <li><pre><code>class Mobile {
+    Battery battery;
+}</code></pre>
+      Composition or Inheritance? How do you decide?</li>
+      <li><pre><code>class Cat extends Animal</code></pre>
+      Why is inheritance correct here but not: <pre><code>class Car extends Engine</code></pre>
+      Try answering in interview language.</li>
+    </ol>
+    <p>Answer in your own words.</p>
+
+    <h3>Sample Student Answers and Evaluation</h3>
+
+    <h4>Q1: True or False: Constructor Injection automatically means Composition</h4>
+    <p><strong>Student Answer:</strong></p>
+    <p>False, Constructor injection doesn't mean composition because we can create composition even without constructor injection</p>
+    <p><strong>✅ Correct.</strong></p>
+    <p><strong>Small improvement:</strong></p>
+    <p><strong>Constructor Injection answers:</strong> How dependency is supplied</p>
+    <p><strong>Composition answers:</strong> How objects are related</p>
+    <p><strong>Interview version:</strong></p>
+    <p>Constructor injection is a dependency injection technique, while composition is an object relationship. Constructor injection can be used to implement composition but does not define it.</p>
+
+    <h4>Q2: class Mobile { Battery battery; } — Composition or Inheritance? How do you decide?</h4>
+    <p><strong>Student Answer:</strong></p>
+    <p>Composition because it is HAS-A relationship.</p>
+    <p><strong>✅ Correct.</strong></p>
+    <p><strong>Small improvement:</strong></p>
+    <p>Ask two questions:</p>
+    <p>Mobile IS-A Battery ? → NO</p>
+    <p>Mobile HAS-A Battery ? → YES</p>
+    <p>So:</p>
+    <pre><code>class Mobile {
+    Battery battery;
+}</code></pre>
+    <p>Correct.</p>
+
+    <h4>Q3: class Cat extends Animal — Why is inheritance correct here but not: class Car extends Engine?</h4>
+    <p><strong>Student Answer:</strong></p>
+    <p>Cat IS-A animal but Car HAS-A engine</p>
+    <p><strong>✅ Perfect answer.</strong></p>
+    <p><strong>Interview enhancement:</strong></p>
+    <p>Cat extends Animal because Cat IS-A Animal — a specialized type with its own specific behavior. However, Car should NOT extend Engine because Car is NOT a type of Engine. Car HAS-A Engine, making composition the correct choice.</p>
+
+  </div>
+</section>
+
+<!-- Inheritance vs Composition Chapter 4 -->
+<section data-chapter="oivc04">
+  <div class="container">
+    <div class="section-label" id="chapter-oivc04">Chapter 4 — Decision Framework</div>
+    <h2>How to choose in interviews</h2>
+
+    <p>Suppose interviewer asks:</p>
+    <p><strong>Should this be Composition or Inheritance?</strong></p>
+    <p><strong>Do NOT guess.</strong></p>
+    <p>Use this framework.</p>
+
+    <h3>Step 1 — Ask IS-A</h3>
+    <p><strong>Example:</strong></p>
+    <pre><code>Dog → Animal</code></pre>
+    <p><strong>Question:</strong></p>
+    <p>Dog IS-A Animal?</p>
+    <p><strong>YES</strong></p>
+    <p>→ Inheritance</p>
+
+    <h3>Step 2 — Ask HAS-A</h3>
+    <p><strong>Example:</strong></p>
+    <pre><code>Car → Engine</code></pre>
+    <p><strong>Question:</strong></p>
+    <p>Car HAS-A Engine?</p>
+    <p><strong>YES</strong></p>
+    <p>→ Composition</p>
+
+    <h3>Step 3 — Ask Future Change</h3>
+    <p><strong>Example:</strong></p>
+    <p>Today:</p>
+    <pre><code>Car → PetrolEngine</code></pre>
+    <p>Tomorrow:</p>
+    <pre><code>Car → ElectricEngine</code></pre>
+    <p>If likely to change:</p>
+    <p>→ Composition</p>
+
+    <h3>Step 4 — Ask Reusability</h3>
+    <p>Need hierarchy?</p>
+    <pre><code>Animal
+ ├── Dog
+ └── Cat</code></pre>
+    <p>→ Inheritance</p>
+    <p>Need collaboration?</p>
+    <pre><code>Order
+ ↓
+PaymentService</code></pre>
+    <p>→ Composition</p>
+
+    <h3>Architecture Visualization</h3>
+    <p><strong>Use Inheritance</strong></p>
+    <pre><code>│
+├─ Natural hierarchy
+├─ Shared identity
+└─ Stable relationship</code></pre>
+    <p><strong>Use Composition</strong></p>
+    <pre><code>│
+├─ Flexibility
+├─ Replace behavior
+├─ Dependency injection
+└─ Collaboration</code></pre>
+
+    <h3>Real Spring Boot Examples (important for interviews)</h3>
+
+    <h4>Example 1:</h4>
+    <pre><code>@Service
+class UserService {
+
+    private UserRepository repository;
+
+}
+</code></pre>
+    <p><strong>Question:</strong></p>
+    <p>Composition or Inheritance?</p>
+    <p><strong>Answer:</strong></p>
+    <p>UserService HAS-A Repository</p>
+    <p>→ Composition.</p>
+
+    <h4>Example 2:</h4>
+    <pre><code>class JpaRepository
+       ↑
+UserRepository</code></pre>
+    <p>→ Inheritance.</p>
+
+    <h4>Example 3:</h4>
+    <pre><code>@RestController
+class AccountController {
+
+    private AccountService service;
+
+}
+</code></pre>
+    <p>→ Composition.</p>
+
+    <h3>Famous Design Principle</h3>
+    <p>Remember this.</p>
+    <p><strong>Favor Composition over Inheritance</strong></p>
+    <p><strong>Meaning:</strong></p>
+    <p>Prefer:</p>
+    <pre><code>class Car {
+    Engine engine;
+}</code></pre>
+    <p>instead of:</p>
+    <pre><code>class Car extends Engine</code></pre>
+    <p>because composition adapts better.</p>
+    <p>But this does NOT mean inheritance is bad.</p>
+    <p>Inheritance is excellent when hierarchy truly exists.</p>
+
+    <h3>Common Interview Mistakes</h3>
+    <ul>
+      <li>❌ "Inheritance is always better for reuse" → Wrong.</li>
+      <li>❌ "Constructor injection means composition" → Wrong.</li>
+      <li>❌ "Composition means creating object inside class" → Wrong.</li>
+      <li>❌ "Every HAS-A means composition" → Wrong. Ownership matters.</li>
+    </ul>
+
+  </div>
+</section>
+
 <section data-chapter="ob01">
   <div class="container">
     <div class="section-label" id="chapter-ob01">Chapter 1 — Why OOP Exists (Before Learning OOP)</div>
@@ -10638,6 +12340,1390 @@ account.withdraw(1000);</code></pre>
     <div class="highlight-box">
       <p><strong>You understood the first concept.</strong></p>
     </div>
+  </div>
+</section>
+
+<section data-chapter="oac01">
+  <div class="container">
+    <div class="section-label" id="chapter-oac01">Chapter 1 — Why These Relationships Exist</div>
+    <h2>Association, Aggregation and COmposition</h2>
+
+    <p>Before learning the three terms, understand the problem they solve.</p>
+    <p>Imagine you are building software.</p>
+    <p>You create classes:</p>
+
+    <pre><code>class Student {}
+class University {}
+
+class Car {}
+class Engine {}</code></pre>
+
+    <p>Now a question appears:</p>
+    <ul>
+      <li>How are these objects connected?</li>
+      <li>Can a Student exist without University?</li>
+      <li>Can an Engine exist without Car?</li>
+      <li>Does one own the other?</li>
+      <li>Can one survive after another dies?</li>
+    </ul>
+
+    <p>Object relationships answer these questions.</p>
+
+    <h3>Big Picture</h3>
+    <p>In OOP, objects rarely live alone.</p>
+    <p>They interact.</p>
+    <p>Visual:</p>
+    <pre><code>Object A  ---------&gt;  Object B
+      Relationship</code></pre>
+
+    <p>The type of relationship determines:</p>
+    <ul>
+      <li>Ownership</li>
+      <li>Dependency</li>
+      <li>Lifecycle</li>
+      <li>Reusability</li>
+      <li>Memory design</li>
+      <li>Project architecture</li>
+    </ul>
+
+    <p>The three relationships we learn today are:</p>
+    <pre><code>Association
+│
+├── Aggregation
+│
+└── Composition</code></pre>
+
+    <p><strong>Important:</strong></p>
+    <p>Aggregation and Composition are specialized forms of Association.</p>
+
+    <p>Think:</p>
+    <pre><code>Association
+    ↓
+Aggregation
+    ↓
+Composition</code></pre>
+
+    <p>Stronger relationship as we move down.</p>
+
+    <h3>Concept 1 — Association</h3>
+    <h3>Step 1: Analogy</h3>
+    <p>Imagine:</p>
+    <p>You and your gym.</p>
+    <p>You go to the gym.</p>
+    <p>Gym exists.</p>
+    <p>You exist.</p>
+    <p>If gym closes → you still exist.</p>
+    <p>If you stop going → gym still exists.</p>
+    <p>This is Association.</p>
+    <p>Nobody owns anybody.</p>
+    <p>Just a connection.</p>
+
+    <h3>Step 2: Technical Definition</h3>
+    <p>Association means:</p>
+    <p>One object uses or is connected to another object.</p>
+    <p>Neither object controls the other's lifetime.</p>
+
+    <p>Visual</p>
+    <pre><code>Student -------- attends --------&gt; College
+
+OR
+
+Driver -------- drives --------&gt; Car</code></pre>
+
+    <p>Independent existence.</p>
+
+    <h3>Real World Examples</h3>
+    <ul>
+      <li>Teacher ↔ Student</li>
+      <li>Doctor ↔ Patient</li>
+      <li>Customer ↔ Bank</li>
+      <li>Employee ↔ Company</li>
+    </ul>
+
+    <p>Remove one:</p>
+    <pre><code>Teacher removed
+Student still exists
+
+Student removed
+Teacher still exists</code></pre>
+
+    <h3>Java Example</h3>
+    <pre><code>class Student {
+    String name;
+}
+
+class College {
+    String collegeName;
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Student s = new Student();
+
+        College c = new College();
+
+    }
+}</code></pre>
+
+    <p>Nothing owns anything.</p>
+    <p>Objects exist independently.</p>
+
+    <h3>Visual Memory</h3>
+    <p>Association</p>
+    <pre><code>Person -------- Bike</code></pre>
+    <ul>
+      <li>No ownership</li>
+      <li>Independent lifetime</li>
+      <li>Simple connection</li>
+    </ul>
+
+    <h3>Interview Definition</h3>
+    <p>Association is a relationship where two objects are connected but can exist independently.</p>
+
+    <h3>Common Mistake</h3>
+    <p>People think:</p>
+    <p>"If one class contains another → composition"</p>
+    <p><strong>Wrong.</strong></p>
+    <p>Containment alone is NOT enough.</p>
+    <p>Ownership matters.</p>
+
+    <h3>Quick Comparison (only for intuition)</h3>
+    <table style="width: 100%; margin: 20px 0;">
+      <thead>
+        <tr>
+          <th>Relationship</th>
+          <th>Ownership</th>
+          <th>Lifetime</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Association</td><td>No</td><td>Independent</td></tr>
+        <tr><td>Aggregation</td><td>Weak</td><td>Mostly independent</td></tr>
+        <tr><td>Composition</td><td>Strong</td><td>Dependent</td></tr>
+      </tbody>
+    </table>
+
+    <p>Do not memorize yet.</p>
+  </div>
+</section>
+
+<section data-chapter="oac02">
+  <div class="container">
+    <div class="section-label" id="chapter-oac02">Chapter 2 — Aggregation</div>
+    <h2>Aggregation</h2>
+
+    <p>This is where most people start getting confused.</p>
+    <p>So forget definitions for a minute.</p>
+
+    <h3>Step 1 — Analogy</h3>
+    <p>Imagine:</p>
+    <p>You own a smartphone.</p>
+    <p>Inside it:</p>
+    <ul>
+      <li>Charger</li>
+      <li>Earphones</li>
+      <li>SIM card</li>
+    </ul>
+
+    <p>Question:</p>
+    <p>If the phone breaks…</p>
+    <p>Do the charger and earphones disappear?</p>
+    <p><strong>No.</strong></p>
+    <p>They still exist.</p>
+    <p>You can connect them to another phone.</p>
+    <p>This is Aggregation.</p>
+
+    <h3>Mental Model</h3>
+    <p>Aggregation means:</p>
+    <p><strong>HAS-A</strong><br>but<br><strong>DOES NOT OWN</strong></p>
+    <p>The whole uses parts.</p>
+    <p>But parts can survive.</p>
+
+    <p>Another example:</p>
+    <p>Department → Employees</p>
+    <p>Company closes.</p>
+    <p>Employees still exist.</p>
+    <p>They join another company.</p>
+
+    <h3>Step 2 — Technical Definition</h3>
+    <p>Aggregation is:</p>
+    <p>A HAS-A relationship where one object contains another object, but the contained object can exist independently.</p>
+    <p><strong>Keyword:</strong></p>
+    <p>Weak ownership</p>
+
+    <p>Visual</p>
+    <pre><code>Department
+    ◇──── Employee</code></pre>
+    <p>White diamond in UML.</p>
+    <p>Read as:</p>
+    <ul>
+      <li>Department HAS Employees</li>
+      <li>Employees can live independently</li>
+    </ul>
+
+    <h3>Real World Examples</h3>
+    <p><strong>University — Student</strong></p>
+    <p>University HAS Students</p>
+    <p>University shuts down.</p>
+    <p>Students still exist.</p>
+    <p>Aggregation.</p>
+
+    <p><strong>Team — Players</strong></p>
+    <p>Team HAS Players</p>
+    <p>Team removed.</p>
+    <p>Players join another team.</p>
+    <p>Aggregation.</p>
+
+    <p><strong>Library — Books</strong></p>
+    <p>Library HAS Books</p>
+    <p>Library closed.</p>
+    <p>Books still exist.</p>
+    <p>Aggregation.</p>
+
+    <h3>Step 3 — Java Example</h3>
+    <p>First look carefully.</p>
+
+    <pre><code>class Employee {
+
+    String name;
+
+    Employee(String name){
+        this.name=name;
+    }
+}
+
+class Department {
+
+    Employee employee;
+
+    Department(Employee employee){
+        this.employee=employee;
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Employee emp =
+                new Employee("Bhavesh");
+
+        Department dept =
+                new Department(emp);
+
+    }
+}</code></pre>
+
+    <p>Observe:</p>
+    <pre><code>Employee emp =
+new Employee("Bhavesh");</code></pre>
+    <p>Employee created OUTSIDE.</p>
+    <p>Then injected:</p>
+    <pre><code>Department(emp)</code></pre>
+    <p>Department did NOT create Employee.</p>
+    <p>That means:</p>
+    <p>Department does not own Employee.</p>
+    <p>Employee survives.</p>
+
+    <h3>Internal Thinking (important)</h3>
+    <p>Ask:</p>
+    <p>Who created Employee?</p>
+    <p>Outside world</p>
+    <p>Who destroys Employee?</p>
+    <p>Outside world</p>
+    <p>Department only uses it.</p>
+    <p>That is Aggregation.</p>
+
+    <h3>Compare with Association</h3>
+    <p>Association:</p>
+    <p>Teacher → Student</p>
+    <p>(connected)</p>
+    <p>Aggregation:</p>
+    <p>Department HAS Employee</p>
+    <p>(contained but independent)</p>
+    <p>Difference:</p>
+    <p>Association may not imply containment.</p>
+    <p>Aggregation usually implies HAS-A.</p>
+
+    <h3>Visual Memory</h3>
+    <p>Association</p>
+    <pre><code>A -------- B</code></pre>
+    <p>Aggregation</p>
+    <pre><code>A ◇------- B</code></pre>
+    <p>Composition</p>
+    <pre><code>A ◆------- B
+(not yet)</code></pre>
+    <p>White diamond = weak.</p>
+    <p>Black diamond = strong.</p>
+
+    <h3>Interview Trap</h3>
+    <p>Interviewer:</p>
+    <p>“Department has Employees.
+Association or Aggregation?”</p>
+    <p>Correct answer:</p>
+    <p>Aggregation.</p>
+    <p>Because Department contains Employees but does not own lifecycle.</p>
+
+    <h3>Common Mistake</h3>
+    <p>Wrong thinking:</p>
+    <p>Object inside another object
+=
+Composition</p>
+    <p><strong>Wrong.</strong></p>
+    <p>Ask:</p>
+    <p>Can child survive parent?</p>
+    <p>YES → Aggregation</p>
+    <p>NO → Composition</p>
+
+    <h3>🧠 Quick Check</h3>
+    <p><strong>Question 1:</strong></p>
+    <p>A Team has Players.
+Team removed.</p>
+    <p>Players join another team.</p>
+    <p>Association / Aggregation / Composition?</p>
+
+    <p><strong>Question 2:</strong></p>
+    <p>In Aggregation, who usually creates the child object?</p>
+
+    <p><strong>Question 3:</strong></p>
+    <p>Complete:</p>
+    <p>Aggregation = HAS-A + ___________ existence of child object.</p>
+
+    <p>1. Aggregation</p>
+    <p>2. the child object is created by outside world, it exists without the relationship \as well</p>
+    <p>3. independent</p>
+
+    <p>Excellent.</p>
+    <p>You’re understanding the core differentiator now.</p>
+
+    <h3>Evaluation:</h3>
+    <p>✅ Q1 Correct → Team–Players → Aggregation</p>
+    <p>Reason: Players survive.</p>
+
+    <p>✅ Q2 Correct → Child object is usually created externally and passed in.</p>
+
+    <p>Tiny refinement:</p>
+    <p>Your sentence:</p>
+    <p>"child object is created by outside world"</p>
+    <p>Better version:</p>
+    <p>Child object is not controlled by parent lifecycle. It is often created externally and passed to the parent.</p>
+
+    <p>Because technically the parent can receive it from somewhere else too—the important part is ownership, not location of creation.</p>
+
+    <p>✅ Q3 Correct → Independent existence</p>
+
+    <p>You’re doing well.</p>
+    <p>Now we reach the most important concept.</p>
+
+    <p>This is the one interviewers love.</p>
+  </div>
+</section>
+
+<section data-chapter="oac03">
+  <div class="container">
+    <div class="section-label" id="chapter-oac03">Chapter 3 — Composition</div>
+    <h2>Composition</h2>
+
+    <p>This is the strongest relationship.</p>
+    <p>This is where people finally understand all three.</p>
+
+    <h3>Step 1 — Analogy</h3>
+    <p>Imagine:</p>
+    <p>A Human and Heart.</p>
+
+    <p>Question:</p>
+    <p>Can Heart exist independently after removing Human?</p>
+    <p><strong>No.</strong></p>
+    <p>Heart belongs to Human.</p>
+    <p>Human creates it.</p>
+    <p>Human owns it.</p>
+    <p>Human destroyed → Heart destroyed.</p>
+    <p>This is Composition.</p>
+
+    <p>Another example:</p>
+    <p>House → Rooms</p>
+    <p>House demolished.</p>
+    <p>Rooms disappear.</p>
+    <p>Room has no meaningful existence alone.</p>
+    <p>Composition.</p>
+
+    <h3>Mental Model</h3>
+    <p>Composition means:</p>
+    <p><strong>HAS-A</strong><br>+<br><strong>OWNS</strong><br>+<br><strong>CONTROLS LIFETIME</strong></p>
+    <p>This is the strongest relationship.</p>
+
+    <h3>Step 2 — Technical Definition</h3>
+    <p>Composition is:</p>
+    <p>A strong HAS-A relationship where child object cannot exist independently of parent.</p>
+    <p><strong>Keywords:</strong></p>
+    <ul>
+      <li>Ownership</li>
+      <li>Lifecycle dependency</li>
+      <li>Encapsulation</li>
+    </ul>
+
+    <p>Visual</p>
+    <pre><code>House
+  ◆──── Room</code></pre>
+    <p>Black diamond.</p>
+    <p>Read:</p>
+    <p>House owns Room</p>
+
+    <h3>Real World Examples</h3>
+    <p><strong>Car — Engine</strong></p>
+    <p>(assuming engine belongs to one car)</p>
+    <p>Car HAS Engine</p>
+    <p>Car destroyed.</p>
+    <p>Engine relationship ends.</p>
+    <p>Composition.</p>
+
+    <p><strong>Human — Heart</strong></p>
+    <p>Human HAS Heart</p>
+    <p>Heart depends.</p>
+
+    <p><strong>Order — OrderItems</strong></p>
+    <p>Order HAS OrderItems</p>
+    <p>Order deleted.</p>
+    <p>OrderItems removed.</p>
+
+    <h3>Step 3 — Java Example</h3>
+    <p>Look carefully.</p>
+
+    <pre><code>class Engine {
+
+    Engine() {
+        System.out.println("Engine Created");
+    }
+}
+
+class Car {
+
+    private Engine engine;
+
+    Car() {
+        engine = new Engine();
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Car car = new Car();
+
+    }
+}</code></pre>
+
+    <p>Focus here:</p>
+    <pre><code>engine = new Engine();</code></pre>
+
+    <p>Question:</p>
+    <p>Who created Engine?</p>
+    <p>Answer:</p>
+    <p>Car</p>
+    <p>Who owns Engine?</p>
+    <p>Car</p>
+    <p>If Car disappears?</p>
+    <p>Engine disappears</p>
+    <p>That is Composition.</p>
+
+    <h3>Internal Thinking</h3>
+    <p>Ask:</p>
+    <p>Who creates child?</p>
+    <p>Parent</p>
+    <p>Who manages child?</p>
+    <p>Parent</p>
+    <p>Who destroys child?</p>
+    <p>Parent lifecycle</p>
+    <p>Composition.</p>
+
+    <h3>Compare Aggregation vs Composition</h3>
+    <p>This table is your interview weapon.</p>
+    <table style="width: 100%; margin: 20px 0;">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Aggregation</th>
+          <th>Composition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Ownership</td><td>Weak</td><td>Strong</td></tr>
+        <tr><td>Child survives parent</td><td>Yes</td><td>No</td></tr>
+        <tr><td>Child reusable</td><td>Yes</td><td>Usually No</td></tr>
+        <tr><td>Lifecycle</td><td>Independent</td><td>Dependent</td></tr>
+        <tr><td>Creation</td><td>External often</td><td>Parent often</td></tr>
+        <tr><td>UML</td><td>◇</td><td>◆</td></tr>
+      </tbody>
+    </table>
+
+    <h3>One Super Memory Trick</h3>
+    <p>Ask ONE question only:</p>
+    <p>If parent dies, does child logically survive?</p>
+    <p>YES → Aggregation</p>
+    <p>NO → Composition</p>
+
+    <h3>Visual Relationship Ladder</h3>
+    <pre><code>Association
+↓
+Connection
+
+Aggregation
+↓
+HAS-A
+↓
+Independent
+
+Composition
+↓
+HAS-A
+↓
+Owned
+↓
+Dependent</code></pre>
+
+    <h3>🧠 Quick Check</h3>
+    <p><strong>Question 1:</strong></p>
+    <p>Company → Employees</p>
+    <p>Employees can move to another company.</p>
+    <p>Which relationship?</p>
+
+    <p><strong>Question 2:</strong></p>
+    <p>Human → Heart</p>
+    <p>Which relationship?</p>
+
+    <p><strong>Question 3:</strong></p>
+    <p>Who controls child lifecycle in Composition?</p>
+
+    <p><strong>Question 4 (Interview):</strong></p>
+    <p>Why is Composition considered stronger than Aggregation?</p>
+    <p>Answer in your own words.</p>
+
+    <p>1. Aggregation</p>
+    <p>2. Composition</p>
+    <p>3. Parent</p>
+    <p>4. Because if parent object is destroyed in composition then child will also destroy,, both are tightly coupled</p>
+
+    <p>Excellent.</p>
+    <p>Your confusion is already reducing.</p>
+
+    <h3>Evaluation:</h3>
+    <p>✅ Q1 Correct → Company → Employees = Aggregation</p>
+
+    <p>✅ Q2 Correct → Human → Heart = Composition</p>
+
+    <p>✅ Q3 Correct → Parent controls lifecycle</p>
+
+    <p>✅ Q4 Correct</p>
+
+    <p>Your answer:</p>
+    <p>"if parent object is destroyed in composition then child will also destroy, both are tightly coupled"</p>
+
+    <p>Small improvement for interview wording:</p>
+    <p>Composition is stronger than Aggregation because the parent owns the child object and controls its complete lifecycle. The child cannot exist independently and is tightly coupled to the parent.</p>
+  </div>
+</section>
+
+<section data-chapter="oac04">
+  <div class="container">
+    <div class="section-label" id="chapter-oac04">Chapter 4 — How to Identify Relationship in Real Projects</div>
+    <h2>How to Identify Relationships in Real Projects</h2>
+
+    <p>Many people memorize definitions and fail here.</p>
+    <p>Interviewer usually gives scenarios.</p>
+    <p>You identify.</p>
+
+    <h3>Scenario 1</h3>
+    <p><strong>Laptop → Keyboard</strong></p>
+    <p>Question:</p>
+    <p>Can keyboard exist independently?</p>
+    <p><strong>YES.</strong></p>
+    <p>You can remove and connect elsewhere.</p>
+    <p>Answer:</p>
+    <p>→ Aggregation</p>
+
+    <h3>Scenario 2</h3>
+    <p><strong>House → Room</strong></p>
+    <p>Room independently meaningful?</p>
+    <p><strong>NO.</strong></p>
+    <p>Answer:</p>
+    <p>→ Composition</p>
+
+    <h3>Scenario 3</h3>
+    <p><strong>Teacher → Student</strong></p>
+    <p>Just connected.</p>
+    <p>Answer:</p>
+    <p>→ Association</p>
+
+    <h3>Scenario 4</h3>
+    <p><strong>Order → OrderItem</strong></p>
+    <p>Delete order.</p>
+    <p>Items disappear.</p>
+    <p>Answer:</p>
+    <p>→ Composition</p>
+
+    <h3>Scenario 5</h3>
+    <p><strong>Hospital → Doctors</strong></p>
+    <p>Doctors can move.</p>
+    <p>Answer:</p>
+    <p>→ Aggregation</p>
+
+    <h3>Scenario 6 (Trick)</h3>
+    <p><strong>Car → Engine</strong></p>
+    <p>People answer Composition immediately.</p>
+    <p><strong>Not always.</strong></p>
+    <p>Depends.</p>
+
+    <p><strong>Case 1:</strong></p>
+    <p>Engine reusable</p>
+    <p>→ Aggregation</p>
+
+    <p><strong>Case 2:</strong></p>
+    <p>Engine fully owned</p>
+    <p>→ Composition</p>
+
+    <p><strong>Interview lesson:</strong></p>
+    <p>Relationships depend on business rules.</p>
+
+    <h3>Decision Tree (Very Important)</h3>
+    <p>When confused:</p>
+    <pre><code>Are objects merely connected?
+        │
+       YES
+        ↓
+Association
+
+NO
+↓
+
+Does parent own child?
+      │
+     NO
+      ↓
+Aggregation
+
+YES
+↓
+
+Can child survive?
+     │
+    NO
+     ↓
+Composition</code></pre>
+
+    <h3>Code Recognition (Interview Round)</h3>
+    <p><strong>Question:</strong></p>
+    <pre><code>class Employee {}
+
+class Department {
+
+    Employee e;
+
+    Department(Employee e){
+        this.e=e;
+    }
+
+}</code></pre>
+    <p>What relationship?</p>
+    <p>Think.</p>
+    <p>Employee created outside.</p>
+    <p>Answer:</p>
+    <p>→ Aggregation</p>
+
+    <p><strong>Question:</strong></p>
+    <pre><code>class Engine {}
+
+class Car {
+
+    Engine e =
+        new Engine();
+
+}</code></pre>
+    <p>Relationship?</p>
+    <p>Answer:</p>
+    <p>→ Composition</p>
+
+    <h3>🧠 Quick Check (Identification Round)</h3>
+    <p><strong>Question 1:</strong></p>
+    <p>School → Students</p>
+    <p>Students transfer to another school.</p>
+    <p>Relationship?</p>
+
+    <p><strong>Question 2:</strong></p>
+    <p>Book → Pages</p>
+    <p>Relationship?</p>
+
+    <p><strong>Question 3:</strong></p>
+    <p>Customer → Bank</p>
+    <p>Relationship?</p>
+
+    <p><strong>Question 4:</strong></p>
+    <pre><code>class Car {
+
+    Engine e;
+
+    Car(){
+        e=new Engine();
+    }
+
+}</code></pre>
+    <p>Relationship?</p>
+
+    <p><strong>Question 5 (Hard):</strong></p>
+    <p>Can Composition be implemented using constructor injection?</p>
+    <p>Think carefully and answer in your own words.</p>
+
+    <p>1. Aggregation</p>
+    <p>2. Composition</p>
+    <p>3. Aggregation</p>
+    <p>4. Composition</p>
+    <p>5. Yes composition can be implemented using constructor injection and direct object creation inside the class as well</p>
+
+    <p>Very good.</p>
+    <p>You're thinking instead of memorizing now.</p>
+
+    <h3>Evaluation:</h3>
+    <p>✅ Q1 Correct → School → Students = Aggregation</p>
+    <p>Students survive.</p>
+
+    <p>✅ Q2 Correct → Book → Pages = Composition</p>
+    <p>Pages belong to the book.</p>
+
+    <p>❌ Q3 Incorrect → Customer → Bank</p>
+    <p>You answered: Aggregation</p>
+    <p>Correct answer:</p>
+    <p>→ Association</p>
+    <p>Reason:</p>
+    <p>Customer is not a part of Bank.</p>
+    <p>Bank does not contain Customers.</p>
+    <p>Customer is only connected to Bank.</p>
+    <p>Visual:</p>
+    <pre><code>Customer -------- Bank</code></pre>
+    <p>NOT:</p>
+    <pre><code>Bank HAS Customers</code></pre>
+    <p>This is an interview trap.</p>
+
+    <p>✅ Q4 Correct → Composition</p>
+    <p>Parent creates child.</p>
+
+    <p>⚠️ Q5 Partially correct (this is important)</p>
+    <p>You answered:</p>
+    <p>Composition can be implemented using constructor injection and direct object creation.</p>
+    <p>This is where deeper understanding starts.</p>
+
+    <p><strong>Short answer:</strong></p>
+    <p>Yes — but not always.</p>
+
+    <p>Example:</p>
+    <pre><code>class Engine {}
+
+class Car {
+
+    private Engine engine;
+
+    Car() {
+        engine = new Engine();
+    }
+}</code></pre>
+    <p>Clear Composition.</p>
+
+    <p>But constructor injection alone does NOT guarantee Composition.</p>
+
+    <p>Example:</p>
+    <pre><code>class Engine {}
+
+class Car {
+
+    Engine engine;
+
+    Car(Engine engine){
+        this.engine=engine;
+    }
+}</code></pre>
+
+    <p>Question:</p>
+    <p>Who created Engine?</p>
+    <p>Outside world.</p>
+    <p>That means:</p>
+    <p>Engine lifecycle independent</p>
+    <p>Usually Aggregation.</p>
+
+    <p>So:</p>
+    <p>Constructor injection can implement Composition ONLY if the parent logically owns the object and controls lifecycle.</p>
+    <p>Ownership matters more than constructor style.</p>
+    <p>This distinction is very interview-level.</p>
+  </div>
+</section>
+
+<section data-chapter="oac05">
+  <div class="container">
+    <div class="section-label" id="chapter-oac05">Chapter 5 — The Biggest Misconception</div>
+    <h2>The Biggest Misconception</h2>
+
+    <p>Many students think:</p>
+    <p><strong>HAS-A = Composition</strong></p>
+    <p><strong>Wrong.</strong></p>
+
+    <p>All Composition is HAS-A.</p>
+    <p>All Aggregation is HAS-A.</p>
+    <p>But not all HAS-A is Composition.</p>
+
+    <h3>Visual</h3>
+    <pre><code>Association
+│
+├── Aggregation
+│     HAS-A
+│     Independent
+│
+└── Composition
+      HAS-A
+      Owned</code></pre>
+
+    <h3>Internal Memory Model</h3>
+    <p>When reading code:</p>
+
+    <p><strong>Step 1:</strong></p>
+    <p>Ask:</p>
+    <p>Are they only connected?</p>
+    <p>YES → Association</p>
+    <p>NO →</p>
+
+    <p><strong>Step 2:</strong></p>
+    <p>Can child survive?</p>
+    <p>YES → Aggregation</p>
+    <p>NO → Composition</p>
+
+    <h3>Mini Interview Round</h3>
+    <p>Answer like interview.</p>
+
+    <p><strong>Question 1:</strong></p>
+    <p>What is the difference between Aggregation and Composition?</p>
+    <p>(2–4 lines)</p>
+
+    <p><strong>Question 2:</strong></p>
+    <p>Why is Association considered weakest?</p>
+
+    <p><strong>Question 3:</strong></p>
+    <p>Is every Composition Association?</p>
+    <p>YES / NO + Why</p>
+
+    <p><strong>Question 4:</strong></p>
+    <p>Can Aggregation become Composition?</p>
+    <p>Example if yes.</p>
+
+    <p>1. Aggregation and Composition is both HAS-A relationship but in Aggregation the child object can exist independently if parent is destroyed whereas in Composition parent and child are tightly coupled</p>
+    <p>2. Association is just a relationship between 2 objects and both the objects can exist independently without each other i mean parent can exist independently and child can also  exist independently</p>
+    <p>3. No, but every composition defines association but in association though the parent and child are related they are not tightly coupled</p>
+    <p>4. yes aggregation can become composition if we create child object in such a way that parent object created the child internally and manages its life cycle</p>
+
+    <p>Very strong progress.</p>
+    <p>You started with:</p>
+    <p>“I don’t know anything and I get confused a lot”</p>
+    <p>Now you're reasoning using ownership and lifecycle, which means understanding is forming.</p>
+    <p>Let’s evaluate like an interviewer.</p>
+
+    <h3>Question 1 — Difference between Aggregation and Composition</h3>
+    <p>Your answer:</p>
+    <p>Aggregation and Composition is both HAS-A relationship but in Aggregation the child object can exist independently if parent is destroyed whereas in Composition parent and child are tightly coupled</p>
+    <p>✅ Correct.</p>
+    <p>Small improvement:</p>
+    <p>Add ownership.</p>
+    <p><strong>Interview-quality answer:</strong></p>
+    <p>Aggregation and Composition are both HAS-A relationships. In Aggregation, the parent uses the child but does not own its lifecycle, so the child can exist independently. In Composition, the parent owns and controls the child lifecycle, so the child cannot exist independently.</p>
+
+    <h3>Question 2 — Why is Association weakest?</h3>
+    <p>Your answer:</p>
+    <p>Association is just a relationship…</p>
+    <p>✅ Correct.</p>
+    <p>Tiny improvement:</p>
+    <p>Association does not necessarily imply ownership or containment.</p>
+    <p><strong>Interview version:</strong></p>
+    <p>Association is weakest because objects are only connected and do not control each other’s lifecycle or ownership.</p>
+
+    <h3>Question 3 — Is every Composition Association?</h3>
+    <p>Your answer:</p>
+    <p>No, but every composition defines association...</p>
+    <p>⚠️ This one is important.</p>
+    <p>Correct answer:</p>
+    <p>→ YES</p>
+    <p>Reason:</p>
+    <p>Composition IS a specialized form of Association.</p>
+    <p>Relationship hierarchy:</p>
+    <pre><code>Association
+│
+├── Aggregation
+│
+└── Composition</code></pre>
+    <p>Meaning:</p>
+    <p>Every Composition IS Association</p>
+    <p>But every Association is NOT Composition</p>
+    <p><strong>Interview wording:</strong></p>
+    <p>Yes. Composition is a specialized type of Association because objects are related, but Composition adds ownership and lifecycle dependency.</p>
+    <p>This mistake is extremely common.</p>
+
+    <h3>Question 4 — Can Aggregation become Composition?</h3>
+    <p>Your answer:</p>
+    <p>if parent creates child internally and manages lifecycle</p>
+    <p>✅ Excellent.</p>
+    <p>That is correct.</p>
+    <p>Small refinement:</p>
+    <p>Creation alone does not guarantee Composition.</p>
+    <p>Ownership + lifecycle guarantee Composition.</p>
+    <p>Example:</p>
+    <p>Before:</p>
+    <pre><code>Department(Employee e)</code></pre>
+    <p>Aggregation.</p>
+    <p>After:</p>
+    <pre><code>class Department {
+
+    Employee e =
+        new Employee();
+
+}</code></pre>
+    <p>Composition.</p>
+
+  <h3>Code Round (Project + Interview Level)</h3>
+
+  <p><strong>Question 1</strong></p>
+  <pre><code>class Student {}
+
+class College {
+
+  Student student;
+
+  College(Student student){
+    this.student=student;
+  }
+
+}</code></pre>
+  <p>Association / Aggregation / Composition?</p>
+  <p>Explain WHY.</p>
+
+  <p><strong>Question 2</strong></p>
+  <pre><code>class Heart {}
+
+class Human {
+
+  private Heart heart;
+
+  Human(){
+    heart =
+    new Heart();
+  }
+
+}</code></pre>
+  <p>Relationship?</p>
+  <p>Explain.</p>
+
+  <p><strong>Question 3 (Trap)</strong></p>
+  <pre><code>class Customer {}
+
+class Bank {
+
+  List&lt;Customer&gt; customers;
+
+}</code></pre>
+  <p>Association / Aggregation / Composition?</p>
+  <p>Explain carefully.</p>
+
+  <p><strong>Question 4 (Hard)</strong></p>
+  <p>Can one class have multiple relationships simultaneously?</p>
+  <p>Example:</p>
+  <p>Order</p>
+  <p>OrderItem</p>
+  <p>Customer</p>
+  <p>Think carefully.</p>
+
+  <p><strong>Answer one by one.</strong></p>
+  <p>1. Aggregation because the child object is getting created from outside world and passed to the parent constructor</p>
+  <p>2. Composition because Heart object is created inside constructor of Parent</p>
+  <p>3. Association because Customer and Bank can exist independently</p>
+  <p>4. Yes, here order and orderItem has composition and Customer and Order has Aggregation</p>
+
+  <p><strong>Excellent work.</strong></p>
+  <p>This is the first point in the session where I can see you’re reasoning, not guessing.</p>
+
+  <h3>Evaluation</h3>
+
+  <p><strong>Question 1</strong></p>
+  <pre><code>class Student {}
+
+class College {
+
+  Student student;
+
+  College(Student student){
+    this.student=student;
+  }
+
+}</code></pre>
+  <p>Your answer:</p>
+  <p>Aggregation because child object is created outside and passed</p>
+  <p>✅ Correct.</p>
+  <p>Small upgrade:</p>
+  <p>Do not depend only on “created outside”.</p>
+  <p>Better reasoning:</p>
+  <p>College has Student but does not own Student lifecycle. Student can exist independently.</p>
+  <p>That makes your answer stronger in interviews.</p>
+
+  <p><strong>Question 2</strong></p>
+  <pre><code>class Heart {}
+
+class Human {
+
+  private Heart heart;
+
+  Human(){
+    heart =
+    new Heart();
+  }
+
+}</code></pre>
+  <p>Your answer:</p>
+  <p>Composition</p>
+  <p>✅ Correct.</p>
+  <p>Again tiny refinement:</p>
+  <p>Creation inside constructor suggests ownership, but ownership/lifecycle is the actual reason.</p>
+  <p>Perfect.</p>
+
+  <p><strong>Question 3 (Trap)</strong></p>
+  <pre><code>class Customer {}
+
+class Bank {
+
+  List&lt;Customer&gt; customers;
+
+}</code></pre>
+  <p>Your answer:</p>
+  <p>Association</p>
+  <p>⚠️ Good thinking, but this one is slightly tricky.</p>
+  <p>Better answer:</p>
+  <p>→ Aggregation</p>
+  <p>Reason:</p>
+  <p>Bank HAS Customers.</p>
+  <p>Customers survive if Bank disappears.</p>
+  <p>So:</p>
+  <p>Bank ◇──── Customers</p>
+  <p>Aggregation.</p>
+  <p>Why your answer felt reasonable:</p>
+  <p>Because Customer and Bank are independent.</p>
+  <p>But independence alone does not automatically mean Association.</p>
+  <p>Ask:</p>
+  <p>Does parent contain/use child?</p>
+  <p>YES.</p>
+  <p>→ Aggregation.</p>
+  <p>Interview lesson:</p>
+  <p>Containment + independent lifetime = Aggregation.</p>
+
+  <p><strong>Question 4 (Hard)</strong></p>
+  <p>Your answer:</p>
+  <p>Order → OrderItem = Composition</p>
+  <p>Customer → Order = Aggregation</p>
+  <p>🔥 Excellent.</p>
+  <p>Correct.</p>
+  <p>Real projects often contain multiple relationships.</p>
+  <p>Visual:</p>
+  <pre><code>Customer
+   │
+Aggregation
+   ↓
+
+Order
+   │
+Composition
+   ↓
+
+OrderItems</code></pre>
+
+  <h3>Concept 6 — The Most Common Java Interview Confusion</h3>
+
+  <p>People say:</p>
+  <pre><code>Constructor Injection
+=
+Composition</code></pre>
+  <p>Wrong.</p>
+  <p>Let’s prove it.</p>
+
+  <p><strong>Case A</strong></p>
+  <pre><code>class Engine {}
+
+class Car {
+
+private Engine engine;
+
+Car(){
+engine =
+new Engine();
+}
+
+}</code></pre>
+  <p>Who owns Engine?</p>
+  <p>Car</p>
+  <p>→ Composition</p>
+
+  <p><strong>Case B</strong></p>
+  <pre><code>class Engine {}
+
+class Car {
+
+private Engine engine;
+
+Car(Engine engine){
+this.engine=engine;
+}
+
+}</code></pre>
+  <p>Who owns Engine?</p>
+  <p>Outside world</p>
+  <p>→ Aggregation</p>
+
+  <p>Visual:</p>
+  <pre><code>new Child()
+inside parent
+↓
+Usually Composition
+
+
+receive child
+from outside
+↓
+Usually Aggregation</code></pre>
+
+  <p>Notice:</p>
+  <p>Usually.</p>
+  <p>Business rules can override.</p>
+
+  <h3>🧠 Final Understanding Check (No definitions)</h3>
+
+  <p><strong>Question 1:</strong></p>
+  <p>You delete a Playlist.</p>
+  <p>Songs still remain.</p>
+  <p>Relationship?</p>
+
+  <p><strong>Question 2:</strong></p>
+  <p>You delete an Email.</p>
+  <p>Attachments disappear.</p>
+  <p>Relationship?</p>
+
+  <p><strong>Question 3:</strong></p>
+  <p>You delete a Company.</p>
+  <p>Employees move elsewhere.</p>
+  <p>Relationship?</p>
+
+  <p><strong>Question 4:</strong></p>
+  <p>You delete a Person.</p>
+  <p>Passport still exists.</p>
+  <p>Relationship?</p>
+
+  <p><strong>Question 5 (Hardest):</strong></p>
+  <p>One sentence only.</p>
+  <p>How do you identify Association vs Aggregation vs Composition?</p>
+
+  <p>1. Aggregation</p>
+  <p>2. Composition</p>
+  <p>3. Aggregation</p>
+  <p>4. Association</p>
+  <p>5. Association is parent child relationship where parent and child can exist independently even if the relationship is broken, Aggregation is parent child relationship where child can exist independently even if the relationship is broken and Composition is parent child relationship where both are tightly coupled and if the parent relationship is broken child also is destroyed</p>
+
+  <p><strong>Excellent.</strong></p>
+  <p>You’ve reached the point where your answers are mostly conceptual rather than memorized.</p>
+
+  <h3>Evaluation:</h3>
+
+  <p><strong>Question 1</strong></p>
+  <p>Playlist deleted → Songs remain.</p>
+  <p>Your answer:</p>
+  <p>Aggregation</p>
+  <p>✅ Correct.</p>
+  <p>Playlist contains songs.</p>
+  <p>Songs survive.</p>
+
+  <p><strong>Question 2</strong></p>
+  <p>Email deleted → Attachments disappear.</p>
+  <p>Your answer:</p>
+  <p>Composition</p>
+  <p>✅ Correct.</p>
+  <p>Ownership + lifecycle dependency.</p>
+
+  <p><strong>Question 3</strong></p>
+  <p>Company deleted → Employees move.</p>
+  <p>Your answer:</p>
+  <p>Aggregation</p>
+  <p>✅ Correct.</p>
+  <p>Employees survive.</p>
+
+  <p><strong>Question 4</strong></p>
+  <p>Person deleted → Passport exists.</p>
+  <p>Your answer:</p>
+  <p>Association</p>
+  <p>⚠️ Good thinking, but this one needs refinement.</p>
+  <p>Better answer:</p>
+  <p>→ Aggregation</p>
+  <p>Reason:</p>
+  <p>Person HAS Passport (containment/domain ownership idea), but Passport can still exist independently as an entity.</p>
+  <p>This question is intentionally fuzzy because real-world rules vary.</p>
+  <p>Interview lesson:</p>
+  <p>Business rules determine relationship.</p>
+
+  <p><strong>Question 5 — Your Rule</strong></p>
+  <p>Your answer was:</p>
+  <p>Association is parent child relationship...</p>
+  <p>You’re extremely close.</p>
+  <p>One final refinement:</p>
+  <p>Association is not necessarily parent–child.</p>
+
+  <p><strong>Final mental model:</strong></p>
+  <pre><code>Association
+=
+Objects are connected
+
+
+Aggregation
+=
+Objects are connected
++
+HAS-A
++
+Independent lifecycle
+
+
+Composition
+=
+Objects are connected
++
+HAS-A
++
+Ownership
++
+Dependent lifecycle</code></pre>
+  <p>That’s the final shape.</p>
+
+  <h3>Final Mental Diagram</h3>
+  <pre><code>                    RELATIONSHIPS
+
+                  Association
+                       │
+      Connected objects │
+                       ▼
+
+                 Aggregation
+                       │
+                 HAS-A
+                       │
+          Child survives parent
+                       ▼
+
+                 Composition
+                       │
+                 HAS-A
+                       │
+            Parent owns child
+                       │
+          Child dies with parent</code></pre>
+
+  <h3>Interview-Level Memory Triggers</h3>
+
+  <p>Remember:</p>
+  <p>Association</p>
+  <p>→ Knows-a</p>
+
+  <p>Aggregation</p>
+  <p>→ Has-a but not owns-a</p>
+
+  <p>Composition</p>
+  <p>→ Has-a and owns-a</p>
+
+  <p>Remember:</p>
+  <p>Can child survive?</p>
+  <p>YES → Aggregation</p>
+  <p>NO → Composition</p>
+
+  <p>Remember:</p>
+  <p>Ownership decides</p>
+  <p>Creation only hints</p>
+
+  <h3>🧠 Final Assessment (one sentence answers only)</h3>
+
+  <p>Why is Composition considered stronger than Association?</p>
+  <p>Is constructor injection enough to prove Aggregation?</p>
+  <p>Why is “HAS-A = Composition” wrong?</p>
+  <p>What is the FIRST question you ask to identify relationships?</p>
+
+  <p>Answer without looking back. This is your retention test.</p>
+
+  <p>1. Composition is considered stronger than Association because if the parent is destroyed in composition child is also destroyed</p>
+  <p>2. No Constructor injection can implement both Aggregation and Composition</p>
+  <p>3. COmposition = HAS-A + ownership</p>
+  <p>4. are two objects related? do they have HAS- A relationship? and finally is the object contained or ownership</p>
+
+  <p><strong>Excellent.</strong></p>
+  <p>This was a retention test and your understanding is becoming solid.</p>
+
+  <h3>Evaluation:</h3>
+
+  <p><strong>Question 1</strong></p>
+  <p>Your answer:</p>
+  <p>Composition is stronger because if parent is destroyed child is also destroyed</p>
+  <p>✅ Correct.</p>
+  <p>Small improvement:</p>
+  <p>Add ownership.</p>
+  <p>Interview version:</p>
+  <p>Composition is stronger because the parent owns the child and controls its lifecycle, so the child cannot exist independently.</p>
+
+  <p><strong>Question 2</strong></p>
+  <p>Your answer:</p>
+  <p>Constructor injection can implement both</p>
+  <p>✅ Correct.</p>
+  <p>This is advanced understanding.</p>
+  <p>Ownership decides.</p>
+
+  <p><strong>Question 3</strong></p>
+  <p>Your answer:</p>
+  <p>Composition = HAS-A + ownership</p>
+  <p>⚠️ Partially correct.</p>
+  <p>Question was:</p>
+  <p>Why is “HAS-A = Composition” wrong?</p>
+  <p>Better answer:</p>
+  <p>Because both Aggregation and Composition are HAS-A relationships. HAS-A alone does not determine Composition; ownership and lifecycle dependency do.</p>
+
+  <p><strong>Question 4</strong></p>
+  <p>Your answer:</p>
+  <p>are two objects related? do they have HAS-A? ownership?</p>
+  <p>🔥 Excellent.</p>
+  <p>You’ve built the actual decision process.</p>
+  <p>One refinement:</p>
+  <p>1. Are objects merely connected?</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES → Association</p>
+
+  <p>2. Does parent contain/use child?</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES → HAS-A</p>
+
+  <p>3. Can child survive?</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES → Aggregation</p>
+
+  <p>4. Parent owns child?</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YES → Composition</p>
+
+  <h3>Final Concept Map (This is your memory anchor)</h3>
+  <p>Object relationship strength</p>
+  <p>How ownership and lifecycle increase from Association to Composition.</p>
+  <p>0</p>
+  <p>1</p>
+  <p>2</p>
+  <p>2</p>
+  <p>3</p>
+  <p>Association</p>
+  <p>Aggregation</p>
+  <p>Composition</p>
+
+  <p>Interpretation:</p>
+  <p>Association → connection only</p>
+  <p>Aggregation → connection + HAS-A</p>
+  <p>Composition → connection + HAS-A + ownership</p>
+
+  <h3>Interview Rapid Fire (Last Round)</h3>
   </div>
 </section>
 
@@ -13312,7 +16398,7 @@ function switchSection(sectionName) {
     if (sectionName === 'all') {
       // Show JVM chapters (01-20)
       shouldShow = chapterNum && !chapterNum.startsWith('sh') && !chapterNum.startsWith('dt');
-      shouldShow = shouldShow && !chapterNum.startsWith('pv') && !chapterNum.startsWith('sf') && !chapterNum.startsWith('tc') && !chapterNum.startsWith('ob') && !chapterNum.startsWith('st') && !chapterNum.startsWith('ito');
+      shouldShow = shouldShow && !chapterNum.startsWith('pv') && !chapterNum.startsWith('sf') && !chapterNum.startsWith('tc') && !chapterNum.startsWith('ob') && !chapterNum.startsWith('oac') && !chapterNum.startsWith('oia') && !chapterNum.startsWith('st') && !chapterNum.startsWith('ito');
     } else if (sectionName === 'stack-heap') {
       // Show Stack vs Heap chapters (sh01-sh10)
       shouldShow = chapterNum && chapterNum.startsWith('sh');
@@ -13331,6 +16417,12 @@ function switchSection(sectionName) {
     } else if (sectionName === 'oops-basics') {
       // For oops-basics, show all ob chapters (ob01, ob02, etc)
       shouldShow = chapterNum && chapterNum.startsWith('ob');
+    } else if (sectionName === 'oops-aac') {
+      // For oops-aac, show all oac chapters (oac01, etc)
+      shouldShow = chapterNum && chapterNum.startsWith('oac');
+    } else if (sectionName === 'oops-iac') {
+      // For oops-iac, show all oia chapters (oia01, etc)
+      shouldShow = chapterNum && chapterNum.startsWith('oia');
     } else if (sectionName === 'intro-streams') {
       // For intro-streams, show all st chapters (st01, st02, etc)
       shouldShow = chapterNum && chapterNum.startsWith('st');
@@ -13401,6 +16493,28 @@ function switchSection(sectionName) {
     if (ito01Item) {
       ito01Item.classList.add('active');
       console.log('Marked ito01 as active');
+    }
+  }
+
+  // For oops-aac section, mark first oac item as active in sidebar
+  if (sectionName === 'oops-aac') {
+    const allItems = document.querySelectorAll('.chapter-item');
+    allItems.forEach(item => item.classList.remove('active'));
+    const oac01Item = document.querySelector('.chapter-item[data-section="oops-aac"]');
+    if (oac01Item) {
+      oac01Item.classList.add('active');
+      console.log('Marked oac01 as active');
+    }
+  }
+
+  // For oops-iac section, mark first oia item as active in sidebar
+  if (sectionName === 'oops-iac') {
+    const allItems = document.querySelectorAll('.chapter-item');
+    allItems.forEach(item => item.classList.remove('active'));
+    const oia01Item = document.querySelector('.chapter-item[data-section="oops-iac"]');
+    if (oia01Item) {
+      oia01Item.classList.add('active');
+      console.log('Marked oia01 as active');
     }
   }
 
