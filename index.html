@@ -2800,11 +2800,16 @@
         <p>Master the IS-A vs HAS-A relationships and learn when to use inheritance and composition in real-world scenarios.</p>
         <span class="subsection-badge">4 chapters</span>
       </button>
+        <button class="subsection-card" onclick="switchSection('oops-ovo')">
+          <div class="subsection-icon">⚡</div>
+          <h3>Overloading vs Overriding</h3>
+          <p>Understand compile-time vs runtime polymorphism, how the compiler and JVM resolve method calls, and common interview traps.</p>
+          <span class="subsection-badge">4 chapters</span>
+        </button>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- WHY DO THEY EXIST -->
   <!-- STREAMS SELECTOR -->
   <div class="fundamentals-selector" id="streamsSelector" style="display: none;">
     <div class="container">
@@ -2824,6 +2829,12 @@
           <h3>Intermediate and terminal operations</h3>
           <p>filter(), distinct(), limit(), skip(), takeWhile(), and dropWhile() with chaining and lazy execution behavior.</p>
           <span class="subsection-badge">4 chapters</span>
+        </button>
+        <button class="subsection-card" onclick="switchSection('terminal-operations')">
+          <div class="subsection-icon">🏁</div>
+          <h3>Terminal Operations</h3>
+          <p>Why terminal operations exist, lazy vs eager execution, collect(), forEach(), count(), reduce(), and other terminal methods.</p>
+          <span class="subsection-badge">3 chapters</span>
         </button>
       </div>
     </div>
@@ -2906,6 +2917,12 @@
         <li class="chapter-item" data-section="oops-ivc"><a href="#chapter-oivc03" class="chapter-link" onclick="filterChapterContent(event, 'oivc03')"><span class="chapter-num">03</span>Constructor Injection & Ownership</a></li>
         <li class="chapter-item" data-section="oops-ivc"><a href="#chapter-oivc04" class="chapter-link" onclick="filterChapterContent(event, 'oivc04')"><span class="chapter-num">04</span>Decision Framework</a></li>
 
+        <!-- OOPS Overloading vs Overriding Chapters -->
+        <li class="chapter-item" data-section="oops-ovo"><a href="#chapter-ovo01" class="chapter-link" onclick="filterChapterContent(event, 'ovo01')"><span class="chapter-num">01</span>Why Overloading and Overriding Exist</a></li>
+        <li class="chapter-item" data-section="oops-ovo"><a href="#chapter-ovo02" class="chapter-link" onclick="filterChapterContent(event, 'ovo02')"><span class="chapter-num">02</span>Method Overriding</a></li>
+        <li class="chapter-item" data-section="oops-ovo"><a href="#chapter-ovo03" class="chapter-link" onclick="filterChapterContent(event, 'ovo03')"><span class="chapter-num">03</span>Internal Working (Deep Understanding)</a></li>
+        <li class="chapter-item" data-section="oops-ovo"><a href="#chapter-ovo04" class="chapter-link" onclick="filterChapterContent(event, 'ovo04')"><span class="chapter-num">04</span>Interview Depth and Hard Traps</a></li>
+
       <!-- JVM Chapters -->
   <!-- Streams: Introduction to Streams Chapters -->
   <li class="chapter-item" data-section="intro-streams"><a href="#chapter-st01" class="chapter-link" onclick="filterChapterContent(event, 'st01')"><span class="chapter-num">01</span>Introduction to Streams</a></li>
@@ -2917,6 +2934,16 @@
   <li class="chapter-item" data-section="intermediate-terminal-operations"><a href="#chapter-ito02" class="chapter-link" onclick="filterChapterContent(event, 'ito02')"><span class="chapter-num">02</span>Intermediate Operations — Transformation</a></li>
   <li class="chapter-item" data-section="intermediate-terminal-operations"><a href="#chapter-ito03" class="chapter-link" onclick="filterChapterContent(event, 'ito03')"><span class="chapter-num">03</span>Intermediate Operations — Sorting + Peek</a></li>
   <li class="chapter-item" data-section="intermediate-terminal-operations"><a href="#chapter-ito04" class="chapter-link" onclick="filterChapterContent(event, 'ito04')"><span class="chapter-num">04</span>Phase 4 Completed — Big Picture</a></li>
+
+  <!-- Streams: Terminal Operations Chapters -->
+  <li class="chapter-item" data-section="terminal-operations"><a href="#chapter-to01" class="chapter-link" onclick="filterChapterContent(event, 'to01')"><span class="chapter-num">01</span>Why Terminal Operations Exist</a></li>
+  <li class="chapter-item" data-section="terminal-operations"><a href="#chapter-to02" class="chapter-link" onclick="filterChapterContent(event, 'to02')"><span class="chapter-num">02</span>collect() — Most Important Terminal Operation</a></li>
+  <li class="chapter-item" data-section="terminal-operations"><a href="#chapter-to03" class="chapter-link" onclick="filterChapterContent(event, 'to03')"><span class="chapter-num">03</span>forEach() Terminal Operation</a></li>
+  <li class="chapter-item" data-section="terminal-operations"><a href="#chapter-to04" class="chapter-link" onclick="filterChapterContent(event, 'to04')"><span class="chapter-num">04</span>count() Terminal Operation</a></li>
+  <li class="chapter-item" data-section="terminal-operations"><a href="#chapter-to05" class="chapter-link" onclick="filterChapterContent(event, 'to05')"><span class="chapter-num">05</span>findFirst() Terminal Operation</a></li>
+  <li class="chapter-item" data-section="terminal-operations"><a href="#chapter-to06" class="chapter-link" onclick="filterChapterContent(event, 'to06')"><span class="chapter-num">06</span>findFirst() vs findAny() Terminal Operation</a></li>
+  <li class="chapter-item" data-section="terminal-operations"><a href="#chapter-to07" class="chapter-link" onclick="filterChapterContent(event, 'to07')"><span class="chapter-num">07</span>Matching Terminal Operations</a></li>
+  <li class="chapter-item" data-section="terminal-operations"><a href="#chapter-to08" class="chapter-link" onclick="filterChapterContent(event, 'to08')"><span class="chapter-num">08</span>Terminal Operations Assessment</a></li>
 
       <li class="chapter-item" data-section="all"><a href="#chapter-01" class="chapter-link" onclick="filterChapterContent(event, '01')"><span class="chapter-num">01</span>The Problem They Solve</a></li>
       <li class="chapter-item active" data-section="all"><a href="#chapter-02" class="chapter-link" onclick="filterChapterContent(event, '02')"><span class="chapter-num">02</span>Understanding JVM</a></li>
@@ -12161,6 +12188,1407 @@ class AccountController {
   </div>
 </section>
 
+<section data-chapter="ovo01">
+  <div class="container">
+    <div class="section-label" id="chapter-ovo01">Chapter 01 — Why Overloading and Overriding Exist</div>
+    <h2>Overloading vs Overriding</h2>
+
+    <div class="highlight-box">
+      <strong>Chapter Objective</strong>
+      <p>Understand: Why overloading and overriding exist · Compile-time vs runtime polymorphism · How the compiler resolves overloaded calls · Method signature rules · Common interview traps on return type · Phase 2: Method Overloading in depth</p>
+    </div>
+
+    <!-- PHASE 1 -->
+    <div class="concept-section jvm">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">ANALOGY</div>
+      <h3>Phase 1 — Why do Overloading and Overriding Exist?</h3>
+
+      <h4 style="margin-top:24px;margin-bottom:16px;color:var(--accent);">Step 1 — Analogy First</h4>
+      <p>Imagine a restaurant.</p>
+      <p style="margin-top:16px;">You tell the waiter:</p>
+      <pre><code>"Bring coffee."</code></pre>
+      <p style="margin-top:16px;">The waiter asks:</p>
+      <ul class="jre-list">
+        <li>Small?</li>
+        <li>Medium?</li>
+        <li>Large?</li>
+      </ul>
+      <p style="margin-top:16px;">Same request (coffee) → different inputs → different behavior.</p>
+      <div class="highlight-box" style="margin-top:16px;">
+        <strong>That is similar to Overloading.</strong>
+      </div>
+
+      <p style="margin-top:32px;">Now imagine another restaurant branch.</p>
+      <p style="margin-top:16px;">Head office rule:</p>
+      <pre><code>Coffee = Regular Recipe</code></pre>
+      <p style="margin-top:16px;">But the local branch changes recipe:</p>
+      <pre><code>Coffee = Special Hyderabad Recipe</code></pre>
+      <p style="margin-top:16px;">Customer still says:</p>
+      <pre><code>prepareCoffee()</code></pre>
+      <p style="margin-top:16px;">But branch decides implementation.</p>
+      <div class="highlight-box" style="margin-top:16px;">
+        <strong>That is similar to Overriding.</strong>
+      </div>
+    </div>
+
+    <!-- TECHNICAL EXPLANATION -->
+    <div class="concept-section jre">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">TECHNICAL</div>
+      <h3>Step 2 — Technical Explanation</h3>
+      <p>Java supports <strong>Polymorphism</strong>.</p>
+      <p style="margin-top:16px;"><strong>Polymorphism means:</strong></p>
+      <p style="margin-top:8px;">One interface → multiple forms of behavior.</p>
+      <p style="margin-top:24px;"><strong>Two major types:</strong></p>
+      <table style="width:100%;border-collapse:collapse;margin-top:16px;">
+        <thead>
+          <tr style="border-bottom:2px solid var(--border);">
+            <th style="padding:12px;text-align:left;color:var(--accent);">Type</th>
+            <th style="padding:12px;text-align:left;color:var(--accent);">Mechanism</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px;">Compile Time Polymorphism</td>
+            <td style="padding:12px;">Overloading</td>
+          </tr>
+          <tr>
+            <td style="padding:12px;">Runtime Polymorphism</td>
+            <td style="padding:12px;">Overriding</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PHASE 2: METHOD OVERLOADING -->
+    <div class="concept-section jdk">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">DEFINITION</div>
+      <h3>Phase 2 — Method Overloading</h3>
+      <p><strong>Method overloading means:</strong></p>
+      <p style="margin-top:16px;">Multiple methods with the same name inside the same class but different parameter lists.</p>
+      <p style="margin-top:24px;"><strong>Allowed differences:</strong></p>
+      <ul class="jre-list">
+        <li>✅ Number of parameters</li>
+        <li>✅ Type of parameters</li>
+        <li>✅ Order of parameters</li>
+      </ul>
+      <p style="margin-top:24px;"><strong>Not allowed:</strong></p>
+      <ul class="jre-list">
+        <li>❌ Only changing return type</li>
+      </ul>
+    </div>
+
+    <!-- EXAMPLE 1 -->
+    <div class="concept-section jvm">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">CODE EXAMPLE</div>
+      <h3>Example 1</h3>
+      <pre><code>class Calculator {
+
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Calculator c = new Calculator();
+
+        System.out.println(c.add(10,20));
+
+        System.out.println(c.add(10,20,30));
+
+    }
+
+}</code></pre>
+      <p style="margin-top:16px;"><strong>Output:</strong></p>
+      <pre><code>30
+60</code></pre>
+    </div>
+
+    <!-- INTERNAL WORKING -->
+    <div class="concept-section jre">
+      <span class="concept-num">5</span>
+      <div class="concept-tag">INTERNAL</div>
+      <h3>Step 3 — Internal Working (IMPORTANT)</h3>
+      <p><strong>Question:</strong></p>
+      <p style="margin-top:16px;">When Java sees:</p>
+      <pre><code>c.add(10,20);</code></pre>
+      <p style="margin-top:16px;">how does it decide?</p>
+      <p style="margin-top:24px;"><strong>Answer:</strong></p>
+      <p style="margin-top:16px;">Compiler decides <strong>BEFORE</strong> execution.</p>
+      <p style="margin-top:24px;"><strong>Visual:</strong></p>
+      <pre><code>Source Code
+     ↓
+Compiler
+     ↓
+Checks:
+Method Name → add
+Arguments → (int,int)
+     ↓
+Matches exact method
+     ↓
+Bytecode generated
+
+Compiler already decides:
+
+call add(int,int)
+
+JVM does not think later.</code></pre>
+      <div class="highlight-box" style="margin-top:24px;">
+        <strong>That is why:</strong>
+        <p style="margin-top:8px;">Overloading = Compile-Time Polymorphism</p>
+      </div>
+    </div>
+
+    <!-- EXAMPLE 2 -->
+    <div class="concept-section jdk">
+      <span class="concept-num">6</span>
+      <div class="concept-tag">CODE EXAMPLE</div>
+      <h3>Example 2 — Different Parameter Types</h3>
+      <pre><code>class Printer {
+
+    void print(int x) {
+        System.out.println("Integer");
+    }
+
+    void print(String x) {
+        System.out.println("String");
+    }
+
+}</code></pre>
+      <p style="margin-top:24px;"><strong>Execution:</strong></p>
+      <pre><code>print(10);      → Integer
+print("Hi");    → String</code></pre>
+      <p style="margin-top:16px;">Compiler chooses.</p>
+      <p style="margin-top:24px;"><strong>Visual Representation:</strong></p>
+      <pre><code>print(10)
+
+Compiler
+   │
+   ├── print(int)      ← selected
+   └── print(String)</code></pre>
+    </div>
+
+    <!-- REAL PROJECT EXAMPLE -->
+    <div class="concept-section jvm">
+      <span class="concept-num">7</span>
+      <div class="concept-tag">REAL WORLD</div>
+      <h3>Real Project Example</h3>
+      <p>Spring APIs often overload methods.</p>
+      <p style="margin-top:16px;"><strong>Example idea:</strong></p>
+      <pre><code>save(User user)
+
+save(List&lt;User&gt; users)</code></pre>
+      <p style="margin-top:16px;">Same operation.</p>
+      <p>Different input.</p>
+    </div>
+
+    <!-- INTERVIEW NOTE -->
+    <div class="concept-section jre">
+      <span class="concept-num">8</span>
+      <div class="concept-tag">INTERVIEW</div>
+      <h3>Interview Note</h3>
+      <p><strong>Interviewer:</strong></p>
+      <p style="margin-top:16px;">Can we overload methods by changing return type only?</p>
+      <pre><code>int get()
+String get()</code></pre>
+      <p style="margin-top:16px;"><strong style="color:var(--accent3);">Compiler error.</strong></p>
+      <p style="margin-top:24px;"><strong>Why?</strong></p>
+      <p style="margin-top:16px;">Because:</p>
+      <pre><code>get();</code></pre>
+      <p style="margin-top:16px;">Compiler cannot determine which method.</p>
+    </div>
+
+    <!-- STICKY NOTES -->
+    <div class="concept-section jdk">
+      <span class="concept-num">9</span>
+      <div class="concept-tag">RULES</div>
+      <h3>Sticky Notes</h3>
+      <ul class="jre-list">
+        <li>📝 Overloading = Same Name + Different Parameters</li>
+        <li>📝 Decision made by Compiler</li>
+        <li>📝 Happens inside same class (usually)</li>
+        <li>📝 Return type alone cannot overload</li>
+      </ul>
+    </div>
+
+    <!-- QUICK CHECK -->
+    <div class="concept-section jvm">
+      <span class="concept-num">10</span>
+      <div class="concept-tag">SELF-CHECK</div>
+      <h3>🧠 Quick Check</h3>
+      <div style="margin-top:24px;padding:20px;background:rgba(79,255,176,0.05);border-left:3px solid var(--accent);border-radius:4px;">
+        <p><strong style="color:var(--accent);">Question 1</strong></p>
+        <p style="margin-top:8px;">Why is overloading called compile-time polymorphism?</p>
+      </div>
+      <div style="margin-top:16px;padding:20px;background:rgba(123,108,255,0.05);border-left:3px solid var(--accent2);border-radius:4px;">
+        <p><strong style="color:var(--accent2);">Question 2</strong></p>
+        <p style="margin-top:8px;">Will this compile?</p>
+        <pre style="margin-top:8px;"><code>void test(int a)
+
+void test(String a)</code></pre>
+      </div>
+      <div style="margin-top:16px;padding:20px;background:rgba(255,108,108,0.05);border-left:3px solid var(--accent3);border-radius:4px;">
+        <p><strong style="color:var(--accent3);">Question 3</strong></p>
+        <p style="margin-top:8px;">Will this compile?</p>
+        <pre style="margin-top:8px;"><code>int test()
+
+String test()</code></pre>
+      </div>
+      <p style="margin-top:24px;color:var(--muted);"><small>Answer in your own words. After that we'll move to Overriding + JVM Runtime Decision Making.</small></p>
+    </div>
+
+    <!-- EVALUATION -->
+    <div class="concept-section jre">
+      <span class="concept-num">11</span>
+      <div class="concept-tag">EVALUATION</div>
+      <h3>Expected Answers & Evaluation</h3>
+
+      <h4 style="margin-top:24px;margin-bottom:16px;color:var(--accent);">Q1 — Why is overloading called compile-time polymorphism?</h4>
+      <p><strong style="color:var(--accent);">Your answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">because the compiler decides which method needs to be executed and generates the bytecode</p>
+      <p style="margin-top:16px;">✅ <strong>Correct.</strong></p>
+      <p style="margin-top:16px;"><strong>Interview refinement:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">Overloading is called compile-time polymorphism because the compiler determines which overloaded method signature matches the arguments and binds the method call while generating bytecode.</p>
+      <p style="margin-top:16px;"><strong>Example:</strong></p>
+      <pre style="margin-top:8px;"><code>add(10,20);
+
+Compiler already binds:
+
+add(int,int)</code></pre>
+
+      <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Q2 — Will this compile?</h4>
+      <pre><code>void test(int a)
+void test(String a)</code></pre>
+      <p><strong style="color:var(--accent);">Your answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">yes it will compile</p>
+      <p style="margin-top:16px;">✅ <strong>Correct.</strong></p>
+      <p style="margin-top:16px;"><strong>Reason:</strong></p>
+      <p style="margin-top:8px;">Parameter types differ. Compiler can uniquely resolve:</p>
+      <pre style="margin-top:8px;"><code>test(10);      → test(int)
+test("abc");   → test(String)</code></pre>
+
+      <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Q3 — Will this compile?</h4>
+      <pre><code>int test()
+String test()</code></pre>
+      <p><strong style="color:var(--accent);">Your answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">No because only changing the return type of method won't be overriding</p>
+      <p style="margin-top:16px;">⚠️ <strong>Final result correct (No) — but reasoning needs correction.</strong></p>
+      <p style="margin-top:16px;">This is not overriding. This is still trying to do overloading.</p>
+      <p style="margin-top:16px;"><strong>Correct reason:</strong></p>
+      <p style="margin-top:8px;">❌ Return type is NOT part of method signature in Java.</p>
+      <p style="margin-top:16px;">Compiler sees:</p>
+      <pre style="margin-top:8px;"><code>test()
+test()
+
+Ambiguous.
+
+test();
+
+Compiler asks: Which one? Cannot decide.
+
+→ Compile Error: Method already defined</code></pre>
+      <div class="highlight-box" style="margin-top:24px;background:rgba(255,108,108,0.08);border-left:3px solid var(--accent3);">
+        <strong>Important Correction</strong>
+        <p style="margin-top:12px;">Remember:</p>
+        <pre style="margin-top:8px;"><code>Overloading
+=
+Method Name
++
+Parameter List
+
+NOT:
+
+Method Name
++
+Return Type</code></pre>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section data-chapter="ovo02">
+  <div class="container">
+    <div class="section-label" id="chapter-ovo02">Chapter 02 — Method Overriding</div>
+    <h2>Phase 3 — Method Overriding</h2>
+
+    <p>This is where most interview confusion starts.</p>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">ANALOGY</div>
+      <h3>Step 1 — Analogy First</h3>
+
+      <p>Imagine a parent giving a family recipe.</p>
+
+      <p style="margin-top:16px;"><strong>Parent:</strong></p>
+      <pre><code>makeTea()
+→ Add sugar
+→ Add milk</code></pre>
+
+      <p style="margin-top:16px;">Child says:</p>
+      <pre><code>I want my own version.</code></pre>
+
+      <p style="margin-top:16px;"><strong>Child changes:</strong></p>
+      <pre><code>makeTea()
+→ No sugar
+→ Add ginger</code></pre>
+
+      <p style="margin-top:16px;">Same method.</p>
+      <p>Different implementation.</p>
+      <p>That is Overriding.</p>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">DEFINITION</div>
+      <h3>Step 2 — Technical Definition</h3>
+
+      <p><strong>Method overriding means:</strong></p>
+      <p style="margin-top:8px;">Child class provides its own implementation for a method already present in parent class.</p>
+
+      <p style="margin-top:24px;"><strong>Example:</strong></p>
+      <pre><code>class Animal {
+
+    void sound() {
+        System.out.println("Animal sound");
+    }
+
+}
+
+class Dog extends Animal {
+
+    @Override
+    void sound() {
+        System.out.println("Bark");
+    }
+
+}</code></pre>
+
+      <p style="margin-top:24px;"><strong>Execution:</strong></p>
+      <pre><code>Animal a = new Dog();
+
+a.sound();</code></pre>
+
+      <p style="margin-top:24px;"><strong>Output:</strong></p>
+      <pre><code>Bark</code></pre>
+
+      <p style="margin-top:24px;"><strong>Question:</strong></p>
+      <p style="margin-top:8px;">Why?</p>
+
+      <p style="margin-top:16px;"><strong>Variable type:</strong></p>
+      <p>Animal</p>
+      <p style="margin-top:16px;"><strong>Object type:</strong></p>
+      <p>Dog</p>
+      <p style="margin-top:16px;"><strong>Who wins?</strong></p>
+      <p>We'll learn internal working next.</p>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">RUNTIME</div>
+      <h3>Step 3 — Internal Working (Runtime Polymorphism)</h3>
+
+      <p><strong>Visual:</strong></p>
+      <pre><code>Animal a = new Dog();
+
+Compile Time
+------------
+Compiler:
+Animal has sound()
+OK Allowed
+
+Runtime
+------------
+JVM:
+Actual object = Dog
+↓
+Dog.sound()</code></pre>
+
+      <p style="margin-top:24px;"><strong>So:</strong></p>
+      <p style="margin-top:8px;">Reference Type -> compile-time check</p>
+      <p>Object Type -> runtime execution</p>
+
+      <div class="highlight-box" style="margin-top:24px;">
+        <strong>This is one of the most important Java interview concepts.</strong>
+      </div>
+
+      <p style="margin-top:24px;"><strong>Visual</strong></p>
+      <pre><code>Reference
+Animal a
+    |
+    v
+ +--------+
+ | Dog()  |
+ +--------+
+    |
+sound()
+    v
+Dog.sound()</code></pre>
+
+      <h4 style="margin-top:24px;margin-bottom:12px;color:var(--accent);">Why Runtime?</h4>
+      <p>Because object creation may change:</p>
+      <pre><code>Animal a = new Cat();
+
+Animal a = new Dog();</code></pre>
+      <p style="margin-top:16px;">Compiler cannot know future object.</p>
+      <p>JVM decides later.</p>
+
+      <div class="highlight-box" style="margin-top:24px;">
+        <strong>Interview Rule</strong>
+        <p style="margin-top:10px;">For overridden methods:</p>
+        <pre style="margin-top:8px;"><code>METHOD EXECUTION
+depends on
+OBJECT TYPE</code></pre>
+      </div>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">SELF-CHECK</div>
+      <h3>Quick Check</h3>
+
+      <div style="margin-top:20px;padding:20px;background:rgba(79,255,176,0.05);border-left:3px solid var(--accent);border-radius:4px;">
+        <pre><code>Animal a = new Dog();
+
+a.sound();</code></pre>
+        <p style="margin-top:10px;">Which method executes and why?</p>
+      </div>
+
+      <div style="margin-top:16px;padding:20px;background:rgba(123,108,255,0.05);border-left:3px solid var(--accent2);border-radius:4px;">
+        <p>Who decides in overriding?</p>
+        <pre style="margin-top:8px;"><code>Compiler
+JVM Runtime</code></pre>
+      </div>
+
+      <div style="margin-top:16px;padding:20px;background:rgba(255,108,108,0.05);border-left:3px solid var(--accent3);border-radius:4px;">
+        <p>Complete this sentence:</p>
+        <p style="margin-top:8px;">Overloading -> __________ polymorphism</p>
+        <p>Overriding -> __________ polymorphism</p>
+      </div>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">5</span>
+      <div class="concept-tag">EVALUATION</div>
+      <h3>Quick Check Evaluation</h3>
+
+      <p><strong>Question 1</strong></p>
+      <p style="margin-top:8px;"><strong>You answered:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">the method inside Dog gets exectuted because, during compile time the reference type is checked and since the parent class also has the sound method, byte code gets generated but during run time, the actual object gets called</p>
+
+      <p style="margin-top:16px;">Strong answer.</p>
+      <p style="margin-top:16px;"><strong>Tiny refinement for interview precision:</strong></p>
+
+      <p style="margin-top:16px;"><strong>Compile time:</strong></p>
+      <pre><code>Animal a = new Dog();
+a.sound();</code></pre>
+      <p style="margin-top:16px;">Compiler verifies:</p>
+      <pre><code>Does Animal have sound()?
+YES -> compile allowed</code></pre>
+
+      <p style="margin-top:16px;"><strong>Runtime:</strong></p>
+      <pre><code>Actual object -> Dog
+↓
+Execute Dog.sound()</code></pre>
+
+      <p style="margin-top:16px;">You correctly separated:</p>
+      <ul class="jre-list">
+        <li>Reference type -> validation</li>
+        <li>Object type -> execution</li>
+      </ul>
+      <p style="margin-top:12px;">That is exactly the mental model.</p>
+
+      <h4 style="margin-top:28px;margin-bottom:12px;color:var(--accent);">Question 2</h4>
+      <p><strong>You answered:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">JVM runtime decides</p>
+      <p style="margin-top:12px;">Correct.</p>
+
+      <h4 style="margin-top:28px;margin-bottom:12px;color:var(--accent);">Question 3</h4>
+      <p><strong>You answered:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">Overloading is compile time polymorphism and Overriding is run time polymorphism</p>
+      <p style="margin-top:12px;">Correct.</p>
+
+      <div class="highlight-box" style="margin-top:24px;">
+        <strong>Excellent.</strong>
+        <p style="margin-top:8px;">Your answers show you're beginning to think like the JVM instead of memorizing definitions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-chapter="ovo03">
+  <div class="container">
+    <div class="section-label" id="chapter-ovo03">Chapter 03 — Internal Working (Deep Understanding)</div>
+    <h2>Phase 4 — Internal Working (Deep Understanding)</h2>
+
+    <p>You said earlier:</p>
+    <p style="margin-top:8px;"><em>I know syntax but not internal working.</em></p>
+    <p style="margin-top:16px;">This section fixes that.</p>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">BINDING</div>
+      <h3>The Most Important Question</h3>
+
+      <p>If both use the same method name...</p>
+      <p style="margin-top:8px;">How does Java actually decide?</p>
+
+      <p style="margin-top:24px;"><strong>The answer:</strong></p>
+      <p>Java uses <strong>Binding</strong>.</p>
+
+      <h4 style="margin-top:24px;margin-bottom:12px;color:var(--accent);">What is Binding?</h4>
+      <p>Binding means:</p>
+      <p style="margin-top:8px;">Connecting a method call to actual method implementation.</p>
+
+      <p style="margin-top:16px;"><strong>Example:</strong></p>
+      <pre><code>obj.method();</code></pre>
+
+      <p style="margin-top:16px;">Java must decide:</p>
+      <pre><code>Which method should execute?</code></pre>
+
+      <p style="margin-top:16px;">That decision process is called binding.</p>
+      <p>There are two types.</p>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">EARLY</div>
+      <h3>1. Early Binding (Static Binding)</h3>
+
+      <p><strong>Used in:</strong></p>
+      <ul class="jre-list">
+        <li>Overloading</li>
+        <li>static methods</li>
+        <li>private methods</li>
+        <li>final methods</li>
+      </ul>
+
+      <p style="margin-top:16px;"><strong>Decision happens:</strong></p>
+      <p>Before program execution (Compile Time)</p>
+
+      <p style="margin-top:16px;"><strong>Visual:</strong></p>
+      <pre><code>Source Code
+   ↓
+Compiler
+   ↓
+Method Fixed
+   ↓
+Bytecode</code></pre>
+
+      <p style="margin-top:16px;"><strong>Example:</strong></p>
+      <pre><code>class Demo {
+
+    void show(int x) {}
+
+    void show(String x) {}
+
+}
+
+Demo d = new Demo();
+
+d.show(10);</code></pre>
+
+      <p style="margin-top:16px;">Compiler immediately binds:</p>
+      <pre><code>show(int)</code></pre>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">LATE</div>
+      <h3>2. Late Binding (Dynamic Binding)</h3>
+
+      <p><strong>Used in:</strong></p>
+      <ul class="jre-list">
+        <li>Overriding</li>
+      </ul>
+
+      <p style="margin-top:16px;"><strong>Decision happens:</strong></p>
+      <p>During execution (Runtime)</p>
+
+      <p style="margin-top:16px;"><strong>Example:</strong></p>
+      <pre><code>class Animal {
+    void sound() {
+        System.out.println("Animal");
+    }
+}
+
+class Dog extends Animal {
+
+    @Override
+    void sound() {
+        System.out.println("Dog");
+    }
+
+}
+
+Animal a = new Dog();
+
+a.sound();</code></pre>
+
+      <p style="margin-top:16px;"><strong>Runtime:</strong></p>
+      <pre><code>Find actual object
+↓
+Dog
+↓
+Execute Dog.sound()</code></pre>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">JVM VIEW</div>
+      <h3>Internal JVM View (Simplified)</h3>
+
+      <p>Imagine:</p>
+      <pre><code>Animal a = new Dog();</code></pre>
+
+      <p style="margin-top:16px;"><strong>Memory:</strong></p>
+      <pre><code>Reference Variable
+a
+│
+▼
+Heap
+┌────────────┐
+│ Dog Object │
+└────────────┘</code></pre>
+
+      <p style="margin-top:16px;">When:</p>
+      <pre><code>a.sound();</code></pre>
+
+      <p style="margin-top:16px;">JVM roughly does:</p>
+      <pre><code>Go to object
+↓
+Find actual implementation
+↓
+Execute method</code></pre>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">5</span>
+      <div class="concept-tag">INTERVIEW TRAP</div>
+      <h3>Real Interview Trap</h3>
+
+      <p>Look carefully.</p>
+      <pre><code>class Parent {
+
+    static void test() {
+        System.out.println("Parent");
+    }
+
+}
+
+class Child extends Parent {
+
+    static void test() {
+        System.out.println("Child");
+    }
+
+}
+
+Parent p = new Child();
+
+p.test();</code></pre>
+
+      <p style="margin-top:16px;"><strong>Output?</strong></p>
+      <p style="margin-top:8px;">Most people say:</p>
+      <pre><code>Child</code></pre>
+
+      <p style="margin-top:16px;"><strong style="color:var(--accent3);">Wrong.</strong></p>
+      <p style="margin-top:8px;"><strong>Output:</strong></p>
+      <pre><code>Parent</code></pre>
+
+      <p style="margin-top:16px;"><strong>Why?</strong></p>
+      <p>Because:</p>
+      <ul class="jre-list">
+        <li>static methods are NOT overridden</li>
+        <li>they are hidden</li>
+      </ul>
+
+      <p style="margin-top:16px;"><strong>Decision:</strong></p>
+      <p>Reference Type</p>
+      <p>Not object type.</p>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">6</span>
+      <div class="concept-tag">COMPARISON</div>
+      <h3>Quick Comparison</h3>
+
+      <table style="width:100%;border-collapse:collapse;margin-top:16px;">
+        <thead>
+          <tr style="border-bottom:2px solid var(--border);">
+            <th style="padding:12px;text-align:left;color:var(--accent);">Feature</th>
+            <th style="padding:12px;text-align:left;color:var(--accent);">Overloading</th>
+            <th style="padding:12px;text-align:left;color:var(--accent);">Overriding</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:12px;">Class</td><td style="padding:12px;">Same class</td><td style="padding:12px;">Parent -> Child</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:12px;">Parameters</td><td style="padding:12px;">Must differ</td><td style="padding:12px;">Same</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:12px;">Return Type</td><td style="padding:12px;">Ignored</td><td style="padding:12px;">Same / Covariant</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:12px;">Decision</td><td style="padding:12px;">Compiler</td><td style="padding:12px;">JVM</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:12px;">Binding</td><td style="padding:12px;">Early</td><td style="padding:12px;">Late</td></tr>
+          <tr><td style="padding:12px;">Polymorphism</td><td style="padding:12px;">Compile Time</td><td style="padding:12px;">Runtime</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">7</span>
+      <div class="concept-tag">RULES</div>
+      <h3>Sticky Notes</h3>
+      <ul class="jre-list">
+        <li>Binding = Method call -> Method execution mapping</li>
+        <li>Overloading -> Early Binding</li>
+        <li>Overriding -> Late Binding</li>
+        <li>Reference checks validity</li>
+        <li>Object decides execution</li>
+        <li>Static methods are hidden, not overridden</li>
+      </ul>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">8</span>
+      <div class="concept-tag">SELF-CHECK</div>
+      <h3>Quick Check (Interview Level)</h3>
+
+      <div style="margin-top:20px;padding:20px;background:rgba(79,255,176,0.05);border-left:3px solid var(--accent);border-radius:4px;">
+        <pre><code>Parent p = new Child();
+
+p.method();</code></pre>
+        <p style="margin-top:10px;">For overriding:</p>
+        <p style="margin-top:8px;">Who decides execution?</p>
+        <pre style="margin-top:8px;"><code>Reference
+Object</code></pre>
+        <p style="margin-top:10px;">Why?</p>
+      </div>
+
+      <div style="margin-top:16px;padding:20px;background:rgba(123,108,255,0.05);border-left:3px solid var(--accent2);border-radius:4px;">
+        <p>Will this override?</p>
+        <pre style="margin-top:8px;"><code>class A {
+    void run(int x){}
+}
+
+class B extends A {
+    void run(){}
+}</code></pre>
+      </div>
+
+      <div style="margin-top:16px;padding:20px;background:rgba(255,108,108,0.05);border-left:3px solid var(--accent3);border-radius:4px;">
+        <p>Predict output:</p>
+        <pre style="margin-top:8px;"><code>class A {
+
+    static void test() {
+        System.out.println("A");
+    }
+
+}
+
+class B extends A {
+
+    static void test() {
+        System.out.println("B");
+    }
+
+}
+
+A obj = new B();
+
+obj.test();</code></pre>
+        <p style="margin-top:10px;">Explain your reasoning, not just the answer.</p>
+      </div>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">9</span>
+      <div class="concept-tag">EVALUATION</div>
+      <h3>Quick Check Evaluation</h3>
+
+      <p><strong>Question 1</strong></p>
+      <p style="margin-top:8px;"><strong>You answered:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">For compiling reference decides the execution and for runtime object decides the execution</p>
+
+      <p style="margin-top:16px;">Almost correct - one wording improvement.</p>
+      <p style="margin-top:16px;">You said:</p>
+      <pre><code>reference decides execution</code></pre>
+      <p style="margin-top:16px;">That wording can become dangerous in interviews.</p>
+
+      <p style="margin-top:16px;"><strong>Better:</strong></p>
+      <p style="margin-top:8px;"><strong>Compile Time</strong></p>
+      <p>Reference type decides:</p>
+      <ul class="jre-list">
+        <li>whether method call is valid</li>
+        <li>which methods are visible</li>
+      </ul>
+
+      <p style="margin-top:16px;"><strong>Runtime</strong></p>
+      <p>Object type decides:</p>
+      <ul class="jre-list">
+        <li>which overridden implementation executes</li>
+      </ul>
+
+      <p style="margin-top:16px;"><strong>Interview-ready sentence:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">Reference type performs compile-time method resolution, while actual object type determines runtime method execution for overridden methods.</p>
+
+      <p style="margin-top:16px;"><strong>Example:</strong></p>
+      <pre><code>Animal a = new Dog();
+
+a.sound();
+
+Compile:
+Animal contains sound()
+OK
+
+Runtime:
+Dog.sound()</code></pre>
+
+      <p style="margin-top:16px;">Your understanding is correct.</p>
+
+      <h4 style="margin-top:28px;margin-bottom:12px;color:var(--accent);">Question 2</h4>
+      <p><strong>You answered:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">no both are different methods</p>
+      <p style="margin-top:12px;">Correct.</p>
+      <p style="margin-top:12px;">This is NOT overriding.</p>
+      <p>Reason:</p>
+      <p style="margin-top:8px;">Method signature changed.</p>
+      <p>So this becomes:</p>
+      <pre><code>Overloading
+
+Not overriding.</code></pre>
+
+      <h4 style="margin-top:28px;margin-bottom:12px;color:var(--accent);">Question 3</h4>
+      <p><strong>You answered:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">prints "A" as static methods cannot be overriden they can only be hidden</p>
+      <p style="margin-top:12px;">Excellent.</p>
+      <p>You remembered the hidden concept.</p>
+
+      <p style="margin-top:16px;"><strong>Execution:</strong></p>
+      <pre><code>A obj = new B();
+obj.test();
+
+Compiler sees:
+Reference -> A
+
+Calls:
+A.test()</code></pre>
+    </div>
+  </div>
+</section>
+
+<section data-chapter="ovo04">
+  <div class="container">
+    <div class="section-label" id="chapter-ovo04">Chapter 04 — Interview Depth and Hard Traps</div>
+    <h2>Phase 5 — Overloading vs Overriding (Interview Depth)</h2>
+
+    <p>Now we go into the traps that distinguish strong Java developers.</p>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">RULES</div>
+      <h3>Rule 1 — Access Modifier Restriction</h3>
+      <p>Overriding cannot reduce visibility.</p>
+
+      <p style="margin-top:16px;"><strong>Invalid:</strong></p>
+      <pre><code>class Parent {
+
+    public void show() {}
+
+}
+
+class Child extends Parent {
+
+    private void show() {}
+
+}</code></pre>
+
+      <p style="margin-top:16px;"><strong>Error.</strong></p>
+      <p style="margin-top:8px;"><strong>Why?</strong></p>
+      <p>Child cannot make parent functionality more restricted.</p>
+      <p style="margin-top:12px;">Allowed:</p>
+      <pre><code>protected -> public</code></pre>
+      <p style="margin-top:12px;">Not:</p>
+      <pre><code>public -> private</code></pre>
+      <div class="highlight-box" style="margin-top:16px;">
+        <strong>Memory:</strong>
+        <p style="margin-top:8px;">Override -> same or broader access</p>
+      </div>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">EXCEPTIONS</div>
+      <h3>Rule 2 — Checked Exceptions</h3>
+      <p>Child cannot throw broader checked exception.</p>
+
+      <pre><code>class Parent {
+
+    void test() throws IOException {}
+
+}
+
+class Child extends Parent {
+
+    void test() throws Exception {}
+}</code></pre>
+
+      <p style="margin-top:12px;"><strong>Error.</strong></p>
+      <p style="margin-top:8px;"><strong>Because:</strong></p>
+      <pre><code>Exception
+↑ broader than
+IOException</code></pre>
+
+      <p style="margin-top:12px;">Allowed:</p>
+      <pre><code>void test() throws FileNotFoundException</code></pre>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">RETURN TYPE</div>
+      <h3>Rule 3 — Covariant Return Type</h3>
+      <p>Overriding can change return type, but child must return subtype.</p>
+
+      <pre><code>class Animal {}
+
+class Dog extends Animal {}
+
+class Parent {
+
+    Animal get() {
+        return new Animal();
+    }
+
+}
+
+class Child extends Parent {
+
+    @Override
+    Dog get() {
+        return new Dog();
+    }
+
+}</code></pre>
+
+      <p style="margin-top:12px;">Allowed.</p>
+      <p>Why?</p>
+      <p>Dog IS-A Animal.</p>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">FINAL</div>
+      <h3>Rule 4 — Final Methods</h3>
+      <pre><code>final void run(){}</code></pre>
+      <p style="margin-top:12px;">Cannot override.</p>
+      <p>Because:</p>
+      <pre><code>final
+=
+implementation locked</code></pre>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">5</span>
+      <div class="concept-tag">PRIVATE</div>
+      <h3>Rule 5 — Private Methods</h3>
+      <p>Private methods are not inherited.</p>
+      <p>So:</p>
+      <pre><code>class Parent {
+
+    private void show(){}
+}
+
+class Child {
+
+    void show(){}
+}</code></pre>
+      <p style="margin-top:12px;">Not overriding.</p>
+      <p>These are separate methods.</p>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">6</span>
+      <div class="concept-tag">REAL WORLD</div>
+      <h3>Real Project Example</h3>
+      <p>You work with Spring Boot.</p>
+      <p style="margin-top:12px;"><strong>Overriding example:</strong></p>
+      <pre><code>class BaseResponse {
+
+    Response create() {}
+}
+
+class UserResponse
+extends BaseResponse {
+
+    @Override
+    Response create() {}
+}</code></pre>
+
+      <p style="margin-top:12px;">Frameworks heavily use overriding.</p>
+
+      <p style="margin-top:16px;"><strong>Overloading example:</strong></p>
+      <pre><code>save(User)
+
+save(List&lt;User&gt;)</code></pre>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">7</span>
+      <div class="concept-tag">MENTAL MODEL</div>
+      <h3>One Mental Model</h3>
+      <pre><code>Overloading
+=
+same employee
+multiple responsibilities
+
+Overriding
+=
+new employee
+same responsibility
+different implementation</code></pre>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">8</span>
+      <div class="concept-tag">SELF-CHECK</div>
+      <h3>Quick Check (Advanced)</h3>
+
+      <div style="margin-top:20px;padding:20px;background:rgba(79,255,176,0.05);border-left:3px solid var(--accent);border-radius:4px;">
+        <p>Can static methods be overridden? Why?</p>
+      </div>
+
+      <div style="margin-top:16px;padding:20px;background:rgba(123,108,255,0.05);border-left:3px solid var(--accent2);border-radius:4px;">
+        <p>Will this compile?</p>
+        <pre style="margin-top:8px;"><code>class A {
+
+    protected void show(){}
+
+}
+
+class B extends A {
+
+    public void show(){}
+
+}</code></pre>
+      </div>
+
+      <div style="margin-top:16px;padding:20px;background:rgba(255,108,108,0.05);border-left:3px solid var(--accent3);border-radius:4px;">
+        <p>Predict:</p>
+        <pre style="margin-top:8px;"><code>class Parent {
+
+    private void run() {
+        System.out.println("P");
+    }
+
+}
+
+class Child extends Parent {
+
+    void run() {
+        System.out.println("C");
+    }
+
+}</code></pre>
+        <p style="margin-top:10px;">Is this overriding? Explain why.</p>
+      </div>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">9</span>
+      <div class="concept-tag">EVALUATION</div>
+      <h3>Quick Check Evaluation</h3>
+
+      <h4 style="margin-top:8px;margin-bottom:10px;color:var(--accent);">Question 1</h4>
+      <p><strong>You answered:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">no static method cannot be overridden because the method is related to class level and the decision is taken at compile time and at run time JVM does not check the object again</p>
+      <p style="margin-top:12px;">Very good.</p>
+      <p>Small refinement:</p>
+      <p style="margin-top:8px;">Saying JVM does not check object again is slightly oversimplified.</p>
+      <p style="margin-top:12px;"><strong>More precise interview answer:</strong></p>
+      <p>Static methods belong to the class, not the object. Their binding happens at compile time using reference type, so runtime polymorphism does not apply.</p>
+      <p style="margin-top:12px;"><strong>Visual:</strong></p>
+      <pre><code>A obj = new B();
+
+obj.test()
+
+Compiler
+↓
+Reference -> A
+↓
+Call A.test()</code></pre>
+
+      <h4 style="margin-top:24px;margin-bottom:10px;color:var(--accent);">Question 2</h4>
+      <p><strong>You answered:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">yes it will compile</p>
+      <p style="margin-top:12px;">Correct.</p>
+      <pre><code>class A {
+    protected void show(){}
+}
+
+class B extends A {
+    public void show(){}
+}</code></pre>
+      <p>Access widened: protected -> public. Allowed.</p>
+      <p>Rule: Override visibility must be same or wider.</p>
+
+      <h4 style="margin-top:24px;margin-bottom:10px;color:var(--accent);">Question 3</h4>
+      <p><strong>You answered:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">No both are seperate methods, as private methods cannot be accesses outside the class</p>
+      <p style="margin-top:12px;">Correct.</p>
+      <p>Small precision improvement:</p>
+      <p style="margin-top:8px;">Not because they cannot be accessed outside, the deeper reason is private methods are not inherited.</p>
+      <pre><code>Parent
+└── private run()
+
+Child
+└── run()
+
+(No connection)</code></pre>
+      <p>Very strong.</p>
+    </div>
+
+    <h2 style="margin-top:64px;">Phase 6 — The Hardest Interview Trap</h2>
+    <p>You now know:</p>
+    <ul class="jre-list">
+      <li>Overloading -> Parameters</li>
+      <li>Overriding -> Object decides</li>
+    </ul>
+    <p>Now let us test the concept everyone confuses.</p>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">10</span>
+      <div class="concept-tag">MIXED CASE</div>
+      <h3>Overloading + Overriding Together</h3>
+      <p>Look carefully.</p>
+      <pre><code>class Parent {
+
+    void show(Object o) {
+        System.out.println("Parent Object");
+    }
+
+}
+
+class Child extends Parent {
+
+    @Override
+    void show(Object o) {
+        System.out.println("Child Object");
+    }
+
+    void show(String s) {
+        System.out.println("Child String");
+    }
+
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Parent p = new Child();
+
+        p.show("Hello");
+
+    }
+
+}</code></pre>
+
+      <p style="margin-top:12px;">Stop. Do not execute mentally too fast.</p>
+
+      <h4 style="margin-top:20px;margin-bottom:10px;color:var(--accent);">Step 1 — Compile Time</h4>
+      <p>Compiler sees: Parent p</p>
+      <p>Available methods: show(Object)</p>
+      <p>Compiler binds show(Object) because String IS-A Object.</p>
+
+      <h4 style="margin-top:20px;margin-bottom:10px;color:var(--accent);">Step 2 — Runtime</h4>
+      <p>Actual object: Child</p>
+      <p>Runtime checks overridden version of show(Object).</p>
+      <p><strong>Output:</strong> Child Object</p>
+      <p>Not Child String, because overloading already got decided.</p>
+
+      <div class="highlight-box" style="margin-top:16px;">
+        <strong>Important Rule</strong>
+        <p style="margin-top:8px;">Overloading resolves first. Overriding resolves second.</p>
+      </div>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">11</span>
+      <div class="concept-tag">MODEL</div>
+      <h3>Final Mental Model</h3>
+      <pre><code>Method Call
+
+↓
+
+Compile Time
+(Which method signature?)
+
+↓
+
+Runtime
+(Which implementation?)</code></pre>
+
+      <p style="margin-top:12px;"><strong>Visual:</strong></p>
+      <pre><code>show("Hi")
+
+↓
+
+Compiler
+show(Object)
+
+↓
+
+JVM
+
+↓
+
+Child.show(Object)</code></pre>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">12</span>
+      <div class="concept-tag">SUMMARY</div>
+      <h3>Interview Summary</h3>
+      <table style="width:100%;border-collapse:collapse;margin-top:16px;">
+        <thead>
+          <tr style="border-bottom:2px solid var(--border);">
+            <th style="padding:12px;text-align:left;color:var(--accent);">Question</th>
+            <th style="padding:12px;text-align:left;color:var(--accent);">Answer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:12px;">Same name different params?</td><td style="padding:12px;">Overloading</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:12px;">Child changes behavior?</td><td style="padding:12px;">Overriding</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:12px;">Who decides overloading?</td><td style="padding:12px;">Compiler</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:12px;">Who decides overriding?</td><td style="padding:12px;">JVM</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:12px;">Static methods?</td><td style="padding:12px;">Hidden</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:12px;">Private methods?</td><td style="padding:12px;">Not overridden</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:12px;">Return type only?</td><td style="padding:12px;">Not overload</td></tr>
+          <tr><td style="padding:12px;">Access modifier?</td><td style="padding:12px;">Same or broader</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">13</span>
+      <div class="concept-tag">ADVANCED CHECK</div>
+      <h3>Advanced Quick Check (Final Concept Validation)</h3>
+      <p>Predict output:</p>
+      <pre><code>class A {
+
+    void test(Object o) {
+        System.out.println("Object");
+    }
+
+}
+
+class B extends A {
+
+    @Override
+    void test(Object o) {
+        System.out.println("Override");
+    }
+
+    void test(String s) {
+        System.out.println("Overload");
+    }
+
+}
+
+A a = new B();
+
+a.test("Java");</code></pre>
+
+      <p style="margin-top:12px;">Explain compile time and runtime separately.</p>
+      <p>Which happens first? Overloading OR Overriding</p>
+      <p>Complete:</p>
+      <p>Compile Time -></p>
+      <p>Runtime -></p>
+      <p style="margin-top:12px;">Answer in your own words. After that we can go deeper (JVM internals + bytecode) or switch to interview revision mode.</p>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">14</span>
+      <div class="concept-tag">EVALUATION</div>
+      <h3>Evaluation of Submitted Answers</h3>
+
+      <p><strong>Question 1</strong></p>
+      <p><strong>Your answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">Overload, here both overriding and overloading is implemented, the first test method is overrided method and second test method is overloaded method of 1st method and as per the method call it is passing string hence it executed overloaded method</p>
+      <p style="margin-top:12px;">Partially incorrect.</p>
+      <p>You forgot one important thing:</p>
+      <pre><code>A a = new B();
+
+Reference type matters first.</code></pre>
+
+      <p style="margin-top:12px;"><strong>Correct execution flow</strong></p>
+      <p style="margin-top:8px;"><strong>Step 1 — Compile Time (Overloading)</strong></p>
+      <p>Compiler sees A a and only methods visible in class A.</p>
+      <p>Available method: test(Object)</p>
+      <p>Compiler does not see test(String) because reference type is A.</p>
+      <p>So compiler binds test(Object).</p>
+
+      <p style="margin-top:12px;"><strong>Step 2 — Runtime (Overriding)</strong></p>
+      <p>Actual object = B</p>
+      <p>Runtime looks for overridden implementation of test(Object).</p>
+      <p>Finds B.test(Object).</p>
+      <p><strong>Final output:</strong> Override</p>
+
+      <p style="margin-top:12px;"><strong>Why your logic felt correct</strong></p>
+      <p>You thought String passed so test(String) is chosen.</p>
+      <p>That would be true only with:</p>
+      <pre><code>B a = new B();</code></pre>
+      <p>Then compiler sees both methods and selects test(String).</p>
+
+      <h4 style="margin-top:20px;margin-bottom:10px;color:var(--accent);">Question 2</h4>
+      <p><strong>Your answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">Overloading happens first during compile time</p>
+      <p style="margin-top:12px;">Perfect.</p>
+      <p>Rule:</p>
+      <p>Method selection -> Compile Time</p>
+      <p>Implementation selection -> Runtime</p>
+
+      <h4 style="margin-top:20px;margin-bottom:10px;color:var(--accent);">Question 3</h4>
+      <p><strong>Your answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">Compile time -> methods which are overloaded at compile time are called method overloading</p>
+      <p style="margin-top:12px;">Close, but incomplete.</p>
+      <p><strong>Correct completion:</strong></p>
+      <p>Compile Time -> Method Signature Selection</p>
+      <p>Runtime -> Actual Implementation Execution</p>
+      <p style="margin-top:12px;">Or:</p>
+      <p>Compile Time -> Which method?</p>
+      <p>Runtime -> Whose method?</p>
+
+      <div class="highlight-box" style="margin-top:20px;">
+        <strong>The One Sentence That Unlocks Everything</strong>
+        <p style="margin-top:8px;">Overloading decides WHICH METHOD. Overriding decides WHOSE IMPLEMENTATION.</p>
+      </div>
+
+      <p style="margin-top:12px;"><strong>Example:</strong></p>
+      <pre><code>A a = new B();
+
+a.test("Hi");
+
+Compile:
+WHICH METHOD?
+test(Object)
+
+Runtime:
+WHOSE IMPLEMENTATION?
+B.test(Object)</code></pre>
+    </div>
+  </div>
+</section>
+
 <section data-chapter="ob01">
   <div class="container">
     <div class="section-label" id="chapter-ob01">Chapter 1 — Why OOP Exists (Before Learning OOP)</div>
@@ -16398,7 +17826,7 @@ function switchSection(sectionName) {
     if (sectionName === 'all') {
       // Show JVM chapters (01-20)
       shouldShow = chapterNum && !chapterNum.startsWith('sh') && !chapterNum.startsWith('dt');
-      shouldShow = shouldShow && !chapterNum.startsWith('pv') && !chapterNum.startsWith('sf') && !chapterNum.startsWith('tc') && !chapterNum.startsWith('ob') && !chapterNum.startsWith('oac') && !chapterNum.startsWith('oia') && !chapterNum.startsWith('st') && !chapterNum.startsWith('ito');
+      shouldShow = shouldShow && !chapterNum.startsWith('pv') && !chapterNum.startsWith('sf') && !chapterNum.startsWith('tc') && !chapterNum.startsWith('ob') && !chapterNum.startsWith('oac') && !chapterNum.startsWith('oia') && !chapterNum.startsWith('oivc') && !chapterNum.startsWith('ovo') && !chapterNum.startsWith('st') && !chapterNum.startsWith('ito') && !chapterNum.startsWith('to');
     } else if (sectionName === 'stack-heap') {
       // Show Stack vs Heap chapters (sh01-sh10)
       shouldShow = chapterNum && chapterNum.startsWith('sh');
@@ -16423,12 +17851,21 @@ function switchSection(sectionName) {
     } else if (sectionName === 'oops-iac') {
       // For oops-iac, show all oia chapters (oia01, etc)
       shouldShow = chapterNum && chapterNum.startsWith('oia');
+    } else if (sectionName === 'oops-ivc') {
+      // For oops-ivc, show all oivc chapters (oivc01, etc)
+      shouldShow = chapterNum && chapterNum.startsWith('oivc');
+    } else if (sectionName === 'oops-ovo') {
+      // For oops-ovo, show all ovo chapters (ovo01, etc)
+      shouldShow = chapterNum && chapterNum.startsWith('ovo');
     } else if (sectionName === 'intro-streams') {
       // For intro-streams, show all st chapters (st01, st02, etc)
       shouldShow = chapterNum && chapterNum.startsWith('st');
     } else if (sectionName === 'intermediate-terminal-operations') {
       // For intermediate-terminal-operations, show all ito chapters (ito01, ito02, etc)
       shouldShow = chapterNum && chapterNum.startsWith('ito');
+    } else if (sectionName === 'terminal-operations') {
+      // For terminal-operations, show all to chapters (to01, to02, etc)
+      shouldShow = chapterNum && chapterNum.startsWith('to');
     }
     
     if (shouldShow) {
@@ -16515,6 +17952,39 @@ function switchSection(sectionName) {
     if (oia01Item) {
       oia01Item.classList.add('active');
       console.log('Marked oia01 as active');
+    }
+  }
+
+  // For oops-ivc section, mark first oivc item as active in sidebar
+  if (sectionName === 'oops-ivc') {
+    const allItems = document.querySelectorAll('.chapter-item');
+    allItems.forEach(item => item.classList.remove('active'));
+    const oivc01Item = document.querySelector('.chapter-item[data-section="oops-ivc"]');
+    if (oivc01Item) {
+      oivc01Item.classList.add('active');
+      console.log('Marked oivc01 as active');
+    }
+  }
+
+  // For oops-ovo section, mark first ovo item as active in sidebar
+  if (sectionName === 'oops-ovo') {
+    const allItems = document.querySelectorAll('.chapter-item');
+    allItems.forEach(item => item.classList.remove('active'));
+    const ovo01Item = document.querySelector('.chapter-item[data-section="oops-ovo"]');
+    if (ovo01Item) {
+      ovo01Item.classList.add('active');
+      console.log('Marked ovo01 as active');
+    }
+  }
+
+  // For terminal-operations section, mark first to item as active in sidebar
+  if (sectionName === 'terminal-operations') {
+    const allItems = document.querySelectorAll('.chapter-item');
+    allItems.forEach(item => item.classList.remove('active'));
+    const to01Item = document.querySelector('.chapter-item[data-section="terminal-operations"]');
+    if (to01Item) {
+      to01Item.classList.add('active');
+      console.log('Marked to01 as active');
     }
   }
 
@@ -18355,8 +19825,1558 @@ sorted
   </div>
 </section>
 
+<section data-chapter="to03">
+  <div class="container">
+    <div class="section-label" id="chapter-to03">Chapter 03 — forEach() Terminal Operation</div>
+    <h2>forEach() Terminal Operation</h2>
+
+    <div class="highlight-box">
+  <strong>Chapter Objective</strong>
+  <p>Understand: Purpose of forEach() · How it differs from collect() · Side effects vs transformation · Sequential vs parallel ordering · forEachOrdered() · Common interview traps</p>
+    </div>
+
+    <div class="concept-section jvm">
+  <span class="concept-num">1</span>
+  <div class="concept-tag">INTERVIEW TIP</div>
+  <h3>Why forEach() Causes Confusion</h3>
+  <p>This one causes confusion in interviews.</p>
+    </div>
+
+    <div class="concept-section jre">
+  <span class="concept-num">2</span>
+  <div class="concept-tag">ANALOGY</div>
+  <h3>Step 1 — Analogy First</h3>
+  <p>Imagine a security guard.</p>
+  <p>People walk through gate.</p>
+  <p>Guard does not store names.</p>
+  <p>Guard only performs an action:</p>
+  <pre><code>Person enters
+↓
+Guard says "Welcome"
+↓
+Move on</code></pre>
+  <p>Nothing is collected.</p>
+  <p>That is <code>forEach()</code>.</p>
+    </div>
+
+    <div class="concept-section jdk">
+  <span class="concept-num">3</span>
+  <div class="concept-tag">TECHNICAL</div>
+  <h3>Step 2 — Technical Explanation</h3>
+  <p><strong>forEach():</strong></p>
+  <p style="margin-top:16px;">Executes an action for every element of the stream.</p>
+  <p style="margin-top:24px;"><strong>Syntax:</strong></p>
+  <pre><code>stream.forEach(action)</code></pre>
+  <p style="margin-top:24px;"><strong>Example:</strong></p>
+  <pre><code>List.of("John","Alex","Bob")
+.stream()
+.forEach(System.out::println);</code></pre>
+  <p style="margin-top:16px;"><strong>Output:</strong></p>
+  <pre><code>John
+Alex
+Bob</code></pre>
+  <p style="margin-top:24px;"><strong>Notice:</strong></p>
+  <p>No result returned</p>
+  <p style="margin-top:16px;"><strong>Return type:</strong></p>
+  <pre><code>void</code></pre>
+    </div>
+
+    <div class="concept-section jvm">
+  <span class="concept-num">4</span>
+  <div class="concept-tag">VISUALIZATION</div>
+  <h3>Step 3 — Visual Representation</h3>
+  <pre><code>Collection
+ ↓
+stream()
+ ↓
+map()
+ ↓
+filter()
+ ↓
+forEach()
+ ↓
+Perform Action
+(no collection)</code></pre>
+  <p style="margin-top:24px;"><strong>Example with Processing</strong></p>
+  <pre><code>List.of(1,2,3,4)
+.stream()
+.filter(x -&gt; x%2==0)
+.forEach(System.out::println);</code></pre>
+  <p style="margin-top:16px;"><strong>Output:</strong></p>
+  <pre><code>2
+4</code></pre>
+    </div>
+
+    <div class="concept-section jre">
+  <span class="concept-num">5</span>
+  <div class="concept-tag">INTERNAL</div>
+  <h3>Step 4 — Internal Working</h3>
+  <p>When terminal operation appears:</p>
+  <pre><code>forEach()</code></pre>
+  <p style="margin-top:16px;">Stream starts pulling:</p>
+  <pre><code>1 → filter → reject
+
+2 → filter → print
+
+3 → filter → reject
+
+4 → filter → print</code></pre>
+  <p style="margin-top:24px;"><strong>Unlike collect():</strong></p>
+  <ul class="jre-list">
+    <li>No storage</li>
+    <li>No returned object</li>
+  </ul>
+    </div>
+
+    <div class="concept-section jdk">
+  <span class="concept-num">6</span>
+  <div class="concept-tag">RULES</div>
+  <h3>Important Interview Rule</h3>
+  <p>People often misuse:</p>
+  <pre><code>List&lt;String&gt; names =
+new ArrayList&lt;&gt;();
+
+stream.forEach(names::add);</code></pre>
+  <p style="margin-top:16px;"><strong>Avoid this.</strong></p>
+  <p style="margin-top:24px;"><strong>Better:</strong></p>
+  <pre><code>List&lt;String&gt; names =
+stream.collect(Collectors.toList());</code></pre>
+  <p style="margin-top:24px;"><strong>Reason:</strong></p>
+  <pre><code>forEach = side effects
+collect = transformation</code></pre>
+    </div>
+
+    <div class="concept-section jvm">
+  <span class="concept-num">7</span>
+  <div class="concept-tag">PARALLELISM</div>
+  <h3>Sequential vs Parallel Interview Trap</h3>
+  <p><strong>Sequential:</strong></p>
+  <pre><code>List.of(1,2,3)
+.stream()
+.forEach(System.out::println);</code></pre>
+  <p style="margin-top:16px;"><strong>Usually:</strong></p>
+  <pre><code>1
+2
+3</code></pre>
+  <p style="margin-top:24px;"><strong>Parallel:</strong></p>
+  <pre><code>List.of(1,2,3)
+.parallelStream()
+.forEach(System.out::println);</code></pre>
+  <p style="margin-top:16px;"><strong>Possible:</strong></p>
+  <pre><code>2
+1
+3</code></pre>
+  <p style="margin-top:24px;"><strong>Order NOT guaranteed.</strong></p>
+  <p style="margin-top:24px;"><strong>Need order?</strong></p>
+  <p>Use:</p>
+  <pre><code>forEachOrdered()</code></pre>
+  <p style="margin-top:24px;"><strong>Example:</strong></p>
+  <pre><code>.parallelStream()
+.forEachOrdered(System.out::println);</code></pre>
+  <p style="margin-top:16px;"><strong>Output:</strong></p>
+  <pre><code>1
+2
+3</code></pre>
+    </div>
+
+    <div class="concept-section jre">
+  <span class="concept-num">8</span>
+  <div class="concept-tag">REAL WORLD</div>
+  <h3>Real Project Example</h3>
+  <p>Send notifications:</p>
+  <pre><code>users.stream()
+.filter(User::isActive)
+.forEach(emailService::send);</code></pre>
+  <p style="margin-top:24px;"><strong>Purpose:</strong></p>
+  <pre><code>perform action
+not collect data</code></pre>
+    </div>
+
+    <div class="concept-section jdk">
+  <span class="concept-num">9</span>
+  <div class="concept-tag">CAUTION</div>
+  <h3>Common Mistakes</h3>
+  <ul class="jre-list">
+    <li>❌ Using <code>forEach()</code> to build collections</li>
+    <li>❌ Expecting returned value</li>
+    <li>❌ Assuming order in parallel streams</li>
+  </ul>
+  <pre><code>var x =
+stream.forEach(...); // ERROR</code></pre>
+    </div>
+
+    <div class="concept-section jvm">
+  <span class="concept-num">10</span>
+  <div class="concept-tag">SELF-CHECK</div>
+  <h3>🧠 Quick Check</h3>
+  <div style="margin-top:24px;padding:20px;background:rgba(79,255,176,0.05);border-left:3px solid var(--accent);border-radius:4px;">
+    <p><strong style="color:var(--accent);">Question 1</strong></p>
+    <p style="margin-top:8px;">Why should collect() generally be preferred over forEach() when building collections?</p>
+  </div>
+  <div style="margin-top:16px;padding:20px;background:rgba(123,108,255,0.05);border-left:3px solid var(--accent2);border-radius:4px;">
+    <p><strong style="color:var(--accent2);">Question 2</strong></p>
+    <p style="margin-top:8px;">What is the return type of forEach()?</p>
+  </div>
+  <div style="margin-top:16px;padding:20px;background:rgba(255,108,108,0.05);border-left:3px solid var(--accent3);border-radius:4px;">
+    <p><strong style="color:var(--accent3);">Question 3</strong></p>
+    <p style="margin-top:8px;">What could happen?</p>
+    <pre style="margin-top:8px;"><code>List.of(1,2,3)
+.parallelStream()
+.forEach(System.out::println);</code></pre>
+  </div>
+  <p style="margin-top:24px;color:var(--muted);"><small>Answer in your own words. After that we’ll continue to count() and start comparing terminal operations.</small></p>
+    </div>
+
+    <div class="concept-section jre">
+  <span class="concept-num">11</span>
+  <div class="concept-tag">EVALUATION</div>
+  <h3>Expected Answers & Evaluation</h3>
+
+  <h4 style="margin-top:24px;margin-bottom:16px;color:var(--accent);">Q1 — Why prefer collect() over forEach() for building collections?</h4>
+  <p><strong style="color:var(--accent);">Your answer:</strong></p>
+  <p style="margin-top:8px;font-style:italic;">forEach is used to perform operation on each element but not transform stream to collection</p>
+  <p style="margin-top:16px;">✅ <strong>Correct.</strong></p>
+  <p style="margin-top:16px;"><strong>Interview refinement:</strong></p>
+  <p style="margin-top:8px;font-style:italic;">collect() is designed for accumulation/transformation and supports proper stream reduction. forEach() is mainly for side effects and can become unsafe (especially with parallel streams).</p>
+  <p style="margin-top:16px;"><strong>Example of risky usage:</strong></p>
+  <pre style="margin-top:16px;"><code>List&lt;Integer&gt; result = new ArrayList&lt;&gt;();
+
+stream.parallel()
+  .forEach(result::add); // unsafe</code></pre>
+
+  <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Q2 — Return type?</h4>
+  <p><strong style="color:var(--accent);">Your answer:</strong></p>
+  <p style="margin-top:8px;font-style:italic;">void because it only accepts consumer</p>
+  <p style="margin-top:16px;">✅ <strong>Very good.</strong></p>
+  <p style="margin-top:16px;"><strong>Small refinement:</strong></p>
+  <p style="margin-top:8px;font-style:italic;">forEach() returns void because it consumes elements and performs actions rather than producing a new value.</p>
+
+  <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Q3 — Parallel forEach()?</h4>
+  <p><strong style="color:var(--accent);">Your answer:</strong></p>
+  <p style="margin-top:8px;font-style:italic;">numbers print in any order</p>
+  <p style="margin-top:16px;">✅ <strong>Perfect.</strong></p>
+  <p style="margin-top:16px;"><strong>Example:</strong></p>
+  <pre style="margin-top:16px;"><code>2
+1
+3
+
+or
+
+3
+1
+2</code></pre>
+  <p style="margin-top:16px;">Order not guaranteed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 04 — count() Terminal Operation -->
+<section data-chapter="to04">
+  <div class="container">
+    <div class="section-label" id="chapter-to04">Chapter 04 — count() Terminal Operation</div>
+    <h2>count() — Efficient Counting with Terminal Operation</h2>
+
+    <div class="highlight-box">
+      <strong>Chapter Objective</strong>
+      <p>Understand: Purpose of count() · Why it returns long · How it compares to collect().size() · Memory efficiency · Interview evaluation · Real-world usage scenarios</p>
+    </div>
+
+    <!-- EVALUATION SECTION -->
+    <div class="concept-section jvm">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">EVALUATION</div>
+      <h3>Interview Evaluation & Answers</h3>
+      <p style="margin-top:24px;"><strong style="color:var(--accent);">Excellent. You're thinking in terms of execution + memory, which is exactly how good Java interview answers sound.</strong></p>
+    </div>
+
+    <!-- Q1 SECTION -->
+    <div class="concept-section jre">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">Q&A</div>
+      <h3>Q1 — Why long instead of int?</h3>
+      <p style="margin-top:24px;"><strong style="color:var(--accent);">Your answer:</strong></p>
+      <pre style="margin-top:16px;"><code>because count can return values greater than int</code></pre>
+      <p style="margin-top:16px;">✅ <strong>Correct.</strong></p>
+      <p style="margin-top:24px;"><strong>Interview refinement:</strong></p>
+      <p style="margin-top:16px;"><code>count()</code> returns long because a stream may contain more elements than the maximum range of int (2^31−1).</p>
+    </div>
+
+    <!-- Q2 SECTION -->
+    <div class="concept-section jdk">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">Q&A</div>
+      <h3>Q2 — Which is more efficient?</h3>
+      <p style="margin-top:24px;"><strong style="color:var(--accent);">Your answer:</strong></p>
+      <pre style="margin-top:16px;"><code>stream.count() because collect stores elements and then fetches size</code></pre>
+      <p style="margin-top:16px;">✅ <strong>Correct.</strong></p>
+      <p style="margin-top:24px;"><strong>Tiny improvement:</strong></p>
+      <pre style="margin-top:16px;"><code>stream.collect(Collectors.toList()).size();</code></pre>
+      <p style="margin-top:16px;">does:</p>
+      <ul class="jvm-list">
+        <li>Create collection</li>
+        <li>Store elements</li>
+        <li>Calculate size</li>
+      </ul>
+      <p style="margin-top:16px;">while:</p>
+      <pre style="margin-top:16px;"><code>stream.count();</code></pre>
+      <p style="margin-top:16px;">does:</p>
+      <pre><code>traverse → increment counter → return
+
+Less memory.</code></pre>
+    </div>
+
+    <!-- Q3 SECTION -->
+    <div class="concept-section jvm">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">Q&A</div>
+      <h3>Q3 — Output?</h3>
+      <p style="margin-top:24px;"><strong style="color:var(--accent);">Your answer:</strong></p>
+      <pre style="margin-top:16px;"><code>2</code></pre>
+      <p style="margin-top:16px;">✅ <strong>Correct.</strong></p>
+      <p style="margin-top:24px;"><strong>Execution:</strong></p>
+      <pre style="margin-top:16px;"><code>1 → reject
+2 → reject
+3 → count++
+4 → count++
+
+Final:
+
+2</code></pre>
+    </div>
+
+  </div>
+</section>
+
+<!-- CHAPTER 05 — findFirst() Terminal Operation -->
+<section data-chapter="to05">
+  <div class="container">
+    <div class="section-label" id="chapter-to05">Chapter 05 — findFirst() Terminal Operation</div>
+    <h2>findFirst() — Working with Optional</h2>
+
+    <div class="highlight-box">
+      <strong>Chapter Objective</strong>
+      <p>Understand: Purpose of findFirst() · Why it returns Optional · Handling missing values · Short-circuit evaluation · Common patterns · Interview insights</p>
+    </div>
+
+    <!-- EVALUATION SECTION -->
+    <div class="concept-section jvm">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">EVALUATION</div>
+      <h3>Interview Evaluation & Answers</h3>
+      <p style="margin-top:24px;"><strong style="color:var(--accent);">Very good. And I'm especially happy you said "I am not sure" instead of guessing. That's how gaps get fixed.</strong></p>
+    </div>
+
+    <!-- Q1 SECTION -->
+    <div class="concept-section jre">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">Q&A</div>
+      <h3>Q1 — Why Optional?</h3>
+      <p style="margin-top:24px;"><strong style="color:var(--accent);">Your answer:</strong></p>
+      <pre style="margin-top:16px;"><code>not sure</code></pre>
+      <p style="margin-top:16px;"><strong>That's okay — this is the important one.</strong></p>
+      <p style="margin-top:24px;"><strong style="color:var(--accent);">Let's fix it.</strong></p>
+      
+      <h4 style="margin-top:24px;margin-bottom:16px;color:var(--accent);">Why findFirst() Returns Optional&lt;T&gt;</h4>
+      <p>Imagine this:</p>
+      <pre style="margin-top:16px;"><code>List&lt;Integer&gt; nums =
+List.of(1,3,5);
+
+Integer result =
+nums.stream()
+.filter(x -&gt; x % 2 == 0)
+.findFirst();</code></pre>
+      <p style="margin-top:24px;"><strong>Question:</strong></p>
+      <p style="margin-top:16px;">Which value should Java return?</p>
+      <p style="margin-top:16px;"><strong>?</strong></p>
+      <p style="margin-top:16px;">No element exists.</p>
+      
+      <p style="margin-top:24px;"><strong>Old Java style:</strong></p>
+      <pre style="margin-top:16px;"><code>return null;</code></pre>
+      <p style="margin-top:16px;"><strong>Problem:</strong></p>
+      <pre style="margin-top:16px;"><code>result.intValue();
+
+↓
+
+NullPointerException</code></pre>
+      
+      <p style="margin-top:24px;"><strong>Streams avoid this.</strong></p>
+      <p style="margin-top:16px;">Instead:</p>
+      <pre style="margin-top:16px;"><code>Optional&lt;Integer&gt;</code></pre>
+      <p style="margin-top:16px;">means:</p>
+      <p style="margin-top:16px;"><strong><em>"There may or may not be a value."</em></strong></p>
+      
+      <h4 style="margin-top:24px;margin-bottom:16px;color:var(--accent);">Visual:</h4>
+      <pre style="margin-top:16px;"><code>Optional
+├── Value Exists → Optional[8]
+└── No Value → Optional.empty</code></pre>
+      
+      <h4 style="margin-top:24px;margin-bottom:16px;color:var(--accent);">Usage:</h4>
+      <pre style="margin-top:16px;"><code>Optional&lt;Integer&gt; x =
+stream.findFirst();
+
+x.orElse(0);</code></pre>
+      <p style="margin-top:16px;">If value exists:</p>
+      <p style="margin-top:16px;"><code>return value</code></p>
+      <p style="margin-top:16px;">Otherwise:</p>
+      <p style="margin-top:16px;"><code>return 0</code></p>
+      
+      <p style="margin-top:24px;"><strong>Interview answer:</strong></p>
+      <p style="margin-top:16px;font-style:italic;">findFirst() returns Optional because the stream may not contain any matching element and Optional forces explicit handling of absence instead of returning null.</p>
+    </div>
+
+    <!-- Q2 SECTION -->
+    <div class="concept-section jdk">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">Q&A</div>
+      <h3>Q2 — Short-circuit?</h3>
+      <p style="margin-top:24px;"><strong style="color:var(--accent);">Your answer:</strong></p>
+      <pre style="margin-top:16px;"><code>Stop processing once condition met</code></pre>
+      <p style="margin-top:16px;">✅ <strong>Perfect.</strong></p>
+    </div>
+
+    <!-- Q3 SECTION -->
+    <div class="concept-section jvm">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">Q&A</div>
+      <h3>Q3 — Output?</h3>
+      <p style="margin-top:24px;"><strong style="color:var(--accent);">Your answer:</strong></p>
+      <pre style="margin-top:16px;"><code>8</code></pre>
+      <p style="margin-top:16px;">⚠️ <strong>Almost.</strong></p>
+      <p style="margin-top:24px;"><strong>Actual output:</strong></p>
+      <pre style="margin-top:16px;"><code>Optional[8]</code></pre>
+      <p style="margin-top:16px;"><strong>Because return type is:</strong></p>
+      <pre style="margin-top:16px;"><code>Optional&lt;Integer&gt;
+
+Not Integer.</code></pre>
+    </div>
+
+  </div>
+</section>
+
+<!-- CHAPTER 06 — findFirst() vs findAny() -->
+<section data-chapter="to06">
+  <div class="container">
+    <div class="section-label" id="chapter-to06">Chapter 06 — findFirst() vs findAny() Terminal Operation</div>
+    <h2>findFirst() vs findAny() — When Order Matters</h2>
+
+    <div class="highlight-box">
+      <strong>Chapter Objective</strong>
+      <p>Understand: Difference between findFirst() and findAny() · When to use each · Performance implications · Parallel stream behavior · Interview patterns · Return value handling</p>
+    </div>
+
+    <!-- CONCEPT SECTION -->
+    <div class="concept-section jvm">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">CONCEPT</div>
+      <h3>Concept — findFirst() vs findAny()</h3>
+      <p><strong style="color:var(--accent);">This is asked a LOT.</strong></p>
+
+      <h4 style="margin-top:24px;margin-bottom:16px;color:var(--accent);">Step 1 — Analogy First</h4>
+      <p>Imagine 10 recruiters.</p>
+      <p style="margin-top:16px;"><strong>Task:</strong></p>
+      <p style="margin-top:8px;">Find a Java Developer</p>
+      <p style="margin-top:16px;">Recruiter A finds Bhavesh.</p>
+      <p style="margin-top:16px;">Recruiter B finds Alex.</p>
+      <p style="margin-top:16px;">Recruiter C finds John.</p>
+      <p style="margin-top:24px;"><strong>Question:</strong></p>
+      <p style="margin-top:8px;">Do you care WHO found first?</p>
+      <p style="margin-top:24px;">If no:</p>
+      <pre style="margin-top:8px;"><code>findAny()</code></pre>
+      <p style="margin-top:16px;">If yes:</p>
+      <pre style="margin-top:8px;"><code>findFirst()</code></pre>
+    </div>
+
+    <!-- TECHNICAL EXPLANATION -->
+    <div class="concept-section jre">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">TECHNICAL</div>
+      <h3>Step 2 — Technical Explanation</h3>
+
+      <h4 style="margin-top:24px;margin-bottom:16px;color:var(--accent);">findFirst()</h4>
+      <p><strong>Returns:</strong></p>
+      <p style="margin-top:8px;">first element based on encounter order</p>
+      <p style="margin-top:24px;"><strong>Example:</strong></p>
+      <pre style="margin-top:16px;"><code>List.of(20,30,40)
+.stream()
+.findFirst();
+
+Output:
+
+Optional[20]</code></pre>
+
+      <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">findAny()</h4>
+      <p><strong>Returns:</strong></p>
+      <p style="margin-top:8px;">any matching element</p>
+      <p style="margin-top:24px;"><strong>Example:</strong></p>
+      <pre style="margin-top:16px;"><code>List.of(20,30,40)
+.parallelStream()
+.findAny();
+
+Possible:
+
+Optional[20]
+
+or
+
+Optional[30]
+
+or
+
+Optional[40]</code></pre>
+    </div>
+
+    <!-- INTERNAL DIFFERENCE -->
+    <div class="concept-section jdk">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">INTERNAL</div>
+      <h3>Internal Difference</h3>
+
+      <p><strong>findFirst()</strong></p>
+      <ul class="jvm-list">
+        <li>Must preserve order</li>
+        <li>↓</li>
+        <li>May process longer</li>
+      </ul>
+
+      <p style="margin-top:24px;"><strong>findAny()</strong></p>
+      <ul class="jvm-list">
+        <li>Take first available thread result</li>
+        <li>↓</li>
+        <li>Potentially faster</li>
+      </ul>
+
+      <p style="margin-top:24px;"><strong>Especially:</strong></p>
+      <p style="margin-top:8px;"><code>parallelStream()</code></p>
+    </div>
+
+    <!-- VISUAL REPRESENTATION -->
+    <div class="concept-section jvm">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">VISUALIZATION</div>
+      <h3>Visual Representation</h3>
+
+      <p><strong>findFirst()</strong></p>
+      <pre style="margin-top:16px;"><code>[5][8][10][12]
+ ↑
+Return first match</code></pre>
+
+      <p style="margin-top:24px;"><strong>findAny()</strong></p>
+      <pre style="margin-top:16px;"><code>Thread1 → 10
+Thread2 → 8
+
+Return whichever finishes</code></pre>
+    </div>
+
+    <!-- REAL EXAMPLE -->
+    <div class="concept-section jre">
+      <span class="concept-num">5</span>
+      <div class="concept-tag">REAL WORLD</div>
+      <h3>Real Examples</h3>
+
+      <p><strong>Get first login:</strong></p>
+      <pre style="margin-top:16px;"><code>logs.stream()
+.filter(Log::success)
+.findFirst();</code></pre>
+      <p style="margin-top:16px;">Need exact order.</p>
+
+      <p style="margin-top:24px;"><strong>Get any available worker:</strong></p>
+      <pre style="margin-top:16px;"><code>workers.parallelStream()
+.filter(Worker::free)
+.findAny();</code></pre>
+      <p style="margin-top:16px;">Order not important.</p>
+    </div>
+
+    <!-- INTERVIEW RULE -->
+    <div class="concept-section jdk">
+      <span class="concept-num">6</span>
+      <div class="concept-tag">RULES</div>
+      <h3>Interview Rule</h3>
+
+      <p><strong>Sequential stream:</strong></p>
+      <pre style="margin-top:16px;"><code>findFirst()
+≈
+findAny()</code></pre>
+
+      <p style="margin-top:24px;"><strong>Parallel stream:</strong></p>
+      <pre style="margin-top:16px;"><code>BIG DIFFERENCE</code></pre>
+    </div>
+
+    <!-- QUICK CHECK -->
+    <div class="concept-section jvm">
+      <span class="concept-num">7</span>
+      <div class="concept-tag">SELF-CHECK</div>
+      <h3>🧠 Quick Check (answer in your own words)</h3>
+      <div style="margin-top:24px;padding:20px;background:rgba(79,255,176,0.05);border-left:3px solid var(--accent);border-radius:4px;">
+        <p><strong style="color:var(--accent);">Question 1</strong></p>
+        <p style="margin-top:8px;">When would findAny() be preferred over findFirst()?</p>
+      </div>
+      <div style="margin-top:16px;padding:20px;background:rgba(123,108,255,0.05);border-left:3px solid var(--accent2);border-radius:4px;">
+        <p><strong style="color:var(--accent2);">Question 2</strong></p>
+        <p style="margin-top:8px;">What can findFirst() return if nothing matches?</p>
+      </div>
+      <div style="margin-top:16px;padding:20px;background:rgba(255,108,108,0.05);border-left:3px solid var(--accent3);border-radius:4px;">
+        <p><strong style="color:var(--accent3);">Question 3</strong></p>
+        <p style="margin-top:8px;">Output can be?</p>
+        <pre style="margin-top:8px;"><code>Optional&lt;Integer&gt; x =
+List.of(5,8,10,12)
+.parallelStream()
+.findAny();</code></pre>
+      </div>
+      <p style="margin-top:24px;color:var(--muted);"><small>Answer in your own words. After this we'll move into anyMatch(), allMatch(), noneMatch() — another favorite interview topic.</small></p>
+    </div>
+
+    <!-- EVALUATION SECTION -->
+    <div class="concept-section jre">
+      <span class="concept-num">8</span>
+      <div class="concept-tag">EVALUATION</div>
+      <h3>Expected Answers & Evaluation</h3>
+
+      <h4 style="margin-top:24px;margin-bottom:16px;color:var(--accent);">Q1 — When prefer findAny()?</h4>
+      <p><strong style="color:var(--accent);">Your answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">If order is not important and in multithreaded environment finding one is important, findAny() works faster</p>
+      <p style="margin-top:16px;">✅ <strong>Excellent.</strong></p>
+      <p style="margin-top:16px;"><strong>Interview refinement:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">findAny() is preferred when encounter order is not required, especially with parallelStream() because it allows early completion from whichever thread finds a result first.</p>
+
+      <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Q2 — What if nothing matches?</h4>
+      <p><strong style="color:var(--accent);">Your answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">Optional.empty</p>
+      <p style="margin-top:16px;">✅ <strong>Perfect.</strong></p>
+
+      <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Q3 — Output?</h4>
+      <p><strong style="color:var(--accent);">Your answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">Any element based on thread which finishes first</p>
+      <p style="margin-top:16px;">✅ <strong>Correct.</strong></p>
+      <p style="margin-top:16px;"><strong>Small refinement:</strong></p>
+      <p style="margin-top:8px;">Output could be:</p>
+      <pre style="margin-top:16px;"><code>Optional[5]
+
+or
+
+Optional[8]
+
+or
+
+Optional[10]
+
+etc.
+
+Because return type remains:
+
+Optional&lt;Integer&gt;</code></pre>
+    </div>
+
+  </div>
+</section>
+
+<!-- CHAPTER 07 — Matching Terminal Operations -->
+<section data-chapter="to07">
+  <div class="container">
+    <div class="section-label" id="chapter-to07">Chapter 07 — Matching Terminal Operations</div>
+    <h2>Matching Terminal Operations — anyMatch(), allMatch(), noneMatch()</h2>
+
+    <div class="highlight-box">
+      <strong>Chapter Objective</strong>
+      <p>Understand: anyMatch(), allMatch(), noneMatch() operations · Return types and purpose · Short-circuit behavior · Vacuous truth · Interview patterns · Real-world usage</p>
+    </div>
+
+    <!-- INTRO SECTION -->
+    <div class="concept-section jvm">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">CONCEPT</div>
+      <h3>Concept — Matching Terminal Operations</h3>
+      <p><strong style="color:var(--accent);">These are extremely common:</strong></p>
+      <pre style="margin-top:16px;"><code>anyMatch()
+allMatch()
+noneMatch()</code></pre>
+      <p style="margin-top:24px;"><strong>All of them:</strong></p>
+      <ul class="jvm-list">
+        <li>✅ Terminal operations</li>
+        <li>✅ Return boolean</li>
+        <li>✅ Short-circuit</li>
+      </ul>
+
+      <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Step 1 — Analogy First</h4>
+      <p>Imagine HR checking resumes.</p>
+      <p style="margin-top:24px;"><strong>Resumes:</strong></p>
+      <pre style="margin-top:16px;"><code>Java
+Spring
+SQL</code></pre>
+      <p style="margin-top:24px;"><strong>Questions:</strong></p>
+      <p style="margin-top:24px;"><strong style="color:var(--accent);">anyMatch()</strong></p>
+      <p style="margin-top:8px;">Does ANY candidate know Spring?</p>
+      <p style="margin-top:16px;">One found?</p>
+      <p style="margin-top:8px;"><strong>STOP.</strong></p>
+
+      <p style="margin-top:24px;"><strong style="color:var(--accent);">allMatch()</strong></p>
+      <p style="margin-top:8px;">Do ALL candidates know Java?</p>
+      <p style="margin-top:16px;">One failure?</p>
+      <p style="margin-top:8px;"><strong>STOP.</strong></p>
+
+      <p style="margin-top:24px;"><strong style="color:var(--accent);">noneMatch()</strong></p>
+      <p style="margin-top:8px;">Does NO candidate know COBOL?</p>
+      <p style="margin-top:16px;">One found?</p>
+      <p style="margin-top:8px;"><strong>STOP.</strong></p>
+    </div>
+
+    <!-- OPERATION 1: anyMatch() -->
+    <div class="concept-section jre">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">OPERATION</div>
+      <h3>Operation 1 — anyMatch()</h3>
+      <p><strong>Technical definition:</strong></p>
+      <p style="margin-top:8px;">Returns true if at least one element matches.</p>
+      
+      <p style="margin-top:24px;"><strong>Example:</strong></p>
+      <pre style="margin-top:16px;"><code>boolean result =
+List.of(1,3,4,7)
+.stream()
+.anyMatch(x -&gt; x % 2 == 0);
+
+System.out.println(result);</code></pre>
+      <p style="margin-top:24px;"><strong>Output:</strong></p>
+      <pre style="margin-top:16px;"><code>true</code></pre>
+      <p style="margin-top:24px;"><strong>Execution:</strong></p>
+      <pre style="margin-top:16px;"><code>1 → false
+
+3 → false
+
+4 → true
+STOP
+
+7 never checked.</code></pre>
+    </div>
+
+    <!-- OPERATION 2: allMatch() -->
+    <div class="concept-section jdk">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">OPERATION</div>
+      <h3>Operation 2 — allMatch()</h3>
+      <p><strong>Definition:</strong></p>
+      <p style="margin-top:8px;">Returns true only if every element matches.</p>
+
+      <p style="margin-top:24px;"><strong>Example:</strong></p>
+      <pre style="margin-top:16px;"><code>boolean result =
+List.of(2,4,6)
+.stream()
+.allMatch(x -&gt; x%2==0);
+
+Output:
+
+true</code></pre>
+      <p style="margin-top:24px;"><strong>Execution:</strong></p>
+      <pre style="margin-top:16px;"><code>2 ✓
+
+4 ✓
+
+6 ✓
+
+END</code></pre>
+
+      <p style="margin-top:24px;"><strong>Failure example:</strong></p>
+      <pre style="margin-top:16px;"><code>List.of(2,4,5)
+.stream()
+.allMatch(x -&gt; x%2==0);</code></pre>
+      <p style="margin-top:24px;"><strong>Execution:</strong></p>
+      <pre style="margin-top:16px;"><code>2 ✓
+
+4 ✓
+
+5 ✗
+
+STOP
+
+Output:
+
+false</code></pre>
+    </div>
+
+    <!-- OPERATION 3: noneMatch() -->
+    <div class="concept-section jvm">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">OPERATION</div>
+      <h3>Operation 3 — noneMatch()</h3>
+      <p><strong>Definition:</strong></p>
+      <p style="margin-top:8px;">Returns true if no element matches.</p>
+
+      <p style="margin-top:24px;"><strong>Example:</strong></p>
+      <pre style="margin-top:16px;"><code>boolean result =
+List.of(1,3,5)
+.stream()
+.noneMatch(x -&gt; x%2==0);
+
+Output:
+
+true</code></pre>
+      <p style="margin-top:24px;"><strong>Execution:</strong></p>
+      <pre style="margin-top:16px;"><code>1 ✗
+
+3 ✗
+
+5 ✗
+
+END</code></pre>
+
+      <p style="margin-top:24px;"><strong>If:</strong></p>
+      <pre style="margin-top:16px;"><code>List.of(1,3,4)
+.stream()
+.noneMatch(x -&gt; x%2==0);</code></pre>
+      <p style="margin-top:24px;"><strong>Execution:</strong></p>
+      <pre style="margin-top:16px;"><code>1 ✗
+
+3 ✗
+
+4 ✓
+STOP
+
+Output:
+
+false</code></pre>
+    </div>
+
+    <!-- VISUAL COMPARISON -->
+    <div class="concept-section jre">
+      <span class="concept-num">5</span>
+      <div class="concept-tag">VISUALIZATION</div>
+      <h3>Visual Comparison</h3>
+
+      <p><strong>anyMatch()</strong></p>
+      <pre style="margin-top:16px;"><code>TRUE → first success</code></pre>
+
+      <p style="margin-top:24px;"><strong>allMatch()</strong></p>
+      <pre style="margin-top:16px;"><code>FALSE → first failure</code></pre>
+
+      <p style="margin-top:24px;"><strong>noneMatch()</strong></p>
+      <pre style="margin-top:16px;"><code>FALSE → first success</code></pre>
+    </div>
+
+    <!-- REAL EXAMPLES -->
+    <div class="concept-section jdk">
+      <span class="concept-num">6</span>
+      <div class="concept-tag">REAL WORLD</div>
+      <h3>Real Project Examples</h3>
+
+      <p><strong>Any active user?</strong></p>
+      <pre style="margin-top:16px;"><code>users.stream()
+.anyMatch(User::active);</code></pre>
+
+      <p style="margin-top:24px;"><strong>All orders paid?</strong></p>
+      <pre style="margin-top:16px;"><code>orders.stream()
+.allMatch(Order::paid);</code></pre>
+
+      <p style="margin-top:24px;"><strong>No failed jobs?</strong></p>
+      <pre style="margin-top:16px;"><code>jobs.stream()
+.noneMatch(Job::failed);</code></pre>
+    </div>
+
+    <!-- INTERVIEW TRICK QUESTION -->
+    <div class="concept-section jvm">
+      <span class="concept-num">7</span>
+      <div class="concept-tag">INTERVIEW</div>
+      <h3>Interview Trick Question</h3>
+
+      <p><strong>Output?</strong></p>
+      <pre style="margin-top:16px;"><code>List.of()
+.stream()
+.allMatch(x -&gt; false);</code></pre>
+
+      <p style="margin-top:24px;"><strong>Answer:</strong></p>
+      <pre style="margin-top:16px;"><code>true</code></pre>
+
+      <p style="margin-top:24px;"><strong>Why?</strong></p>
+      <p style="margin-top:8px;">No element violated condition.</p>
+
+      <p style="margin-top:24px;"><strong>This concept is called:</strong></p>
+      <div class="highlight-box" style="background:rgba(79,255,176,0.08);border-left:3px solid var(--accent);margin-top:16px;">
+        <strong style="color:var(--accent);">Vacuous Truth</strong>
+        <p style="margin-top:8px;font-style:italic;">(We'll revisit later.)</p>
+      </div>
+    </div>
+
+    <!-- QUICK CHECK -->
+    <div class="concept-section jre">
+      <span class="concept-num">8</span>
+      <div class="concept-tag">SELF-CHECK</div>
+      <h3>🧠 Quick Check (answer in your own words)</h3>
+      <div style="margin-top:24px;padding:20px;background:rgba(79,255,176,0.05);border-left:3px solid var(--accent);border-radius:4px;">
+        <p><strong style="color:var(--accent);">Question 1</strong></p>
+        <p style="margin-top:8px;">Difference between anyMatch() and findAny()?</p>
+      </div>
+      <div style="margin-top:16px;padding:20px;background:rgba(123,108,255,0.05);border-left:3px solid var(--accent2);border-radius:4px;">
+        <p><strong style="color:var(--accent2);">Question 2</strong></p>
+        <p style="margin-top:8px;">Output?</p>
+        <pre style="margin-top:8px;"><code>boolean x =
+List.of(2,4,7)
+.stream()
+.allMatch(n -&gt; n%2==0);</code></pre>
+      </div>
+      <div style="margin-top:16px;padding:20px;background:rgba(255,108,108,0.05);border-left:3px solid var(--accent3);border-radius:4px;">
+        <p><strong style="color:var(--accent3);">Question 3</strong></p>
+        <p style="margin-top:8px;">Output?</p>
+        <pre style="margin-top:8px;"><code>boolean x =
+List.of(1,3,5)
+.stream()
+.noneMatch(n -&gt; n%2==0);</code></pre>
+      </div>
+      <p style="margin-top:24px;color:var(--muted);"><small>Answer in your own words.</small></p>
+    </div>
+
+    <!-- EVALUATION SECTION -->
+    <div class="concept-section jdk">
+      <span class="concept-num">9</span>
+      <div class="concept-tag">EVALUATION</div>
+      <h3>Expected Answers & Evaluation</h3>
+
+      <p style="margin-top:24px;"><strong style="color:var(--accent);">Excellent. These answers show you're separating boolean evaluation from element retrieval, which is exactly the right mental model.</strong></p>
+
+      <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Q1 — anyMatch() vs findAny()</h4>
+      <p><strong style="color:var(--accent);">Your answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">anyMatch stops and returns true, findAny returns Optional with an element</p>
+      <p style="margin-top:16px;">✅ <strong>Correct.</strong></p>
+      <p style="margin-top:24px;"><strong>Interview refinement:</strong></p>
+      <table style="width:100%;border-collapse:collapse;margin-top:16px;">
+        <thead>
+          <tr style="border-bottom:2px solid var(--border);">
+            <th style="padding:12px;text-align:left;color:var(--accent);">Operation</th>
+            <th style="padding:12px;text-align:left;color:var(--accent);">Returns</th>
+            <th style="padding:12px;text-align:left;color:var(--accent);">Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px;"><code>anyMatch()</code></td>
+            <td style="padding:12px;">boolean</td>
+            <td style="padding:12px;">Check existence</td>
+          </tr>
+          <tr>
+            <td style="padding:12px;"><code>findAny()</code></td>
+            <td style="padding:12px;">Optional&lt;T&gt;</td>
+            <td style="padding:12px;">Retrieve one element</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top:24px;"><strong>Example:</strong></p>
+      <pre style="margin-top:16px;"><code>employees.stream()
+.anyMatch(Employee::isActive)
+
+Question:
+
+Does at least one active employee exist?
+
+↓
+
+employees.stream()
+.findAny()
+
+Question:
+
+Give me one employee.</code></pre>
+
+      <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Q2 — Output</h4>
+      <p><strong style="color:var(--accent);">Your answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">false</p>
+      <p style="margin-top:24px;"><strong>Code:</strong></p>
+      <pre style="margin-top:16px;"><code>List.of(2,4,7)
+.stream()
+.allMatch(n -&gt; n%2==0);</code></pre>
+      <p style="margin-top:24px;"><strong>Execution:</strong></p>
+      <pre style="margin-top:16px;"><code>2 ✓
+4 ✓
+7 ✗
+STOP
+
+Output:
+
+false</code></pre>
+      <p style="margin-top:16px;">✅ <strong>Correct</strong></p>
+
+      <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Q3 — Output</h4>
+      <p><strong style="color:var(--accent);">Your answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">true</p>
+      <p style="margin-top:24px;"><strong>Code:</strong></p>
+      <pre style="margin-top:16px;"><code>List.of(1,3,5)
+.stream()
+.noneMatch(n -&gt; n%2==0);</code></pre>
+      <p style="margin-top:24px;"><strong>Execution:</strong></p>
+      <pre style="margin-top:16px;"><code>1 ✗
+3 ✗
+5 ✗
+END
+
+Output:
+
+true</code></pre>
+      <p style="margin-top:16px;">✅ <strong>Correct</strong></p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CHAPTER 08 — Terminal Operations Assessment -->
+<section data-chapter="to08">
+  <div class="container">
+    <div class="section-label" id="chapter-to08">Chapter 08 — Terminal Operations Assessment</div>
+    <h2>Terminal Operations — Consolidated Interview Assessment</h2>
+
+    <div class="highlight-box">
+      <strong>Chapter Objective</strong>
+      <p>Revise: collect() vs forEach() · Optional reasoning · count() efficiency · findFirst() output handling · findFirst() vs findAny() · anyMatch() return type</p>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">ASSESSMENT</div>
+      <h3>Interview Questions</h3>
+
+      <div style="margin-top:24px;padding:20px;background:rgba(79,255,176,0.05);border-left:3px solid var(--accent);border-radius:4px;">
+        <p><strong style="color:var(--accent);">Question 1</strong></p>
+        <p style="margin-top:8px;">What is the difference?</p>
+        <pre style="margin-top:8px;"><code>collect()
+
+vs
+
+forEach()</code></pre>
+      </div>
+
+      <div style="margin-top:16px;padding:20px;background:rgba(123,108,255,0.05);border-left:3px solid var(--accent2);border-radius:4px;">
+        <p><strong style="color:var(--accent2);">Question 2</strong></p>
+        <p style="margin-top:8px;">Why does this return Optional?</p>
+        <pre style="margin-top:8px;"><code>stream.findFirst()</code></pre>
+      </div>
+
+      <div style="margin-top:16px;padding:20px;background:rgba(255,108,108,0.05);border-left:3px solid var(--accent3);border-radius:4px;">
+        <p><strong style="color:var(--accent3);">Question 3</strong></p>
+        <p style="margin-top:8px;">Which operation is better?</p>
+        <pre style="margin-top:8px;"><code>stream.collect(Collectors.toList()).size()
+
+OR
+
+stream.count()</code></pre>
+        <p style="margin-top:8px;">Why?</p>
+      </div>
+
+      <div style="margin-top:16px;padding:20px;background:rgba(79,255,176,0.05);border-left:3px solid var(--accent);border-radius:4px;">
+        <p><strong style="color:var(--accent);">Question 4</strong></p>
+        <p style="margin-top:8px;">Output?</p>
+        <pre style="margin-top:8px;"><code>Optional&lt;Integer&gt; x =
+List.of(10,20,30)
+.stream()
+.filter(n -&gt; n &gt; 15)
+.findFirst();</code></pre>
+      </div>
+
+      <div style="margin-top:16px;padding:20px;background:rgba(123,108,255,0.05);border-left:3px solid var(--accent2);border-radius:4px;">
+        <p><strong style="color:var(--accent2);">Question 5</strong></p>
+        <p style="margin-top:8px;">Difference:</p>
+        <pre style="margin-top:8px;"><code>findFirst()
+
+vs
+
+findAny()</code></pre>
+      </div>
+
+      <div style="margin-top:16px;padding:20px;background:rgba(255,108,108,0.05);border-left:3px solid var(--accent3);border-radius:4px;">
+        <p><strong style="color:var(--accent3);">Question 6</strong></p>
+        <p style="margin-top:8px;">Output?</p>
+        <pre style="margin-top:8px;"><code>boolean x =
+List.of(1,2,3)
+.stream()
+.anyMatch(n -&gt; n &gt; 2);</code></pre>
+      </div>
+
+      <p style="margin-top:24px;"><strong>Take your time.</strong></p>
+      <p style="margin-top:8px;color:var(--muted);"><small>After evaluation we'll continue into: reduce() (very important), min(), max(), toList() vs collect(toList()), terminal operation performance and interview traps.</small></p>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">ANSWERS</div>
+      <h3>Your Answers</h3>
+      <ol class="jre-list">
+        <li>collect will collect all the elements in a container after all the operations are completed and for each will perform an operation on each element but will not transform the element</li>
+        <li>If it does not find any element then there might be NPE, to avoid NPE it returns optional</li>
+        <li>stream.count() is better</li>
+        <li>20</li>
+        <li>findfirst will return the first element and findany will return any one of the element based on whioch thread executed first</li>
+        <li>2</li>
+      </ol>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">EVALUATION</div>
+      <h3>Interview Evaluation</h3>
+
+      <p style="margin-top:24px;"><strong style="color:var(--accent);">Excellent progress. You are no longer just remembering methods. You understand the intent behind them.</strong></p>
+
+      <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Question 1 — collect() vs forEach()</h4>
+      <p><strong style="color:var(--accent);">Your answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">collect will collect all the elements in a container after all the operations are completed and forEach will perform an operation on each element but will not transform the element.</p>
+      <p style="margin-top:16px;">✅ <strong>Correct (9.5/10)</strong></p>
+      <p style="margin-top:16px;"><strong>One small improvement:</strong></p>
+      <p style="margin-top:8px;">Saying "after all the operations are completed" can be slightly misleading.</p>
+      <p style="margin-top:16px;">Internally, streams do not first finish all intermediate operations and then collect. They use pipeline processing.</p>
+      <pre style="margin-top:16px;"><code>List.of(1,2,3,4)
+    .stream()
+    .filter(x -&gt; x % 2 == 0)
+    .map(x -&gt; x * 10)
+    .collect(Collectors.toList());</code></pre>
+      <p style="margin-top:16px;"><strong>Internally, Java processes like this:</strong></p>
+      <pre style="margin-top:16px;"><code>1 -&gt; filter -&gt; reject
+
+2 -&gt; filter -&gt; map -&gt; collect
+
+3 -&gt; filter -&gt; reject
+
+4 -&gt; filter -&gt; map -&gt; collect</code></pre>
+      <p style="margin-top:16px;"><strong>Notice it does not:</strong></p>
+      <pre style="margin-top:16px;"><code>Filter entire collection
+↓
+Map entire collection
+↓
+Collect everything</code></pre>
+      <p style="margin-top:16px;">Instead, it processes one element at a time through the pipeline.</p>
+      <p style="margin-top:8px;color:var(--muted);"><small>This is a very common interview discussion point.</small></p>
+
+      <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Question 2 — Why Optional from findFirst()?</h4>
+      <p><strong style="color:var(--accent);">Your answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">If it does not find any element then there might be NPE, to avoid NPE it returns optional.</p>
+      <p style="margin-top:16px;">✅ <strong>Excellent (10/10)</strong></p>
+      <p style="margin-top:16px;"><strong>Even stronger interview wording:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">findFirst() returns Optional because a matching element may not exist. Optional forces the caller to explicitly handle the absence of a value instead of relying on null, reducing the risk of NullPointerException.</p>
+
+      <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Question 3 — Which is better?</h4>
+      <p><strong style="color:var(--accent);">Your answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">stream.count()</p>
+      <p style="margin-top:16px;">⚠️ <strong>Partially correct (8/10)</strong></p>
+      <p style="margin-top:16px;">You correctly chose the better method, but interviewers almost always ask why.</p>
+      <p style="margin-top:16px;"><strong>A complete answer:</strong></p>
+      <p style="margin-top:8px;">stream.count() is more efficient because it simply traverses the stream and increments a counter. collect(Collectors.toList()).size() first creates a list, stores every matching element in memory, and only then computes its size, making it less memory efficient.</p>
+
+      <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Question 4 — Output</h4>
+      <pre style="margin-top:16px;"><code>Optional&lt;Integer&gt; x =
+List.of(10,20,30)
+.stream()
+.filter(n -&gt; n &gt; 15)
+.findFirst();</code></pre>
+      <p style="margin-top:16px;"><strong style="color:var(--accent);">Your answer:</strong> <span style="font-style:italic;">20</span></p>
+      <p style="margin-top:16px;">⚠️ <strong>Almost correct (9/10)</strong></p>
+      <p style="margin-top:16px;"><strong>Actual output:</strong></p>
+      <pre style="margin-top:16px;"><code>Optional[20]</code></pre>
+      <p style="margin-top:16px;">Return type is Optional&lt;Integer&gt;, not Integer.</p>
+      <div class="highlight-box" style="background:rgba(123,108,255,0.08);border-left:3px solid var(--accent2);margin-top:16px;">
+        <strong style="color:var(--accent2);">Sticky Note</strong>
+        <p style="margin-top:8px;">Whenever you see findFirst() or findAny(), ask first: what is the return type?</p>
+        <p style="margin-top:8px;">If it is Optional&lt;Integer&gt;, output is Optional[20], not 20.</p>
+      </div>
+
+      <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Question 5 — findFirst() vs findAny()</h4>
+      <p><strong style="color:var(--accent);">Your answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">findFirst returns the first element and findAny returns any one based on which thread executed first.</p>
+      <p style="margin-top:16px;">✅ <strong>Excellent (10/10)</strong></p>
+      <p style="margin-top:16px;"><strong>Minor refinement:</strong></p>
+      <p style="margin-top:8px;">The thread behavior mainly matters with parallel streams.</p>
+      <p style="margin-top:16px;"><strong>Interview answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">findFirst() preserves encounter order. findAny() does not guarantee encounter order and is especially useful with parallel streams because it may return whichever matching element becomes available first.</p>
+
+      <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Question 6 — Output</h4>
+      <pre style="margin-top:16px;"><code>boolean x =
+List.of(1,2,3)
+.stream()
+.anyMatch(n -&gt; n &gt; 2);</code></pre>
+      <p style="margin-top:16px;"><strong style="color:var(--accent);">Your answer:</strong> <span style="font-style:italic;">2</span></p>
+      <p style="margin-top:16px;">❌ <strong>Incorrect</strong></p>
+      <p style="margin-top:16px;"><strong>Reasoning:</strong></p>
+      <pre style="margin-top:16px;"><code>1 &gt; 2 -&gt; false
+2 &gt; 2 -&gt; false
+3 &gt; 2 -&gt; true
+STOP</code></pre>
+      <p style="margin-top:16px;"><strong>Final answer:</strong></p>
+      <pre style="margin-top:16px;"><code>true</code></pre>
+
+      <p style="margin-top:24px;"><strong>Critical distinction:</strong></p>
+      <pre style="margin-top:16px;"><code>findFirst() -&gt; returns an element (Optional&lt;T&gt;)
+findAny()   -&gt; returns an element (Optional&lt;T&gt;)
+anyMatch()  -&gt; returns a boolean
+allMatch()  -&gt; returns a boolean
+noneMatch() -&gt; returns a boolean</code></pre>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">MEMORY TRICK</div>
+      <h3>📝 Memory Trick</h3>
+      <p>Before answering any Streams interview question, ask these two questions in order:</p>
+      <ol class="jvm-list" style="margin-top:16px;">
+        <li>What is the return type?</li>
+        <li>What does this method logically return?</li>
+      </ol>
+
+      <p style="margin-top:24px;"><strong>Examples:</strong></p>
+      <table style="width:100%;border-collapse:collapse;margin-top:16px;">
+        <thead>
+          <tr style="border-bottom:2px solid var(--border);">
+            <th style="padding:12px;text-align:left;color:var(--accent);">Method</th>
+            <th style="padding:12px;text-align:left;color:var(--accent);">Return Type</th>
+            <th style="padding:12px;text-align:left;color:var(--accent);">Returns</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px;"><code>collect()</code></td>
+            <td style="padding:12px;">Collection / Object</td>
+            <td style="padding:12px;">Processed elements</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px;"><code>forEach()</code></td>
+            <td style="padding:12px;">void</td>
+            <td style="padding:12px;">Nothing</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px;"><code>count()</code></td>
+            <td style="padding:12px;">long</td>
+            <td style="padding:12px;">Number of elements</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px;"><code>findFirst()</code></td>
+            <td style="padding:12px;">Optional&lt;T&gt;</td>
+            <td style="padding:12px;">First matching element</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px;"><code>findAny()</code></td>
+            <td style="padding:12px;">Optional&lt;T&gt;</td>
+            <td style="padding:12px;">Any matching element</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px;"><code>anyMatch()</code></td>
+            <td style="padding:12px;">boolean</td>
+            <td style="padding:12px;">Whether any match exists</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px;"><code>allMatch()</code></td>
+            <td style="padding:12px;">boolean</td>
+            <td style="padding:12px;">Whether all match</td>
+          </tr>
+          <tr>
+            <td style="padding:12px;"><code>noneMatch()</code></td>
+            <td style="padding:12px;">boolean</td>
+            <td style="padding:12px;">Whether none match</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 
 <!-- FOOTER -->
+
+<section data-chapter="to02">
+  <div class="container">
+    <div class="section-label" id="chapter-to02">Chapter 02 — collect() (Most Important Terminal Operation)</div>
+    <h2>collect() — Most Important Terminal Operation</h2>
+
+
+    <div class="highlight-box">
+      <strong>Chapter Objective</strong>
+      <p>Understand: Purpose of collect() · How it works internally · Supplier, Accumulator, and Combiner · Collecting to List, Set, Map · Real-world examples · Common mistakes · Interview insights</p>
+    </div>
+
+    <!-- 1. IMPORTANCE NOTE -->
+    <div class="concept-section jvm">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">INTERVIEW TIP</div>
+      <h3>The Most Important Terminal Operation</h3>
+      <p><strong>If interviews ask only one terminal operation → usually collect().</strong></p>
+    </div>
+
+    <!-- 2. ANALOGY -->
+    <div class="concept-section jre">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">ANALOGY</div>
+      <h3>Step 1 — Analogy First</h3>
+      <p>Imagine a factory conveyor belt.</p>
+      <p style="margin-top:24px;"><strong>Raw material:</strong></p>
+      <pre><code>Apple
+Banana
+Orange</code></pre>
+      <p style="margin-top:24px;"><strong>Operations:</strong></p>
+      <pre><code>Wash
+Cut
+Package</code></pre>
+      <p style="margin-top:24px;"><strong>At the end:</strong></p>
+      <pre><code>Put into boxes</code></pre>
+      <p style="margin-top:24px;">That final packaging step = <strong>collect()</strong>.</p>
+      <p style="margin-top:24px;"><strong>Without collecting:</strong></p>
+      <pre><code>processed data disappears</code></pre>
+    </div>
+
+    <!-- 3. TECHNICAL EXPLANATION -->
+    <div class="concept-section jdk">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">TECHNICAL</div>
+      <h3>Step 2 — Technical Explanation</h3>
+      <p><strong>collect():</strong></p>
+      <p style="margin-top:16px;">Collects processed stream elements into a final container/object.</p>
+      <p style="margin-top:24px;"><strong>General syntax:</strong></p>
+      <pre><code>stream.collect(...)</code></pre>
+      <p style="margin-top:24px;"><strong>Usually:</strong></p>
+      <pre><code>stream.collect(Collectors.xxx())</code></pre>
+
+      <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Collect into List</h4>
+      <pre><code>List&lt;String&gt; result =
+List.of("john","alex","bob")
+.stream()
+.filter(n -&gt; n.length() &gt; 3)
+.collect(Collectors.toList());
+
+System.out.println(result);</code></pre>
+      <p style="margin-top:16px;"><strong>Output:</strong></p>
+      <pre><code>[john, alex]</code></pre>
+
+      <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Collect into Set</h4>
+      <pre><code>Set&lt;Integer&gt; set =
+List.of(1,1,2,2,3)
+.stream()
+.collect(Collectors.toSet());
+
+Output:
+
+[1,2,3]
+
+Duplicates removed.</code></pre>
+
+      <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Collect into Map</h4>
+      <pre><code>Map&lt;Integer,String&gt; map =
+List.of("John","Alex")
+.stream()
+.collect(
+Collectors.toMap(
+String::length,
+x -&gt; x
+)
+);
+
+Output:
+
+{
+4=John,
+5=Alex
+}</code></pre>
+    </div>
+
+    <!-- 4. VISUAL REPRESENTATION -->
+    <div class="concept-section jvm">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">VISUALIZATION</div>
+      <h3>Step 3 — Visual Representation</h3>
+      <pre><code>Collection
+ ↓
+stream()
+ ↓
+filter()
+ ↓
+map()
+ ↓
+collect()
+ ↓
+List / Set / Map</code></pre>
+    </div>
+
+    <!-- 5. INTERNAL WORKING -->
+    <div class="concept-section jre">
+      <span class="concept-num">5</span>
+      <div class="concept-tag">INTERNAL</div>
+      <h3>Step 4 — Internal Working (Interview Depth)</h3>
+      <p>People often think:</p>
+      <pre><code>collect()</code></pre>
+      <p style="margin-top:16px;">means:</p>
+      <pre><code>convert stream to list</code></pre>
+      <p style="margin-top:16px;"><strong style="color:var(--accent3);">Wrong.</strong></p>
+      <p style="margin-top:24px;"><strong>Internally collect() works using three components:</strong></p>
+      <pre><code>Supplier
++
+Accumulator
++
+Combiner</code></pre>
+      <p style="margin-top:24px;"><strong>Visual:</strong></p>
+      <pre><code>Create container
+↓
+Add elements
+↓
+Merge results
+↓
+Return</code></pre>
+      <p style="margin-top:24px;"><strong>Example:</strong></p>
+      <p>Collectors.toList()</p>
+      <p style="margin-top:16px;">Internally behaves conceptually like:</p>
+      <pre><code>ArrayList::new
+(list, item) -&gt; list.add(item)
+(list1, list2) -&gt; list1.addAll(list2)</code></pre>
+      <p style="margin-top:24px;"><strong>Meaning:</strong></p>
+      <div class="comparison-grid">
+        <div class="comparison-card">
+          <h4 style="color:var(--accent);">Supplier</h4>
+          <p>Creates result</p>
+          <pre><code>ArrayList::new</code></pre>
+        </div>
+        <div class="comparison-card">
+          <h4 style="color:var(--accent);">Accumulator</h4>
+          <p>Adds element</p>
+          <pre><code>list.add(element)</code></pre>
+        </div>
+        <div class="comparison-card">
+          <h4 style="color:var(--accent);">Combiner</h4>
+          <p>Merge (parallel)</p>
+          <pre><code>list1.addAll(list2)</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. REAL PROJECT EXAMPLE -->
+    <div class="concept-section jdk">
+      <span class="concept-num">6</span>
+      <div class="concept-tag">REAL WORLD</div>
+      <h3>Real Project Example</h3>
+      <p>Imagine:</p>
+      <pre><code>List&lt;Employee&gt;</code></pre>
+      <p style="margin-top:16px;">Need only active employee names.</p>
+      <p style="margin-top:24px;"><strong>Without streams:</strong></p>
+      <pre><code>List&lt;String&gt; result = new ArrayList&lt;&gt;();
+
+for(Employee e : employees){
+ if(e.isActive()){
+   result.add(e.getName());
+ }
+}</code></pre>
+      <p style="margin-top:24px;"><strong>With streams:</strong></p>
+      <pre><code>List&lt;String&gt; result =
+employees.stream()
+.filter(Employee::isActive)
+.map(Employee::getName)
+.collect(Collectors.toList());</code></pre>
+    </div>
+
+    <!-- 7. INTERVIEW QUESTIONS -->
+    <div class="concept-section jvm">
+      <span class="concept-num">7</span>
+      <div class="concept-tag">INTERVIEW</div>
+      <h3>Interview Questions</h3>
+      <div style="margin-top:24px;padding:16px;background:rgba(79,255,176,0.05);border-left:3px solid var(--accent);border-radius:4px;">
+        <p><strong>Q1</strong></p>
+        <p style="margin-top:8px;">Difference:</p>
+        <pre style="margin-top:8px;"><code>toList()</code></pre>
+        <p style="margin-top:8px;">vs</p>
+        <pre style="margin-top:8px;"><code>Collectors.toList()</code></pre>
+        <p style="margin-top:12px;"><strong>Expected idea:</strong></p>
+        <p style="margin-top:8px;font-style:italic;">stream().toList() → unmodifiable<br>Collectors.toList() → implementation not guaranteed</p>
+        <p style="margin-top:8px;color:var(--muted);"><small>(We'll cover later deeply.)</small></p>
+      </div>
+      <div style="margin-top:16px;padding:16px;background:rgba(123,108,255,0.05);border-left:3px solid var(--accent2);border-radius:4px;">
+        <p><strong>Q2</strong></p>
+        <p style="margin-top:8px;">Why is collect() terminal?</p>
+        <p style="margin-top:12px;"><strong>Expected:</strong></p>
+        <p style="margin-top:8px;font-style:italic;">Because it consumes stream and produces final result.</p>
+      </div>
+    </div>
+
+    <!-- 8. COMMON MISTAKES -->
+    <div class="concept-section jre">
+      <span class="concept-num">8</span>
+      <div class="concept-tag">CAUTION</div>
+      <h3>Common Mistakes</h3>
+      <div style="margin-top:24px;padding:16px;background:rgba(255,108,108,0.08);border-left:3px solid var(--accent3);border-radius:4px;">
+        <p><strong>❌ Mistake 1</strong></p>
+        <p style="margin-top:8px;">Thinking collect() always returns List</p>
+        <p style="margin-top:12px;color:var(--accent);font-weight:600;">It can return Set, Map, String, custom object</p>
+      </div>
+      <div style="margin-top:16px;padding:16px;background:rgba(255,108,108,0.08);border-left:3px solid var(--accent3);border-radius:4px;">
+        <p><strong>❌ Mistake 2</strong></p>
+        <p style="margin-top:8px;">Using stream again after collect</p>
+        <pre style="margin-top:8px;"><code>stream.collect(...);
+
+stream.count(); // ERROR</code></pre>
+      </div>
+    </div>
+
+    <!-- 9. QUICK CHECK -->
+    <div class="concept-section jdk">
+      <span class="concept-num">9</span>
+      <div class="concept-tag">SELF-CHECK</div>
+      <h3>🧠 Quick Check</h3>
+      <div style="margin-top:24px;padding:20px;background:rgba(79,255,176,0.05);border-left:3px solid var(--accent);border-radius:4px;">
+        <p><strong style="color:var(--accent);">Question 1</strong></p>
+        <p style="margin-top:8px;">What is the purpose of collect()?</p>
+      </div>
+      <div style="margin-top:16px;padding:20px;background:rgba(123,108,255,0.05);border-left:3px solid var(--accent2);border-radius:4px;">
+        <p><strong style="color:var(--accent2);">Question 2</strong></p>
+        <p style="margin-top:8px;">What are the three internal components behind collect()?</p>
+      </div>
+      <div style="margin-top:16px;padding:20px;background:rgba(255,108,108,0.05);border-left:3px solid var(--accent3);border-radius:4px;">
+        <p><strong style="color:var(--accent3);">Question 3</strong></p>
+        <p style="margin-top:8px;">What will be output?</p>
+        <pre style="margin-top:8px;"><code>List&lt;Integer&gt; result =
+List.of(1,2,3,4)
+.stream()
+.filter(x -&gt; x % 2 == 0)
+.collect(Collectors.toList());
+
+System.out.println(result);</code></pre>
+      </div>
+      <p style="margin-top:24px;color:var(--muted);"><small>Answer in your own words. Then we'll continue to forEach() and count().</small></p>
+    </div>
+
+    <!-- 10. EXPECTED ANSWERS & EVALUATION -->
+    <div class="concept-section jvm">
+      <span class="concept-num">10</span>
+      <div class="concept-tag">EVALUATION</div>
+      <h3>Expected Answers & Evaluation</h3>
+
+      <h4 style="margin-top:24px;margin-bottom:16px;color:var(--accent);">Q1 — Purpose of collect()</h4>
+      <p><strong style="color:var(--accent);">Your answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">collect() is a terminal operation used to collect the processed elements</p>
+      <p style="margin-top:16px;">✅ <strong>Correct.</strong></p>
+      <p style="margin-top:16px;"><strong>Interview refinement:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">collect() is a terminal operation that triggers stream execution and accumulates processed elements into a final mutable or immutable result container.</p>
+      <p style="margin-top:16px;"><strong>Examples:</strong></p>
+      <ul class="jre-list">
+        <li>List</li>
+        <li>Set</li>
+        <li>Map</li>
+        <li>String</li>
+        <li>Custom object</li>
+      </ul>
+
+      <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Q2 — Internal components</h4>
+      <p><strong style="color:var(--accent);">Your answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">Supplier, Accumulator and Combiner</p>
+      <p style="margin-top:16px;">✅ <strong>Perfect.</strong></p>
+      <p style="margin-top:16px;"><strong>Quick internal recap:</strong></p>
+      <pre style="margin-top:16px;"><code>Supplier     → create result object
+Accumulator  → add elements
+Combiner     → merge partial results</code></pre>
+
+      <h4 style="margin-top:32px;margin-bottom:16px;color:var(--accent);">Q3 — Output</h4>
+      <p><strong style="color:var(--accent);">Your answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">[2,4]</p>
+      <p style="margin-top:16px;">✅ <strong>Correct.</strong></p>
+      <p style="margin-top:16px;"><strong>Execution internally:</strong></p>
+      <pre style="margin-top:16px;"><code>1 → filter → rejected
+
+2 → filter → collected
+
+3 → filter → rejected
+
+4 → filter → collected
+
+Not:
+
+filter entire collection
+then collect</code></pre>
+    </div>
+
+  </div>
+</section>
 <footer>
   <div class="container">
     <div class="footer-title">Core Java — Complete Guide</div>
@@ -18376,6 +21396,278 @@ sorted
     </div>
   </div>
 </footer>
+
+<section data-chapter="to01">
+  <div class="container">
+    <div class="section-label" id="chapter-to01">Chapter 01 — Why Terminal Operations Exist</div>
+    <h2>Streams — Terminal Operations</h2>
+
+    <div class="highlight-box">
+      <strong>Chapter Objective</strong>
+      <p>Understand: Why terminal operations exist · How they trigger pipeline execution · The difference between intermediate and terminal operations · Common terminal operations · Pipeline processing mechanics · Stream lifecycle and consumption rules</p>
+    </div>
+
+    <!-- 1. CONCEPT 1: WHY TERMINAL OPERATIONS EXIST -->
+    <div class="concept-section jvm">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">CONCEPT</div>
+      <h3>Concept 1: Why Terminal Operations Exist</h3>
+      
+      <h4 style="margin-top:24px;margin-bottom:16px;color:var(--accent);">Step 1 — Analogy First</h4>
+      <p>Imagine a restaurant kitchen.</p>
+      <p>You give instructions:</p>
+      <pre><code>Take vegetables
+→ Wash them
+→ Cut them
+→ Cook them</code></pre>
+      <p>Kitchen doesn't start cooking.</p>
+      <p>You add more instructions:</p>
+      <pre><code>→ Add salt
+→ Plate food</code></pre>
+      <p>Still nothing happens.</p>
+      <p>Only when customer says:</p>
+      <pre><code>"Serve the food"</code></pre>
+      <p>the kitchen actually starts working.</p>
+      <p style="margin-top:24px;"><strong>In Streams:</strong></p>
+      <pre><code>stream()
+→ filter()
+→ map()
+→ sorted()
+
+Nothing executes.</code></pre>
+      <p style="margin-top:16px;">Then:</p>
+      <pre><code>collect()
+
+or
+
+count()
+
+or
+
+forEach()</code></pre>
+      <p style="margin-top:16px;">Execution starts.</p>
+      <p style="margin-top:16px;">That final command is called:</p>
+      <div class="highlight-box" style="background:rgba(79,255,176,0.08);border-left:3px solid var(--accent);margin-top:16px;">
+        <strong style="font-size:18px;">Terminal Operation</strong>
+      </div>
+    </div>
+
+    <!-- 2. TECHNICAL EXPLANATION -->
+    <div class="concept-section jre">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">TECHNICAL</div>
+      <h3>Step 2 — Technical Explanation</h3>
+      <p><strong style="color:var(--accent);">A Terminal Operation is:</strong></p>
+      <p style="margin-top:16px;">The final operation in a Stream pipeline that triggers execution and produces a final result.</p>
+      <p style="margin-top:24px;"><strong>General structure:</strong></p>
+      <pre><code>source
+   ↓
+intermediate operations
+   ↓
+terminal operation</code></pre>
+      <p style="margin-top:24px;"><strong>Example:</strong></p>
+      <pre><code>List&lt;String&gt; names =
+        List.of("John","Bob","Alex");
+
+List&lt;String&gt; result =
+        names.stream()        // Source
+             .filter(n -&gt; n.length() &gt; 3) // Intermediate
+             .map(String::toUpperCase)    // Intermediate
+             .collect(Collectors.toList()); // Terminal
+
+Output:
+
+[JOHN, ALEX]</code></pre>
+      <p style="margin-top:24px;"><strong>Execution begins only at:</strong></p>
+      <pre><code>collect()</code></pre>
+    </div>
+
+    <!-- 3. VISUAL REPRESENTATION -->
+    <div class="concept-section jdk">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">VISUALIZATION</div>
+      <h3>Step 3 — Visual Representation</h3>
+      <pre><code>List
+ ↓
+Stream Created
+ ↓
+filter()
+ ↓
+map()
+ ↓
+sorted()
+ ↓
+collect()
+═══════════════
+NOW EXECUTION STARTS
+═══════════════
+ ↓
+Result</code></pre>
+    </div>
+
+    <!-- 4. INTERNAL WORKING -->
+    <div class="concept-section jvm">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">INTERNAL</div>
+      <h3>Step 4 — Internal Working (Interview Level)</h3>
+      <p>When you write:</p>
+      <pre><code>stream()
+.filter()
+.map()
+.collect()</code></pre>
+      <p style="margin-top:16px;">Java does NOT immediately process elements.</p>
+      <p style="margin-top:16px;">Instead it builds a pipeline.</p>
+      <p style="margin-top:24px;"><strong>Internally:</strong></p>
+      <pre><code>Stream Pipeline
+---------------
+filter stage
+map stage
+collect stage</code></pre>
+      <p style="margin-top:24px;"><strong>Only when terminal operation appears:</strong></p>
+      <pre><code>collect()</code></pre>
+      <p style="margin-top:16px;">Stream starts pulling elements one by one.</p>
+      <p style="margin-top:24px;"><strong>Example:</strong></p>
+      <pre><code>List.of(1,2,3)
+
+.stream()
+.filter(x -&gt; x &gt; 1)
+.map(x -&gt; x * 2)
+.collect(...)
+
+Actual execution:
+
+1 → filter → rejected
+
+2 → filter → map → collected
+
+3 → filter → map → collected
+
+Not:
+
+filter all
+then map all</code></pre>
+      <p style="margin-top:24px;"><strong>This optimization is called:</strong></p>
+      <div class="highlight-box">
+        <strong style="color:var(--accent);">Pipeline Processing</strong>
+      </div>
+    </div>
+
+    <!-- 5. IMPORTANT RULE -->
+    <div class="concept-section jre">
+      <span class="concept-num">5</span>
+      <div class="concept-tag">RULES</div>
+      <h3>Important Rule</h3>
+      <p><strong>A Stream must have:</strong></p>
+      <pre><code>0..N Intermediate Operations
++
+Exactly 1 Terminal Operation</code></pre>
+      <p style="margin-top:24px;"><strong>After terminal operation:</strong></p>
+      <pre><code>stream.collect(...);
+
+stream.count(); // ❌ ERROR</code></pre>
+      <p style="margin-top:24px;"><strong>Reason:</strong></p>
+      <p style="margin-top:16px;">stream has already been consumed</p>
+      <p style="margin-top:24px;"><strong>Exception:</strong></p>
+      <div class="highlight-box" style="background:rgba(255,108,108,0.08);border-left:3px solid var(--accent3);">
+        <strong>IllegalStateException</strong>
+      </div>
+    </div>
+
+    <!-- 6. COMMON TERMINAL OPERATIONS -->
+    <div class="concept-section jdk">
+      <span class="concept-num">6</span>
+      <div class="concept-tag">REFERENCE</div>
+      <h3>Common Terminal Operations (preview)</h3>
+      <table style="width:100%;border-collapse:collapse;margin-top:24px;">
+        <thead>
+          <tr style="border-bottom:2px solid var(--border);">
+            <th style="padding:12px;text-align:left;color:var(--accent);">Operation</th>
+            <th style="padding:12px;text-align:left;color:var(--accent);">Returns</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px;"><code>collect()</code></td>
+            <td style="padding:12px;">Collection/Object</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px;"><code>forEach()</code></td>
+            <td style="padding:12px;">void</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px;"><code>count()</code></td>
+            <td style="padding:12px;">long</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px;"><code>reduce()</code></td>
+            <td style="padding:12px;">single value</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px;"><code>findFirst()</code></td>
+            <td style="padding:12px;">Optional</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px;"><code>findAny()</code></td>
+            <td style="padding:12px;">Optional</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px;"><code>anyMatch()</code></td>
+            <td style="padding:12px;">boolean</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px;"><code>allMatch()</code></td>
+            <td style="padding:12px;">boolean</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px;"><code>noneMatch()</code></td>
+            <td style="padding:12px;">boolean</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:12px;"><code>min()</code></td>
+            <td style="padding:12px;">Optional</td>
+          </tr>
+          <tr>
+            <td style="padding:12px;"><code>max()</code></td>
+            <td style="padding:12px;">Optional</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top:24px;color:var(--muted);">We'll study each one individually.</p>
+    </div>
+
+    <!-- 7. INTERVIEW QUESTION -->
+    <div class="concept-section jre">
+      <span class="concept-num">7</span>
+      <div class="concept-tag">INTERVIEW</div>
+      <h3>Interview Question</h3>
+      <p><strong>Q: Why doesn't filter() execute immediately?</strong></p>
+      <p style="margin-top:16px;"><strong>Expected direction:</strong></p>
+      <p style="margin-top:16px;margin-left:16px;font-style:italic;">Stream operations are lazy. Intermediate operations build a pipeline. Execution begins only after a terminal operation triggers traversal.</p>
+    </div>
+
+    <!-- 8. QUICK CHECK -->
+    <div class="concept-section jdk">
+      <span class="concept-num">8</span>
+      <div class="concept-tag">SELF-CHECK</div>
+      <h3>🧠 Quick Check (answer in your own words)</h3>
+      <div style="margin-top:24px;padding:20px;background:rgba(79,255,176,0.05);border-left:3px solid var(--accent);border-radius:4px;">
+        <p><strong style="color:var(--accent);">Question 1</strong></p>
+        <p style="margin-top:8px;">What is the main responsibility of a terminal operation?</p>
+      </div>
+      <div style="margin-top:16px;padding:20px;background:rgba(123,108,255,0.05);border-left:3px solid var(--accent2);border-radius:4px;">
+        <p><strong style="color:var(--accent2);">Question 2</strong></p>
+        <p style="margin-top:8px;">Why does this not execute immediately?</p>
+        <pre style="margin-top:8px;"><code>stream.filter(x -&gt; x &gt; 10)
+      .map(x -&gt; x * 2);</code></pre>
+      </div>
+      <div style="margin-top:16px;padding:20px;background:rgba(255,108,108,0.05);border-left:3px solid var(--accent3);border-radius:4px;">
+        <p><strong style="color:var(--accent3);">Question 3</strong></p>
+        <p style="margin-top:8px;">Why can't we call another terminal operation after collect()?</p>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 </body>
 </html>
