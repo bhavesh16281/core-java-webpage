@@ -2350,7 +2350,47 @@
     }
 
     .chapter-sidebar {
-      display: none !important;
+      display: block !important;
+      position: sticky;
+      top: 128px;
+      left: auto;
+      width: 100%;
+      height: auto;
+      max-height: none;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      padding: 8px 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      background: rgba(17,17,24,0.96);
+      backdrop-filter: blur(8px);
+      z-index: 380;
+    }
+    .chapter-sidebar-title {
+      display: none;
+    }
+    .chapter-list {
+      display: flex;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+      min-width: max-content;
+      padding: 0 10px;
+    }
+    .chapter-item {
+      border-left: none;
+      border-bottom: 2px solid transparent;
+      flex: 0 0 auto;
+    }
+    .chapter-item.active {
+      border-left-color: transparent;
+      border-bottom-color: var(--accent);
+    }
+    .chapter-link {
+      padding: 10px 12px;
+      font-size: 12px;
+    }
+    .chapter-link:hover {
+      padding-left: 12px;
     }
 
     #jvm-section {
@@ -2643,7 +2683,47 @@
 
   @media (max-width: 768px) {
     .chapter-sidebar {
-      display: none !important;
+      display: block !important;
+      position: sticky;
+      top: 70px;
+      left: auto;
+      width: 100%;
+      height: auto;
+      max-height: none;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      padding: 8px 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      background: rgba(17,17,24,0.96);
+      backdrop-filter: blur(8px);
+      z-index: 380;
+    }
+    .chapter-sidebar-title {
+      display: none;
+    }
+    .chapter-list {
+      display: flex;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+      min-width: max-content;
+      padding: 0 10px;
+    }
+    .chapter-item {
+      border-left: none;
+      border-bottom: 2px solid transparent;
+      flex: 0 0 auto;
+    }
+    .chapter-item.active {
+      border-left-color: transparent;
+      border-bottom-color: var(--accent);
+    }
+    .chapter-link {
+      padding: 10px 12px;
+      font-size: 12px;
+    }
+    .chapter-link:hover {
+      padding-left: 12px;
     }
     #jvm-section {
       margin-left: 0;
@@ -2691,7 +2771,7 @@
       </button>
       <button class="nav-btn" onclick="switchSection('oops')">
         <span>OOPS</span>
-        <span class="nav-badge">5</span>
+        <span class="nav-badge">7</span>
       </button>
         <button class="nav-btn" onclick="switchSection('streams')">
           <span>Streams</span>
@@ -2776,6 +2856,12 @@
       <p>Choose a topic to explore</p>
     </div>
     <div class="subsection-grid">
+      <button class="subsection-card" onclick="switchSection('oops-strings')">
+        <div class="subsection-icon">🔤</div>
+        <h3>Strings in Java</h3>
+        <p>Learn what a String really is, why it is an object, and how Java stores and reuses String values.</p>
+        <span class="subsection-badge">2 chapters</span>
+      </button>
       <button class="subsection-card" onclick="switchSection('oops-basics')">
         <div class="subsection-icon">🧩</div>
         <h3>Basics of OOPS</h3>
@@ -2799,6 +2885,12 @@
         <h3>Inheritance vs Composition</h3>
         <p>Master the IS-A vs HAS-A relationships and learn when to use inheritance and composition in real-world scenarios.</p>
         <span class="subsection-badge">4 chapters</span>
+      </button>
+      <button class="subsection-card" onclick="switchSection('oops-hai')">
+        <div class="subsection-icon">🧠</div>
+        <h3>HAS-A vs IS-A</h3>
+        <p>Understand relationship thinking, design correctness, and interview-ready rules for inheritance vs containment.</p>
+        <span class="subsection-badge">3 chapters</span>
       </button>
         <button class="subsection-card" onclick="switchSection('oops-ovo')">
           <div class="subsection-icon">⚡</div>
@@ -2886,6 +2978,10 @@
       <li class="chapter-item" data-section="type-casting"><a href="#chapter-tc03" class="chapter-link" onclick="filterChapterContent(event, 'tc03')"><span class="chapter-num">03</span>ClassCastException</a></li>
       <li class="chapter-item" data-section="type-casting"><a href="#chapter-tc04" class="chapter-link" onclick="filterChapterContent(event, 'tc04')"><span class="chapter-num">04</span>Multi-Level Inheritance Casting</a></li>
 
+      <!-- OOPS Strings Chapter -->
+      <li class="chapter-item" data-section="oops-strings"><a href="#chapter-os01" class="chapter-link" onclick="filterChapterContent(event, 'os01')"><span class="chapter-num">01</span>Strings in Java</a></li>
+      <li class="chapter-item" data-section="oops-strings"><a href="#chapter-os02" class="chapter-link" onclick="filterChapterContent(event, 'os02')"><span class="chapter-num">02</span>Why Java Created a Separate String Class?</a></li>
+
       <!-- OOPS Basics Chapter -->
       <li class="chapter-item" data-section="oops-basics"><a href="#chapter-ob01" class="chapter-link" onclick="filterChapterContent(event, 'ob01')"><span class="chapter-num">01</span>Why OOP Exists</a></li>
       <li class="chapter-item" data-section="oops-basics"><a href="#chapter-ob02" class="chapter-link" onclick="filterChapterContent(event, 'ob02')"><span class="chapter-num">02</span>Class vs Object</a></li>
@@ -2916,6 +3012,11 @@
         <li class="chapter-item" data-section="oops-ivc"><a href="#chapter-oivc02" class="chapter-link" onclick="filterChapterContent(event, 'oivc02')"><span class="chapter-num">02</span>The REAL Difference (Coupling)</a></li>
         <li class="chapter-item" data-section="oops-ivc"><a href="#chapter-oivc03" class="chapter-link" onclick="filterChapterContent(event, 'oivc03')"><span class="chapter-num">03</span>Constructor Injection & Ownership</a></li>
         <li class="chapter-item" data-section="oops-ivc"><a href="#chapter-oivc04" class="chapter-link" onclick="filterChapterContent(event, 'oivc04')"><span class="chapter-num">04</span>Decision Framework</a></li>
+
+        <!-- OOPS HAS-A vs IS-A Chapters -->
+        <li class="chapter-item" data-section="oops-hai"><a href="#chapter-oha01" class="chapter-link" onclick="filterChapterContent(event, 'oha01')"><span class="chapter-num">01</span>Why Relationships Matter + IS-A</a></li>
+        <li class="chapter-item" data-section="oops-hai"><a href="#chapter-oha02" class="chapter-link" onclick="filterChapterContent(event, 'oha02')"><span class="chapter-num">02</span>HAS-A Relationship</a></li>
+        <li class="chapter-item" data-section="oops-hai"><a href="#chapter-oha03" class="chapter-link" onclick="filterChapterContent(event, 'oha03')"><span class="chapter-num">03</span>Quick Check + Composition vs Aggregation</a></li>
 
         <!-- OOPS Overloading vs Overriding Chapters -->
         <li class="chapter-item" data-section="oops-ovo"><a href="#chapter-ovo01" class="chapter-link" onclick="filterChapterContent(event, 'ovo01')"><span class="chapter-num">01</span>Why Overloading and Overriding Exist</a></li>
@@ -10523,6 +10624,296 @@ public class Test {
   </div>
 </section>
 
+<section data-chapter="os01">
+  <div class="container">
+    <div class="section-label" id="chapter-os01">Chapter 01 — Strings in Java</div>
+    <h2>Strings in Java</h2>
+
+    <div class="concept-section jvm">
+      <div class="concept-num">01</div>
+      <span class="concept-tag">STRING BASICS</span>
+      <h3>Concept 1: What is a String?</h3>
+
+      <h4>Step 1: Analogy</h4>
+      <p>Imagine you have a name tag at a conference.</p>
+      <pre><code>+-----------+
+|  Bhavesh  |
++-----------+</code></pre>
+      <p>The text "Bhavesh" is a sequence of characters.</p>
+      <p>A Java String is exactly that. A sequence of characters stored together.</p>
+
+      <p>Think of it like:</p>
+      <ul class="jre-list">
+        <li>A person's name</li>
+        <li>An email address</li>
+        <li>A city name</li>
+        <li>A password</li>
+        <li>A URL</li>
+      </ul>
+
+      <h4>Step 2: Technical Explanation</h4>
+      <p>A String in Java is an object that represents a sequence of characters.</p>
+      <pre><code>String name = "Bhavesh";</code></pre>
+      <p>Here:</p>
+      <ul class="jre-list">
+        <li><strong>String</strong> → Class</li>
+        <li><strong>name</strong> → Reference variable</li>
+        <li><strong>"Bhavesh"</strong> → String object</li>
+      </ul>
+      <p>Even though it looks like a primitive value, String is not a primitive data type. It is a class from the <code class="ic">java.lang</code> package.</p>
+
+      <h4>Step 3: Visual Representation</h4>
+      <div class="memory-diagram-container">
+        <div class="memory-diagram">
+          <div class="memory-section memory-stack">
+            <div class="memory-header">REFERENCE VARIABLE</div>
+            <div class="memory-content">
+              <div class="memory-item reference">
+                <span class="memory-label">name</span>
+                <span class="memory-value"><span class="memory-arrow">→</span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="memory-section memory-heap">
+            <div class="memory-header">HEAP</div>
+            <div class="memory-content">
+              <div class="memory-item">
+                <div class="memory-object-box">
+                  <div class="memory-object-title">String Object: "Bhavesh"</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>The variable stores a reference (address) to the String object, not the actual text itself.</p>
+
+      <h4>Step 4: Code Example</h4>
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-dot" style="background:#ff5f57"></div>
+          <div class="code-dot" style="background:#ffbd2e"></div>
+          <div class="code-dot" style="background:#28ca41"></div>
+          <span class="code-filename">Demo.java</span>
+        </div>
+        <pre><code><span class="kw">public class</span> <span class="cls">Demo</span> {
+
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="cls">String</span>[] args) {
+
+        <span class="cls">String</span> city = <span class="str">"Hyderabad"</span>;
+
+        <span class="cls">System</span>.out.<span class="fn">println</span>(city);
+
+    }
+
+}</code></pre>
+      </div>
+
+      <p><strong>Output:</strong></p>
+      <pre><code>Hyderabad</code></pre>
+
+      <h3>Real-World Example</h3>
+      <p>Imagine you are developing a banking application.</p>
+      <ul class="jre-list">
+        <li>Customer Name</li>
+        <li>Account Number</li>
+        <li>Branch Name</li>
+        <li>IFSC Code</li>
+        <li>Transaction ID</li>
+      </ul>
+      <p>All of these are stored as Strings because they represent textual data.</p>
+
+      <h3>Interview Point ⭐</h3>
+      <div class="interview-box">
+        <span class="label">Question</span>
+        <p>Is String a primitive data type?</p>
+        <p style="margin-top: 12px;"><strong>Answer:</strong> No. String is a class in the <code class="ic">java.lang</code> package. Variables of type String store references to String objects.</p>
+      </div>
+
+      <h3>Common Mistake</h3>
+      <div class="qa-list">
+        <div class="qa-card warn">
+          <div class="qa-header">
+            <span class="qa-badge warn-badge">Wrong</span>
+            <span class="qa-q">Does <code class="ic">String s = "Hello";</code> mean Hello is stored directly inside s?</span>
+          </div>
+          <div class="qa-answer">
+            <p><strong style="color:var(--accent3);">❌ Incorrect.</strong></p>
+            <p style="margin-top: 12px;">Actually:</p>
+            <ul style="margin: 8px 0 0 20px;">
+              <li><code class="ic">s</code> stores a reference</li>
+              <li>The String object exists separately in memory</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <h3>Quick Check</h3>
+      <div class="qa-list">
+        <div class="qa-card correct">
+          <div class="qa-header">
+            <span class="qa-badge correct-badge">Q1</span>
+            <span class="qa-q">Is String a primitive or an object?</span>
+          </div>
+          <div class="qa-answer"><span class="qa-label">Answer:</span> String is an object.</div>
+        </div>
+
+        <div class="qa-card correct">
+          <div class="qa-header">
+            <span class="qa-badge correct-badge">Q2</span>
+            <span class="qa-q">What does the variable store in <code class="ic">String name = "Bhavesh";</code>?</span>
+          </div>
+          <div class="qa-answer"><span class="qa-label">Answer:</span> The variable stores the reference of the String object.</div>
+        </div>
+
+        <div class="qa-card correct">
+          <div class="qa-header">
+            <span class="qa-badge correct-badge">Q3</span>
+            <span class="qa-q">Give one real-world example where you would use a String.</span>
+          </div>
+          <div class="qa-answer"><span class="qa-label">Answer:</span> Names, addresses, city, country, state, email, URL, or account-related identifiers.</div>
+        </div>
+      </div>
+
+      <h3>Why Java Has a Separate String Class</h3>
+      <div class="highlight-box">
+        <p>Java created String as a class so text can be handled as an object with methods, but the deeper reasons are security, immutability, memory optimization, and reuse through the String Constant Pool.</p>
+      </div>
+
+      <div class="qa-card correct" style="margin-top: 16px;">
+        <div class="qa-header">
+          <span class="qa-badge correct-badge">Refinement</span>
+          <span class="qa-q">Your first explanation was directionally right, but incomplete.</span>
+        </div>
+        <div class="qa-answer">
+          <p><strong>Better answer:</strong> Java uses a separate String class so text can be treated as an object, but the real design reasons are immutability, security, String pooling, and performance through reuse.</p>
+        </div>
+      </div>
+
+      <h3>Key Takeaway</h3>
+      <div class="highlight-box" style="border-left-color: var(--accent);">
+        <p><strong>✅ Summary:</strong> String is not a primitive. It is an object reference to text data, and Java treats it specially because text is everywhere in real applications.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-chapter="os02">
+  <div class="container">
+    <div class="section-label" id="chapter-os02">Chapter 02 — Why Java Created a Separate String Class?</div>
+    <h2>Why did Java create a separate String class?</h2>
+
+    <div class="concept-section jre">
+      <div class="concept-num">02</div>
+      <span class="concept-tag">STRING CONSTANT POOL</span>
+      <h3>Concept 2: Why did Java create a separate String class?</h3>
+
+      <h4>Step 1: Analogy</h4>
+      <p>Imagine a company where every employee uses the same company name:</p>
+      <pre><code>OpenAI
+OpenAI
+OpenAI
+OpenAI
+OpenAI</code></pre>
+      <p>Instead of printing the word <strong>OpenAI</strong> on thousands of ID cards separately, the company prints it once and lets everyone refer to the same text.</p>
+
+      <ul class="jre-list">
+        <li>Saves paper (memory)</li>
+        <li>Avoids duplication</li>
+        <li>Keeps things consistent</li>
+      </ul>
+
+      <p>Java does something very similar with Strings.</p>
+
+      <h4>Step 2: Technical Explanation</h4>
+      <p>Java uses Strings almost everywhere:</p>
+      <pre><code>System.out.println("Hello");
+Class.forName("Employee");
+String url = "https://example.com";
+String sql = "SELECT * FROM EMPLOYEE";</code></pre>
+      <p>Without optimization, millions of identical Strings like <code class="ic">"Hello"</code> or <code class="ic">"SELECT"</code> would waste memory.</p>
+      <p>To solve this, Java introduced the <strong>String Constant Pool (SCP)</strong>, where identical string literals are stored only once.</p>
+      <p>This is one of the biggest reasons Strings have special treatment in Java.</p>
+
+      <h4>Step 3: Visual Representation</h4>
+      <div class="comparison-grid">
+        <div class="comparison-card">
+          <h3>Without optimization</h3>
+          <pre><code>"Hello"
+"Hello"
+"Hello"
+"Hello"
+
+4 different objects</code></pre>
+        </div>
+        <div class="comparison-card">
+          <h3>With optimization (SCP)</h3>
+          <pre><code>         +---------+
+s1 ----&gt; | "Hello" |
+s2 ----&gt; |         |
+s3 ----&gt; |         |
+s4 ----&gt; |         |
+         +---------+
+
+Only one object is created, and everyone points to it.</code></pre>
+        </div>
+      </div>
+
+      <h4>Step 4: Code Example</h4>
+      <pre><code>String s1 = "Java";
+String s2 = "Java";</code></pre>
+      <p>At first glance, it might seem like two objects are created.</p>
+      <p>But Java actually creates only one String object in the String Constant Pool, and both <code class="ic">s1</code> and <code class="ic">s2</code> point to it.</p>
+      <p>We'll see exactly how and why this happens when we study the String Constant Pool (SCP).</p>
+
+      <h3>Interview Insight ⭐</h3>
+      <div class="interview-box">
+        <span class="label">Common Interview Question</span>
+        <p>Why does Java give special treatment to String?</p>
+        <p style="margin-top: 12px;"><strong>A strong answer includes these points:</strong></p>
+        <ul style="margin: 8px 0 0 20px;">
+          <li>Strings are used extensively throughout Java.</li>
+          <li>They are immutable, making them secure and thread-safe.</li>
+          <li>The String Constant Pool reduces memory usage.</li>
+          <li>Reusing String objects improves performance.</li>
+        </ul>
+      </div>
+
+      <h3>Quick Check</h3>
+      <div class="qa-list">
+        <div class="qa-card correct">
+          <div class="qa-header">
+            <span class="qa-badge correct-badge">Q1</span>
+            <span class="qa-q">Why doesn't Java create a new String object every time it sees the same string literal like <code class="ic">"Java"</code>?</span>
+          </div>
+          <div class="qa-answer"><span class="qa-label">Answer:</span> Because creating a new object every time would waste memory for the same text.</div>
+        </div>
+
+        <div class="qa-card correct">
+          <div class="qa-header">
+            <span class="qa-badge correct-badge">Q2</span>
+            <span class="qa-q">What problem does the String Constant Pool help solve?</span>
+          </div>
+          <div class="qa-answer"><span class="qa-label">Answer:</span> It stores unique string literals once so Java can reuse the same object instead of creating duplicates.</div>
+        </div>
+
+        <div class="qa-card correct">
+          <div class="qa-header">
+            <span class="qa-badge correct-badge">Q3</span>
+            <span class="qa-q">If 1,000 variables are assigned the literal <code class="ic">"Hyderabad"</code>, how many String objects would be created without optimization and with SCP?</span>
+          </div>
+          <div class="qa-answer"><span class="qa-label">Answer:</span> Without optimization, 1,000 String objects would likely be created. With SCP, only one String object would be created and the 1,000 variables would point to it.</div>
+        </div>
+      </div>
+
+      <div class="highlight-box" style="margin-top: 24px;">
+        <p><strong>Interview-ready summary:</strong> The String Constant Pool is a special memory area in the heap where Java stores unique string literals. Before creating a new string literal, the JVM checks whether an identical string already exists in the pool. If it does, the existing object is reused instead of creating a new one. This reduces memory consumption and improves performance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section data-chapter="oia01">
   <div class="container">
   <div class="section-label" id="chapter-oia01">Chapter 1 — Interface vs Abstract Class — Concept 1</div>
@@ -17668,7 +18059,15 @@ function switchSection(sectionName) {
   const allButtons = document.querySelectorAll('.nav-btn');
   allButtons.forEach(btn => btn.classList.remove('active'));
   
-  const clickedBtn = event.target.closest('.nav-btn');
+  // Avoid relying on window.event (unreliable on some mobile browsers)
+  const activeEvent = typeof event !== 'undefined' ? event : null;
+  let clickedBtn = null;
+  if (activeEvent && activeEvent.target && activeEvent.target.closest) {
+    clickedBtn = activeEvent.target.closest('.nav-btn');
+  }
+  if (!clickedBtn) {
+    clickedBtn = document.querySelector(`.nav-btn[onclick*="switchSection('${sectionName}')"]`);
+  }
   if (clickedBtn) clickedBtn.classList.add('active');
 
   const jvmSection = document.getElementById('jvm-section');
@@ -17854,6 +18253,9 @@ function switchSection(sectionName) {
     } else if (sectionName === 'oops-ivc') {
       // For oops-ivc, show all oivc chapters (oivc01, etc)
       shouldShow = chapterNum && chapterNum.startsWith('oivc');
+    } else if (sectionName === 'oops-hai') {
+      // For oops-hai, show all oha chapters (oha01, etc)
+      shouldShow = chapterNum && chapterNum.startsWith('oha');
     } else if (sectionName === 'oops-ovo') {
       // For oops-ovo, show all ovo chapters (ovo01, etc)
       shouldShow = chapterNum && chapterNum.startsWith('ovo');
@@ -17963,6 +18365,17 @@ function switchSection(sectionName) {
     if (oivc01Item) {
       oivc01Item.classList.add('active');
       console.log('Marked oivc01 as active');
+    }
+  }
+
+  // For oops-hai section, mark first oha item as active in sidebar
+  if (sectionName === 'oops-hai') {
+    const allItems = document.querySelectorAll('.chapter-item');
+    allItems.forEach(item => item.classList.remove('active'));
+    const oha01Item = document.querySelector('.chapter-item[data-section="oops-hai"]');
+    if (oha01Item) {
+      oha01Item.classList.add('active');
+      console.log('Marked oha01 as active');
     }
   }
 
@@ -18279,6 +18692,887 @@ console.log('%cUse the navigation bar to explore topics. Keyboard: Ctrl+K to scr
 </style>
 
 </div> <!-- End jvm-section -->
+
+<section data-chapter="oha01">
+  <div class="container">
+    <div class="section-label" id="chapter-oha01">Chapter 1 — HAS-A vs IS-A</div>
+    <h2>HAS-A vs IS-A — Concept 1</h2>
+
+    <div class="highlight-box">
+      <strong>Chapter Objective</strong>
+      <p>Understand why relationships matter in class design · Learn IS-A through inheritance · Identify wrong modeling decisions · Build interview-ready relationship checks.</p>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">FOUNDATION</div>
+      <h3>Concept 1 — Why do relationships matter?</h3>
+      <p>Before IS-A and HAS-A, understand this:</p>
+      <p>When designing classes, we ask:</p>
+      <pre><code>"How are these objects related?"</code></pre>
+      <p><strong>Example:</strong></p>
+      <p>You are designing a system.</p>
+      <p>You have:</p>
+      <pre><code>Car
+Engine</code></pre>
+      <p><strong>Question:</strong></p>
+      <pre><code>Should Car become Engine?
+
+OR
+
+Should Car contain Engine?</code></pre>
+      <p>This decision changes the entire design.</p>
+      <p>That is why relationships matter.</p>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">IS-A</div>
+      <h3>Concept 2 — IS-A Relationship</h3>
+
+      <h4 style="margin-top:24px;margin-bottom:16px;color:var(--accent);">Step 1: Analogy</h4>
+      <p>Imagine real life.</p>
+      <p>A Dog is an Animal.</p>
+      <p>Say it naturally:</p>
+      <pre><code>Dog IS AN Animal</code></pre>
+      <p>Sounds correct.</p>
+      <p>Now try:</p>
+      <pre><code>Animal IS A Dog</code></pre>
+      <p>Wrong.</p>
+      <p>That means:</p>
+      <ul class="jre-list">
+        <li>Dog is more specific</li>
+        <li>Animal is more general</li>
+      </ul>
+      <p>This is exactly IS-A.</p>
+
+      <h4 style="margin-top:24px;margin-bottom:16px;color:var(--accent);">Step 2: Technical Explanation</h4>
+      <p>IS-A represents Inheritance.</p>
+      <p>One class becomes a specialized version of another.</p>
+      <p><strong>Java:</strong></p>
+      <pre><code>class Animal {
+    void eat() {
+        System.out.println("Eating");
+    }
+}
+
+class Dog extends Animal {
+
+}</code></pre>
+      <p><strong>Meaning:</strong></p>
+      <pre><code>Dog IS-A Animal</code></pre>
+      <p>Dog automatically gets Animal behavior.</p>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">VISUAL</div>
+      <h3>Step 3: Visual Representation</h3>
+      <pre><code>          Animal
+             ↑
+             |
+            Dog</code></pre>
+      <p>Arrow means:</p>
+      <p>Dog inherits from Animal.</p>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">CODE</div>
+      <h3>Step 4: Code Example</h3>
+      <pre><code>class Animal {
+
+    void eat() {
+        System.out.println("Eat");
+    }
+}
+
+class Dog extends Animal {
+
+    void bark() {
+        System.out.println("Bark");
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Dog d = new Dog();
+
+        d.eat();   // inherited
+        d.bark();
+    }
+
+}</code></pre>
+      <p><strong>Output:</strong></p>
+      <pre><code>Eat
+Bark</code></pre>
+      <p>Dog can do:</p>
+      <ul class="jre-list">
+        <li>Its own behavior</li>
+        <li>Parent behavior</li>
+      </ul>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">5</span>
+      <div class="concept-tag">INTERVIEW RULE</div>
+      <h3>Interview Rule (VERY IMPORTANT)</h3>
+      <p>Use inheritance only when:</p>
+      <pre><code>Child truly IS parent</code></pre>
+      <p><strong>Ask:</strong></p>
+      <pre><code>Can I replace child wherever parent is expected?</code></pre>
+      <p><strong>Example:</strong></p>
+      <pre><code>Dog -&gt; Animal ✓
+
+But:
+
+Engine -&gt; Car ✗</code></pre>
+      <p>Engine is not a Car.</p>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">6</span>
+      <div class="concept-tag">MISTAKE</div>
+      <h3>Common Mistake</h3>
+      <p><strong>Wrong:</strong></p>
+      <pre><code>class Car extends Engine</code></pre>
+      <p><strong>Because:</strong></p>
+      <pre><code>Car IS-A Engine ❌</code></pre>
+      <p>Not true.</p>
+      <p><strong>Correct:</strong></p>
+      <pre><code>class Car {
+    Engine engine;
+}</code></pre>
+      <p>(We will understand WHY in HAS-A.)</p>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">7</span>
+      <div class="concept-tag">MEMORY</div>
+      <h3>Memory Trigger</h3>
+      <p>🟨 Remember:</p>
+      <pre><code>IS-A = Inheritance
+extends
+specialization</code></pre>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">8</span>
+      <div class="concept-tag">SELF-CHECK</div>
+      <h3>🧠 Quick Check (Answer without overthinking)</h3>
+      <div style="margin-top:24px;padding:20px;background:rgba(79,255,176,0.05);border-left:3px solid var(--accent);border-radius:4px;">
+        <p><strong style="color:var(--accent);">Question 1</strong></p>
+        <p style="margin-top:8px;">Cat extends Animal → IS-A or HAS-A?</p>
+      </div>
+      <div style="margin-top:16px;padding:20px;background:rgba(123,108,255,0.05);border-left:3px solid var(--accent2);border-radius:4px;">
+        <p><strong style="color:var(--accent2);">Question 2</strong></p>
+        <p style="margin-top:8px;">Laptop contains Battery → IS-A or HAS-A?</p>
+      </div>
+      <div style="margin-top:16px;padding:20px;background:rgba(255,108,108,0.05);border-left:3px solid var(--accent3);border-radius:4px;">
+        <p><strong style="color:var(--accent3);">Question 3</strong></p>
+        <p style="margin-top:8px;">Is this correct?</p>
+        <pre style="margin-top:8px;"><code>class Employee extends Salary</code></pre>
+        <p style="margin-top:8px;">Why?</p>
+      </div>
+      <p style="margin-top:24px;color:var(--muted);"><small>Answer in your own words. After your answers, I will evaluate and then teach HAS-A (this is where most interview confusion disappears).</small></p>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">9</span>
+      <div class="concept-tag">EVALUATION</div>
+      <h3>Evaluation</h3>
+      <p><strong>Your answers:</strong></p>
+      <ol class="jre-list">
+        <li>IS-A</li>
+        <li>HAS-A</li>
+        <li>No because Employee is not a salary, employee has salary is corrent relationship</li>
+      </ol>
+
+      <p style="margin-top:24px;">Excellent. Your answers show the core idea is already forming.</p>
+
+      <h4 style="margin-top:24px;margin-bottom:16px;color:var(--accent);">1. Cat extends Animal</h4>
+      <p><strong>Your answer:</strong> IS-A ✅ Correct</p>
+      <p style="margin-top:8px;"><strong>Reason:</strong></p>
+      <pre><code>Cat IS-A Animal</code></pre>
+      <p>Inheritance fits.</p>
+
+      <h4 style="margin-top:24px;margin-bottom:16px;color:var(--accent);">2. Laptop contains Battery</h4>
+      <p><strong>Your answer:</strong> HAS-A ✅ Correct</p>
+      <p style="margin-top:8px;"><strong>Reason:</strong></p>
+      <pre><code>Laptop HAS-A Battery</code></pre>
+      <p>Containment → HAS-A.</p>
+
+      <h4 style="margin-top:24px;margin-bottom:16px;color:var(--accent);">3. class Employee extends Salary</h4>
+      <p><strong>Your answer:</strong></p>
+      <p style="margin-top:8px;font-style:italic;">Employee is not salary, employee has salary</p>
+      <p style="margin-top:16px;">✅ Excellent reasoning.</p>
+      <p style="margin-top:16px;">You did something important:</p>
+      <ul class="jre-list">
+        <li>You did not memorize.</li>
+        <li>You checked: "Does this sentence sound true in real life?"</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section data-chapter="oha02">
+  <div class="container">
+    <div class="section-label" id="chapter-oha02">Chapter 2 — HAS-A vs IS-A</div>
+    <h2>HAS-A Relationship — Concept 3</h2>
+
+    <div class="highlight-box">
+      <strong>Chapter Objective</strong>
+      <p>Master HAS-A modeling · Distinguish composition vs aggregation · Use lifecycle reasoning in interviews · Apply design decision framework in real systems.</p>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">HAS-A</div>
+      <h3>Concept 3 — HAS-A Relationship</h3>
+      <p>This is where confusion usually disappears.</p>
+
+      <h4 style="margin-top:24px;margin-bottom:16px;color:var(--accent);">Step 1: Analogy</h4>
+      <p>Imagine:</p>
+      <pre><code>A Car has an Engine</code></pre>
+      <p>Say naturally:</p>
+      <pre><code>Car HAS-A Engine</code></pre>
+      <p>Sounds correct.</p>
+      <p>Now try:</p>
+      <pre><code>Car IS-A Engine</code></pre>
+      <p>Feels wrong.</p>
+      <p>That means Engine should not become parent.</p>
+      <p>Engine should become a field.</p>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">TECHNICAL</div>
+      <h3>Step 2: Technical Explanation</h3>
+      <p>HAS-A means:</p>
+      <p>One object contains, uses, or owns another object.</p>
+      <p>In Java this is usually implemented using:</p>
+      <pre><code>Object reference inside another class</code></pre>
+      <p><strong>Example:</strong></p>
+      <pre><code>class Engine {
+
+    void start() {
+        System.out.println("Engine started");
+    }
+
+}
+
+class Car {
+
+    Engine engine = new Engine();
+
+}</code></pre>
+      <p><strong>Meaning:</strong></p>
+      <pre><code>Car HAS-A Engine</code></pre>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">VISUAL</div>
+      <h3>Step 3: Visual Representation</h3>
+      <pre><code>+---------+
+|  Car    |
+|---------|
+| Engine  |
++---------+</code></pre>
+      <p>Contained object.</p>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">CODE</div>
+      <h3>Step 4: Code Example</h3>
+      <pre><code>class Engine {
+
+    void start() {
+        System.out.println("Engine Started");
+    }
+
+}
+
+class Car {
+
+    private Engine engine;
+
+    Car() {
+        engine = new Engine();
+    }
+
+    void drive() {
+
+        engine.start();
+
+        System.out.println("Driving");
+
+    }
+
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Car car = new Car();
+
+        car.drive();
+
+    }
+
+}</code></pre>
+      <p><strong>Output:</strong></p>
+      <pre><code>Engine Started
+Driving</code></pre>
+      <p>Car is using Engine.</p>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">5</span>
+      <div class="concept-tag">FRAMEWORK</div>
+      <h3>Internal Thinking Model (Very Important)</h3>
+      <p>When designing classes:</p>
+      <p><strong>Question 1</strong></p>
+      <p>Can I say:</p>
+      <pre><code>A IS-A B ?</code></pre>
+      <p>YES → Inheritance</p>
+      <p><strong>Example:</strong></p>
+      <pre><code>Dog IS-A Animal</code></pre>
+
+      <p style="margin-top:24px;"><strong>Question 2</strong></p>
+      <p>Can I say:</p>
+      <pre><code>A HAS-A B ?</code></pre>
+      <p>YES → Composition / Aggregation</p>
+      <p><strong>Example:</strong></p>
+      <pre><code>Car HAS-A Engine</code></pre>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">6</span>
+      <div class="concept-tag">INTERVIEW GOLD</div>
+      <h3>Interview Gold</h3>
+      <p><strong>Interviewer:</strong></p>
+      <p>Why is composition preferred over inheritance?</p>
+      <p><strong>Good answer:</strong></p>
+      <p>Composition creates loose coupling and better flexibility because contained objects can be replaced without changing class hierarchy, whereas inheritance creates stronger dependency.</p>
+
+      <p style="margin-top:24px;"><strong>Example:</strong></p>
+      <p>Bad:</p>
+      <pre><code>Car extends PetrolEngine</code></pre>
+      <p>Future:</p>
+      <p>Need ElectricEngine.</p>
+      <p>Problem.</p>
+      <p>Better:</p>
+      <pre><code>Car HAS-A Engine</code></pre>
+      <p>Now replace Engine implementation.</p>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">7</span>
+      <div class="concept-tag">ADVANCED NOTE</div>
+      <h3>Small Advanced Note (Important)</h3>
+      <p>HAS-A is implemented in two styles:</p>
+      <p><strong>Composition</strong></p>
+      <p>Strong ownership</p>
+      <pre><code>House -&gt; Rooms
+
+Destroy house -&gt;
+rooms destroyed.</code></pre>
+
+      <p style="margin-top:24px;"><strong>Aggregation</strong></p>
+      <p>Weak ownership</p>
+      <pre><code>Department -&gt; Employee
+
+Department removed -&gt;
+employee still exists.</code></pre>
+
+      <p>We will go deeper later.</p>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">8</span>
+      <div class="concept-tag">MEMORY</div>
+      <h3>Memory Trigger</h3>
+      <p>🟨 Remember:</p>
+      <pre><code>IS-A -&gt; Inheritance -&gt; extends
+
+HAS-A -&gt; Composition/Aggregation -&gt; object reference
+
+Ask:
+Can I replace A with B naturally?</code></pre>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">9</span>
+      <div class="concept-tag">SELF-CHECK</div>
+      <h3>🧠 Quick Check</h3>
+      <div style="margin-top:24px;padding:20px;background:rgba(79,255,176,0.05);border-left:3px solid var(--accent);border-radius:4px;">
+        <pre style="margin-top:8px;"><code>class Bird extends Wings</code></pre>
+        <p style="margin-top:8px;">Correct or incorrect? Why?</p>
+      </div>
+      <div style="margin-top:16px;padding:20px;background:rgba(123,108,255,0.05);border-left:3px solid var(--accent2);border-radius:4px;">
+        <pre style="margin-top:8px;"><code>class Bird {
+    Wings wings;
+}</code></pre>
+        <p style="margin-top:8px;">IS-A or HAS-A?</p>
+      </div>
+      <div style="margin-top:16px;padding:20px;background:rgba(255,108,108,0.05);border-left:3px solid var(--accent3);border-radius:4px;">
+        <p style="margin-top:8px;">You are designing:</p>
+        <pre style="margin-top:8px;"><code>Order
+Payment</code></pre>
+        <p style="margin-top:8px;">Which relationship fits and why?</p>
+      </div>
+      <p style="margin-top:24px;color:var(--muted);"><small>Answer in your own words. Do not worry about perfect terminology.</small></p>
+    </div>
+
+    <div class="concept-section jvm">
+      <span class="concept-num">10</span>
+      <div class="concept-tag">EVALUATION</div>
+      <h3>Evaluation</h3>
+      <p><strong>Your answers:</strong></p>
+      <ol class="jre-list">
+        <li>No it has to be aggregation/composition</li>
+        <li>Has-A</li>
+        <li>Has-A relationship is perfect because we can implement diffrent kinds of payment services like Stripe, paypal etc</li>
+      </ol>
+
+      <p style="margin-top:24px;"><strong>1. class Bird extends Wings</strong></p>
+      <p>Your answer: ✅ Correct</p>
+      <p>The most important reason:</p>
+      <pre><code>Bird IS-A Wings?  -> No
+Bird HAS-A Wings? -> Yes</code></pre>
+      <p>So correct design:</p>
+      <pre><code>class Bird {
+    private Wings wings;
+}</code></pre>
+
+      <p style="margin-top:24px;"><strong>2. class Bird { Wings wings; }</strong></p>
+      <p>Your answer: ✅ Correct</p>
+      <pre><code>Bird HAS-A Wings</code></pre>
+
+      <p style="margin-top:24px;"><strong>3. Order and Payment</strong></p>
+      <p>Your answer: ✅ Excellent</p>
+      <p>You touched a key principle:</p>
+      <pre><code>Favor Composition over Inheritance</code></pre>
+      <p><strong>Bad Design:</strong></p>
+      <pre><code>class Order extends StripePayment {
+
+}</code></pre>
+      <p>Need PayPal later? This breaks design intent.</p>
+      <p><strong>Good Design:</strong></p>
+      <pre><code>interface Payment {
+    void pay();
+}
+
+class StripePayment implements Payment {
+    @Override
+    public void pay() {
+        System.out.println("Pay using Stripe");
+    }
+}
+
+class PaypalPayment implements Payment {
+    @Override
+    public void pay() {
+        System.out.println("Pay using PayPal");
+    }
+}
+
+class Order {
+    private Payment payment;
+
+    Order(Payment payment) {
+        this.payment = payment;
+    }
+
+    void checkout() {
+        payment.pay();
+    }
+}</code></pre>
+      <p>Now you can switch implementation without changing Order.</p>
+    </div>
+
+    <div class="concept-section jre">
+      <span class="concept-num">11</span>
+      <div class="concept-tag">DECISION TREE</div>
+      <h3>The Decision Framework (Removes Most Confusion)</h3>
+      <p><strong>Step 1: Ask the IS-A question</strong></p>
+      <pre><code>Can you naturally say:
+A IS-A B ?</code></pre>
+      <p>Example:</p>
+      <pre><code>Dog IS-A Animal -> Inheritance</code></pre>
+      <p>Another:</p>
+      <pre><code>Manager IS-A Employee -> Inheritance</code></pre>
+
+      <p style="margin-top:24px;"><strong>Step 2: If not, ask the HAS-A question</strong></p>
+      <pre><code>Can you naturally say:
+A HAS-A B ?</code></pre>
+      <p>Example:</p>
+      <pre><code>Car HAS-A Engine -> Composition/Aggregation
+Computer HAS-A Keyboard -> Composition/Aggregation</code></pre>
+
+      <p style="margin-top:24px;"><strong>Step 3: If neither fits</strong></p>
+      <p>It may be simple association.</p>
+      <pre><code>Customer places Order</code></pre>
+      <p>Related, but not strict IS-A/HAS-A lifecycle ownership.</p>
+    </div>
+
+    <div class="concept-section jdk">
+      <span class="concept-num">12</span>
+      <div class="concept-tag">INTERVIEW</div>
+      <h3>Interview Scenario</h3>
+      <p><strong>Question:</strong> When would you choose inheritance over composition?</p>
+      <p><strong>Strong answer:</strong></p>
+      <p>I first identify the relationship between classes. If the child is a specialized version of the parent and "Child IS-A Parent" is naturally true, I use inheritance. If one object contains or uses another object and "Object HAS-A AnotherObject" is true, I use composition or aggregation. In general, I prefer composition because it provides better flexibility and lower coupling.</p>
+
+      <p style="margin-top:24px;"><strong>Active Recall Answers</strong></p>
+      <ol class="jre-list">
+        <li>Smartphone HAS-A Camera because camera is part of smartphone, but camera is not a smartphone</li>
+        <li>Square IS-A Shape, because Shape is a general type and Square is a specialization</li>
+        <li>University HAS-A Professor (more precisely: Aggregation)</li>
+        <li>Bike HAS-A Wheel (often Composition; can be Aggregation depending on domain assumptions)</li>
+      </ol>
+
+      <p style="margin-top:24px;"><strong>Extra Evaluation Summary</strong></p>
+      <p>University and Professor is best described as Aggregation because professor lifecycle is independent. Bike and Wheel can be composition in product modeling, or aggregation in a repair-shop reuse model. Reasoning quality matters most in interviews.</p>
+
+      <p style="margin-top:24px;"><strong>Golden Rule</strong></p>
+      <pre><code>Step 1: Can I naturally say A IS-A B? -> Inheritance
+Step 2: If not, can I say A HAS-A B? -> Composition/Aggregation
+Step 3: If neither fits -> Association</code></pre>
+
+      <p style="margin-top:24px;"><strong>Quick Check Answers</strong></p>
+      <ol class="jre-list">
+        <li>Department HAS-A Employee -> Aggregation (independent lifecycles)</li>
+        <li>Library HAS-A Book -> Aggregation (books can exist outside one library)</li>
+      </ol>
+
+      <p style="margin-top:24px;"><strong>Why inheritance is appropriate in:</strong></p>
+      <pre><code>class Car extends Vehicle</code></pre>
+      <p>Because Car is a specialization of Vehicle. Inheritance gives shared base behavior (start/stop), clear hierarchy, and polymorphism (`Vehicle v = new Car();`) while modeling a real IS-A relationship.</p>
+    </div>
+  </div>
+</section>
+
+<section data-chapter="oha03">
+  <div class="container">
+    <div class="section-label" id="chapter-oha03">Chapter 03 — Quick Check + Composition vs Aggregation Evaluation</div>
+    <h2>The Composition vs Aggregation Decision Tree</h2>
+
+    <div class="highlight-box">
+      <strong>Chapter Objective</strong>
+      <p>Test your IS-A vs HAS-A understanding with 10 mixed scenarios. Learn the single rule that separates Composition from Aggregation. Understand why most developers confuse these. Master the decision framework for interviews.</p>
+    </div>
+
+    <div class="concept-section oop">
+      <span class="concept-num">1</span>
+      <div class="concept-tag">QUICK CHECK</div>
+      <h3>10 Scenarios: IS-A, Composition, Aggregation, or Association?</h3>
+      <p style="margin-top:16px;"><strong>Instructions:</strong> For each, answer with IS-A, HAS-A (Composition), HAS-A (Aggregation), or Association, with one-line reasoning.</p>
+      <p style="margin-top:12px;"><strong>1. Hospital → Doctor</strong></p>
+      <pre><code>Your Answer: HAS-A, Aggregation
+Reason: A doctor can move from one hospital to another</code></pre>
+      <p style="margin-top:12px;"><strong>2. Company → CEO</strong></p>
+      <pre><code>Your Answer: Composition
+Reason: A company needs a CEO and a CEO needs a company</code></pre>
+      <p style="margin-top:12px;"><strong>3. Mobile → SIM Card</strong></p>
+      <pre><code>Your Answer: Composition
+Reason: Both Mobile and SIM card cannot function without each other</code></pre>
+      <p style="margin-top:12px;"><strong>4. Customer → Bank Account</strong></p>
+      <pre><code>Your Answer: Association
+Reason: Customer doesn't always need a bank account</code></pre>
+      <p style="margin-top:12px;"><strong>5. Aircraft → Engine</strong></p>
+      <pre><code>Your Answer: Aggregation
+Reason: Engines are routinely replaced</code></pre>
+      <p style="margin-top:12px;"><strong>6. Student → Course</strong></p>
+      <pre><code>Your Answer: Association
+Reason: Both can exist independently</code></pre>
+      <p style="margin-top:12px;"><strong>7. Tree → Branch</strong></p>
+      <pre><code>Your Answer: Aggregation
+Reason: Tree can exist without a branch but branch cannot without tree</code></pre>
+      <p style="margin-top:12px;"><strong>8. House → Room</strong></p>
+      <pre><code>Your Answer: Composition
+Reason: Room cannot exist without a House</code></pre>
+      <p style="margin-top:12px;"><strong>9. School → Teacher</strong></p>
+      <pre><code>Your Answer: Association
+Reason: Both can exist independently without relation</code></pre>
+      <p style="margin-top:12px;"><strong>10. Laptop → RAM</strong></p>
+      <pre><code>Your Answer: Composition
+Reason: Both are tightly coupled</code></pre>
+    </div>
+
+    <div class="concept-section oop">
+      <span class="concept-num">2</span>
+      <div class="concept-tag">EVALUATION</div>
+      <h3>Hospital → Doctor: CORRECT ✅</h3>
+      <p style="margin-top:16px;"><strong>Why?</strong> Hospital can close. Doctor still exists. Doctor can join another hospital. Doctor survives independently.</p>
+      <p style="margin-top:12px;"><strong>Relationship Model:</strong> Hospital ---- Doctor (aggregation)</p>
+    </div>
+
+    <div class="concept-section oop">
+      <span class="concept-num">3</span>
+      <div class="concept-tag">MISCONCEPTION</div>
+      <h3>Company → CEO: WRONG ❌ (Should be Aggregation)</h3>
+      <p style="margin-top:16px;"><strong>Your mistake:</strong> You said Composition because CEO and company are tightly coupled.</p>
+      <p style="margin-top:12px;"><strong>The key question to ask:</strong> Does the CEO's existence depend on this company?</p>
+      <p style="margin-top:12px;"><strong>Answer:</strong> No.</strong> When Microsoft hires a new CEO, did the previous CEO stop existing? No. The CEO can:</p>
+      <ul class="jre-list">
+        <li>Retire</li>
+        <li>Join another company</li>
+        <li>Start his own company</li>
+      </ul>
+      <p style="margin-top:12px;">Likewise, if a company shuts down, the CEO still exists.</p>
+      <p style="margin-top:12px;"><strong>Correct classification:</strong> Aggregation (CEO survives independently)</p>
+      <p style="margin-top:12px;"><strong>Golden Rule:</strong> Don't ask "Can the company function without a CEO?" Instead ask "Does the CEO's existence depend on this company?"</p>
+    </div>
+
+    <div class="concept-section oop">
+      <span class="concept-num">4</span>
+      <div class="concept-tag">MISCONCEPTION</div>
+      <h3>Mobile → SIM Card: WRONG ❌ (Should be Aggregation)</h3>
+      <p style="margin-top:16px;"><strong>Your mistake:</strong> You said Composition because both can't function together.</p>
+      <p style="margin-top:12px;"><strong>The real question:</strong> Can they exist independently?</p>
+      <p style="margin-top:12px;"><strong>Answer:</strong></p>
+      <ul class="jre-list">
+        <li>Can a SIM card exist without a mobile? Yes. It can sit on a table.</li>
+        <li>Can it be moved to another phone? Yes.</li>
+        <li>Can a phone exist without a SIM? Yes. It can take photos, connect to Wi-Fi, play games.</li>
+      </ul>
+      <p style="margin-top:12px;"><strong>Correct classification:</strong> Aggregation (both exist independently)</p>
+      <p style="margin-top:12px;"><strong>Critical Insight:</strong> You decided based on "Can they function?" instead of "Can they exist?" This is the biggest conceptual shift.</p>
+    </div>
+
+    <div class="concept-section oop">
+      <span class="concept-num">5</span>
+      <div class="concept-tag">VALID</div>
+      <h3>Customer → Bank Account: Double Interpretation ✅</h3>
+      <p style="margin-top:16px;"><strong>Your answer:</strong> Association</p>
+      <p style="margin-top:12px;"><strong>Valid Interpretation 1 (Simple):</strong> Association. A customer is related to an account but doesn't necessarily own it.</p>
+      <p style="margin-top:12px;"><strong>Valid Interpretation 2 (Business Logic):</strong> Aggregation. In a banking system, one customer can have many accounts. Delete customer? The account is usually closed as a business rule, but conceptually both are independent entities.</p>
+      <p style="margin-top:12px;"><strong>Interview Answer:</strong> "It depends on the domain. I'd say Aggregation in a banking context."</p>
+    </div>
+
+    <div class="concept-section oop">
+      <span class="concept-num">6</span>
+      <div class="concept-tag">EVALUATION</div>
+      <h3>Aircraft → Engine: CORRECT ✅</h3>
+      <p style="margin-top:16px;"><strong>Your reasoning:</strong> Engines are routinely replaced.</p>
+      <p style="margin-top:12px;"><strong>Technical Model:</strong></p>
+      <pre><code>Aircraft
+    |
+ Engine A
+
+↓ (After replacement)
+
+Aircraft
+    |
+ Engine B</code></pre>
+      <p style="margin-top:12px;"><strong>Engine exists independently.</strong> Aggregation is correct.</p>
+    </div>
+
+    <div class="concept-section oop">
+      <span class="concept-num">7</span>
+      <div class="concept-tag">EVALUATION</div>
+      <h3>Student → Course: CORRECT ✅</h3>
+      <p style="margin-top:16px;"><strong>Your reasoning:</strong> Both can exist independently without any connection.</p>
+      <p style="margin-top:12px;"><strong>Why?</strong> Student doesn't own the course. Course doesn't own the student. They're simply related for a semester or period.</p>
+      <p style="margin-top:12px;"><strong>Classification:</strong> Association.</p>
+    </div>
+
+    <div class="concept-section oop">
+      <span class="concept-num">8</span>
+      <div class="concept-tag">MISCONCEPTION</div>
+      <h3>Tree → Branch: WRONG ❌ (Should be Composition)</h3>
+      <p style="margin-top:16px;"><strong>Your answer:</strong> Aggregation</p>
+      <p style="margin-top:12px;"><strong>Your reasoning:</strong> "Tree can exist without a branch but branch cannot exist without a tree."</p>
+      <p style="margin-top:12px;"><strong>This reasoning is actually correct, but you drew the wrong conclusion!</strong></p>
+      <p style="margin-top:12px;">You said: "Branch cannot exist without a tree." ✅ That's exactly right.</p>
+      <p style="margin-top:12px;"><strong>What this tells us:</strong> A branch is part of the tree. If the tree dies, its branches are also destroyed as part of the object.</p>
+      <p style="margin-top:12px;"><strong>Correct classification:</strong> Composition (not Aggregation)</p>
+      <p style="margin-top:12px;"><strong>The difference:</strong></p>
+      <ul class="jre-list">
+        <li>Aggregation: Both objects can exist after separation (Doctor leaves Hospital)</li>
+        <li>Composition: The child dies with the parent (Branch dies with Tree)</li>
+      </ul>
+    </div>
+
+    <div class="concept-section oop">
+      <span class="concept-num">9</span>
+      <div class="concept-tag">EVALUATION</div>
+      <h3>House → Room: CORRECT ✅</h3>
+      <p style="margin-top:16px;"><strong>Your reasoning:</strong> Room cannot exist without a House.</p>
+      <p style="margin-top:12px;"><strong>Lifecycle rule:</strong> Destroy house. Rooms disappear. Composition is correct.</p>
+    </div>
+
+    <div class="concept-section oop">
+      <span class="concept-num">10</span>
+      <div class="concept-tag">CORRECTION</div>
+      <h3>School → Teacher: CLOSE, but Aggregation</h3>
+      <p style="margin-top:16px;"><strong>Your answer:</strong> Association</p>
+      <p style="margin-top:12px;"><strong>Why I'd classify it as Aggregation instead:</strong> Teachers are part of a school's staff. But they can:</p>
+      <ul class="jre-list">
+        <li>Leave and join another school</li>
+        <li>Work at multiple schools</li>
+        <li>Exist without any school (freelance tutor)</li>
+      </ul>
+      <p style="margin-top:12px;"><strong>So:</strong> School HAS-A Teachers. Teachers exist independently. Aggregation.</p>
+      <p style="margin-top:12px;"><strong>Note:</strong> Association is also defensible if you view it as a loose relationship. In interviews, either can work if your reasoning is solid.</p>
+    </div>
+
+    <div class="concept-section oop">
+      <span class="concept-num">11</span>
+      <div class="concept-tag">MISCONCEPTION</div>
+      <h3>Laptop → RAM: Context Dependent</h3>
+      <p style="margin-top:16px;"><strong>Your answer:</strong> Composition</p>
+      <p style="margin-top:12px;"><strong>This depends on the domain:</strong></p>
+      <p style="margin-top:12px;"><strong>If RAM is soldered to motherboard:</strong> Composition ✅ (RAM is part of Laptop's lifecycle)</p>
+      <p style="margin-top:12px;"><strong>If RAM is removable:</strong> Aggregation ✅ (RAM can be swapped out, exists independently)</p>
+      <p style="margin-top:12px;"><strong>Interview answer:</strong> "It depends. Soldered = Composition. Removable = Aggregation."</p>
+    </div>
+
+    <div class="concept-section oop">
+      <span class="concept-num">12</span>
+      <div class="concept-tag">BREAKTHROUGH</div>
+      <h3>⭐ The Pattern You're Making (Critical Insight)</h3>
+      <p style="margin-top:16px;"><strong>You're consistently asking:</strong> "Can this object work without the other?"</p>
+      <p style="margin-top:12px;"><strong>You should ask:</strong> "Can this object exist without the other?"</p>
+      <p style="margin-top:12px;"><strong>Example:</strong></p>
+      <p style="margin-top:12px;"><strong>Phone ↔ SIM</strong></p>
+      <p style="margin-top:12px;">Wrong question: "Do they work fully together?" → You chose Composition</p>
+      <p style="margin-top:12px;"><strong>Answer:</strong> "Can they exist independently?" → "Yes, both exist separately" → Aggregation</p>
+      <p style="margin-top:12px;"><strong>The Golden Rule:</strong></p>
+      <pre><code>When deciding between Composition and Aggregation:
+
+Ask: "Can the contained object exist independently?"
+
+NOT: "Can it function/work/be useful without the other?" ❌
+NOT: "Can they operate together?"  ❌
+
+ONLY: "Can it EXIST?" ✅</code></pre>
+    </div>
+
+    <div class="concept-section oop">
+      <span class="concept-num">13</span>
+      <div class="concept-tag">FRAMEWORK</div>
+      <h3>The Golden Lifecycle Rule</h3>
+      <p style="margin-top:16px;"><strong>Decision Tree:</strong></p>
+      <pre><code>                HAS-A
+                   │
+        ┌──────────┴──────────┐
+        │                     │
+Objects cannot         Objects can
+exist separately?      exist separately?
+        │                     │
+        ▼                     ▼
+ Composition          Aggregation
+
+
+Key Distinction:
+
+  Parent dies  →  Child also dies  →  COMPOSITION
+  Example: House dies → Rooms are gone
+
+  Parent dies  →  Child still exists  →  AGGREGATION
+  Example: Hospital closes → Doctor still exists</code></pre>
+      <p style="margin-top:12px;"><strong>Notice the keyword:</strong> EXIST (not "function" or "be useful")</p>
+    </div>
+
+    <div class="concept-section oop">
+      <span class="concept-num">14</span>
+      <div class="concept-tag">PATTERNS</div>
+      <h3>Common Pattern Recognition</h3>
+      <p style="margin-top:16px;"><strong>Likely Composition (child dies with parent):</strong></p>
+      <ul class="jre-list">
+        <li>House ↔ Room (room = part of house structure)</li>
+        <li>Tree ↔ Branch (branch = part of tree structure)</li>
+        <li>Book ↔ Page (page is meaningless outside the book)</li>
+        <li>Engine ↔ Cylinder (cylinder is part of engine internals)</li>
+      </ul>
+      <p style="margin-top:16px;"><strong>Likely Aggregation (child survives independently):</strong></p>
+      <ul class="jre-list">
+        <li>Hospital ↔ Doctor (doctor can work anywhere)</li>
+        <li>School ↔ Teacher (teacher can work anywhere)</li>
+        <li>Company ↔ CEO (CEO exists beyond company)</li>
+        <li>Aircraft ↔ Engine (engine is replaceable)</li>
+      </ul>
+      <p style="margin-top:16px;"><strong>Usually Association (no strong ownership):</strong></p>
+      <ul class="jre-list">
+        <li>Student ↔ Course</li>
+        <li>Customer ↔ Product</li>
+        <li>Person ↔ Country</li>
+      </ul>
+    </div>
+
+    <div class="concept-section oop">
+      <span class="concept-num">15</span>
+      <div class="concept-tag">INTERVIEW TIP</div>
+      <h3>How to Answer in Interviews</h3>
+      <p style="margin-top:16px;"><strong>If interviewer asks:</strong> "Is Laptop–RAM composition or aggregation?"</p>
+      <p style="margin-top:12px;"><strong>Your response (don't rush):</strong></p>
+      <pre><code>"It depends on the domain.
+
+If the RAM is permanently soldered to the motherboard,
+I'd model it as COMPOSITION because it's part of
+the laptop's lifecycle.
+
+If the RAM is removable and replaceable,
+I'd model it as AGGREGATION."</code></pre>
+      <p style="margin-top:12px;"><strong>Why this works:</strong> Shows you understand the nuance and can make domain-aware design decisions. Interviewers appreciate this.</p>
+    </div>
+
+    <div class="concept-section oop">
+      <span class="concept-num">16</span>
+      <div class="concept-tag">CODE EXAMPLE</div>
+      <h3>Composition vs Aggregation Code Patterns</h3>
+      <p style="margin-top:16px;"><strong>Composition Pattern (Parent creates child):</strong></p>
+      <pre><code>class House {
+  private List&lt;Room&gt; rooms;  // HAS-A
+  
+  public House() {
+    rooms = new ArrayList&lt;&gt;();
+    rooms.add(new Room("Bedroom"));
+    rooms.add(new Room("Kitchen"));
+    // House creates Rooms
+  }
+  
+  public void demolish() {
+    rooms.clear();  // Rooms destroyed with House
+  }
+}</code></pre>
+      <p style="margin-top:12px;"><strong>Aggregation Pattern (Child exists independently):</strong></p>
+      <pre><code>class Hospital {
+  private List&lt;Doctor&gt; doctors;  // HAS-A
+  
+  public Hospital(List&lt;Doctor&gt; doctors) {
+    this.doctors = doctors;  // Hospital receives pre-existing Doctors
+  }
+  
+  public void close() {
+    doctors.clear();  // Doctors still exist (work at other hospitals)
+  }
+}</code></pre>
+      <p style="margin-top:12px;"><strong>Key difference:</strong> Composition creates children; Aggregation receives them.</p>
+    </div>
+
+    <div class="concept-section oop">
+      <span class="concept-num">17</span>
+      <div class="concept-tag">MEMORY TRIGGER</div>
+      <h3>Quick Recall Method</h3>
+      <p style="margin-top:16px;"><strong>When you see Composition, think:</strong> "Strong ownership. The parent creates and owns the child completely."</p>
+      <p style="margin-top:12px;"><strong>When you see Aggregation, think:</strong> "Weak ownership. The parent uses pre-existing children who can exist elsewhere."</p>
+      <p style="margin-top:12px;"><strong>Think of it like employment:</strong></p>
+      <ul class="jre-list">
+        <li>Composition = Factory owns the machine (created by factory, exists only in factory)</li>
+        <li>Aggregation = Company employs people (people exist before, after, and outside company)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <section data-chapter="st01">
   <div class="container">
     <div class="section-label" id="chapter-st01">Chapter 01 — Introduction to Streams</div>
